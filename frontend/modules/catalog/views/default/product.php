@@ -1,52 +1,42 @@
+<?php
+
+$this->title = "Карточка товара";
+$this->params['breadcrumbs'][] = ['label' => "Шиншиллы", 'url' => ['catalog/category/Шиншиллы'], 'class' => 'breadcrumbs__link'];
+$this->params['breadcrumbs'][] = ['label' => "Витрины для шиншилл, дегу", 'url' => ['catalog/category/Шиншиллы/Витрины_для_шиншилл'], 'class' => 'breadcrumbs__link'];
+$this->params['breadcrumbs'][] = $this->title;
+?>
 
 <div class="container">
-  <div class="breadcrumbs">
-    <a class="breadcrumbs__link" href="#">Главная</a>
-    <span class="breadcrumbs__space">/</span>
-    <a class="breadcrumbs__link" href="#">Шиншиллы</a>
-    <span class="breadcrumbs__space">/</span>
-    <a class="breadcrumbs__link" href="#">Витрины для шиншилл, дегу</a>
-    <span class="breadcrumbs__space">/</span>
-    <a class="breadcrumbs__link breadcrumbs__link--dis">D10 Двойная витрина</a>
-  </div>
-</div>
-
-<!-- <main class="main"> -->
-    <div class="container">
-        <section class="product">
-            <div class="product__col">
-            
-                <!-- Галлерея -->
-                <?= $this->render('product/_gallery', []); ?>
-
-                <div class="product__optional">
-                    <!-- Аксессуары -->
-                    <?= $this->render('product/_accessories', []); ?>
-
-                    <!-- Промо -->
-                    <?= $this->render('product/_promo', []); ?>
-
-                    <!-- Отзывы -->
-                    <?= $this->render('product/_faq', []); ?>
-
-                    <!-- Вопросы и ответы -->
-                    <?= $this->render('product/_review', []); ?>
-                </div>
-
+  <section class="product">
+        <div class="product__col">
+        
+            <!-- Галлерея -->
+            <?= $this->render('//layouts/product/_gallery', []); ?>
+            <div class="product__optional">
+                <!-- Аксессуары -->
+                <?= $this->render('//layouts/product/_accessories', []); ?>
+                <!-- Промо -->
+                <?= $this->render('//layouts/product/_promo', []); ?>
+                <!-- Отзывы -->
+                <?= $this->render('//layouts/product/_faq', []); ?>
+                <!-- Вопросы и ответы -->
+                <?= $this->render('//layouts/product/_review', []); ?>
             </div>
-
-          <!-- Конструктор -->
-          <?= $this->render('product/_sidebar', []); ?>
-
-        </section>
-      </div>
+        </div>
+      <!-- Конструктор -->
+      <?= $this->render('//layouts/product/_sidebar', []); ?>
+  </section>
+</div>
     
-      <!-- Хиты продаж -->
-      <?= $this->render('product/_top_sales', []); ?>
+<!-- Хиты продаж -->
+<?= $this->render('//layouts/product/_top_sales', []); ?>
 
-    </main>
+<!-- Подписаться -->
+<?php $this->beginBlock('subscribe'); ?>
+  <?= $this->render('//layouts/product/_subscribe', []); ?>
+<?php $this->endBlock(); ?>
 
-
-    <?= $this->render('product/_subscribe', []); ?>
-
-<?= $this->render('product/_faq_bottom', []); ?>
+<!-- Вопросы и ответы -->
+<?php $this->beginBlock('faq_bottom'); ?>
+  <?= $this->render('//layouts/product/_faq_bottom', []); ?>
+<?php $this->endBlock(); ?>

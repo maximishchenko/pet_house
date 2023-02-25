@@ -1,61 +1,109 @@
+<?php
+use yii\helpers\Html;
+?>
+
 <footer class="footer pt-xxl mt-xxl">
   <div class="container">
     <div class="footer__wrapper">
       <div class="footer__contacts">
-        <h2 class="footer__title">Контакты</h2>
+        <h2 class="footer__title">
+          <?= Yii::t('app', 'Footer Contacts Block'); ?>
+        </h2>
         <div class="contacts-footer">
-          <a href="#" class="contacts-footer__link"><span class="contacts-footer__title">Телефон</span>+7 (495) 088 90
-            48</a>
-          <a href="#" class="contacts-footer__link"><span
-              class="contacts-footer__title">Почта</span>info@domgryzunov.ru</a>
-          <a href="#" class="contacts-footer__link"><span class="contacts-footer__title">Адрес</span>Московская область,
-            Солнечногорский район, пос. Поварово, ул. Буровая, 2А</a>
+          <!-- Телефон -->
+          <?php if (!empty($settings->getItemValue('contactPhone'))): ?>
+              <a href="tel:<?= $settings->getItemValue('contactPhone'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Phone'); ?></span><?= $settings->getItemValue('contactPhone'); ?></a>
+          <?php endif; ?>
+          <!-- Email -->
+          <?php if (!empty($settings->getItemValue('contactEmail'))): ?>
+            <a href="mailto://<?= $settings->getItemValue('contactEmail'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Email'); ?></span><?= $settings->getItemValue('contactEmail'); ?></a>
+          <?php endif; ?>
+          <!-- Адрес и ссылка на карту -->
+          <?php if (!empty($settings->getItemValue('contactAddress')) && !empty($settings->getItemValue('contactMapLink'))): ?>
+            <a href="<?= $settings->getItemValue('contactMapLink'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Address'); ?></span><?= $settings->getItemValue('contactAddress'); ?></a>
+          <?php endif; ?>
         </div>
+
+        <!-- Соц. сети -->
         <ul class="social list-reset">
-          <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
-              aria-label="Наша страничка в Фейсбуке">
+          <?php if (!empty($settings->getItemValue('contactInstagram'))): ?>
+          <li class="social__item">
+            <a href="<?= $settings->getItemValue('contactInstagram'); ?>" target="_blank" class="social__link social__link--fb"
+              aria-label="<?= Yii::t('app', "We are in IG"); ?>">
               <svg>
                 <use xlink:href="/img/sprite.svg#in"></use>
               </svg>
-            </a></li>
-          <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
-              aria-label="Наша страничка во Вконтакте">
+            </a>
+          </li>
+          <?php endif; ?>
+          <?php if (!empty($settings->getItemValue('contactWhatsapp'))): ?>
+          <li class="social__item">
+            <a href="<?= $settings->getItemValue('contactWhatsapp'); ?>" target="_blank" class="social__link social__link--vk"
+              aria-label="<?= Yii::t('app', "We are in WA"); ?>">
               <svg>
                 <use xlink:href="/img/sprite.svg#wt"></use>
               </svg>
-            </a></li>
-          <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
-              aria-label="Наша страничка в Твиттере">
+            </a>
+          </li>
+          <?php endif; ?>
+          <?php if (!empty($settings->getItemValue('contactTelegram'))): ?>
+          <li class="social__item">
+            <a href="<?= $settings->getItemValue('contactTelegram'); ?>" target="_blank" class="social__link social__link--tw"
+              aria-label="<?= Yii::t('app', "We are in Telegram"); ?>">
               <svg>
                 <use xlink:href="/img/sprite.svg#tl"></use>
               </svg>
-            </a></li>
-          <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
-              aria-label="Наша страничка в Фейсбуке">
+            </a>
+          </li>
+          <?php endif; ?>
+          <?php if (!empty($settings->getItemValue('contactVk'))): ?>
+          <li class="social__item">
+            <a href="<?= $settings->getItemValue('contactVk'); ?>" target="_blank" class="social__link social__link--fb"
+              aria-label="<?= Yii::t('app', "We are in VK"); ?>">
               <svg>
                 <use xlink:href="/img/sprite.svg#vk"></use>
               </svg>
-            </a></li>
-          <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
-              aria-label="Наша страничка во Вконтакте">
+            </a>
+          </li>
+          <?php endif; ?>
+          <?php if (!empty($settings->getItemValue('contactAvito'))): ?>
+          <li class="social__item">
+            <a href="<?= $settings->getItemValue('contactAvito'); ?>" target="_blank" class="social__link social__link--vk"
+              aria-label="<?= Yii::t('app', "We are in Avito"); ?>">
               <svg>
                 <use xlink:href="/img/sprite.svg#av"></use>
               </svg>
-            </a></li>
-          <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
-              aria-label="Наша страничка в Твиттере">
+            </a>
+          </li>
+          <?php endif; ?>
+          <?php if (!empty($settings->getItemValue('contactLiveMaster'))): ?>
+          <li class="social__item">
+            <a href="<?= $settings->getItemValue('contactLiveMaster'); ?>" target="_blank" class="social__link social__link--tw"
+              aria-label="<?= Yii::t('app', "We are in LiveMaster"); ?>">
               <svg>
                 <use xlink:href="/img/sprite.svg#lm"></use>
               </svg>
-            </a></li>
+            </a>
+          </li>
+          <?php endif; ?>
         </ul>
+
         <div class="footer__messages">
-          <a href="#" class="footer__watsapp"><svg class="message-wt">
+          <?php if (!empty($settings->getItemValue('contactWhatsapp'))): ?>
+          <a href="<?= $settings->getItemValue('contactWhatsapp'); ?>" class="footer__watsapp">
+            <svg class="message-wt">
               <use xlink:href="/img/sprite.svg#wt"></use>
-            </svg> Написать в Watsapp</a>
-          <a href="#" class="footer__telegram"><svg class="message-tl">
+            </svg> 
+            <?= Yii::t('app', 'Send WhatsApp Message'); ?>
+          </a>
+          <?php endif; ?>
+          <?php if (!empty($settings->getItemValue('contactTelegram'))): ?>
+          <a href="<?= $settings->getItemValue('contactTelegram'); ?>" class="footer__telegram"><svg class="message-tl">
               <use xlink:href="/img/sprite.svg#tl"></use>
-            </svg> Написать в Telegram</a>
+            </svg>
+            <?= Yii::t('app', 'Send Telegram Message'); ?>
+          </a>
+          <?php endif; ?>
         </div>
 
       </div>
@@ -90,9 +138,9 @@
       </div>
     </div>
     <div class="footer__end mt-n">
-      <span class="footer__copyrights">© 2016 — 2022 домгрызунов.рф</span>
+      <span class="footer__copyrights">© 2016 — <?= date('Y'); ?> <?= Yii::$app->name; ?></span>
       <a href="#" class="footer__requisites">Реквизиты</a>
-      <a href="#" class="footer__privacy">Политика конфидециальности</a>
+      <?= Html::a(Yii::t('app', 'Privacy'), '/privacy', ['class' => 'footer__privacy']); ?>
     </div>
   </div>
 </footer>

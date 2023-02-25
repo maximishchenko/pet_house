@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name' => 'домгрызунов.рф',
     'language' => 'ru-RU',
     'sourceLanguage' => 'en',
     'basePath' => dirname(__DIR__),
@@ -17,8 +18,23 @@ return [
         'catalog' => [
             'class' => 'frontend\modules\catalog\Module',
         ],
+        'cart' => [
+            'class' => 'frontend\modules\cart\Module',
+        ],
     ],
     'components' => [
+        'assetManager' => [
+            // 'bundles' => YII_ENV_PROD ? require(__DIR__.'/assets-prod.php') : null,
+            'linkAssets' => true,
+            'appendTimestamp' => true,
+            'converter' => [
+                'class' => 'yii\web\AssetConverter',
+                'forceConvert' => true,
+                'commands' => [
+                    'scss' => ['css', 'sass --style=compressed {from} {to}'],
+                ],
+            ],
+        ],
         'request' => [
             'baseUrl' => '',
             'csrfParam' => '_csrf-frontend',
@@ -62,6 +78,8 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'catalog/<slug>' => 'catalog/default/view',
+                'privacy' => 'site/privacy',
+                'delivery' => 'site/delivery',
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

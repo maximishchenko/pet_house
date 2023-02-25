@@ -4,8 +4,8 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
+$settings = Yii::$app->get('configManager');
 
 AppAsset::register($this);
 ?>
@@ -24,23 +24,28 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<?= $this->render('_header', []); ?>
+<?= $this->render('_header', ['settings' => $settings]); ?>
 
 <body class="page__body">
     <div class="site-container">
         <main class="main">
 
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            
+            <?= $this->render('_breadcrumbs'); ?>
             <?= $content ?>
     
         </main>
+
+        <?php if (isset($this->blocks['subscribe'])): ?>
+            <?= $this->blocks['subscribe'] ?>
+        <?php endif ?>
+        <?php if (isset($this->blocks['faq_bottom'])): ?>
+            <?= $this->blocks['faq_bottom'] ?>
+        <?php endif ?>
+
     </div>
 </body>
 
-<?= $this->render('_footer', []); ?>
+<?= $this->render('_footer', ['settings' => $settings]); ?>
 
 <?php $this->endBody() ?>
 </body>

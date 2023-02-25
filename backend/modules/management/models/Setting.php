@@ -14,16 +14,12 @@ use Yii;
  * @property string|null $field_type
  * @property string|null $tab
  */
-class Setting extends \yii\db\ActiveRecord
+class Setting extends \yii\base\Model
 {
 
     const TAB_CONTACT = 'contact';
     const TAB_SEO = 'seo';
-    
-    const FIELD_TYPE_STR = 'str';
-    const FIELD_TYPE_TEXT = 'text';
-    const FIELD_TYPE_CHECKBOX = 'checkbox';
-    const FIELD_TYPE_NUMBER = 'number';
+    const TAB_SERVICES = 'services';
 
     /**
      * {@inheritdoc}
@@ -37,32 +33,28 @@ class Setting extends \yii\db\ActiveRecord
     {
         return [
             self::TAB_CONTACT => Yii::t('app', 'SETTING_CONTACT_TAB'),
+            self::TAB_SERVICES => Yii::t('app', 'SETTING_SERVICES_TAB'),
             self::TAB_SEO => Yii::t('app', 'SETTING_SEO_TAB'),
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * Сопоставление пунктов настроек вкладкам
+     *
+     * @return array
      */
-    public function rules()
+    public static function getTabsItems(): array
     {
         return [
-            [['name', 'key', 'value', 'field_type', 'tab'], 'string', 'max' => 255],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'key' => Yii::t('app', 'Key'),
-            'value' => Yii::t('app', 'Value'),
-            'field_type' => Yii::t('app', 'Field Type'),
-            'tab' => Yii::t('app', 'Tab'),
+            self::TAB_CONTACT => [
+                'phone', 'email', 'telegram', 'whatsapp', 'vk', 'instagram', 'avito', 'livemaster', 'ozon', 'address', 'requisites',
+            ],
+            self::TAB_SERVICES => [
+                'mapLink',
+            ],
+            self::TAB_SEO => [
+                'seo_keywords', 'seo_description',
+            ],
         ];
     }
 }

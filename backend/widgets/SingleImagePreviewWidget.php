@@ -31,6 +31,8 @@ class SingleImagePreviewWidget extends Widget
      */
     public $url = null;
 
+    public $fancyboxGalleryName = "gallery";
+
     public function init()
     {
         parent::init();
@@ -38,21 +40,18 @@ class SingleImagePreviewWidget extends Widget
 
     public function run()
     {
-            echo "<div class='row'>
-                    <div class='col-md-3'>
-                    <a data-caption='' data-fancybox='single_image_gallery' href='" . $this->filePath . "'>
-                    <img width='100%' src='" . $this->filePath . "'>
-                    </a>
-                    <br/>
-                ";
-            
-            if (isset($this->url) && !empty($this->url) && isset($this->id) && !empty($this->id)) {
-                echo Html::a('<i class="fa fa-trash"></i>', [$this->url, 'id' => $this->id], ['class' => 'btn btn-danger img__delete__btn', 'data-confirm' => Yii::t('app', 'DO DELETE ANSWER'), 'data-method' => 'post']);
-            }
-
-            echo "<br><br>
-                        </div>
-                    </div>
-            ";
+    ?>
+        <div class='col-md-3' id="<?= $this->id; ?>" style="display: inline-block;">
+            <li class="sortable__items">
+                <a data-caption='' data-fancybox="<?= $this->fancyboxGalleryName; ?>" href="<?= $this->filePath; ?>" >
+                    <img width='100%' src="<?= $this->filePath; ?>" >
+                </a>            
+            </li>
+            <?php if (isset($this->url) && !empty($this->url) && isset($this->id) && !empty($this->id)): ?>
+                <?php // echo Html::a('<i class="fa fa-trash"></i>', [$this->url, 'id' => $this->id], ['class' => 'btn btn-danger img__delete__btn', 'data-confirm' => Yii::t('app', 'DO DELETE ANSWER'), 'data-method' => 'post']); ?>
+                <?= Html::a('<i class="fa fa-trash"></i>', [$this->url, 'id' => $this->id], ['class' => 'btn btn-danger img__delete__btn', 'data-confirm' => Yii::t('app', 'Do delete image answer'), 'data-method' => 'post']); ?>
+            <?php endif; ?>
+        </div>
+    <?php
     }
 }

@@ -1,7 +1,25 @@
-
+.img__delete__btn {
+    border-radius: unset !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+}
 .hint-block {
     display: block;
     margin-top: 5px;
     color: #999;
     font-size: 0.8rem;
+}
+
+.checkbox__group_2000p {
+    max-height: 2000px !important;
+}
+    
+.inner h3 {
+	white-space: normal;
+    min-height: 85px;
 }

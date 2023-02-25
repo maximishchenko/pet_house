@@ -85,7 +85,7 @@ class Redirect extends \yii\db\ActiveRecord
 
             ['redirect_code', 'in', 'range' => array_keys(self::getRedirectCodeArray())],
             ['redirect_code', 'default', 'value' => self::CODE_301],
-            ['sort', 'default', 'value' => Core::DEFAULT_SORT_VALUE],
+            ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
         ];
     }
 

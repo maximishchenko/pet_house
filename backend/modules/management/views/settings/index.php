@@ -1,22 +1,29 @@
 <?php
 
 use backend\modules\management\models\Setting;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = Yii::t('app', 'Settings');
+/* @var $models yii2tech\config\Item[] */
+
+$this->title = Yii::t('app', 'SETTINGS');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'MANAGEMENT_MODULE'), 'url' => ['/management']];
 $this->params['breadcrumbs'][] = $this->title;
-// Yii::$app->params['settings']['phone']
 ?>
-
-<div class="settings-index">
-
-    <div class="container">
-        
-    
-        <?php $form = ActiveForm::begin([
-            'id' => 'settings-form'
+<?php $form = ActiveForm::begin([
+            'id' => 'settings-form',
+            'fieldConfig' => ['template' => "{label}\n{input}\n{hint}\n{error}"],
+            'encodeErrorSummary' => false,
+            'errorSummaryCssClass' => 'alert alert-danger',
+            'errorCssClass'=>'text-danger',
         ]); ?>
+
+        <p class="text-right">
+            <?= Html::a(Yii::t('app', 'Config Restore defaults'), ['default'], ['class' => 'btn btn-warning btn-sm', 'data-confirm' => Yii::t('app', 'Are you sure you want to restore default values?')]); ?>
+        </p>
+        
+        
 
         <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
 
@@ -35,40 +42,46 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach (array_keys(Setting::getTabsArray()) as $k => $tab): ?>
                 <div class="tab-pane fade show <?= ($k == 0) ? 'active' : null; ?>" id="<?= $tab; ?>" role="tabpanel" aria-labelledby="<?= $tab; ?>-tab">
                     <div class="row">
-                    <?php foreach ($settings as $setting):  ?>
-                        <?php if ($setting->tab == $tab): ?>
-                        
-                            <div class="col-md-4">
 
+                        <?php foreach ($models as $key => $model): ?>
+                            <?php if (in_array($model->path, Setting::getTabsItems()[$tab])): ?>
+                            
+                                <div class="col-md-4">
 
-                            <?php
-                                            
-                                if ($setting->field_type == Setting::FIELD_TYPE_STR) {
-                                    echo $form->field($setting, 'value')->textInput(['name' => 'value['. $setting->id .']'])->label($setting->name)->hint(Yii::t('app', "Use param {param}", ['param' => "Yii::\$app->params['settings']['" . $setting->key . "']"]));
-                                } elseif ($setting->field_type == Setting::FIELD_TYPE_NUMBER) {
-                                    echo $form->field($setting, 'value')->textInput(['name' => 'value['. $setting->id .']', 'type' => 'number'])->label($setting->name)->hint(Yii::t('app', "Use param {param}", ['param' => "Yii::\$app->params['settings']['" . $setting->key . "']"]));
-                                } elseif ($setting->field_type == Setting::FIELD_TYPE_TEXT) {
-                                    echo $form->field($setting, 'value')->textarea(['name' => 'value['. $setting->id .']', 'rows' => 6])->label($setting->name)->hint(Yii::t('app', "Use param {param}", ['param' => "Yii::\$app->params['settings']['" . $setting->key . "']"]));
-                                } elseif ($setting->field_type == Setting::FIELD_TYPE_CHECKBOX) {
-                                    echo $form->field($setting, 'value')->checkbox(['name' => 'value['. $setting->id .']'])->label($setting->name)->hint(Yii::t('app', "Use param {param}", ['param' => "Yii::\$app->params['settings']['" . $setting->key . "']"]));
-                                } else {
-                                    echo $form->field($setting, 'value')->textInput(['name' => 'value['. $setting->id .']'])->label($setting->name)->hint(Yii::t('app', "Use param {param}", ['param' => "Yii::\$app->params['settings']['" . $setting->key . "']"]));
-                                }    
-                            ?>
-                            </div>
+                                    <?php
+                                    $field = $form->field($model, "[{$key}]value")->label(Yii::t('app', $model->label));
+                                    $inputType = ArrayHelper::remove($model->inputOptions, 'type');
+                                    switch($inputType) {
+                                        case 'phone':
+                                            $field->widget(\yii\widgets\MaskedInput::className(), [
+                                                'mask' => '+7 (999) 999-99-99',
+                                            ])->label(Yii::t('app', $model->label));
+                                            break;
+                                        case 'checkbox':
+                                            $field->checkbox()->label(Yii::t('app', $model->label));
+                                            break;
+                                        case 'textarea':
+                                            $field->textarea()->label(Yii::t('app', $model->label));
+                                            break;
+                                        case 'dropDown':
+                                            $field->dropDownList($model->inputOptions['items'])->label(Yii::t('app', $model->label));
+                                            break;
+                                    }
+                                    echo $field;
+                                    ?>
+                                
+                                </div>
 
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php endforeach;?>
+
                     </div>
                 </div>
             <?php endforeach; ?>
         
         </div>
 
-        <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
-    </div>
-
-</div>
 
 <?= $this->render('//layouts/forms/_buttons', ['formId' => 'settings-form']); ?>

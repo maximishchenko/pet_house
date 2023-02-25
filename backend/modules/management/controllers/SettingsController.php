@@ -2,35 +2,42 @@
 
 namespace backend\modules\management\controllers;
 
-use backend\modules\management\models\Setting;
+use yii\base\Model;
+use yii\web\Controller;
 use Yii;
 
-class SettingsController extends \yii\web\Controller
+class SettingsController extends Controller
 {
+    /**
+     * Performs batch updated of application configuration records.
+     */
     public function actionIndex()
     {
-        $settings = Setting::find()->orderBy(["field_type" => "DESC"])->all();
+        /* @var $configManager \yii2tech\config\Manager */
+        $configManager = Yii::$app->get('configManager');
 
-        if ($this->request->isPost) {
+        $models = $configManager->getItems();
 
-
-            $post = \Yii::$app->request->post()['value'];
-
-            foreach($post as $id => $value) {
-                $setting = Setting::findOne($id);
-                Setting::getDb()->transaction(function($db) use ($setting, $value) {
-                    $setting->value = $value;
-                    $setting->save();
-                });
-            }
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Settings changed'));
+        if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
+            $configManager->saveValues();
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Configuration updated.'));
             return $this->refresh();
-        } else {
-            return $this->render('index', [
-                'settings' => $settings
-            ]);
         }
-     
+
+        return $this->render('index', [
+            'models' => $models,
+        ]);
     }
 
+    /**
+     * Restores default values for the application configuration.
+     */
+    public function actionDefault()
+    {
+        /* @var $configManager \yii2tech\config\Manager */
+        $configManager = Yii::$app->get('configManager');
+        $configManager->clearValues();
+        Yii::$app->session->setFlash('warning', Yii::t('app', 'Default values restored.'));
+        return $this->redirect(['index']);
+    }
 }

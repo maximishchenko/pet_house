@@ -66,15 +66,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => SetColumn::className(),
-                'filter' => Core::getStatusesArray(),
+                'filter' => Status::getStatusesArray(),
                 'attribute' => 'status',
                 'name' => function($data) {
-                    return ArrayHelper::getValue(Core::getStatusesArray(), $data->status);
+                    return ArrayHelper::getValue(Status::getStatusesArray(), $data->status);
                 },
                 'contentOptions' => ['style' => 'width:100px;'],
                 'cssCLasses' => [
-                    Core::STATUS_ACTIVE => 'success',
-                    Core::STATUS_BLOCKED => 'danger',
+                    Status::STATUS_ACTIVE => 'success',
+                    Status::STATUS_BLOCKED => 'danger',
                 ],
             ],
 

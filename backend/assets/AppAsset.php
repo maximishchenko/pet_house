@@ -13,8 +13,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/backend.css',
+        'css/fancybox.css',
+        'css/jquery-ui.css',
+        'css/sortable.css',
+        'css/checkbox.css'
     ];
     public $js = [
+        'js/jquery-ui.js'
     ];
     public $depends = [
         'yii\web\JqueryAsset',

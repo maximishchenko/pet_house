@@ -14,6 +14,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'container' => [
+        'definitions' => [
+                'yii\widgets\LinkPager' => 'yii\bootstrap4\LinkPager'
+        ]
+    ],
     'modules' => [
         'management' => [
             'class' => 'backend\modules\management\Module',

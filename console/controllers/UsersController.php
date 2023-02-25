@@ -3,9 +3,11 @@
 namespace console\controllers;
  
 use common\models\User;
+use Yii;
 use yii\base\Model;
 use yii\console\Controller;
 use yii\console\Exception;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
  
 class UsersController extends Controller
@@ -22,7 +24,7 @@ class UsersController extends Controller
     {
         $model = new User();
         $this->readValue($model, 'username');
-//        $this->readValue($model, 'role');
+        $model->role = $this->select('Role:', ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description'));
         $this->readValue($model, 'email');
         $model->setPassword($this->prompt('Password:', [
             'required' => true,

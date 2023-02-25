@@ -48,8 +48,8 @@ class MetaTag extends \yii\db\ActiveRecord
             [['url'], 'unique'],
 
             [['url', 'meta_title'], 'required'],
-            ['sort', 'default', 'value' => Core::DEFAULT_SORT_VALUE],
-            ['status', 'in', 'range' => array_keys(Core::getStatusesArray())],
+            ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
+            ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
         ];
     }
 

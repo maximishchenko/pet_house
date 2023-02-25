@@ -57,8 +57,8 @@ class Script extends \yii\db\ActiveRecord
 
             [['name', 'position', 'code'], 'required'],
             
-            ['sort', 'default', 'value' => Core::DEFAULT_SORT_VALUE],
-            ['status', 'in', 'range' => array_keys(Core::getStatusesArray())],
+            ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
+            ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
             ['position', 'in', 'range' => array_keys(self::getScriptPositionsArray())],
             ['position', 'default', 'value' => self::BEFORE_END_HEAD],
         ];

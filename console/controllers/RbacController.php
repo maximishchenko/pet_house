@@ -17,7 +17,6 @@ class RbacController extends Controller
 
 
         $auth = Yii::$app->authManager;
-        $auth->removeAll(); 
         $auth->removeAll();
 
         $rule = new UserRoleRule();

@@ -1,0 +1,13 @@
+.content-wrapper {
+    background-color: unset !important;
+}
+.checkbox__group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    max-height: 100px;
+    flex-direction: column;
+}
+.custom-checkbox {
+    margin-right: 10px;
+} 

@@ -14,14 +14,15 @@ class AppAsset extends AssetBundle
     public $css = [
         'scss/main.scss',
         // 'css/main.css',
-        'css/vendor.css',
+        'scss/vendor.scss',
     ];
     public $js = [
         'js/src/main.js',
+        // 'js/main.js',
     ];
     public $jsOptions = [
         'position' => \yii\web\View::POS_HEAD,
-        'defer' => 'defer',
+        // 'defer' => 'defer',
         "type" => "module",
     ];
     public $depends = [

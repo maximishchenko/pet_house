@@ -77,7 +77,8 @@ class SiteController extends Controller
     // Политика конфиденциальности
     public function actionPrivacy()
     {
-        return $this->render('privacy');
+        $settings = Yii::$app->get('configManager');
+        return $this->render('privacy', ['settings' => $settings]);
     }
 
     // Доставка и оплата

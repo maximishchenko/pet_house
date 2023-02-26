@@ -34,14 +34,14 @@
 // const modal = new GraphModal();
 
 // Реализация табов
-import GraphTabs from 'graph-tabs';
+// import GraphTabs from '../../../../node_modules/graph-tabs/dist/graph-tabs.min.js';
 const tabs = new GraphTabs('calc-tab');
 
 // Получение высоты шапки сайта (не забудьте вызвать функцию)
 // import { getHeaderHeight } from './functions/header-height';
 
 // Подключение плагина кастом-скролла
- import 'simplebar';
+//  import '../../../../node_modules/simplebar/dist/simplebar.min.js';
 
 // Подключение плагина для позиционирования тултипов
 // import { createPopper, right} from '@popperjs/core';

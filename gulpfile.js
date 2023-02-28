@@ -1,7 +1,12 @@
 'use strict';
 const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'));;
+const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
+const svgSprite = require('gulp-svg-sprite');
+const webpack = require('webpack-stream');
+const svgmin = require('gulp-svgmin');
+const cheerio = require('gulp-cheerio');
+const replace = require('gulp-replace');
 sass.compiler = require('node-sass');
 
 // SCSS
@@ -14,9 +19,39 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./frontend/web/scss/'));
     return main_css, vendor_css;
 });
+// Sprite
+gulp.task('sprite', function () {
+    return gulp.src('./frontend/web/img/svg/*.svg')
+    .pipe(
+      svgmin({
+        js2svg: {
+          pretty: true,
+        },
+      })
+    )
+    .pipe(
+      cheerio({
+        run: function ($) {
+          $('[fill]').removeAttr('fill');
+          $('[stroke]').removeAttr('stroke');
+          $('[style]').removeAttr('style');
+        },
+        parserOptions: {
+          xmlMode: true
+        },
+      })
+    )
+    .pipe(replace('&gt;', '>'))
+    .pipe(svgSprite({
+      mode: {
+        stack: {
+          sprite: "../sprite.svg"
+        }
+      },
+    }))
+    .pipe(gulp.dest("./frontend/web/img/"));
+});
 // JS
-const webpack = require('webpack-stream')
-
 gulp.task('scripts', function () {
   return gulp.src('./frontend/web/js/src/main.js')
     .pipe(webpack({
@@ -25,4 +60,8 @@ gulp.task('scripts', function () {
       }
     }))
     .pipe(gulp.dest('./frontend/web/js'))
-})
+});
+
+
+// gulp.task('stl', ['sass', 'sprite']);
+gulp.task('stl', gulp.parallel('sass', 'sprite'));

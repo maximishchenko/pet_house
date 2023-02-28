@@ -32,7 +32,7 @@ return [
                 'forceConvert' => false,
                 'commands' => [
                     // 'scss' => ['css', 'sass --style=compressed {from} {to}'],
-                    'scss' => ['css', 'gulp sass'],
+                    'scss' => ['css', 'gulp stl'],
                     'js' => ['js', 'gulp scripts'],
                 ],
             ],

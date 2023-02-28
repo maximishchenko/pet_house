@@ -17,8 +17,8 @@ class AppAsset extends AssetBundle
         'scss/vendor.scss',
     ];
     public $js = [
-        'js/src/main.js',
-        // 'js/main.js',
+        // 'js/src/main.js',
+        'js/main.js',
     ];
     public $jsOptions = [
         'position' => \yii\web\View::POS_HEAD,

@@ -1,0 +1,15 @@
+/*!
+ * float-sidebar - A lightweight (2kb gzipped), zero-dependency javascript library for making a sidebar float
+ * @version v1.2.4
+ * @link https://github.com/vursen/FloatSidebar.js
+ * @author Sergey Vinogradov
+ * @license MIT
+ */
+
+/**
+ * sticky-sidebar - A JavaScript plugin for making smart and high performance.
+ * @version v3.3.1
+ * @link https://github.com/abouolia/sticky-sidebar
+ * @author Ahmed Bouhuolia
+ * @license The MIT License (MIT)
+**/

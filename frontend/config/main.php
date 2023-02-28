@@ -31,7 +31,9 @@ return [
                 'class' => 'yii\web\AssetConverter',
                 'forceConvert' => true,
                 'commands' => [
-                    'scss' => ['css', 'sass --style=compressed {from} {to}'],
+                    // 'scss' => ['css', 'sass --style=compressed {from} {to}'],
+                    'scss' => ['css', 'gulp sass'],
+                    'js' => ['js', 'gulp scripts'],
                 ],
             ],
         ],

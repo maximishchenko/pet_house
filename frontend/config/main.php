@@ -24,12 +24,12 @@ return [
     ],
     'components' => [
         'assetManager' => [
-            // 'bundles' => YII_ENV_PROD ? require(__DIR__.'/assets-prod.php') : null,
+            'bundles' => YII_ENV_PROD ? require(__DIR__.'/assets-prod.php') : null,
             'linkAssets' => true,
             'appendTimestamp' => true,
             'converter' => [
                 'class' => 'yii\web\AssetConverter',
-                'forceConvert' => true,
+                'forceConvert' => false,
                 'commands' => [
                     // 'scss' => ['css', 'sass --style=compressed {from} {to}'],
                     'scss' => ['css', 'gulp sass'],

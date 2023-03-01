@@ -23,7 +23,7 @@ use yii\helpers\Html;
             <a href="<?= $settings->getItemValue('contactMapLink'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Address'); ?></span><?= $settings->getItemValue('contactAddress'); ?></a>
           <?php endif; ?>
         </div>
-
+  
         <!-- Соц. сети -->
         <ul class="social list-reset">
           <?php if (!empty($settings->getItemValue('contactInstagram'))): ?>

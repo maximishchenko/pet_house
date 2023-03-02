@@ -34,8 +34,8 @@
 // const modal = new GraphModal();
 
 // Реализация табов
-// import GraphTabs from '../../../../node_modules/graph-tabs/dist/graph-tabs.min.js';
-const tabs = new GraphTabs('calc-tab');
+/* import GraphTabs from '../../../../node_modules/graph-tabs/dist/graph-tabs.min.js';
+const tabs = new GraphTabs('calc-tab'); */
 
 // Получение высоты шапки сайта (не забудьте вызвать функцию)
 // import { getHeaderHeight } from './functions/header-height';

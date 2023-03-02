@@ -1,0 +1,255 @@
+.media-info {
+  padding: var(--size-xxl) 0;
+  background: var(--color-brand-10);
+
+  &__head {
+    width: 30%;
+    margin: 0 auto;
+  }
+
+  &__text {
+    margin: 0;
+    color: var(--color-dark);
+    line-height: 140%;
+  }
+
+  &__gallary {
+    padding: var(--size-m) var(--size-s);
+    display: grid;
+    gap: var(--size-xxs);
+    grid-template-columns: repeat(3, 1fr);
+
+  }
+
+  &__text-content {
+    padding: 0 var(--size-l);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--size-s);
+    justify-items: center;
+    margin-bottom: var(--size-m);
+  }
+
+  &__text-row {
+    width: 50%;
+  }
+
+  &__subtitle {
+    margin: 0 0 var(--size-xs) 0;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: var(--color-brand);
+    letter-spacing: .05em;
+  }
+
+  &__tiker {
+    padding: 0 var(--size-n);
+    text-transform: uppercase;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    opacity: 0.4;
+    font-size: 5.5rem;
+    color: var(--color-dark);
+    font-weight: 400;
+  }
+
+  &__tiker--stroke {
+    color: var(--color-brand-10);
+    text-shadow:
+      -0 -1px 0 rgba(55, 55, 55, 0.2),
+      0 -1px 0 rgba(55, 55, 55, 0.2),
+      -0 1px 0 rgba(55, 55, 55, 0.2),
+      0 1px 0 rgba(55, 55, 55, 0.2),
+      -1px -0 0 rgba(55, 55, 55, 0.2),
+      1px -0 0 rgba(55, 55, 55, 0.2),
+      -1px 0 0 rgba(55, 55, 55, 0.2),
+      1px 0 0 rgba(55, 55, 55, 0.2),
+      -1px -1px 0 rgba(55, 55, 55, 0.2),
+      1px -1px 0 rgba(55, 55, 55, 0.2),
+      -1px 1px 0 rgba(55, 55, 55, 0.2),
+      1px 1px 0 rgba(55, 55, 55, 0.2),
+      -1px -1px 0 rgba(55, 55, 55, 0.2),
+      1px -1px 0 rgba(55, 55, 55, 0.2),
+      -1px 1px 0 rgba(55, 55, 55, 0.2),
+      1px 1px 0 rgba(55, 55, 55, 0.2);
+  }
+}
+
+// Галерея
+.b-grid {
+  height: 26rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: var(--size-xxs);
+  grid-auto-flow: row;
+  grid-template-areas:
+    "a a a a b b b b q q s s"
+    "a a a a b b b b h h h h"
+    "f f g g b b b b h h h h"
+    "c c c c d d d d h h h h"
+    "c c c c d d d d r r t t";
+
+  a {
+    overflow: hidden;
+  }
+
+  &__img {
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  &__video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  &__video--v {
+    width: auto;
+    height: 100%;
+  }
+
+}
+
+.b-grid__a {
+  grid-area: a;
+}
+
+.b-grid__b {
+  grid-area: b;
+}
+
+.b-grid__c {
+  grid-area: c;
+}
+
+.b-grid__d {
+  grid-area: d;
+}
+
+.b-grid__f {
+  grid-area: f;
+}
+
+.b-grid__g {
+  grid-area: g;
+}
+
+.b-grid__h {
+  grid-area: h;
+}
+
+.b-grid__q {
+  grid-area: q;
+}
+
+.b-grid__s {
+  grid-area: s;
+}
+
+.b-grid__r {
+  grid-area: r;
+}
+
+.b-grid__t {
+  grid-area: t;
+}
+
+
+// Отзывы
+.reviews-slider {
+  margin-top: var(--size-m);
+
+  .swiper-slide {
+    width: 35.3rem;
+    margin: 0 calc(var(--size-s) / 2);
+  }
+
+  .swiper-wrapper {
+    padding-bottom: 50px;
+  }
+
+  @include hover {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      opacity: 1;
+      width: var(--size-m);
+      height: var(--size-m);
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background: var(--color-dark);
+    padding: var(--size-s);
+    border-radius: 100%;
+    opacity: 0;
+    transition: opacity var(--hover);
+
+    &::after {
+      color: var(--color-light);
+      font-size: .8rem;
+    }
+  }
+
+  .swiper-button-next {
+    right: var(--size-n);
+  }
+
+  .swiper-button-prev {
+    left: var(--size-n);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--color-brand);
+  }
+
+  &__el {
+    padding: var(--size-n);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    transition: background var(--hover);
+
+    @include hover {
+      &:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+
+  &__autor-img {
+    height: var(--size-xl);
+    width: var(--size-xl);
+    margin-bottom: var(--size-s);
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  &__autor {
+    text-align: center;
+    color: var(--color-dark);
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: .05em;
+    font-weight: 600;
+    user-select: none;
+  }
+
+  &__text {
+    margin: var(--size-s) 0;
+    text-align: center;
+    color: var(--color-dark);
+    user-select: none;
+  }
+
+  &__date {
+    font-size: .8rem;
+    color: var(--color-dark-80);
+    user-select: none;
+  }
+}

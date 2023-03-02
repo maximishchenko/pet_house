@@ -34,4 +34,13 @@ return [
     "We are in LiveMaster" => 'Наша страница LiveMaster',
     "Send WhatsApp Message" => "Написать в WatsApp",
     "Send Telegram Message" => "Написать в Telegram",
+    "Personal Order" => 'Персональный заказ',
+    "Breadcrumbs Chinchilles" => "Шиншиллы",
+    "Breadcrumbs Dogs" => "Собаки",
+    "Breadcrumbs Cats" => "Кошки",
+    "Breadcrumbs Birds" => "Птицы",
+    "Page Title Chinchilles" => "Витрины для шиншилл",
+    "Page Title Dogs" => "Вольеры для собак",
+    "Page Title Cats" => "Вольеры для кошек",
+    "Page Title Birds" => "Клетки для птиц",
 ];

@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
     
 <!-- Хиты продаж -->
-<?= $this->render('//layouts/product/_top_sales', []); ?>
+<?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж"]); ?>
+
 
 <!-- Подписаться -->
 <?php $this->beginBlock('subscribe'); ?>

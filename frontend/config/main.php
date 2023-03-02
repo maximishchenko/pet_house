@@ -29,7 +29,7 @@ return [
             'appendTimestamp' => true,
             'converter' => [
                 'class' => 'yii\web\AssetConverter',
-                'forceConvert' => false,
+                'forceConvert' => true,
                 'commands' => [
                     // 'scss' => ['css', 'sass --style=compressed {from} {to}'],
                     'scss' => ['css', 'gulp stl'],
@@ -79,7 +79,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'catalog/<slug>' => 'catalog/default/view',
+                // 'catalog/<slug>' => 'catalog/default/view',// chinchilles
+                // 'chinchilles' => 'catalog/default/index',
+                // 'dogs' => 'catalog/default/index',
+                '<controller:(chinchille|dog|cat|bird)>s/<slug:\w+>' => 'catalog/default/view',
+                '<controller:(chinchille|dog|cat|bird)>s' => 'catalog/default/index',
                 'privacy' => 'site/privacy',
                 'delivery' => 'site/delivery',
 

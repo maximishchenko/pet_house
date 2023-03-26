@@ -80,6 +80,28 @@ if(Yii::$app->user->can(User::ROLE_ADMIN)):
             'linkUrl' => Url::to(['/catalog/rodent-showcase-attribute'])
         ]) ?>
     </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Categories'),
+            'text' => Yii::t('app', 'Categories Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'primary',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/catalog/rodent-showcase-category'])
+        ]) ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Rodent Products'),
+            'text' => Yii::t('app', 'Rodent Products Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'success',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/catalog/rodent-showcase-product'])
+        ]) ?>
+    </div>
 </div>
 
 <h2>
@@ -156,6 +178,28 @@ if(Yii::$app->user->can(User::ROLE_ADMIN)):
             'theme' => 'info',
             'linkText' => Yii::t('app', 'GO_LINK'),
             'linkUrl' => Url::to(['/catalog/dog-cage-attribute'])
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Categories'),
+            'text' => Yii::t('app', 'Categories Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'primary',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/catalog/dog-cage-category'])
+        ]) ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Dog Cage Products'),
+            'text' => Yii::t('app', 'Dog Cage Products Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'success',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/catalog/dog-cage-product'])
         ]) ?>
     </div>
 </div>

@@ -23,3 +23,6 @@
 	white-space: normal;
     min-height: 85px;
 }
+.text-muted {
+    color: #007bff!important;
+}

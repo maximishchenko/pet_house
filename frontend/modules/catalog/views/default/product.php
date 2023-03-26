@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- Промо -->
                 <?= $this->render('//layouts/product/_promo', []); ?>
                 <!-- Отзывы -->
-                <?= $this->render('//layouts/product/_faq', []); ?>
+                <?= $this->render('//layouts/template/_faq', []); ?>
                 <!-- Вопросы и ответы -->
                 <?= $this->render('//layouts/product/_review', []); ?>
             </div>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!-- Подписаться -->
 <?php $this->beginBlock('subscribe'); ?>
-  <?= $this->render('//layouts/product/_subscribe', []); ?>
+  <?= $this->render('//layouts/template/_subscribe', []); ?>
 <?php $this->endBlock(); ?>
 
 <!-- Вопросы и ответы -->

@@ -4,6 +4,9 @@ namespace backend\modules\catalog\models\items;
 
 use Yii;
 
+/**
+ * Описывает свойства продукта
+ */
 class PropertyItemTypeItems
 {
     /**

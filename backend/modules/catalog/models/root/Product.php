@@ -2,9 +2,22 @@
 
 namespace backend\modules\catalog\models\root;
 
+use backend\interfaces\SingleTableInterface;
+use backend\modules\catalog\models\items\CatalogTypeItems;
+use backend\modules\catalog\models\items\ProductItemType;
+use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\ProductImage;
+use backend\modules\catalog\models\query\ProductQuery;
 use backend\modules\catalog\models\query\PropertyQuery;
+use backend\modules\catalog\models\RodentShowcaseProduct;
+use backend\traits\fileTrait;
+use backend\traits\InheritanceTrait;
+use common\models\Sort;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%product}}".
@@ -49,14 +62,83 @@ use Yii;
  * @property ProductMaterial[] $productMaterials
  * @property Attribute[] $materials
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends \yii\db\ActiveRecord implements SingleTableInterface
 {
+    use InheritanceTrait;
+    use fileTrait;
+
+    /**
+     * Возвращает 
+     *
+     * @param [type] $row
+     * @return void
+     */
+    public static function instantiate($row)
+    {
+        if (
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && 
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
+            return new RodentShowcaseProduct();
+        } 
+        // elseif($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && $row['item_type'] == PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE) {
+            // return new DogCageSize();
+        // } 
+        else {
+            return new self;
+        }
+    }
+    
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return '{{%product}}';
+    }
+
+    public function behaviors()
+    {
+        return[
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => function () {
+                    return date('U');
+                },
+            ],
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => ['name'],
+                'slugAttribute' => 'slug',
+                'immutable' => true,
+                'ensureUnique'=>true,
+            ],
+        ];
+    } 
+    
+
+    /**
+     * {@inheritdoc}
+     * @return PropertyQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        $cls = get_called_class();
+        $clsItem = new $cls;
+        return new ProductQuery($cls, ['product_type' => $clsItem->product_type, 'item_type' => $clsItem->item_type]);
+    }
+    
+    public function init()
+    {
+        $this->product_type = $this->getType();
+        $this->item_type = $this->getItemType();
+        parent::init();
     }
 
     /**
@@ -76,6 +158,10 @@ class Product extends \yii\db\ActiveRecord
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['wall_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['wall_id' => 'id']],
+
+            [['name', 'category_id'], 'required'],
+            [['name'], 'unique'],
+            [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
         ];
     }
 
@@ -228,8 +314,131 @@ class Product extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return PropertyQuery the active query used by this AR class.
      */
-    public static function find()
+    // public static function find()
+    // {
+    //     return new PropertyQuery(get_called_class());
+    // }
+    
+    
+    /**
+     * Возвращает значение типа раздела (item_type) в зависимости от имени дочернего класса
+     *
+     * @return string|null
+     */
+    public function getItemType(): ?string
     {
-        return new PropertyQuery(get_called_class());
+        return $this->setItemType();
     }
+
+    /**
+     * Возвращает значение типа продукта в зависимости от дочернего класса
+     *
+     * @return void
+     */
+    public function getType()
+    {
+        return $this->setType();
+    }
+    
+
+    /**
+     * Устанавливает значение item_type в зависимости от имени дочернего класса
+     *
+     * @param string $cls
+     * @return string|null
+     */
+    protected function setItemType(): ?string
+    {
+        $itemTypeChilds = ProductItemType::getItemTypeChilds();
+        foreach ($itemTypeChilds as $childCls => $itemType) {
+            if (is_subclass_of($this, $childCls, true)) {
+                return $itemType;
+                break;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Возвращает значение типа продукта (product_type) в зависимости от дочернего класса
+     *
+     * @return string|null
+     */
+    protected function setType(): ?string
+    {
+        $cls = $this->getChildClassShortName();
+        switch ($cls) {
+            case 'RodentShowcaseProduct':
+                return CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE;
+            case 'DogCageProduct':
+                return CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE;
+            default:
+                return null;
+        }
+    }
+
+    // 
+
+    /**
+     * Выпадающий список категорий
+     *
+     * @return void
+     */
+    public function getCategoriesItems()
+    {
+        $categories = Category::find()
+                        ->where([
+                            'item_type' => $this->item_type,
+                            'property_type' => $this->product_type
+                        ])->all(); 
+        $items = ArrayHelper::map($categories,'id', 'name');
+        return $items;
+    }
+
+    /**
+     * Параметры выпадающего списка категорий
+     *
+     * @return void
+     */
+    public function getCategoriesParams()
+    {
+        return ['prompt' => Yii::t('app', 'Choose product category')];
+    }
+    
+    /**
+     * Генерация данных выпадающего списка свойств в зависимости от типа параметра и вида продукта
+     *
+     * @param [type] $item_type
+     * @return void
+     */
+    public function getPropertiesItems($item_type)
+    {
+        $properties = Property::find()
+                        ->where([
+                            'item_type' => $item_type,
+                            'property_type' => $this->product_type
+                        ])->all(); 
+        $items = ArrayHelper::map($properties,'id', 'name');
+        return $items;
+    }
+
+    /**
+     * Генерация параметров выпадающего списка свойств в зависимости от типа свойства
+     *
+     * @param [type] $param_type
+     * @return void
+     */
+    public function getPropertiesParams($param_type)
+    {
+        $params = [
+            PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE => Yii::t('app', 'Choose product type'),
+            PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE => Yii::t('app', 'Choose product size'),
+            PropertyItemTypeItems::PROPERTY_ITEM_TYPE_MATERIAL => Yii::t('app', 'Choose product material'),
+            PropertyItemTypeItems::PROPERTY_ITEM_TYPE_COLOR => Yii::t('app', 'Choose product color'),
+            PropertyItemTypeItems::PROPERTY_ITEM_TYPE_ENGRAVING => Yii::t('app', 'Choose product engraving'),
+            PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL => Yii::t('app', 'Choose product wall'),
+        ];
+        return ['prompt' => $params[$param_type]];
+    }
+
 }

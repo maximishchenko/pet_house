@@ -9,6 +9,21 @@ namespace backend\modules\catalog\models\query;
  */
 class CategoryQuery extends \yii\db\ActiveQuery
 {
+    public $property_type;
+    
+    public $item_type;
+
+    public function prepare($builder)
+    {
+        if ($this->property_type !== null) {
+            $this->andWhere(['property_type' => $this->property_type]);
+        }
+        if ($this->item_type !== null) {
+            $this->andWhere(['item_type' => $this->item_type]);
+        }
+        return parent::prepare($builder);
+    }
+    
     /*public function active()
     {
         return $this->andWhere('[[status]]=1');

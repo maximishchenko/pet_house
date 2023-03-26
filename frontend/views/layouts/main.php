@@ -24,10 +24,10 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<?= $this->render('_header', ['settings' => $settings]); ?>
 
 <body class="page__body">
     <div class="site-container">
+        <?= $this->render('_header', ['settings' => $settings]); ?>
         <main class="main">
 
             <?= $this->render('_breadcrumbs'); ?>

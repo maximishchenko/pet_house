@@ -4,6 +4,7 @@ use common\models\User;
 use yii\helpers\Url;
 if(Yii::$app->user->can(User::ROLE_ADMIN)):
 ?>
+
 <h2>
     <?= Yii::t('app', "Showcases for rodents"); ?>
 </h2><hr>

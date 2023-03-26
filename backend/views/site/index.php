@@ -8,5 +8,9 @@ $this->title = Yii::t('app', 'DASHBOARD');
     
     <?= $this->render('//layouts/dashboard/_management_dashboard_items'); ?>
     
+    <?= $this->render('//layouts/dashboard/_catalog_dashboard_items'); ?>
+    
+    <?= $this->render('//layouts/dashboard/_content_dashboard_items'); ?>
+    
     <?= $this->render('//layouts/dashboard/_seo_dashboard_items'); ?>
 </div>

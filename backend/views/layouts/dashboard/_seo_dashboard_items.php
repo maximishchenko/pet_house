@@ -4,6 +4,9 @@ use common\models\User;
 use yii\helpers\Url;
 if(Yii::$app->user->can(User::ROLE_ADMIN)):
 ?>
+<h2>
+    <?= Yii::t('app', "Seo module items"); ?>
+</h2><hr>
 <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <?= \hail812\adminlte\widgets\SmallBox::widget([

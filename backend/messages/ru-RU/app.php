@@ -188,4 +188,13 @@ return [
     "Rodent Showcase Wall hint" => "Элемент справочника \"Боковые стенки\"",
     'Choose product wall' => "Выберите боковые стенки",
     'Update Rodent Product: {name}' => "Витрина для грызунов: {name}",
+    'Questions' => "Вопросы и ответы",
+    'Questions Edit' => "Управление содержанием раздела \"Вопросы и ответы\"",
+    'Position' => "Положение на странице",
+    'Question' => "Вопрос",
+    'Answer' => "Ответ",
+    'Question position bottom' => "Общий шаблон",
+    'Question position inside card' => "Карточка товара",
+    "Seo module items" => "SEO",
+    "Content Module Items" => "Контент"
 ];

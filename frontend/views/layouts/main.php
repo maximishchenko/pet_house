@@ -32,12 +32,19 @@ AppAsset::register($this);
 
             <?= $this->render('_breadcrumbs'); ?>
             <?= $content ?>
+            
     
         </main>
 
         <?php if (isset($this->blocks['subscribe'])): ?>
             <?= $this->blocks['subscribe'] ?>
         <?php endif ?>
+
+       
+        <?php if (isset($this->blocks['pop-categories'])): ?>
+            <?= $this->blocks['pop-categories'] ?>
+        <?php endif ?>
+
         <?php if (isset($this->blocks['faq_bottom'])): ?>
             <?= $this->blocks['faq_bottom'] ?>
         <?php endif ?>

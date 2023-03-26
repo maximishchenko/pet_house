@@ -1,0 +1,367 @@
+.catalog-categories {
+  .swiper-slide {
+    width: auto;
+  }
+
+  .swiper-slide:not(:last-child) {
+    margin-right: var(--size-xs);
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    align-items: end;
+  }
+
+  &__el {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+  }
+
+  &__title {
+    text-align: center;
+    color: var(--color-dark);
+    width: 60%;
+  }
+
+  &__img {
+    max-height: 10rem;
+    margin-bottom: var(--size-n);
+    width: auto;
+  }
+}
+
+.catalog-thumbs {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+    gap: var(--size-l);
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--size-s);
+    row-gap: var(--size-l);
+  }
+}
+
+.catalog-bar {
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.receipts {
+  margin: 0;
+  display: flex;
+
+  .swiper-slide {
+    width: auto !important;
+  }
+
+  .swiper-slide:not(:last-child) {
+    margin-right: var(--size-xs);
+  }
+
+  &__btn {
+    display: block;
+    background: transparent;
+    border: solid 1px var(--color-border);
+    color: var(--color-dark);
+
+    @include hover {
+      background: var(--color-gray);
+    }
+  }
+
+  &__btn--filter {
+    background: var(--color-dark);
+    color: var(--color-light);
+    border: solid 1px var(--color-dark);
+
+    @include hover {
+      background: var(--color-brand);
+      border: 1px solid var(--color-brand);
+    }
+  }
+}
+
+// сортировка
+.catalog-sort {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__el {
+    color: var(--color-dark-80);
+  }
+
+  &__list {
+    display: none;
+    width: 10rem;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    overflow: hidden;
+    box-sizing: content-box;
+    position: absolute;
+    padding: var(--size-n);
+    border-radius: var(--size-s);
+    background: var(--color-light);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+    .catalog-sort__el:not(:last-child) {
+      margin-bottom: var(--size-xxs);
+    }
+  }
+
+  &__item {
+    color: var(--color-dark);
+    @include hover {
+      color: var(--color-brand);
+    }
+  }
+
+  &__list--active {
+    display: block;
+  }
+
+  &__title {
+    color: var(--color-dark-80);
+  }
+
+  &__val {
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+}
+
+.catalog-sidebar {
+  &__controls {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .catalog-sidebar__btn:not(:last-child) {
+    margin-bottom: var(--size-xs);
+  }
+}
+
+// Фильтр
+.thumb-filter {
+  &__area {
+    padding: 0;
+    border: none;
+    margin-bottom: var(--size-m);
+  }
+
+  &__area--switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: var(--color-dark);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  &__title--switch {
+    margin-bottom: 0;
+  }
+
+  // Чекбокс картинки
+  &__check1-label {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: var(--color-dark);
+    transition: color var(--anim-hover);
+    user-select: none;
+  }
+
+  &__li:not(:last-child) {
+    margin-bottom: var(--size-xs);
+  }
+
+  &__check1-img {
+    position: relative;
+    height: var(--size-l);
+    width: var(--size-l);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    margin-right: var(--size-xs);
+
+    &::after {
+      content: "";
+      height: 2.484rem;
+      width: 2.484rem;
+      border-radius: 100%;
+      background: var(--color-dark);
+      background-image: url(../img/check.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 60%;
+      opacity: 0;
+      transition: opacity var(--anim-hover);
+    }
+  }
+
+  &__check1-inp {
+    position: relative;
+  }
+
+  &__check1-inp:checked + &__check1-label > &__check1-img::after {
+    opacity: 1;
+  }
+
+  // Чекбокс иконки
+  &__check-ic {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: var(--size-n);
+
+    &::after {
+      position: absolute;
+      content: "";
+      height: 1.4rem;
+      width: 1.4rem;
+      left: 0;
+      border: 1px solid var(--color-dark);
+      border-radius: 100%;
+    }
+  }
+
+  &__check-title {
+    margin-left: var(--size-xs);
+    color: var(--color-dark);
+    user-select: none;
+  }
+
+  &__check-inp:checked + &__check-ic::after {
+    background: var(--color-dark);
+    background-image: url(../img/check.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+  }
+
+  // Таблица
+  &__table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__table-el {
+    border: 1px solid var(--color-dark);
+    margin-top: -1px;
+    margin-left: -1px;
+    text-align: center;
+  }
+
+  &__table-label {
+    padding: var(--size-s);
+    display: block;
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--anim-hover);
+    color: var(--color-dark);
+
+    @include hover {
+      background: var(--color-gray);
+    }
+  }
+
+  &__table-inp:checked + &__table-label {
+    background: var(--color-dark);
+    color: var(--color-light);
+  }
+}
+
+.hide-inp {
+  appearance: none;
+  position: absolute;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-dark);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--color-brand);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-brand);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

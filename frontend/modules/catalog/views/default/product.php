@@ -11,12 +11,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="product__col">
         
             <!-- Галлерея -->
-            <?= $this->render('//layouts/product/_gallery', []); ?>
+            <?= $this->render('//layouts/product/_gallery', ['model' => $model]); ?>
             <div class="product__optional">
                 <!-- Аксессуары -->
                 <?= $this->render('//layouts/product/_accessories', []); ?>
                 <!-- Промо -->
-                <?= $this->render('//layouts/product/_promo', []); ?>
+                <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
                 <!-- Отзывы -->
                 <?= $this->render('//layouts/template/_faq', []); ?>
                 <!-- Вопросы и ответы -->
@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
       <!-- Конструктор -->
-      <?= $this->render('//layouts/product/_sidebar', []); ?>
+      <?= $this->render('//layouts/product/_sidebar', ['model' => $model]); ?>
   </section>
 </div>
     
 <!-- Хиты продаж -->
-<?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж"]); ?>
+<?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'model' => $model]); ?>
 
 
 <!-- Подписаться -->

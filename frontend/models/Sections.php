@@ -2,6 +2,8 @@
 
 namespace frontend\models;
 
+use backend\modules\catalog\models\items\CatalogTypeItems;
+use backend\modules\catalog\models\root\Product;
 use yii\base\Model;
 use Yii;
 
@@ -19,7 +21,6 @@ class Sections
 
     public function getSectionName(): ?string
     {
-        $url = Yii::$app->request->getUrl();
         switch ($this->url) {
             case self::SECTION_CHINCHILLES:
                 $this->title = Yii::t('app', "Breadcrumbs Chinchilles");
@@ -42,7 +43,6 @@ class Sections
 
     public function getSectionTitle(): ?string
     {
-        $url = Yii::$app->request->getUrl();
         switch ($this->url) {
             case self::SECTION_CHINCHILLES:
                 $this->title = Yii::t('app', "Page Title Chinchilles");
@@ -60,5 +60,18 @@ class Sections
                 $this->title = null;
         }
         return $this->title;
+    }
+
+    public function setType()
+    {
+        switch ($this->url) {
+            case self::SECTION_CHINCHILLES:
+                $type = CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE;
+                break;
+            case self::SECTION_DOGS:
+                $type = CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE;
+                break;
+        }
+        return $type;
     }
 }

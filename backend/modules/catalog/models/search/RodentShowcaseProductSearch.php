@@ -18,7 +18,7 @@ class RodentShowcaseProductSearch extends RodentShowcaseProduct
     public function rules()
     {
         return [
-            [['id', 'category_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_fix_price', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'category_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'slug', 'comment', 'description', 'product_type', 'item_type', 'status'], 'safe'],
             [['price'], 'number'],
         ];
@@ -72,7 +72,6 @@ class RodentShowcaseProductSearch extends RodentShowcaseProduct
             'is_available' => $this->is_available,
             'price' => $this->price,
             'discount' => $this->discount,
-            'is_fix_price' => $this->is_fix_price,
             'is_constructor_blocked' => $this->is_constructor_blocked,
             'view_count' => $this->view_count,
             'sort' => $this->sort,

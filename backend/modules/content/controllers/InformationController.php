@@ -1,20 +1,18 @@
 <?php
 
-namespace backend\modules\catalog\controllers;
+namespace backend\modules\content\controllers;
 
-use backend\modules\catalog\models\ProductImage;
 use Yii;
-use backend\modules\catalog\models\RodentShowcaseProduct;
-use backend\modules\catalog\models\root\Product;
-use backend\modules\catalog\models\search\RodentShowcaseProductSearch;
+use backend\modules\content\models\Information;
+use backend\modules\content\models\search\InformationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RodentProductController implements the CRUD actions for RodentProduct model.
+ * InformationController implements the CRUD actions for Information model.
  */
-class RodentShowcaseProductController extends Controller
+class InformationController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,12 +30,12 @@ class RodentShowcaseProductController extends Controller
     }
 
     /**
-     * Lists all RodentProduct models.
+     * Lists all Information models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new RodentShowcaseProductSearch();
+        $searchModel = new InformationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,13 +45,13 @@ class RodentShowcaseProductController extends Controller
     }
 
     /**
-     * Creates a new RodentProduct model.
+     * Creates a new Information model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new RodentShowcaseProduct();
+        $model = new Information();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record added'));
@@ -66,7 +64,7 @@ class RodentShowcaseProductController extends Controller
     }
 
     /**
-     * Updates an existing RodentProduct model.
+     * Updates an existing Information model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +85,7 @@ class RodentShowcaseProductController extends Controller
     }
 
     /**
-     * Deletes an existing RodentProduct model.
+     * Deletes an existing Information model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -105,39 +103,16 @@ class RodentShowcaseProductController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionDeleteImage(int $id)
-    {
-        $model = $this->findModel($id);
-        $file = $model->getPath(Product::UPLOAD_PATH, $model->image);
-        $model->removeSingleFileIfExist($file);
-        $model->image = null;
-        $model->save();
-        Yii::$app->session->setFlash('danger', 'Запись удалена!');
-        return $this->redirect(Yii::$app->request->referrer);
-    }
-
-    public function actionDeleteImages(int $id)
-    {
-        $model = ProductImage::findOne($id);
-        if ($model != null) {
-            $file = $model->getPath(Product::UPLOAD_PATH, $model->image);
-            $model->removeSingleFileIfExist($file);
-            $model->delete();
-            Yii::$app->session->setFlash('danger', 'Запись удалена!');
-            return $this->redirect(Yii::$app->request->referrer);
-        }
-    }
-
     /**
-     * Finds the RodentShowcaseProduct model based on its primary key value.
+     * Finds the Information model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return RodentShowcaseProduct the loaded model
+     * @return Information the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = RodentShowcaseProduct::findOne($id)) !== null) {
+        if (($model = Information::findOne($id)) !== null) {
             return $model;
         }
 

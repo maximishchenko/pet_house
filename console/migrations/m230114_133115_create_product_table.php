@@ -20,6 +20,7 @@ class m230114_133115_create_product_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'slug' => $this->string(),
+            'image' => $this->string(),
             'category_id' => $this->integer(),
             'type_id' => $this->integer(),
             'material_id' => $this->integer(),
@@ -30,11 +31,10 @@ class m230114_133115_create_product_table extends Migration
             'is_available' => $this->boolean(),
             'price' => $this->decimal(65.2),
             'discount' => $this->integer(),
-            'is_fix_price' => $this->boolean(),
             'is_constructor_blocked' => $this->boolean(),
             'comment' => $this->text(),
             'description' => $this->text(),
-            'view_count' => $this->integer(),
+            'view_count' => $this->integer()->notNull()->defaultValue(1),
             'product_type' => $this->string(),
             'item_type' => $this->string(),
             'sort' => $this->integer(),
@@ -47,6 +47,7 @@ class m230114_133115_create_product_table extends Migration
 
         $this->createIndex('idx-product-id', '{{%product}}', 'id');
         $this->createIndex('idx-product-name', '{{%product}}', 'name');
+        $this->createIndex('idx-product-image', '{{%product}}', 'image');
         $this->createIndex('idx-product-slug', '{{%product}}', 'slug');
         $this->createIndex('idx-product-category_id', '{{%product}}', 'category_id');
         $this->createIndex('idx-product-type_id', '{{%product}}', 'type_id');
@@ -58,7 +59,6 @@ class m230114_133115_create_product_table extends Migration
         $this->createIndex('idx-product-is_available', '{{%product}}', 'is_available');
         $this->createIndex('idx-product-price', '{{%product}}', 'price');
         $this->createIndex('idx-product-discount', '{{%product}}', 'discount');
-        $this->createIndex('idx-product-is_fix_price', '{{%product}}', 'is_fix_price');
         $this->createIndex('idx-product-is_constructor_blocked', '{{%product}}', 'is_constructor_blocked');
         $this->createIndex('idx-product-view_count', '{{%product}}', 'view_count');
         $this->createIndex('idx-product-product_type', '{{%product}}', 'product_type');
@@ -81,7 +81,7 @@ class m230114_133115_create_product_table extends Migration
         $this->createTable('{{%product_image}}', [
             'id' => $this->primaryKey(),
             'product_id' => $this->integer()->notNull(),
-            'image' => $this->string()->notNull(),
+            'image' => $this->string(),
             'sort' => $this->integer(),
         ], $tableOptions);
         

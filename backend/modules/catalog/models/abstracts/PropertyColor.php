@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
 /**
  * Цвета продукта
  */
-abstract class PropertyColor extends Property
+// abstract
+class PropertyColor extends Property
 {
 }

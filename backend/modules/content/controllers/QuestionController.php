@@ -54,6 +54,7 @@ class QuestionController extends Controller
         $model = new Question();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record added'));
             return $this->redirect(['update', 'id' => $model->id]);
         }
 
@@ -73,7 +74,8 @@ class QuestionController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {    
+            Yii::$app->session->setFlash('info', Yii::t('app', 'Record changed'));
             return $this->refresh();
         }
 
@@ -91,7 +93,13 @@ class QuestionController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if($model->delete()){
+            Yii::$app->session->setFlash('warning', Yii::t('app', 'Record deleted'));
+        } else {
+            Yii::$app->session->setFlash('error', $model->getErrorSummary(true));
+        }
+
 
         return $this->redirect(['index']);
     }

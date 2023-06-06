@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\catalog\models\search;
+namespace backend\modules\content\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\catalog\models\DogCageProduct;
+use backend\modules\content\models\Information;
 use common\models\Sort;
 
 /**
- * RodentProductSearch represents the model behind the search form of `backend\modules\catalog\models\RodentProduct`.
+ * InformationSearch represents the model behind the search form of `backend\modules\content\models\Information`.
  */
-class DogCageProductSearch extends DogCageProduct
+class InformationSearch extends Information
 {
     /**
      * {@inheritdoc}
@@ -18,9 +18,8 @@ class DogCageProductSearch extends DogCageProduct
     public function rules()
     {
         return [
-            [['id', 'category_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'slug', 'comment', 'description', 'product_type', 'item_type', 'status'], 'safe'],
-            [['price'], 'number'],
+            [['id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'description', 'image', 'video', 'status'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class DogCageProductSearch extends DogCageProduct
      */
     public function search($params)
     {
-        $query = DogCageProduct::find();
+        $query = Information::find();
 
         // add conditions that should always apply here
 
@@ -62,18 +61,6 @@ class DogCageProductSearch extends DogCageProduct
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'type_id' => $this->type_id,
-            'material_id' => $this->material_id,
-            'color_id' => $this->color_id,
-            'wall_id' => $this->wall_id,
-            'engraving_id' => $this->engraving_id,
-            'size_id' => $this->size_id,
-            'is_available' => $this->is_available,
-            'price' => $this->price,
-            'discount' => $this->discount,
-            'is_constructor_blocked' => $this->is_constructor_blocked,
-            'view_count' => $this->view_count,
             'sort' => $this->sort,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -82,11 +69,9 @@ class DogCageProductSearch extends DogCageProduct
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'comment', $this->comment])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'product_type', $this->product_type])
-            ->andFilterWhere(['like', 'item_type', $this->item_type])
+            ->andFilterWhere(['like', 'image', $this->image])
+            ->andFilterWhere(['like', 'video', $this->video])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

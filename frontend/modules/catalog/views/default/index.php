@@ -2,15 +2,18 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ListView;
 
-$this->title = Yii::t('app', 'Catalogs');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $sections->getSectionTitle();
+$this->params['breadcrumbs'][] = $sections->getSectionName();
 
 ?>
 <div class="page-head">
     <div class="container">
         <div class="page-head__wrapper">
-            <h1 class="section-headline">Витрины для грызунов</h1>
+            <h1 class="section-headline">
+                <?= $this->title; ?>
+            </h1>
         </div>
     </div>
 </div>
@@ -32,7 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $this->render('_filter'); ?>
 
                 <!-- Элементы каталога -->
-                <?= $this->render("_catalog_items"); ?>
+                <div class="catalog__list">
+                    <?= ListView::widget([
+                        'dataProvider' => $dataProvider,
+                        'layout' => "{items}",
+                        'itemView' => '_catalog_items',
+                    ]); 
+                    ?>
+                    <?php // $this->render("_catalog_items"); ?>
+                </div>
 
             </div>
         </div>

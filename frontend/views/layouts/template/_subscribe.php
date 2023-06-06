@@ -3,7 +3,7 @@
     <div class="subscribe__wrapper">
       <div class="subscribe__content">
         <h2 class="subscribe__title">Подпи­сы­вай­тесь
-          на наши социальные сети</h2>
+          на наши социальные сети</h2>
        <!--  <p class="subscribe__desc">Господа, постоянный количественный рост и сфера нашей активности позволяет выполнить
           важные задания</p> -->
         <div class="subscribe__container">

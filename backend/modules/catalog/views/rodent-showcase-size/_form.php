@@ -8,7 +8,6 @@ use yii\bootstrap4\ActiveForm;
 /* @var $model backend\modules\catalog\models\RodentShowcaseSize */
 /* @var $form yii\widgets\ActiveForm */
 
-// echo $model->test();
 ?>
 <div class="rodent-showcase-size-form">
 

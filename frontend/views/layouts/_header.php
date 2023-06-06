@@ -14,16 +14,10 @@ use yii\helpers\Url;
             <nav class="nav" data-da=".mob-wrapper,768">
                 <ul class="list-reset nav__list">
                     <li class="nav__item">
-                        <?= Html::a(Yii::t('app', "Menu Item Rodent"), ['/catalog/rodent'], ['class' => 'nav__link']); ?>
+                        <?= Html::a(Yii::t('app', "Menu Item Rodent"), ['/chinchilles'], ['class' => 'nav__link']); ?>
                     </li>
                     <li class="nav__item">
-                        <?= Html::a(Yii::t('app', "Menu Item Dog"), ['/catalog/dog'], ['class' => 'nav__link']); ?>
-                    </li>
-                    <li class="nav__item">
-                        <?= Html::a(Yii::t('app', "Menu Item Cat"), ['/catalog/cat'], ['class' => 'nav__link']); ?>
-                    </li>
-                    <li class="nav__item">
-                        <?= Html::a(Yii::t('app', "Menu Item Bird"), ['/catalog/bird'], ['class' => 'nav__link']); ?>
+                        <?= Html::a(Yii::t('app', "Menu Item Dog"), ['/dogs'], ['class' => 'nav__link']); ?>
                     </li>
                     <li class="nav__item">
                         <?= Html::a(Yii::t('app', "Menu Item Personal Order"), ['#'], ['class' => 'nav__link']); ?>

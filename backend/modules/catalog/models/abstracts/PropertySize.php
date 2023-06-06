@@ -10,7 +10,8 @@ use yii\helpers\ArrayHelper;
 /**
  * Описывает модели, реализующие размеры
  */
-abstract class PropertySize extends Property
+// abstract 
+ class PropertySize extends Property
 {
     use SizeTrait;
 

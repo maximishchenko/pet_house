@@ -110,7 +110,6 @@ use yii\bootstrap4\ActiveForm;
             <div class="col-md-6">
                 <?= $form->field($model, 'status')->checkbox() ?>
                 <?= $form->field($model, 'is_available')->checkbox() ?>
-                <?= $form->field($model, 'is_fix_price')->checkbox() ?>
                 <?= $form->field($model, 'is_constructor_blocked')->checkbox() ?>
             </div>
             <div class="col-md-6">

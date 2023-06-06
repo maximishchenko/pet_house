@@ -2,12 +2,18 @@
 
 use backend\modules\catalog\models\root\Property;
 use backend\widgets\SingleImagePreviewWidget;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\catalog\models\RodentShowcaseType */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+
+<style>
+    .checkbox__group {
+        max-height: 500px !important;
+    }
+</style>
 
 <div class="rodent-showcase-type-form">
 
@@ -39,6 +45,13 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="col-md-6">
                 <?= $form->field($model, 'comment')->textarea(['rows' => 3]) ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $form->field($model, 'sizesArray')->checkboxList($model->getSizeCheckboxListItems(), ['class' => 'checkbox__group']) ?>
             </div>
         </div>
     </div>

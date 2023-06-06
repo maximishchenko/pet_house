@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\models\root;
 
 use backend\interfaces\SingleTableInterface;
+use backend\modules\catalog\models\DogCageProduct;
 use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
@@ -10,7 +11,6 @@ use backend\modules\catalog\models\ProductImage;
 use backend\modules\catalog\models\query\ProductQuery;
 use backend\modules\catalog\models\query\PropertyQuery;
 use backend\modules\catalog\models\RodentShowcaseProduct;
-use backend\traits\fileTrait;
 use backend\traits\InheritanceTrait;
 use common\models\Sort;
 use Yii;
@@ -35,7 +35,6 @@ use yii\helpers\ArrayHelper;
  * @property int|null $is_available
  * @property float|null $price
  * @property int|null $discount
- * @property int|null $is_fix_price
  * @property int|null $is_constructor_blocked
  * @property string|null $comment
  * @property string|null $description
@@ -49,23 +48,12 @@ use yii\helpers\ArrayHelper;
  * @property int|null $created_by
  * @property int|null $updated_by
  *
- * @property Category $category
- * @property Property $color
- * @property Property $engraving
- * @property Property $material
- * @property Property $type
- * @property Property $type0
- * @property Property $wall
- * @property ProductAttribute[] $productAttributes
- * @property Attribute[] $attributes0
- * @property ProductImage[] $productImages
- * @property ProductMaterial[] $productMaterials
- * @property Attribute[] $materials
  */
 class Product extends \yii\db\ActiveRecord implements SingleTableInterface
 {
     use InheritanceTrait;
-    use fileTrait;
+
+    const UPLOAD_PATH = 'uploads/product/';
 
     /**
      * Возвращает 
@@ -80,9 +68,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
             return new RodentShowcaseProduct();
         } 
-        // elseif($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && $row['item_type'] == PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE) {
-            // return new DogCageSize();
-        // } 
+        elseif(
+        
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && 
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
+            return new DogCageProduct();
+        } 
         else {
             return new self;
         }
@@ -147,10 +138,10 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function rules()
     {
         return [
-            [['category_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_fix_price', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['category_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['price'], 'number'],
             [['comment', 'description'], 'string'],
-            [['name', 'slug', 'product_type', 'item_type', 'status'], 'string', 'max' => 255],
+            [['name', 'slug', 'product_type', 'item_type', 'status', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['color_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['color_id' => 'id']],
             [['engraving_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['engraving_id' => 'id']],
@@ -162,6 +153,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             [['name', 'category_id'], 'required'],
             [['name'], 'unique'],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
+            [['view_count'], 'default', 'value'=> 1],
         ];
     }
 
@@ -174,6 +166,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
+            'image' => Yii::t('app', 'Image'),
             'category_id' => Yii::t('app', 'Category ID'),
             'type_id' => Yii::t('app', 'Type ID'),
             'material_id' => Yii::t('app', 'Material ID'),
@@ -184,7 +177,6 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             'is_available' => Yii::t('app', 'Is Available'),
             'price' => Yii::t('app', 'Price'),
             'discount' => Yii::t('app', 'Discount'),
-            'is_fix_price' => Yii::t('app', 'Is Fix Price'),
             'is_constructor_blocked' => Yii::t('app', 'Is Constructor Blocked'),
             'comment' => Yii::t('app', 'Comment'),
             'description' => Yii::t('app', 'Description'),
@@ -201,84 +193,14 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     }
 
     /**
-     * Gets query for [[Category]].
-     *
-     * @return \yii\db\ActiveQuery|CategoryQuery
-     */
-    // public function getCategory()
-    // {
-    //     return $this->hasOne(Category::className(), ['id' => 'category_id']);
-    // }
-
-    /**
-     * Gets query for [[Color]].
-     *
-     * @return \yii\db\ActiveQuery|PropertyQuery
-     */
-    // public function getColor()
-    // {
-    //     return $this->hasOne(Property::className(), ['id' => 'color_id']);
-    // }
-
-    /**
-     * Gets query for [[Engraving]].
-     *
-     * @return \yii\db\ActiveQuery|PropertyQuery
-     */
-    // public function getEngraving()
-    // {
-    //     return $this->hasOne(Property::className(), ['id' => 'engraving_id']);
-    // }
-
-    /**
-     * Gets query for [[Material]].
-     *
-     * @return \yii\db\ActiveQuery|PropertyQuery
-     */
-    // public function getMaterial()
-    // {
-    //     return $this->hasOne(Property::className(), ['id' => 'material_id']);
-    // }
-
-    /**
      * Gets query for [[Type]].
      *
      * @return \yii\db\ActiveQuery|PropertyQuery
      */
-    // public function getType()
-    // {
-    //     return $this->hasOne(Property::className(), ['id' => 'type_id']);
-    // }
-
-    /**
-     * Gets query for [[Wall]].
-     *
-     * @return \yii\db\ActiveQuery|PropertyQuery
-     */
-    // public function getWall()
-    // {
-    //     return $this->hasOne(Property::className(), ['id' => 'wall_id']);
-    // }
-
-    /**
-     * Gets query for [[ProductAttributes]].
-     *
-     * @return \yii\db\ActiveQuery|ProductAttributeQuery
-     */
-    // public function getProductAttributes()
-    // {
-    //     return $this->hasMany(ProductAttribute::className(), ['product_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Attributes0]].
-     *
-     * @return \yii\db\ActiveQuery|AttributeQuery
-     */
-    // public function getAttributes0()
-    // {
-    //     return $this->hasMany(Attribute::className(), ['id' => 'attribute_id'])->viaTable('{{%product_attribute}}', ['product_id' => 'id']);
-    // }
+    public function getProductType()
+    {
+        return $this->hasOne(Property::className(), ['id' => 'type_id']);
+    }
 
     /**
      * Gets query for [[ProductImages]].
@@ -289,36 +211,6 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return $this->hasMany(ProductImage::className(), ['product_id' => 'id']);
     }
-
-    /**
-     * Gets query for [[ProductMaterials]].
-     *
-     * @return \yii\db\ActiveQuery|ProductMaterialQuery
-     */
-    // public function getProductMaterials()
-    // {
-    //     return $this->hasMany(ProductMaterial::className(), ['product_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Materials]].
-     *
-     * @return \yii\db\ActiveQuery|AttributeQuery
-     */
-    // public function getMaterials()
-    // {
-    //     return $this->hasMany(Attribute::className(), ['id' => 'material_id'])->viaTable('{{%product_material}}', ['product_id' => 'id']);
-    // }
-
-    /**
-     * {@inheritdoc}
-     * @return PropertyQuery the active query used by this AR class.
-     */
-    // public static function find()
-    // {
-    //     return new PropertyQuery(get_called_class());
-    // }
-    
     
     /**
      * Возвращает значение типа раздела (item_type) в зависимости от имени дочернего класса
@@ -366,6 +258,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
      */
     protected function setType(): ?string
     {
+
         $cls = $this->getChildClassShortName();
         switch ($cls) {
             case 'RodentShowcaseProduct':
@@ -422,6 +315,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         return $items;
     }
 
+    public function getOldPrice()
+    {
+        $oldPrice = $this->price + (($this->price * $this->discount)/100);
+        return $oldPrice;
+    }
+
     /**
      * Генерация параметров выпадающего списка свойств в зависимости от типа свойства
      *
@@ -440,5 +339,4 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
         return ['prompt' => $params[$param_type]];
     }
-
 }

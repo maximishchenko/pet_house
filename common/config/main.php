@@ -14,6 +14,14 @@ return [
         'queue',
     ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'locale' => 'ru-RU',
+            'thousandSeparator' => ' ',
+            'decimalSeparator' => ',',
+            'currencyCode' => 'RUB',
+         
+         ],
         'configManager' => [
             'class' => 'yii2tech\config\Manager',
             'storage' => [

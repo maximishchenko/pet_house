@@ -196,5 +196,14 @@ return [
     'Question position bottom' => "Общий шаблон",
     'Question position inside card' => "Карточка товара",
     "Seo module items" => "SEO",
-    "Content Module Items" => "Контент"
+    "Content Module Items" => "Контент",
+    'Sizes Array' => "Размеры",
+    'Attributes Array' => "Характеристики",
+    'Update Question: {name}' => 'Вопрос: {name}',
+    'Image File' => "Изображение карточки",
+    "Images Files" => "Изображения слайдера",
+    'Information' => 'Информация',
+    'Information Edit' => "Управление содержимым раздела \"Информация\"",
+    'Informations' => "Информация",
+    'Video' => "Видеозапись",
 ];

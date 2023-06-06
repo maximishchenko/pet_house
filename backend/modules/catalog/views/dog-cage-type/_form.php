@@ -51,6 +51,13 @@ use yii\bootstrap4\ActiveForm;
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
+                <?= $form->field($model, 'sizesArray')->checkboxList($model->getSizeCheckboxListItems(), ['class' => 'checkbox__group']) ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
                 <?= $form->field($model, 'imageFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
                 <?php if(isset($model->image) && !empty($model->image)): ?>
                     <div class="row">

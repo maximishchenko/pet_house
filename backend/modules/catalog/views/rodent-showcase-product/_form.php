@@ -1,6 +1,8 @@
 <?php
 
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
+use backend\modules\catalog\models\root\Product;
+use backend\widgets\SingleImagePreviewWidget;
 use yii\helpers\Html;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
@@ -42,28 +44,11 @@ use yii\bootstrap4\ActiveForm;
             <div class="col-md-4">
                 <?= $form->field($model, 'type_id')->dropDownList(
                         $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE),
+                        // $model->getPropertiesItems($this->item_type),
                         $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE)
                     )->hint(Yii::t('app', "Rodent Showcase Type hint")); ?>
             </div>
             <div class="col-md-4">
-                <!-- <div class="form-group"> -->
-                    <!-- <label for="millingexample-coating_id"> -->
-                        <?php // $model->getAttributeLabel('size_id'); ?>
-                    <!-- </label> -->
-                <?php
-                // echo Select2::widget([
-                //         'model' => $model,
-                //         'attribute' => 'size_id',
-                //         'data' => $model->getSizesItems(),
-                //         'options' => [
-                //             'placeholder' => '', 'autocomplete' => 'off'
-                //         ],
-                //         'pluginOptions' => [
-                //             'allowClear' => true
-                //         ],
-                //     ]);
-                ?>
-                <!-- </div> -->
                 <?= $form->field($model, 'size_id')->dropDownList(
                         $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE),
                         $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE)
@@ -110,7 +95,6 @@ use yii\bootstrap4\ActiveForm;
             <div class="col-md-6">
                 <?= $form->field($model, 'status')->checkbox() ?>
                 <?= $form->field($model, 'is_available')->checkbox() ?>
-                <?= $form->field($model, 'is_fix_price')->checkbox() ?>
                 <?= $form->field($model, 'is_constructor_blocked')->checkbox() ?>
             </div>
             <div class="col-md-6">
@@ -119,6 +103,57 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>
     </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $form->field($model, 'productAttributesArray')->checkboxList($model->getAttributesCheckboxListItems(), ['class' => 'checkbox__group']) ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $form->field($model, 'informationItemsArray')->checkboxList($model->getInformationCheckboxListItems(), ['class' => 'checkbox__group']) ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'imageFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->image) && !empty($model->image)): ?>
+                    <div class="row">
+                        <?= SingleImagePreviewWidget::widget([
+                            'id' => $model->id,
+                            'filePath' => $model->getUrl(Product::UPLOAD_PATH, $model->image),
+                            'url' => 'delete-image',
+                            'fancyboxGalleryName' => "SingleProductImage",
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'imagesFiles[]', ['template' => '{label}<br/> {input} {error}'])->fileInput(['multiple' => true]) ?>
+                <?php if(isset($model->productImages) && !empty($model->productImages)):?>
+                <ul style="margin: 0; padding: 0;">
+                    <div id="sortable" class="row" data-url="<?= Yii::$app->urlManager->createAbsoluteUrl('/catalog/rodent-showcase-product/save-image-sort'); ?>">
+                        <?php foreach ($model->productImages as $k => $img): ?>
+                            <?php 
+                            echo SingleImagePreviewWidget::widget([
+                                'id' => $img->id,
+                                'filePath' => $img->getUrl(Product::UPLOAD_PATH, $img->image),
+                                'url' => 'delete-images',
+                                'fancyboxGalleryName' => "MultipleProductImage",
+                            ]); 
+                            ?>
+                        <?php endforeach; ?>
+                    </div>
+                </ul>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
 
 
     <?php ActiveForm::end(); ?>

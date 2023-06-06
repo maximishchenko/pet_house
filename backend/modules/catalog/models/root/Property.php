@@ -156,7 +156,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
             [['sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'image', 'status', 'property_type', 'item_type'], 'string', 'max' => 255],
 
-            'imageFile' => [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
+            'imageFile' => [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, avif, svg'],
             [['imageFile'], 'safe'],
         ];
     }

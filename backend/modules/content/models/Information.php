@@ -2,18 +2,20 @@
 
 namespace backend\modules\content\models;
 
+use backend\traits\fileTrait;
 use common\models\Sort;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "{{%question}}".
+ * This is the model class for table "{{%information}}".
  *
  * @property int $id
- * @property string $question
- * @property string $answer
- * @property string $position
+ * @property string|null $name
+ * @property string|null $description
+ * @property string|null $image
+ * @property string|null $video
  * @property int|null $sort
  * @property string|null $status
  * @property int|null $created_at
@@ -21,20 +23,24 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $created_by
  * @property int|null $updated_by
  */
-class Question extends \yii\db\ActiveRecord
+class Information extends \yii\db\ActiveRecord
 {
+    use fileTrait;
+    
+    public $imageFile;
+    
+    public $videoFile;
 
-    const POSITION_BOTTOM = 'bottom';
-
-    const POSITION_CARD = 'card';
+    const UPLOAD_PATH = 'uploads/information/';
 
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%question}}';
+        return '{{%information}}';
     }
+
 
     public function behaviors()
     {
@@ -55,28 +61,20 @@ class Question extends \yii\db\ActiveRecord
         ];
     } 
     
-
-    public static function getPositionsArray()
-    {
-        return [
-            self::POSITION_BOTTOM => Yii::t('app', 'Question position bottom'),
-            self::POSITION_CARD => Yii::t('app', 'Question position inside card'),
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['question', 'answer', 'position'], 'required'],
-            [['answer'], 'string'],
+            [['description'], 'string'],
             [['sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['question', 'position', 'status'], 'string', 'max' => 255],
+            [['name', 'image', 'video', 'status'], 'string', 'max' => 255],
 
-            ['position', 'in', 'range' => array_keys(self::getPositionsArray())],
+            [['name', 'description'], 'required'],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
+            [['videoFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'avi, mpeg4, mp4, wmv'],
         ];
     }
 
@@ -87,9 +85,12 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'question' => Yii::t('app', 'Question'),
-            'answer' => Yii::t('app', 'Answer'),
-            'position' => Yii::t('app', 'Position'),
+            'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
+            'image' => Yii::t('app', 'Image'),
+            'video' => Yii::t('app', 'Video'),
+            'imageFile' => Yii::t('app', 'Image'),
+            'videoFile' => Yii::t('app', 'Video'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -101,20 +102,34 @@ class Question extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return \backend\modules\content\models\query\QuestionQuery the active query used by this AR class.
+     * @return \backend\modules\content\models\query\InformationQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \backend\modules\content\models\query\QuestionQuery(get_called_class());
+        return new \backend\modules\content\models\query\InformationQuery(get_called_class());
     }
 
-    public static function getOdd($var)
-    {
-        return($var & 1);
-    }
     
-    public static function getEven($var)
+    public function beforeSave($insert)
     {
-        return(!($var & 1));
+        if (parent::beforeSave($insert)) {
+            $this->uploadFile("imageFile", "image", self::UPLOAD_PATH, false);
+            $this->uploadFile("videoFile", "video", self::UPLOAD_PATH, false);
+            return true;
+        }
+        return false;
+    }
+
+    public function beforeDelete()
+    {
+
+        if (parent::beforeDelete()) {
+            
+            $this->deleteSingleFile('image', self::UPLOAD_PATH);
+            $this->deleteSingleFile('video', self::UPLOAD_PATH);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

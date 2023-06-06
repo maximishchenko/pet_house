@@ -2,7 +2,7 @@
 
 use backend\modules\catalog\models\root\Property;
 use backend\widgets\SingleImagePreviewWidget;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\catalog\models\RodentShowcaseWall */

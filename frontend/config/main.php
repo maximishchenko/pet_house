@@ -79,6 +79,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'chinchilles' => 'catalog/default/index',
+                'chinchilles/<slug>' => 'catalog/default/view',
                 // 'catalog/rodent' => 'catalog/default/index',
                 // 'catalog/dog' => 'catalog/default/index',
                 // 'catalog/cat' => 'catalog/default/index',

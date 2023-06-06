@@ -18,5 +18,15 @@ if(Yii::$app->user->can(User::ROLE_ADMIN)):
             'linkUrl' => Url::to(['/content/question'])
         ]) ?>
     </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Information'),
+            'text' => Yii::t('app', 'Information Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'warning',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/content/information'])
+        ]) ?>
+    </div>
 </div>
 <?php endif; ?>

@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
 /**
  * Материалы продукта
  */
-abstract class PropertyMaterial extends Property
+// abstract 
+class PropertyMaterial extends Property
 {
 }

@@ -1,0 +1,35 @@
+.header {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--size-s) 0;
+  }
+}
+
+.logo {
+  &__img {
+    height: 3rem;
+  }
+}
+
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+
+    .nav__item:not(:last-child) {
+      margin-right: var(--size-n);
+    }
+  }
+
+  &__link {
+    color: var(--color-dark);
+    font-weight: 500;
+  }
+}
+
+.header__phone {
+  color: var(--color-dark);
+  font-weight: 500;
+}

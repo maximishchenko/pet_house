@@ -1,0 +1,39 @@
+.pop-categories {
+
+  .swiper-slide {
+    width: 13.428rem;
+  }
+
+
+  &__link {
+    display: block;
+    padding: 0 calc(var(--size-s) / 2);
+
+    @include hover {
+
+      .pop-categories__img {
+        transform: scale(1.04);
+      }
+
+      .pop-categories__title {
+        color: var(--color-dark-80);
+
+      }
+
+    }
+  }
+
+  &__img {
+    display: block;
+    margin-bottom: var(--size-xs);
+    transition: transform var(--hover);
+  }
+
+  &__title {
+    color: var(--color-dark);
+    transition: color var(--hover);
+    user-select: none;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}

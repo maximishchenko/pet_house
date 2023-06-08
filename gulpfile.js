@@ -1,67 +1,98 @@
-'use strict';
-const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const concat = require('gulp-concat');
-const svgSprite = require('gulp-svg-sprite');
-const webpack = require('webpack-stream');
-const svgmin = require('gulp-svgmin');
-const cheerio = require('gulp-cheerio');
-const replace = require('gulp-replace');
-sass.compiler = require('node-sass');
+const { src, dest, series, watch } = require('gulp');
 
-// SCSS
-gulp.task('sass', function () {
-    const main_css = gulp.src('./frontend/web/scss/main.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./frontend/web/scss/'));
-    const vendor_css = gulp.src('./frontend/web/scss/vendor.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./frontend/web/scss/'));
-    return main_css, vendor_css;
-});
-// Sprite
-gulp.task('sprite', function () {
-    return gulp.src('./frontend/web/img/svg/*.svg')
-    .pipe(
-      svgmin({
-        js2svg: {
-          pretty: true,
-        },
-      })
-    )
-    .pipe(
-      cheerio({
-        run: function ($) {
-          $('[fill]').removeAttr('fill');
-          $('[stroke]').removeAttr('stroke');
-          $('[style]').removeAttr('style');
-        },
-        parserOptions: {
-          xmlMode: true
-        },
-      })
-    )
-    .pipe(replace('&gt;', '>'))
-    .pipe(svgSprite({
-      mode: {
-        stack: {
-          sprite: "../sprite.svg"
-        }
-      },
-    }))
-    .pipe(gulp.dest("./frontend/web/img/"));
-});
-// JS
-gulp.task('scripts', function () {
-  return gulp.src('./frontend/web/js/src/main.js')
-    .pipe(webpack({
-      output: {
-        filename: 'main.js'
-      }
-    }))
-    .pipe(gulp.dest('./frontend/web/js'))
-});
+const srcFolder = './frontend/web/src';
+const buildFolder = './frontend/web/build';
+
+const paths = {
+    srcScss: `${srcFolder}/scss/**/*.scss`,
+    buildCssFolder: `${buildFolder}/css`,
+    srcFullJs: `${srcFolder}/js/**/*.js`,
+    srcMainJs: `${srcFolder}/js/main.js`,
+    buildJsFolder: `${buildFolder}/js`,
+};
+
+const cleanCSS = require('gulp-clean-css');
+const sass = require('sass');
+const gulpSass = require('gulp-sass');
+const gulpif = require('gulp-if');
+const mainSass = gulpSass(sass);
+const autoprefixer = require('gulp-autoprefixer');
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
+const webpackStream = require('webpack-stream');
+const del = require('del');
+
+let isProd = false; // dev by default
+
+const clean = () => {
+    return del([buildFolder])
+}
+
+const styles = () => {
+    return src(paths.srcScss, { sourcemaps: !isProd })
+        .pipe(plumber(
+            notify.onError({
+                title: "SCSS",
+                message: "Error: <%= error.message %>"
+            })
+        ))
+        .pipe(mainSass())
+        .pipe(autoprefixer({
+            cascade: false,
+            grid: true,
+            overrideBrowserslist: ["last 5 versions"]
+        }))
+        .pipe(gulpif(isProd, cleanCSS({
+            level: 2
+        })))
+        .pipe(dest(paths.buildCssFolder, { sourcemaps: '.' }))
+};
+
+const scripts = () => {
+    return src(paths.srcMainJs)
+        .pipe(plumber(
+            notify.onError({
+                title: "JS",
+                message: "Error: <%= error.message %>"
+            })
+        ))
+        .pipe(webpackStream({
+            mode: isProd ? 'production' : 'development',
+            output: {
+                filename: 'main.js',
+            },
+            module: {
+                rules: [{
+                    test: /\.m?js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                ['@babel/preset-env', {
+                                    targets: "defaults"
+                                }]
+                            ]
+                        }
+                    }
+                }]
+            },
+            devtool: !isProd ? 'source-map' : false
+        }))
+        .on('error', function (err) {
+            console.error('WEBPACK ERROR', err);
+            this.emit('end');
+        })
+        .pipe(dest(paths.buildJsFolder))
+}
 
 
-// gulp.task('stl', ['sass', 'sprite']);
-gulp.task('stl', gulp.parallel('sass', 'sprite'));
+
+const watchFiles = () => {
+    watch(paths.srcScss, styles);
+    watch(paths.srcFullJs, scripts);
+}
+
+exports.clean = clean;
+
+exports.default = series(clean, scripts, styles, watchFiles);

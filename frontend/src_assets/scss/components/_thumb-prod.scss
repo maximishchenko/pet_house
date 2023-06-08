@@ -1,0 +1,50 @@
+.thumb-prod {
+  line-height: 140%;
+
+  &__img-wrapper {
+    margin-bottom: var(--size-s);
+  }
+
+  &__img {
+    display: block;
+  }
+
+  &__price {
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+
+  &__price-old {
+    position: relative;
+    display: inline-block;
+    color: var(--color-dark-80);
+    font-weight: 400;
+
+    &::after {
+      height: 2px;
+      width: 100%;
+      left: 0;
+      top: 50%;
+      position: absolute;
+      transform: rotate(-8deg);
+      content: '';
+      background: var(--color-red);
+
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-dark);
+  }
+
+  &__desc {
+    width: 80%;
+    margin-top: var(--size-xs);
+    display: block;
+    font-size: .8rem;
+    line-height: 130%;
+    color: var(--color-dark-80);
+  }
+}

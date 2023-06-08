@@ -1,0 +1,51 @@
+.thumb-slider {
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      position: static;
+      margin: 0 var(--size-xxs);
+      height: var(--size-m);
+      width: var(--size-m);
+      border-radius: 100%;
+      border: solid 1px var(--color-dark);
+      transition: border-color var(--hover);
+
+      &::after {
+        color: var(--color-dark);
+        font-size: 0.8rem;
+        transition: color var(--hover);
+      }
+
+      @include hover {
+        border-color: var(--color-brand);
+
+        &::after {
+          color: var(--color-brand);
+        }
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    opacity: 0;
+    transition: opacity var(--hover);
+  }
+
+  @include hover {
+    .thumb-slider__controls {
+      opacity: 1;
+    }
+  }
+}
+
+.prod-slider {
+  margin-left: var(--size-xl);
+  .swiper-slide {
+    padding: 0 calc(var(--size-s) / 2);
+  }
+}

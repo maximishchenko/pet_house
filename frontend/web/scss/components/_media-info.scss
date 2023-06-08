@@ -1,6 +1,6 @@
 .media-info {
   padding: var(--size-xxl) 0;
-  background: var(--color-brand-10);
+  background: var(--color-mac);
 
   &__head {
     width: 30%;
@@ -10,7 +10,6 @@
   &__text {
     margin: 0;
     color: var(--color-dark);
-    line-height: 140%;
   }
 
   &__gallary {
@@ -48,13 +47,13 @@
     line-height: 150%;
     letter-spacing: 0.05em;
     opacity: 0.4;
-    font-size: 5.5rem;
+    font-size: 6rem;
     color: var(--color-dark);
     font-weight: 400;
   }
 
   &__tiker--stroke {
-    color: var(--color-brand-10);
+    color: var(--color-mac);
     text-shadow:
       -0 -1px 0 rgba(55, 55, 55, 0.2),
       0 -1px 0 rgba(55, 55, 55, 0.2),
@@ -175,8 +174,6 @@
     .swiper-button-next,
     .swiper-button-prev {
       opacity: 1;
-      width: var(--size-m);
-      height: var(--size-m);
     }
   }
 

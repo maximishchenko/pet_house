@@ -1,76 +1,86 @@
-.catalog-categories {
+.catalog-cat {
+
   .swiper-slide {
     width: auto;
   }
 
   .swiper-slide:not(:last-child) {
-    margin-right: var(--size-xs);
-  }
-
-  .swiper-wrapper {
-    display: flex;
-    align-items: end;
+    margin-right: var(--size-l);
   }
 
   &__el {
+    width: 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: auto;
+
+
+    @include hover {
+
+      .catalog-cat__img {
+        transform: scale(1.1);
+      }
+
+      .catalog-cat__title {
+        color: var(--color-dark-80);
+      }
+    }
   }
 
-  &__title {
-    text-align: center;
-    color: var(--color-dark);
-    width: 60%;
+  &__el--active {
+    opacity: .35;
+    cursor: auto;
+
+    @include hover {
+
+      .catalog-cat__img {
+        transform: scale(1);
+      }
+
+      .catalog-cat__title {
+        color: var(--color-dark);
+      }
+    }
   }
 
   &__img {
-    max-height: 10rem;
-    margin-bottom: var(--size-n);
-    width: auto;
-  }
-}
-
-.catalog-thumbs {
-  &__wrapper {
-    display: grid;
-    grid-template-columns: 20rem 1fr;
-    gap: var(--size-l);
+    height: auto;
+    display: block;
+    margin-bottom: var(--size-xs);
+    transition: transform var(--hover);
   }
 
-  &__list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: var(--size-s);
-    row-gap: var(--size-l);
+  &__title {
+    color: var(--color-dark);
+    text-align: center;
+    transition: color var(--hover);
   }
+
 }
 
 .catalog-bar {
-  &__wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.receipts {
-  margin: 0;
-  display: flex;
-
   .swiper-slide {
-    width: auto !important;
+    width: auto;
   }
 
   .swiper-slide:not(:last-child) {
     margin-right: var(--size-xs);
   }
 
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn-wrapper {
+    width: 100%;
+    display: flex;
+  }
+
   &__btn {
-    display: block;
-    background: transparent;
-    border: solid 1px var(--color-border);
+    padding: 1.5rem 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--size-s);
     color: var(--color-dark);
 
     @include hover {
@@ -78,82 +88,104 @@
     }
   }
 
+  &__btn[disabled] {
+    background: var(--color-gray);
+    color: var(--color-dark-80);
+    opacity: 1;
+    cursor: auto;
+  }
+
   &__btn--filter {
-    background: var(--color-dark);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-brand);
     color: var(--color-light);
-    border: solid 1px var(--color-dark);
+    border-color: var(--color-brand);
+    width: 8.9rem;
+    transition: width .2s ease-in-out;
+
+    svg {
+      height: var(--size-s);
+      width: var(--size-s);
+      margin-left: var(--size-s);
+      fill: none;
+      stroke: var(--color-light);
+      stroke-width: 2px;
+      stroke-linecap: round;
+      transition: transform var(--hover);
+    }
 
     @include hover {
-      background: var(--color-brand);
-      border: 1px solid var(--color-brand);
+      background: var(--color-dark);
+      border-color: var(--color-dark);
     }
+  }
+
+  &__sort-wrapper {
+    margin-left: var(--size-n);
   }
 }
 
-// сортировка
-.catalog-sort {
-  position: relative;
-  display: flex;
-  align-items: center;
 
-  &__head {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.catalog {
+
+  &__side-inner {
+    width: 21rem;
+    padding-right: var(--size-m);
+    overflow: hidden;
   }
 
-  &__el {
-    color: var(--color-dark-80);
+  &__wrapper {
+    display: flex;
+  }
+
+  &__wrapper--active {
+    gap: var(--size-n);
   }
 
   &__list {
-    display: none;
-    width: 10rem;
-    top: 0;
-    right: 0;
-    z-index: 9;
-    overflow: hidden;
-    box-sizing: content-box;
-    position: absolute;
-    padding: var(--size-n);
-    border-radius: var(--size-s);
-    background: var(--color-light);
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-
-    .catalog-sort__el:not(:last-child) {
-      margin-bottom: var(--size-xxs);
-    }
-  }
-
-  &__item {
-    color: var(--color-dark);
-    @include hover {
-      color: var(--color-brand);
-    }
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: var(--size-s);
+    row-gap: var(--size-m);
   }
 
   &__list--active {
-    display: block;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  &__title {
-    color: var(--color-dark-80);
+  &__side {
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 0;
+    opacity: 0;
+    transition: width .2s ease-in-out, opacity .1s ease-in-out;
   }
 
-  &__val {
-    color: var(--color-dark);
-    font-weight: 600;
+  &__side--active {
+    width: 21rem;
+    opacity: 1;
   }
 }
 
+.filter-show {
+  width: 14.55rem;
+
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+
+
 .catalog-sidebar {
+
   &__controls {
     display: flex;
     flex-direction: column;
-  }
-
-  .catalog-sidebar__btn:not(:last-child) {
-    margin-bottom: var(--size-xs);
+    gap: var(--size-xs);
   }
 }
 
@@ -191,7 +223,7 @@
     position: relative;
     cursor: pointer;
     color: var(--color-dark);
-    transition: color var(--anim-hover);
+    transition: color var(--hover);
     user-select: none;
   }
 
@@ -223,7 +255,7 @@
       background-position: center;
       background-size: 60%;
       opacity: 0;
-      transition: opacity var(--anim-hover);
+      transition: opacity var(--hover);
     }
   }
 
@@ -231,7 +263,7 @@
     position: relative;
   }
 
-  &__check1-inp:checked + &__check1-label > &__check1-img::after {
+  &__check1-inp:checked+&__check1-label>&__check1-img::after {
     opacity: 1;
   }
 
@@ -259,7 +291,7 @@
     user-select: none;
   }
 
-  &__check-inp:checked + &__check-ic::after {
+  &__check-inp:checked+&__check-ic::after {
     background: var(--color-dark);
     background-image: url(../img/check.svg);
     background-repeat: no-repeat;
@@ -285,7 +317,7 @@
     display: block;
     cursor: pointer;
     user-select: none;
-    transition: background var(--anim-hover);
+    transition: background var(--hover);
     color: var(--color-dark);
 
     @include hover {
@@ -293,7 +325,7 @@
     }
   }
 
-  &__table-inp:checked + &__table-label {
+  &__table-inp:checked+&__table-label {
     background: var(--color-dark);
     color: var(--color-light);
   }
@@ -343,15 +375,15 @@
   transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--color-brand);
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px var(--color-brand);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);

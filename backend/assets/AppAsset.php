@@ -16,10 +16,12 @@ class AppAsset extends AssetBundle
         'css/fancybox.css',
         'css/jquery-ui.css',
         'css/sortable.css',
-        'css/checkbox.css'
+        'css/checkbox.css',
+        '/lib/fancybox/fancybox.css',
     ];
     public $js = [
-        'js/jquery-ui.js'
+        'js/jquery-ui.js',
+        '/lib/fancybox/fancybox.umd.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset',

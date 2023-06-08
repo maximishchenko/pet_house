@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name' => 'домгрызунов.рф',
+    'name' => 'домпитомца.рф',
     'language' => 'ru-RU',
     'sourceLanguage' => 'en',
     'basePath' => dirname(__DIR__),
@@ -24,18 +24,8 @@ return [
     ],
     'components' => [
         'assetManager' => [
-            'bundles' => YII_ENV_PROD ? require(__DIR__.'/assets-prod.php') : null,
             'linkAssets' => true,
             'appendTimestamp' => true,
-            // 'converter' => [
-            //     'class' => 'yii\web\AssetConverter',
-            //     'forceConvert' => false,
-            //     'commands' => [
-            //         // 'scss' => ['css', 'sass --style=compressed {from} {to}'],
-            //         'scss' => ['css', 'gulp stl'],
-            //         'js' => ['js', 'gulp scripts'],
-            //     ],
-            // ],
         ],
         'request' => [
             'baseUrl' => '',
@@ -81,11 +71,6 @@ return [
             'rules' => [
                 'chinchilles' => 'catalog/default/index',
                 'chinchilles/<slug>' => 'catalog/default/view',
-                // 'catalog/rodent' => 'catalog/default/index',
-                // 'catalog/dog' => 'catalog/default/index',
-                // 'catalog/cat' => 'catalog/default/index',
-                // 'catalog/bird' => 'catalog/default/index',
-                // 'catalog/<slug>' => 'catalog/default/view',
                 'catalog/<catalog_slug>' => 'catalog/default/index',
                 'catalog/<catalog_slug>/<item_slug>' => 'catalog/default/view',
                 'privacy' => 'site/privacy',

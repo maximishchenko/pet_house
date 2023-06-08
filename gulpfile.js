@@ -1,7 +1,7 @@
 const { src, dest, series, watch } = require('gulp');
 
-const srcFolder = './frontend/web/src';
-const buildFolder = './frontend/web/build';
+const srcFolder = './frontend/web';
+const buildFolder = './frontend/web/assets/build';
 
 const paths = {
     srcScss: `${srcFolder}/scss/**/*.scss`,

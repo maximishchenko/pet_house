@@ -5,28 +5,64 @@
     gap: var(--size-xs);
   }
 
+  &__el {
+    background: var(--color-gray);
+  }
+
   &__col {
-    .main-faq__btn:not(:last-child) {
+    .main-faq__el:not(:last-child) {
       margin-bottom: var(--size-xs);
     }
   }
 
   &__btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     padding: var(--size-n);
-    width: 100%;
-    background: var(--color-gray);
+
+    @include hover {
+      .main-faq__headline {
+        color: var(--color-brand);
+      }
+
+      .main-faq__icon {
+        stroke: var(--color-brand);
+      }
+
+      .main-faq__icon {
+        stroke: var(--color-brand);
+        transform: rotate(90deg);
+      }
+    }
   }
 
   &__headline {
     font-size: 1rem;
     font-weight: 600;
     color: var(--color-dark);
+    transition: color var(--hover);
   }
 
   &__content {
     overflow: hidden;
     height: 0;
     background: var(--color-gray);
+  }
+
+  &__content-in {
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    margin: 0 var(--size-n) var(--size-n) var(--size-n);
+    padding-top: var(--size-n);
+  }
+
+  &__icon {
+    fill: none;
+    stroke: var(--color-dark);
+    width: var(--size-n);
+    height: var(--size-n);
+    transition: transform var(--hover), stroke var(--hover);
   }
 }

@@ -1,8 +1,8 @@
-
 // Вопросы
 .q-el--active {
   .q-content {
     height: auto;
+    transition: height .3s ease-in-out;
   }
 
   .q-btn {
@@ -17,9 +17,6 @@
     transform: rotate(45deg);
   }
 }
-
-
-
 
 //fancybox
 a[data-fancybox] img {
@@ -78,9 +75,97 @@ a[data-fancybox] img {
 }
 
 .is-nav-selected {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .fancybox__thumb::after {
   border-width: 0px !important;
+}
+
+.section-headline {
+  margin-bottom: var(--size-s);
+  font-size: 2.875rem;
+  color: var(--color-dark);
+}
+
+.mt-s {
+  margin-top: var(--size-s);
+}
+
+.mb-s {
+  margin-bottom: var(--size-s);
+}
+
+.mb-m {
+  margin-bottom: var(--size-m);
+}
+
+.mt-n {
+  margin-top: var(--size-n);
+}
+
+.mt-xxl {
+  margin-top: var(--size-xxl);
+}
+
+.mt-xl {
+  margin-top: var(--size-xl);
+}
+
+
+.mb-xxl {
+  margin-bottom: var(--size-xxl);
+}
+
+.mb-xl {
+  margin-bottom: var(--size-xl);
+}
+
+.pt-m {
+  padding-top: var(--size-m);
+}
+
+.pt-l {
+  padding-top: var(--size-l);
+}
+
+.pt-xl {
+  padding-top: var(--size-xl);
+}
+
+.pt-xxl {
+  padding-top: var(--size-xxl);
+}
+
+.btn-a,
+.btn-b {
+  padding: 1.5rem 2rem;
+  border-radius: var(--size-xs);
+  text-align: center;
+  transition: color var(--hover), background var(--hover);
+}
+
+.btn-a {
+  background: var(--color-brand);
+  color: var(--color-light);
+
+  @include hover {
+    background: var(--color-dark)
+  }
+}
+
+.btn-b {
+  background: var(--color-gray);
+  color: var(--color-dark);
+
+  @include hover {
+    background: var(--color-dark);
+    color: var(--color-light);
+  }
+}
+
+.modal-title {
+  font-size: 2rem;
+  color: var(--color-dark);
+  font-weight: 600;
 }

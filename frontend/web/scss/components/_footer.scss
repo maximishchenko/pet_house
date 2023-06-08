@@ -206,3 +206,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+
+@include small-tablet {
+  .footer__end {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer__wrapper {
+    grid-template-columns: 1fr;
+  }
+}

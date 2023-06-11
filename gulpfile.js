@@ -21,7 +21,10 @@ const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const webpackStream = require('webpack-stream');
 const del = require('del');
-
+/* const cssmin = require('gulp-cssmin');
+const rename = require('gulp-rename');
+const jsmin = require('gulp-jsmin');
+ */
 let isProd = false; // dev by default
 
 const clean = () => {
@@ -47,6 +50,7 @@ const styles = () => {
         })))
         .pipe(dest(paths.buildCssFolder, { sourcemaps: '.' }))
 };
+
 
 const scripts = () => {
     return src(paths.srcMainJs)
@@ -86,13 +90,10 @@ const scripts = () => {
         .pipe(dest(paths.buildJsFolder))
 }
 
-
-
 const watchFiles = () => {
     watch(paths.srcScss, styles);
     watch(paths.srcFullJs, scripts);
 }
 
 exports.clean = clean;
-
 exports.default = series(clean, scripts, styles, watchFiles);

@@ -68,5 +68,5 @@
         </div>
       </div>
     </div>
-    <button class="product-reviews__btn btn-reset" type="button">Показать больше отзывов</button>
+    <button class="product-reviews__btn btn-reset btn-b" type="button">Показать больше отзывов</button>
   </div>

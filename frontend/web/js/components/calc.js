@@ -7,7 +7,7 @@ if (sidebar !== null) {
   const floatSidebar = FloatSidebar({
     sidebar,
     relative,
-    topSpacing: 20,
+    topSpacing: 40,
     bottomSpacing: 20
   });
 }

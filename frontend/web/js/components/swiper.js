@@ -14,12 +14,11 @@ const heroSlider = new Swiper('.hero-slider', {
 // Слайдер аксесуаров в карточке товара
 const addAccessories = new Swiper('.add-accessories__swiper', {
   slidesPerView: 'auto',
-  loop: 'true',
   freeMode: true,
   navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
+    nextEl: ".add-accessories__btn-next",
+    prevEl: ".add-accessories__btn-prev",
+  }
 });
 
 
@@ -59,10 +58,22 @@ const mediaReviews = new Swiper('.reviews-slider', {
   },
 });
 
+import { isMobile, isTablet, isDesktop } from '../functions/check-viewport';
+if (isMobile()) {
+
+  const productGallary = new Swiper('.product-gallary__swiper', {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    loop: true,
+  });
+
+}
+
+
 // Популярные категории
-const populars = new Swiper('.pop-categories__slider', {
+/* const populars = new Swiper('.pop-categories__slider', {
   slidesPerView: "auto",
   freeMode: true,
   centeredSlides: true,
 });
-
+ */

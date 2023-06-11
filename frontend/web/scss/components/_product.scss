@@ -307,6 +307,28 @@
   max-width: 50%;
 }
 
+@media (max-width: (768px)) {
+  .product-gallary__swiper {
+    .swiper-wrapper {
+      flex-direction: row;
+      flex-flow: nowrap;
+    }
+
+
+    .product-gallary__link {
+      margin: 0;
+    }
+
+    .swiper-slide--50:nth-child(odd) .product-gallary__link {
+      margin-right: 0;
+    }
+
+    .swiper-slide--50:nth-child(even) .product-gallary__link {
+      margin-left: 0;
+    }
+  }
+}
+
 // Аксуссуары
 .add-accessories {
   &__swiper {
@@ -326,12 +348,20 @@
     background: var(--color-dark);
     border-radius: 100%;
     opacity: 0;
-    transition: opacity var(--hover);
+    transition: opacity var(--hover), background var(--hover);
+
+    &:hover {
+      background: var(--color-brand);
+    }
 
     &::after {
       font-size: 1rem;
       color: var(--color-light);
     }
+  }
+
+  .swiper-button-disabled {
+    opacity: 0;
   }
 
   @include hover {

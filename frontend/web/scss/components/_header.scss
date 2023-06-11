@@ -11,6 +11,49 @@
     justify-content: space-between;
     padding: var(--size-s) 0;
   }
+
+  &__bag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+}
+
+.bag-icon {
+  position: relative;
+}
+
+.cart-val {
+  position: absolute;
+  font-weight: 800;
+  font-size: 0.6rem;
+  bottom: .3rem;
+  color: var(--color-dark);
+}
+
+.bag-svg {
+  stroke: var(--color-dark);
+  stroke-width: 2px;
+}
+
+.bag-icon--acrive {
+
+  .cart-val {
+    color: var(--color-light);
+  }
+
+  .bag-svg {
+    stroke: var(--color-dark);
+  }
+
+  .bag-fill {
+    fill: var(--color-dark);
+  }
 }
 
 .header_hidden {
@@ -36,12 +79,22 @@
   &__link {
     color: var(--color-dark);
     font-weight: 500;
+    transition: opacity var(--hover);
+
+    &:hover {
+      opacity: .5;
+    }
   }
 }
 
 .header__phone {
   color: var(--color-dark);
   font-weight: 500;
+  transition: opacity var(--hover);
+
+  &:hover {
+    opacity: .5;
+  }
 }
 
 

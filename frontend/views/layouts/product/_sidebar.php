@@ -180,7 +180,7 @@ use common\models\Status;
             </span>
           </span>
         </div>
-        <button class="btn-reset product__action-btn" type="button">
+        <button class="btn-reset btn-a product__action-btn" type="button">
           <?= Yii::t('app', 'To cart'); ?>
         </button>
       </div>

@@ -3,6 +3,10 @@ html {
   font-size: 1vw;
 }
 
+*::selection {
+  background: #ffead8;
+}
+
 *,
 *::before,
 *::after {
@@ -128,6 +132,3 @@ h5 {
     font-size: 4vw;
   }
 }
-
-
-

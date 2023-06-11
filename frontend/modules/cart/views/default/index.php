@@ -45,4 +45,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </section>
 <!-- Вопросы и ответы -->
-<?= $this->render('//layouts/template/_faq'); ?>
+<?= $this->render('//layouts/product/_faq_bottom'); ?>

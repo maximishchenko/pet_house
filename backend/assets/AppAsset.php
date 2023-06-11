@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/jquery-ui.js',
         '/lib/fancybox/fancybox.umd.js',
+        'js/sortable.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset',

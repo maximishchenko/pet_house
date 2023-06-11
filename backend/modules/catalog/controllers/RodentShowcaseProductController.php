@@ -128,6 +128,33 @@ class RodentShowcaseProductController extends Controller
         }
     }
 
+    public function actionDeleteAllImages($id)
+    {
+        $images = ProductImage::find()->where(['product_id' => $id])->all();
+        foreach ($images as $image) {
+            $image->delete();
+        }
+        Yii::$app->session->setFlash('warning', Yii::t('app', 'All Images deleted'));
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    
+    /**
+     * Drag'n'Drop сортировка изображений
+     */
+    public function actionSaveImageSort()
+    {
+        $order = Yii::$app->request->post('order');
+        foreach($order as $sort => $imageId) {
+            if(isset($imageId) && !empty($imageId)) {
+                $image = ProductImage::findOne($imageId);
+                $image->sort = $sort;
+                $image->save();
+            }
+        }
+        print_r($order);
+    }
+
     /**
      * Finds the RodentShowcaseProduct model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

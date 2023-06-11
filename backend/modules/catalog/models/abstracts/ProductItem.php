@@ -48,7 +48,7 @@ abstract class ProductItem extends Product
         $rule = [
             [['productAttributesArray', 'imageFile', 'imagesFiles', 'informationItemsArray'], 'safe'],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
-            [['imagesFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp', 'maxFiles' => 5],
+            [['imagesFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp', 'maxFiles' => 20],
         ];
         $rules = ArrayHelper::merge($parent, $rule);
         return $rules;

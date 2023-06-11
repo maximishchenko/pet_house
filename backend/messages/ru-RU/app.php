@@ -206,4 +206,7 @@ return [
     'Information Edit' => "Управление содержимым раздела \"Информация\"",
     'Informations' => "Информация",
     'Video' => "Видеозапись",
+    "Do delete all images answer" => "Удалить все изображения?",
+    'All Images deleted' => "Все изображения удалены",
+    "Delete All Images" => "Удалить изображения",
 ];

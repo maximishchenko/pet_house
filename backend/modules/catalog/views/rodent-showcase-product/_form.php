@@ -133,6 +133,7 @@ use yii\bootstrap4\ActiveForm;
                 <?php endif; ?>
             </div>
             <div class="col-md-6">
+                <!-- TODO перенести drag-n-drop сортировку в клетки -->
                 <?= $form->field($model, 'imagesFiles[]', ['template' => '{label}<br/> {input} {error}'])->fileInput(['multiple' => true]) ?>
                 <?php if(isset($model->productImages) && !empty($model->productImages)):?>
                 <ul style="margin: 0; padding: 0;">
@@ -149,8 +150,10 @@ use yii\bootstrap4\ActiveForm;
                         <?php endforeach; ?>
                     </div>
                 </ul>
+                <?= Html::a(Yii::t('app', 'Delete All Images'), ['delete-all-images', 'id' => $model->id], ["data-method" => "post", "data-confirm" => Yii::t("app", "Do delete all images answer"), 'style' => 'margin-top: 3rem; padding-top: 3rem;']); ?>
                 <?php endif; ?>
             </div>
+
         </div>
     </div>
 

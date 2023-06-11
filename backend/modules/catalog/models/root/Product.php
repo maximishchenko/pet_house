@@ -209,7 +209,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
      */
     public function getProductImages()
     {
-        return $this->hasMany(ProductImage::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductImage::className(), ['product_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
     }
     
     /**

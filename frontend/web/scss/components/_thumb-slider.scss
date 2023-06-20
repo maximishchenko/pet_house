@@ -48,3 +48,9 @@
     padding: 0 calc(var(--size-s) / 2);
   }
 }
+
+@include small-tablet {
+  .thumb-slider__controls {
+    display: none;
+  }
+}

@@ -24,7 +24,7 @@ const addAccessories = new Swiper('.add-accessories__swiper', {
 
 // слайдер хиты
 const thumbsSlider = new Swiper('.prod-slider', {
-  slidesPerView: 1.1,
+  slidesPerView: 1.5,
   freeMode: true,
   slideToClickedSlide: true,
 

@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const calc = document.querySelector('.sidebar-adapt');
     const calcMobWrapper = document.querySelector('.product__optional');
     const calcBackWrapper = document.querySelector('.sidebar__inner');
+    const calcBages = document.querySelector('.product__bage-wrapper');
 
 
     function adapt() {
@@ -28,18 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (screen.width < 768) {
 
         mobWrapper.appendChild(gallary);
-        calcMobWrapper.appendChild(calc);
+        mobWrapper.appendChild(calcBages);
         calcMobWrapper.prepend(calc);
 
-        console.log('mob')
-        19
       } else if (mobWrapper.querySelector('.product-gallary')) {
-        gallaryWrapper.appendChild(gallary);
+
         gallaryWrapper.prepend(gallary);
         calcBackWrapper.appendChild(calc);
+        calc.prepend(calcBages);
         floatSidebar.forceUpdate();
-
-        console.log('desk')
+        
       }
     }
 

@@ -259,10 +259,6 @@
   background: var(--color-gray);
   border-radius: var(--size-s);
 
-  &__el {
-    display: flex;
-  }
-
   &__el:not(:last-child) {
     margin-bottom: var(--size-s);
   }
@@ -271,6 +267,10 @@
     color: var(--color-dark-80);
     display: block;
     margin-right: var(--size-xs);
+  }
+
+  &__list {
+    line-height: 140%;
   }
 }
 
@@ -550,8 +550,6 @@
 
 @include small-tablet {
 
-  
-
   .product__bage-wrapper {
     position: absolute;
     top: var(--size-xs);
@@ -562,6 +560,7 @@
   .product__bage {
     background: var(--color-dark);
     color: var(--color-light);
+    z-index: 99;
   }
 
   .grid-item {
@@ -587,12 +586,14 @@
       height: auto;
     }
   }
+
   .product-gallary__img {
     width: 100%;
   }
+
   .product-gallary {
     margin: 0 -5rem;
-    
+
   }
 
   .sidebar {

@@ -213,7 +213,41 @@
   .footer__end {
     flex-direction: column;
     align-items: center;
+    padding-bottom: 100px;
   }
+
+  .contacts-footer__link {
+    width: 100%;
+  }
+
+  .social {
+    margin: var(--size-n) 0;
+  }
+
+  .footer__messages {
+    margin-bottom: var(--size-xxl);
+
+    a {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .footer__vk {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--size-xxl);
+  }
+
+  .vk-grid {
+    height: 15rem;
+  }
+
+  .footer__watsapp {
+    margin-bottom: var(--size-s);
+  }
+
   .footer__wrapper {
     grid-template-columns: 1fr;
   }

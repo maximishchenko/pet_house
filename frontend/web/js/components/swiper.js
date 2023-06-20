@@ -58,22 +58,35 @@ const mediaReviews = new Swiper('.reviews-slider', {
   },
 });
 
-import { isMobile, isTablet, isDesktop } from '../functions/check-viewport';
-if (isMobile()) {
-
+if (screen.width < 768) {
   const productGallary = new Swiper('.product-gallary__swiper', {
-    slidesPerView: "auto",
-    spaceBetween: 20,
     loop: true,
+    pagination: {
+      el: ".product-gallary--pag",
+    }
   });
-
 }
 
-
-// Популярные категории
-/* const populars = new Swiper('.pop-categories__slider', {
-  slidesPerView: "auto",
-  freeMode: true,
-  centeredSlides: true,
+const catalogCat = new Swiper('.catalog-cat', {
+  slidesPerView: 'auto',
+  navigation: {
+    nextEl: ".catalog-cat__btn-next",
+    prevEl: ".catalog-cat__btn-prev",
+  },
 });
- */
+
+const catalogBar = new Swiper('.catalog-bar__btn-wrapper', {
+  slidesPerView: 'auto',
+  freeMode: true,
+});
+
+const popCatSlider = new Swiper('.pop-categories__slider', {
+  slidesPerView: 'auto',
+  freeMode: true,
+});
+
+/*   const productGallary = new Swiper('.product-gallary__swiper', {
+    loop: true,
+    pagination: {
+      el: ".product-gallary--pag",
+    }} */

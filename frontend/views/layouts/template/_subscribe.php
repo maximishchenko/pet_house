@@ -1,4 +1,4 @@
-<section class="subscribe mb-xxl">
+<section class="subscribe mb-xxl" style="display: none;">
   <div class="container">
     <div class="subscribe__wrapper">
       <div class="subscribe__content">

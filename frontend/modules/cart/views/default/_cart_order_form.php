@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 <textarea class="order-form__inp input-reset" name="coment" id="" cols="20" rows="7"
     placeholder="Комментарий"></textarea>
 
-    <div class="tabs" data-tabs="order-tab">
+    <div class="tabs order-tab" data-tabs="order-tab">
 
         <ul class="tabs__nav">
             <li class="tabs__nav-item">

@@ -126,9 +126,19 @@ h5 {
 @include small-tablet {
   :root {
     --container-offset: 1rem;
+    --size-xxl: 3.25rem; // 100
   }
 
   html {
     font-size: 4vw;
   }
+}
+
+
+.grid-sizer {
+  width: 24%;
+}
+
+.gutter-sizer {
+  width: 1.3%;
 }

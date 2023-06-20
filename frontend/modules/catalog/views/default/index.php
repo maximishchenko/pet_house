@@ -38,8 +38,11 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
                 <div class="catalog__list">
                     <?= ListView::widget([
                         'dataProvider' => $dataProvider,
-                        'layout' => "{items}",
+                        'layout' => "{items}",  
                         'itemView' => '_catalog_items',
+                        'options' => [
+                            'tag' => false,
+                        ],
                     ]); 
                     ?>
                     <?php // $this->render("_catalog_items"); ?>

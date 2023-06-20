@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
         'assets/build/css/main.css',
     ];
     public $js = [
+        'js/vendor/masonry.pkgd.min.js',
         'assets/build/js/main.js',
     ];
     public $jsOptions = [

@@ -37,12 +37,17 @@
 import GraphTabs from 'graph-tabs';
 
 
+const calcTabs = document.querySelector('.calc-tab');
+const orderTabs = document.querySelector('.order-tab');
 
-/* if (tabs !== null) {
-    tabs = new GraphTabs();
-} */
-const tabs = new GraphTabs('calc-tab');
-//const orderTabs = new GraphTabs('order-tab');
+if (calcTabs != null) {
+    const tabs = new GraphTabs('calc-tab');
+}
+
+if (orderTabs != null) {
+    const orderTabs = new GraphTabs('order-tab');
+}
+//
 
 
 

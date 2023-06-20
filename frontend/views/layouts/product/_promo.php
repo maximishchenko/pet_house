@@ -12,7 +12,7 @@ use backend\modules\content\models\Information;
         особенностей крупных грызунов.</p>
     </div>
 
-    <?php foreach($model->informations as $promoKey => $promoPostItem): ?>
+   <?php foreach($model->informations as $promoKey => $promoPostItem): ?>
 
     <?php if ($promoKey % 2): ?>
       <div class="product-info">
@@ -32,5 +32,5 @@ use backend\modules\content\models\Information;
       </div>
     </div>
 
-    <?php endforeach;?>
-</div>
+   <?php endforeach;?> 
+</div> 

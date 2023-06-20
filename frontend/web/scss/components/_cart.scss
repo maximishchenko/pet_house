@@ -294,3 +294,23 @@
     }
   }
 }
+
+@include small-tablet {
+  .cart {
+    &__wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cart-el {
+    position: relative;
+    grid-template-columns: auto 1fr;
+    justify-items: stretch;
+  }
+
+  .cart-el__del {
+    position: absolute;
+    top: 0;
+  }
+
+}

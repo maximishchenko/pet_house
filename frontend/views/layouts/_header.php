@@ -11,7 +11,7 @@ use yii\helpers\Url;
         <img class="logo__img" src="/img/logo.svg" alt="">
       </a>
 
-      <nav class="nav" data-da=".mob-wrapper,768">
+      <nav class="nav header-nav">
         <ul class="list-reset nav__list">
           <li class="nav__item">
             <?= Html::a(Yii::t('app', "Menu Item Rodent"), ['/chinchilles'], ['class' => 'nav__link']); ?>
@@ -29,7 +29,7 @@ use yii\helpers\Url;
       </nav>
 
       <?php if (!empty($settings->getItemValue('contactPhone'))) : ?>
-        <a href="tel:<?= $settings->getItemValue('contactPhone'); ?>" class="header__phone" data-da=".mob-wrapper,768">
+        <a href="tel:<?= $settings->getItemValue('contactPhone'); ?>" class="header__phone">
           <?= $settings->getItemValue('contactPhone'); ?>
         </a>
       <?php endif; ?>
@@ -160,6 +160,5 @@ use yii\helpers\Url;
         </div>
       </div>
     </section>
-
   </div>
 </div>

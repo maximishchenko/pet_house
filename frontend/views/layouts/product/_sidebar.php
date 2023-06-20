@@ -6,13 +6,14 @@ use common\models\Status;
 
 ?>
 
-<script src="/js/constructor.js"></script>
+<!-- <script src="/js/constructor.js"></script> -->
 
 <div class="product__col-calc">
-    <div class="sidebar">
-      <div class="sidebar__inner">
+  <div class="sidebar">
+    <div class="sidebar__inner">
+      <div class="sidebar-adapt">
         <div class="product__bage-wrapper">
-          <?php if ($model->is_available): ?>
+          <?php if ($model->is_available) : ?>
             <span class="product__bage">
               <?= Yii::t('app', 'In available'); ?>
             </span>
@@ -21,18 +22,16 @@ use common\models\Status;
         <h1 class="section-headline product__headline">
           <?= $model->name; ?>
         </h1>
-        <div class="tabs" data-tabs="calc-tab">
+        <div class="tabs calc-tab" data-tabs="calc-tab">
           <ul class="tabs__nav">
             <li class="tabs__nav-item">
-              <button class="tabs__nav-btn btn-reset"
-                type="button">
-                  <?= Yii::t('app', "Sidebar Configuration"); ?>
+              <button class="tabs__nav-btn btn-reset" type="button">
+                <?= Yii::t('app', "Sidebar Configuration"); ?>
               </button>
             </li>
             <li class="tabs__nav-item">
-              <button class="tabs__nav-btn btn-reset"
-                type="button">
-                  <?= Yii::t('app', 'Sidebar Characteristics'); ?>
+              <button class="tabs__nav-btn btn-reset" type="button">
+                <?= Yii::t('app', 'Sidebar Characteristics'); ?>
               </button>
             </li>
           </ul>
@@ -48,7 +47,7 @@ use common\models\Status;
                         <?= Yii::t('app', 'Base color'); ?>
                       </span>
                       <span class="calc-el__btn-val" data-constructor-color-name>
-                        <?= $model->color->name?>
+                        <?= $model->color->name ?>
                       </span>
                     </span>
                   </span>
@@ -61,21 +60,15 @@ use common\models\Status;
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
                   <div class="calc-el__list">
-                    <?php foreach ($model->getColorItems() as $color): ?>
-                      <span 
-                        onclick="setConstructorColor(this); return false"
-                        class="calc-el__list-item" 
-                        style="background-image: url(/uploads/property/<?= $color->image; ?>);" 
-                        data-color-name="<?= $color->name?>" 
-                        data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>"
-                      >
+                    <?php foreach ($model->getColorItems() as $color) : ?>
+                      <span onclick="setConstructorColor(this); return false" class="calc-el__list-item" style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
 
                       </span>
                     <?php endforeach; ?>
                   </div>
                 </div>
               </div>
-              
+
               <!-- Размеры -->
               <div class="calc-el">
                 <button class="calc-el__btn-control btn-reset" type="button">
@@ -100,16 +93,10 @@ use common\models\Status;
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
                   <div class="calc-el__list">
-                    <?php foreach ($model->productType->sizes as $size): ?>
-                    <span class="calc-el__list-item" 
-                          style="background-image: url('/<?= Property::UPLOAD_PATH . $size->image; ?>');"
-                          data-size-height="<?= $size->height; ?>"
-                          data-size-width="<?= $size->width; ?>"
-                          data-size-depth="<?= $size->depth; ?>"
-                          onclick="setConstructorSize(this); return false"
-                    >
+                    <?php foreach ($model->productType->sizes as $size) : ?>
+                      <span class="calc-el__list-item" style="background-image: url('/<?= Property::UPLOAD_PATH . $size->image; ?>');" data-size-height="<?= $size->height; ?>" data-size-width="<?= $size->width; ?>" data-size-depth="<?= $size->depth; ?>" onclick="setConstructorSize(this); return false">
 
-                    </span>
+                      </span>
                     <?php endforeach; ?>
                   </div>
                 </div>
@@ -136,14 +123,9 @@ use common\models\Status;
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
                   <div class="calc-el__list">
-                    <?php foreach (Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $model->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL])->all() as $wall): ?>
-                      <span 
-                        class="calc-el__list-item"
-                        style="background-image: url('/<?= Property::UPLOAD_PATH . $wall->image; ?>');"
-                        data-wall-name = "<?= $wall->name; ?>"
-                        onclick="setConstructorWall(this); return false"
-                      >
-                    </span>
+                    <?php foreach (Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $model->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL])->all() as $wall) : ?>
+                      <span class="calc-el__list-item" style="background-image: url('/<?= Property::UPLOAD_PATH . $wall->image; ?>');" data-wall-name="<?= $wall->name; ?>" onclick="setConstructorWall(this); return false">
+                      </span>
                     <?php endforeach; ?>
                   </div>
                 </div>
@@ -154,15 +136,15 @@ use common\models\Status;
             <div class="tabs__panel">
               <div class="specifications">
                 <ul class="list-reset specifications__list">
-                  <?php foreach($model->productAttributes as $attribute): ?> 
-                  <li class="specifications__el">
-                    <span class="specifications__title">
-                      <?= $attribute->name; ?>
-                    </span>
-                    <span class="specifications__value">
-                      <?= $attribute->value; ?>
-                    </span>
-                  </li>
+                  <?php foreach ($model->productAttributes as $attribute) : ?>
+                    <li class="specifications__el">
+                      <span class="specifications__title">
+                        <?= $attribute->name; ?>
+                      </span>
+                      <span class="specifications__value">
+                        <?= $attribute->value; ?>
+                      </span>
+                    </li>
                   <?php endforeach; ?>
                 </ul>
               </div>
@@ -174,9 +156,9 @@ use common\models\Status;
             <?= Yii::t('app', 'Price with content'); ?>
           </span>
           <span class="product__price">
-            <?= Yii::$app->formatter->asCurrency($model->price); ?>  
+            <?= Yii::$app->formatter->asCurrency($model->price); ?>
             <span class="product__price-old">
-              <?= Yii::$app->formatter->asCurrency($model->oldPrice); ?> 
+              <?= Yii::$app->formatter->asCurrency($model->oldPrice); ?>
             </span>
           </span>
         </div>
@@ -186,3 +168,4 @@ use common\models\Status;
       </div>
     </div>
   </div>
+</div>

@@ -15,6 +15,16 @@
     }
   }
 
+  &__content {
+    box-sizing: content-box;
+    padding: 0 var(--size-n);
+
+    p {
+      margin: 0 0 var(--size-n) 0;
+
+    }
+  }
+
   &__btn {
     width: 100%;
     display: flex;
@@ -64,5 +74,18 @@
     width: var(--size-n);
     height: var(--size-n);
     transition: transform var(--hover), stroke var(--hover);
+  }
+}
+
+@include small-tablet {
+  .main-faq {
+    &__wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    &__icon {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
   }
 }

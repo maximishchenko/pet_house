@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <section class="cart mb-xxl">
-    <div class="container">
+    <div class="container cart-container">
 
         <div class="cart__head mb-s">
             <h1 class="section-headline">

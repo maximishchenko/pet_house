@@ -2,7 +2,7 @@
 use backend\modules\catalog\models\root\Product;
 ?>
 
-<div class="product-gallary">
+<div class="product-gallary" >
     <div class="swiper product-gallary__swiper">
         <div class="swiper-wrapper">
             <?php foreach($model->productImages as $k => $image): ?>
@@ -17,5 +17,7 @@ use backend\modules\catalog\models\root\Product;
               </div>
             <?php endforeach; ?>
         </div>
+        <div class="swiper-pagination product-gallary--pag"></div>
     </div>
 </div>
+

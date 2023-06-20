@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => { // DOM готов к вз�
 
       const headerHidden = () => header.classList.contains('header_hidden') // узнаем скрыт header или нет
 
-      if (currentScroll > prevScroll && !headerHidden()) { // если прокручиваем страницу вниз и header не скрыт
+      if (currentScroll > prevScroll + 50 && !headerHidden()) { // если прокручиваем страницу вниз и header не скрыт
         header.classList.add('header_hidden') // то скрываем header
       }
       if (currentScroll < prevScroll && headerHidden()) { // если прокручиваем страницу вверх и header скрыт
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => { // DOM готов к вз�
   }
 
   onScrollHeader() // вызываем основную функцию onScrollHeader
-
+ 
 });
 
 // Вопросы и ответы

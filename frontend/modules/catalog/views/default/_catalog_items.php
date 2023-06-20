@@ -17,9 +17,9 @@ if ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE) {
   </div>
   <div class="thumb-prod__info">
     <span class="thumb-prod__price">
-      <?= Yii::$app->formatter->asCurrency($model->price); ?>
+      <?= Yii::$app->formatter->asCurrency($model->price, 'RUB',[\NumberFormatter::MAX_SIGNIFICANT_DIGITS=>100]); ?>
       <span class="thumb-prod__price-old">
-        <?= Yii::$app->formatter->asCurrency($model->oldPrice); ?>
+        <?= Yii::$app->formatter->asCurrency($model->oldPrice, 'RUB',[\NumberFormatter::MAX_SIGNIFICANT_DIGITS=>100]); ?>
       </span>
     </span>
     <h3 class="thumb-prod__title">

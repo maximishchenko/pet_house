@@ -22,23 +22,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const calcBackWrapper = document.querySelector('.sidebar__inner');
     const calcBages = document.querySelector('.product__bage-wrapper');
 
-
     function adapt() {
 
+      let galleryBlock = mobWrapper.querySelector('.product-gallary');
 
-      if (screen.width < 768) {
+      if (screen.width < 768 && galleryBlock == null) {
 
         mobWrapper.appendChild(gallary);
         mobWrapper.appendChild(calcBages);
         calcMobWrapper.prepend(calc);
 
-      } else if (mobWrapper.querySelector('.product-gallary')) {
+      } else if (screen.width > 768 && galleryBlock) {
 
         gallaryWrapper.prepend(gallary);
         calcBackWrapper.appendChild(calc);
         calc.prepend(calcBages);
         floatSidebar.forceUpdate();
-        
+
       }
     }
 

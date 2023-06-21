@@ -58,7 +58,7 @@ const mediaReviews = new Swiper('.reviews-slider', {
   },
 });
 
-if (screen.width < 768) {
+function showProductCardSwiper() {
   const productGallary = new Swiper('.product-gallary__swiper', {
     loop: true,
     pagination: {
@@ -66,6 +66,33 @@ if (screen.width < 768) {
     }
   });
 }
+
+
+function adaptSwiper() {
+
+  
+  const productGallary = new Swiper('.product-gallary__swiper', {
+    loop: true,
+    pagination: {
+      el: ".product-gallary--pag",
+    }
+  });
+
+  if (screen.width >= 768) {
+
+    productGallary.destroy(true, true);
+
+  } 
+}
+
+addEventListener("resize", () => {
+  adaptSwiper();
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  adaptSwiper();
+});
 
 const catalogCat = new Swiper('.catalog-cat', {
   slidesPerView: 'auto',

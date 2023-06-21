@@ -98,7 +98,7 @@
     display: flex;
     z-index: 0;
   }
-  
+
   &__btn {
     user-select: none;
     padding: 1.5rem 2rem;
@@ -370,7 +370,7 @@
       width: 2.484rem;
       border-radius: 100%;
       background: var(--color-dark);
-      background-image: url(../img/check.svg);
+      background-image: url('/img/check.svg');
       background-repeat: no-repeat;
       background-position: center;
       background-size: 60%;
@@ -413,7 +413,7 @@
 
   &__check-inp:checked+&__check-ic::after {
     background: var(--color-dark);
-    background-image: url(../img/check.svg);
+    background-image: url('/img/check.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70%;

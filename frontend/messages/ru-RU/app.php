@@ -68,4 +68,5 @@ return [
     'Size Width' => "Ш",
     'Size Depth' => "Г",
     'Size mm' => " мм",
+    'Chat' => "Чат",
 ];

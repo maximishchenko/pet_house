@@ -1,89 +1,115 @@
-.subscribe {
-
+.subscription {
   &__wrapper {
-    height: 26rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--size-n);
-    background: var(--color-dark);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
-  &__content {
-    display: inline-flex;
+  &__content-wrap {
+    height: 30rem;
+    padding: var(--size-l);
+    border-radius: var(--size-n);
+    background: var(--color-gray);
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: var(--size-l) 0 var(--size-l) var(--size-l);
+    justify-content: space-around;
   }
 
-  &__title,
-  &__desc {
-    color: var(--color-light);
+  &__subtitle {
+    text-transform: uppercase;
+    color: var(--color-brand);
+    font-size: .8rem;
+    font-weight: 600;
   }
 
   &__title {
-    font-size: 2.875rem;
-    max-width: 80%;
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 120%;
+    width: 80%;
+    color: var(--color-dark);
+    margin-bottom: var(--size-m);
   }
 
-  &__desc {
-    max-width: 60%;
-  }
-
-  &__link {
+  &__btn {
+    border: 2px solid var(--color-dark);
     display: inline-flex;
     align-items: center;
-    background: var(--color-brand);
-    padding: 1.542rem var(--size-n);
-    border-radius: var(--size-s);
-    color: var(--color-light);
 
     svg {
-      width: var(--size-s);
-      height: var(--size-s);
+      height: 1.4rem;
+      width: 1.4rem;
+      margin-right: .5rem;
+      fill: var(--color-dark);
+      transition: fill var(--hover);
+    }
+
+    &:hover svg {
       fill: var(--color-light);
-      margin-right: var(--size-xs);
     }
   }
 
-  &__tiker {
-    display: flex;
-    flex-wrap: wrap;
+  &__img-wrap {
+    height: 30rem;
+    border-radius: var(--size-n);
+    background: var(--color-dark);
   }
 
-  &__tiker-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-right: var(--size-n);
-    gap: var(--size-n);
+  &__img-wrap {
     overflow: hidden;
-  }
-
-  &__tiker--in {
-    .subscribe__img {
-      animation-direction: reverse;
-    }
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__img {
-    margin-bottom: var(--size-n);
-    height: 20rem;
-    width: 20rem;
-    border-radius: var(--size-n);
-    background-size: cover;
-    background-repeat: no-repeat;
-    animation: tiker_vk 30s linear infinite;
+    position: absolute;
+    height: 100%;
+    width: auto;
+    z-index: 1;
+    transition: transform .2s;
+    transform: scale(1.4) rotate(30deg);
+  }
+
+  &__img-bg {
+    width: 100%;
+  }
+
+  #bg-wrap {
+    width: 100%;
   }
 }
 
+@include small-tablet {
+  .subscription {
+    &__wrapper {
+      grid-template-columns: 1fr;
+    }
 
-@keyframes tiker_vk {
-  0% {
-    transform: translateY(0);
+    &__img-wrap,
+    &__content-wrap {
+      height: 25rem;
+      padding: var(--size-n);
+    }
+
+    &__img-bg {
+      transform: scale(1.4);
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      width: 100%;
+      margin-bottom: var(--size-s);
+    }
+
+    &__btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 
-  to {
-    transform: translateY(-100%);
+  .subscription__btn-wrap .subscription__btn:not(:last-child) {
+    margin-bottom: var(--size-xs);
   }
-
-
 }

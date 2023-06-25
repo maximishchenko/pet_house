@@ -1,146 +1,128 @@
 <?php
 use yii\helpers\Html;
 ?>
-
 <footer class="footer pt-xxl mt-xxl">
   <div class="container">
     <div class="footer__wrapper">
-      <div class="footer__contacts">
-        <h2 class="footer__title">
-          <?= Yii::t('app', 'Footer Contacts Block'); ?>
-        </h2>
-        <div class="contacts-footer">
-          <!-- Телефон -->
-          <?php if (!empty($settings->getItemValue('contactPhone'))): ?>
-              <a href="tel:<?= $settings->getItemValue('contactPhone'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Phone'); ?></span><?= $settings->getItemValue('contactPhone'); ?></a>
-          <?php endif; ?>
-          <!-- Email -->
-          <?php if (!empty($settings->getItemValue('contactEmail'))): ?>
-            <a href="mailto://<?= $settings->getItemValue('contactEmail'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Email'); ?></span><?= $settings->getItemValue('contactEmail'); ?></a>
-          <?php endif; ?>
-          <!-- Адрес и ссылка на карту -->
-          <?php if (!empty($settings->getItemValue('contactAddress')) && !empty($settings->getItemValue('contactMapLink'))): ?>
-            <a href="<?= $settings->getItemValue('contactMapLink'); ?>" class="contacts-footer__link"><span class="contacts-footer__title"><?= Yii::t('app', 'Footer Address'); ?></span><?= $settings->getItemValue('contactAddress'); ?></a>
-          <?php endif; ?>
-        </div>
-  
-        <!-- Соц. сети -->
-        <ul class="social list-reset">
-          <?php if (!empty($settings->getItemValue('contactInstagram'))): ?>
-          <li class="social__item">
-            <a href="<?= $settings->getItemValue('contactInstagram'); ?>" target="_blank" class="social__link social__link--fb"
-              aria-label="<?= Yii::t('app', "We are in IG"); ?>">
-              <svg>
-                <use xlink:href="/img/sprite.svg#in"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif; ?>
-          <?php if (!empty($settings->getItemValue('contactWhatsapp'))): ?>
-          <li class="social__item">
-            <a href="<?= $settings->getItemValue('contactWhatsapp'); ?>" target="_blank" class="social__link social__link--vk"
-              aria-label="<?= Yii::t('app', "We are in WA"); ?>">
-              <svg>
-                <use xlink:href="/img/sprite.svg#wt"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif; ?>
-          <?php if (!empty($settings->getItemValue('contactTelegram'))): ?>
-          <li class="social__item">
-            <a href="<?= $settings->getItemValue('contactTelegram'); ?>" target="_blank" class="social__link social__link--tw"
-              aria-label="<?= Yii::t('app', "We are in Telegram"); ?>">
-              <svg>
-                <use xlink:href="/img/sprite.svg#tl"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif; ?>
-          <?php if (!empty($settings->getItemValue('contactVk'))): ?>
-          <li class="social__item">
-            <a href="<?= $settings->getItemValue('contactVk'); ?>" target="_blank" class="social__link social__link--fb"
-              aria-label="<?= Yii::t('app', "We are in VK"); ?>">
-              <svg>
-                <use xlink:href="/img/sprite.svg#vk"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif; ?>
-          <?php if (!empty($settings->getItemValue('contactAvito'))): ?>
-          <li class="social__item">
-            <a href="<?= $settings->getItemValue('contactAvito'); ?>" target="_blank" class="social__link social__link--vk"
-              aria-label="<?= Yii::t('app', "We are in Avito"); ?>">
-              <svg>
-                <use xlink:href="/img/sprite.svg#av"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif; ?>
-          <?php if (!empty($settings->getItemValue('contactLiveMaster'))): ?>
-          <li class="social__item">
-            <a href="<?= $settings->getItemValue('contactLiveMaster'); ?>" target="_blank" class="social__link social__link--tw"
-              aria-label="<?= Yii::t('app', "We are in LiveMaster"); ?>">
-              <svg>
-                <use xlink:href="/img/sprite.svg#lm"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif; ?>
-        </ul>
-
-        <div class="footer__messages">
-          <?php if (!empty($settings->getItemValue('contactWhatsapp'))): ?>
-          <a href="<?= $settings->getItemValue('contactWhatsapp'); ?>" class="footer__watsapp">
-            <svg class="message-wt">
-              <use xlink:href="/img/sprite.svg#wt"></use>
-            </svg> 
-            <?= Yii::t('app', 'Send WhatsApp Message'); ?>
-          </a>
-          <?php endif; ?>
-          <?php if (!empty($settings->getItemValue('contactTelegram'))): ?>
-          <a href="<?= $settings->getItemValue('contactTelegram'); ?>" class="footer__telegram"><svg class="message-tl">
-              <use xlink:href="/img/sprite.svg#tl"></use>
+      <div class="footer__row footer__border">
+        <div class="footer__contacts">
+          <span class="footer__contacts-title">Есть вопросы?</span>
+          <a href="#" class="footer__phone">+7 (495) 088 90 48</a>
+          <a href="#" class="footer__mail">
+            <svg class="footer__mail-ic">
+              <use xlink:href="img/sprite.svg#mail"></use>
             </svg>
-            <?= Yii::t('app', 'Send Telegram Message'); ?>
+            info@domgryzunov.ru
           </a>
-          <?php endif; ?>
         </div>
-
+        <div class="footer__col footer__messangers-wrap">
+          <div class="footer__messangers">
+            <a href="#" class="footer__btn-wt">
+              <svg>
+                <use xlink:href="img/sprite.svg#wt"></use>
+              </svg>
+              Написать в Watsapp
+            </a>
+            <a href="#" class="footer__btn-tl">
+              <svg>
+                <use xlink:href="img/sprite.svg#tl"></use>
+              </svg>
+              Написать в Telegram
+            </a>
+          </div>
+          <a href="#header" class="footer__up">
+            <svg class="footer__up-ic">
+              <use xlink:href="img/sprite.svg#arrow_up"></use>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="footer__vk">
-        <h2 class="footer__title mb-s">Мы в Вконтакте</h2>
-        <a href="#" class="vk-grid">
-          <div class="vk-grid__a">
-            <img loading="lazy" src="/img/grid/1.jpg" class="image" width="400" height="400" alt="Контакт">
+      <div class="footer__row mt-xxl footer__row-links">
+        <div class="footer__address">
+
+          <div class="address-wrapper">
+            <div class="flex-column">
+              <span class="footer__list-title">Адрес</span>
+              <a href="#" class="footer__link">
+                Московская область,<br>Солнечногорский район, <br>пос. Поварово, ул. Буровая, 2А
+              </a>
+            </div>
           </div>
-          <div class="vk-grid__b">
-            <img loading="lazy" src="/img/grid/7.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-          <div class="vk-grid__c">
-            <img loading="lazy" src="/img/grid/4.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-          <div class="vk-grid__d">
-            <img loading="lazy" src="/img/grid/6.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-          <div class="vk-grid__e">
-            <img loading="lazy" src="/img/grid/10.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-          <div class="vk-grid__f">
-            <img loading="lazy" src="/img/grid/11.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-          <div class="vk-grid__g">
-            <img loading="lazy" src="/img/grid/3.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-          <div class="vk-grid__h">
-            <img loading="lazy" src="/img/grid/9.jpg" class="image" width="400" height="400" alt="Контакт">
-          </div>
-        </a>
+
+          <ul class="social list-reset">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
+                aria-label="Наша страничка в Фейсбуке">
+                <svg>
+                  <use xlink:href="img/sprite.svg#in"></use>
+                </svg>
+              </a></li>
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
+                aria-label="Наша страничка во Вконтакте">
+                <svg>
+                  <use xlink:href="img/sprite.svg#wt"></use>
+                </svg>
+              </a></li>
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
+                aria-label="Наша страничка в Твиттере">
+                <svg>
+                  <use xlink:href="img/sprite.svg#tl"></use>
+                </svg>
+              </a></li>
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
+                aria-label="Наша страничка в Фейсбуке">
+                <svg>
+                  <use xlink:href="img/sprite.svg#vk"></use>
+                </svg>
+              </a></li>
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
+                aria-label="Наша страничка во Вконтакте">
+                <svg>
+                  <use xlink:href="img/sprite.svg#av"></use>
+                </svg>
+              </a></li>
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
+                aria-label="Наша страничка в Твиттере">
+                <svg>
+                  <use xlink:href="img/sprite.svg#lm"></use>
+                </svg>
+              </a></li>
+          </ul>
+
+        </div>
+        <div class="footer__list-links">
+          <ul class="list-reset footer__list">
+            <li class="footer__list-title">Каталог</li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Шиншиллы</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Собаки</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Кошки</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Птицы</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Персональный заказ</a>
+            </li>
+          </ul>
+          <ul class="list-reset footer__list">
+            <li class="footer__list-title">Информация для покупателей</li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Доставка и оплата</a>
+            </li>
+            <li class="footer__list-item">
+              <a href="#" class="footer__link">Реквизиты</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="footer__end mt-n">
-      <span class="footer__copyrights">© 2016 — <?= date('Y'); ?> <?= Yii::$app->name; ?></span>
-      <a href="#" class="footer__requisites">Реквизиты</a>
-      <?= Html::a(Yii::t('app', 'Privacy'), '/privacy', ['class' => 'footer__privacy']); ?>
+    <div class="footer__fin">
+      <span>© 2016 – 2023 домгрызунов.рф</span>
+      <a href="#">Политика конфидециальности</a>
     </div>
   </div>
 </footer>

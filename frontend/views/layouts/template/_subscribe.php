@@ -1,36 +1,87 @@
-<section class="subscribe mb-xxl" style="display: none;">
+<section class="subscription mb-xxl">
   <div class="container">
-    <div class="subscribe__wrapper">
-      <div class="subscribe__content">
-        <h2 class="subscribe__title">Подпи­сы­вай­тесь
-          на наши социальные сети</h2>
-       <!--  <p class="subscribe__desc">Господа, постоянный количественный рост и сфера нашей активности позволяет выполнить
-          важные задания</p> -->
-        <div class="subscribe__container">
-          <a href="#" class="subscribe__link">
+    <div class="subscription__wrapper">
+      <div class="subscription__content-wrap">
+        <span class="subscription__subtitle">Наши соцсети</span>
+        <p class="subscription__title">Присоединяйтесь к нам
+          в социальных сетях прямо сейчас
+          и станьте частью нашей большой
+          и дружной семьи!</p>
+        <div class="subscription__btn-wrap">
+          <a href="#" class="btn-b subscription__btn">
             <svg>
-              <use xlink:href="/img/sprite.svg#vk"></use>
+              <use xlink:href="img/sprite.svg#vk"></use>
             </svg>
-            <span>ВКонтакте</span>
+            ВКонтакте
+          </a>
+          <a href="#" class="btn-b subscription__btn">
+            <svg>
+              <use xlink:href="img/sprite.svg#in"></use>
+            </svg>
+            Instagram
           </a>
         </div>
       </div>
-      <a href="#" class="subscribe__tiker-wrapper">
-        <div class="subscribe__tiker">
-          <div class="subscribe__img" style="background-image: url('/img/vk/1.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/2.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/3.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/4.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/5.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/1.jpg');"></div>
-        </div>
-        <div class="subscribe__tiker subscribe__tiker--in">
-          <div class="subscribe__img" style="background-image: url('/img/vk/3.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/5.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/4.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/3.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/2.jpg');"></div>
-          <div class="subscribe__img" style="background-image: url('/img/vk/3.jpg');"></div>
+      <a href="#" class="subscription__img-wrap">
+        <img src="img/mockup.png" class="subscription__img" alt="">
+        <div class="subscription__img-bg">
+          <div id="bg-wrap">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="Gradient1" cx="50%" cy="50%" fx="0.441602%" fy="50%" r=".5">
+                  <animate attributeName="fx" dur="34s" values="0%;3%;0%" repeatCount="indefinite"></animate>
+                  <stop offset="0%" stop-color="rgba(255, 0, 255, 1)"></stop>
+                  <stop offset="100%" stop-color="rgba(255, 0, 255, 0)"></stop>
+                </radialGradient>
+                <radialGradient id="Gradient2" cx="50%" cy="50%" fx="2.68147%" fy="50%" r=".5">
+                  <animate attributeName="fx" dur="23.5s" values="0%;3%;0%" repeatCount="indefinite"></animate>
+                  <stop offset="0%" stop-color="rgba(255, 255, 0, 1)"></stop>
+                  <stop offset="100%" stop-color="rgba(255, 255, 0, 0)"></stop>
+                </radialGradient>
+                <radialGradient id="Gradient3" cx="50%" cy="50%" fx="0.836536%" fy="50%" r=".5">
+                  <animate attributeName="fx" dur="21.5s" values="0%;3%;0%" repeatCount="indefinite"></animate>
+                  <stop offset="0%" stop-color="rgba(0, 255, 255, 1)"></stop>
+                  <stop offset="100%" stop-color="rgba(0, 255, 255, 0)"></stop>
+                </radialGradient>
+                <radialGradient id="Gradient4" cx="50%" cy="50%" fx="4.56417%" fy="50%" r=".5">
+                  <animate attributeName="fx" dur="23s" values="0%;5%;0%" repeatCount="indefinite"></animate>
+                  <stop offset="0%" stop-color="rgba(0, 255, 0, 1)"></stop>
+                  <stop offset="100%" stop-color="rgba(0, 255, 0, 0)"></stop>
+                </radialGradient>
+                <radialGradient id="Gradient5" cx="50%" cy="50%" fx="2.65405%" fy="50%" r=".5">
+                  <animate attributeName="fx" dur="24.5s" values="0%;5%;0%" repeatCount="indefinite"></animate>
+                  <stop offset="0%" stop-color="rgba(0,0,255, 1)"></stop>
+                  <stop offset="100%" stop-color="rgba(0,0,255, 0)"></stop>
+                </radialGradient>
+                <radialGradient id="Gradient6" cx="50%" cy="50%" fx="0.981338%" fy="50%" r=".5">
+                  <animate attributeName="fx" dur="25.5s" values="0%;5%;0%" repeatCount="indefinite"></animate>
+                  <stop offset="0%" stop-color="rgba(255,0,0, 1)"></stop>
+                  <stop offset="100%" stop-color="rgba(255,0,0, 0)"></stop>
+                </radialGradient>
+              </defs>
+              <rect x="13.744%" y="1.18473%" width="100%" height="100%" fill="url(#Gradient1)"
+                transform="rotate(334.41 50 50)">
+                <animate attributeName="x" dur="20s" values="25%;0%;25%" repeatCount="indefinite"></animate>
+                <animate attributeName="y" dur="21s" values="0%;25%;0%" repeatCount="indefinite"></animate>
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="7s"
+                  repeatCount="indefinite"></animateTransform>
+              </rect>
+              <rect x="-2.17916%" y="35.4267%" width="100%" height="100%" fill="url(#Gradient2)"
+                transform="rotate(255.072 50 50)">
+                <animate attributeName="x" dur="23s" values="-25%;0%;-25%" repeatCount="indefinite"></animate>
+                <animate attributeName="y" dur="24s" values="0%;50%;0%" repeatCount="indefinite"></animate>
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s"
+                  repeatCount="indefinite"></animateTransform>
+              </rect>
+              <rect x="9.00483%" y="14.5733%" width="100%" height="100%" fill="url(#Gradient3)"
+                transform="rotate(139.903 50 50)">
+                <animate attributeName="x" dur="25s" values="0%;25%;0%" repeatCount="indefinite"></animate>
+                <animate attributeName="y" dur="12s" values="0%;25%;0%" repeatCount="indefinite"></animate>
+                <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="9s"
+                  repeatCount="indefinite"></animateTransform>
+              </rect>
+            </svg>
+          </div>
         </div>
       </a>
     </div>

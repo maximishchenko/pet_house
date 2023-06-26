@@ -195,6 +195,7 @@
 
     a {
       color: var(--color-dark-80);
+      text-decoration: underline;
       transition: color .1s ease-in-out;
 
       &:hover {
@@ -203,7 +204,6 @@
     }
   }
 }
-
 
 .social {
   display: flex;
@@ -262,9 +262,17 @@
       margin-bottom: var(--size-xs);
     }
 
+    &__address {
+      height: auto;
+    }
+
+
     &__row-links {
       grid-template-columns: 1fr;
-      gap: var(--size-m);
     }
+  }
+
+  .social {
+    margin-top: var(--size-n);
   }
 }

@@ -4,7 +4,7 @@ use backend\modules\seo\models\Script;
 use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
-use common\models\Core;
+use common\models\Status;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;

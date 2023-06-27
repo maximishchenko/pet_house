@@ -1,4 +1,4 @@
-<section class="subscription mb-xxl">
+<section class="subscription mb-xxl" data-aos="zoom-in">
   <div class="container">
     <div class="subscription__wrapper">
       <div class="subscription__content-wrap">
@@ -10,20 +10,20 @@
         <div class="subscription__btn-wrap">
           <a href="#" class="btn-b subscription__btn">
             <svg>
-              <use xlink:href="img/sprite.svg#vk"></use>
+              <use xlink:href="/img/sprite.svg#vk"></use>
             </svg>
             ВКонтакте
           </a>
           <a href="#" class="btn-b subscription__btn">
             <svg>
-              <use xlink:href="img/sprite.svg#in"></use>
+              <use xlink:href="/img/sprite.svg#in"></use>
             </svg>
             Instagram
           </a>
         </div>
       </div>
       <a href="#" class="subscription__img-wrap">
-        <img src="img/mockup.png" class="subscription__img" alt="">
+        <img src="/img/mockup.png" class="subscription__img" alt="">
         <div class="subscription__img-bg">
           <div id="bg-wrap">
             <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">

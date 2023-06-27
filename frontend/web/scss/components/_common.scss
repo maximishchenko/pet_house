@@ -190,13 +190,18 @@
   padding-top: var(--size-xxl);
 }
 
+.pl-sl {
+  padding-left: 4.375rem;
+}
+
 .btn-a,
 .btn-b {
   padding: 1.5rem 2rem;
-  border-radius: var(--size-xs);
+  border-radius: var(--size-s);
   text-align: center;
   transition: color var(--hover), background var(--hover);
 }
+
 
 .btn-a {
   background: var(--color-brand);

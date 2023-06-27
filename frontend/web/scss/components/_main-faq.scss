@@ -7,6 +7,8 @@
 
   &__el {
     background: var(--color-gray);
+    border-radius: var(--size-s);
+    overflow: hidden;
   }
 
   &__col {
@@ -34,13 +36,13 @@
     padding: var(--size-n);
 
     @include hover {
-      .main-faq__headline {
+  /*     .main-faq__headline {
         color: var(--color-brand);
-      }
+      } */
 
-      .main-faq__icon {
+    /*   .main-faq__icon {
         stroke: var(--color-brand);
-      }
+      } */
 
       .main-faq__icon {
         stroke: var(--color-brand);
@@ -87,6 +89,7 @@
       height: 3.5rem;
       width: 3.5rem;
     }
+
     .main-faq__btn {
       padding: var(--size-s);
     }

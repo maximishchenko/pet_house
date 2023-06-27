@@ -58,4 +58,4 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
 <?= $this->render('//layouts/template/_subscribe'); ?>
 
 <!-- Вопросы и ответы -->
-<?= $this->render('//layouts/template/_faq'); ?>
+<?= $this->render('//layouts/product/_faq_bottom'); ?>

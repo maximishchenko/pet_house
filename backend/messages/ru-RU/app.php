@@ -209,4 +209,6 @@ return [
     "Do delete all images answer" => "Удалить все изображения?",
     'All Images deleted' => "Все изображения удалены",
     "Delete All Images" => "Удалить изображения",
+    "COMANY START YEAR" => "Дата образования компкании",
+    "COMANY START YEAR DESCRIPTION" => "Дата начала осуществления деятельности",
 ];

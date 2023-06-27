@@ -2,7 +2,8 @@
 
 namespace backend\modules\seo\models;
 
-use common\models\Core;
+use common\models\Sort;
+use common\models\Status;
 use Yii;
 
 /**

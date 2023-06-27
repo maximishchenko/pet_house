@@ -70,19 +70,22 @@ function showProductCardSwiper() {
 
 function adaptSwiper() {
 
+  if (document.querySelector('.product-gallary__swiper') != null) {
+    const productGallary = new Swiper('.product-gallary__swiper', {
+      loop: true,
+      pagination: {
+        el: ".product-gallary--pag",
+      }
+    });
   
-  const productGallary = new Swiper('.product-gallary__swiper', {
-    loop: true,
-    pagination: {
-      el: ".product-gallary--pag",
-    }
-  });
+  
+    if (screen.width >= 768) {
+  
+      productGallary.destroy(true, true);
+  
+    } 
+  }
 
-  if (screen.width >= 768) {
-
-    productGallary.destroy(true, true);
-
-  } 
 }
 
 addEventListener("resize", () => {

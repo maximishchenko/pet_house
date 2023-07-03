@@ -4,6 +4,7 @@ namespace backend\modules\catalog\models\abstracts;
 
 use backend\modules\catalog\models\root\Attribute;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
+use backend\modules\catalog\models\ProductAccessoryLink;
 use backend\modules\catalog\models\ProductImage;
 use backend\modules\catalog\models\root\Product;
 use backend\modules\catalog\models\root\Property;
@@ -68,6 +69,11 @@ abstract class ProductItem extends Product
     {
         return $this->hasOne(PropertyColor::className(), ['id' => 'color_id']);
     }
+
+    public function getWall()
+    {
+        return $this->hasOne(PropertyWall::className(), ['id' => 'wall_id']);
+    }
     
     public function getColorItems()
     {
@@ -80,7 +86,21 @@ abstract class ProductItem extends Product
         return $colors;
     }
 
+    // Аксессуары
+    public function getAccessoriesData()
+    {
+        return ProductAccessoryLink::find()->where(['product_id' => $this->id]);
+    }
     
+    
+    public function getActiveAccessories()
+    {
+        return $this
+            ->hasMany(ProductAccessory::className(), ['id' => 'accessory_id'])
+            ->viaTable(ProductAccessoryLink::tableName(), ['product_id' => 'id'])
+            ->onCondition([ProductAccessory::tableName().'.status' => Status::STATUS_ACTIVE])
+            ->orderBy([ProductAccessory::tableName().'.sort' => SORT_ASC]);
+    }
     
     // Характеристики
 

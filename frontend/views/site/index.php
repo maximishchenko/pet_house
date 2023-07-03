@@ -7,4 +7,4 @@
 <?= $this->render('//layouts/template/_subscribe'); ?>
 
 <!-- Вопросы и ответы -->
-<?= $this->render('//layouts/template/_faq_bottom'); ?>
+<?= $this->render('//layouts/product/_faq_bottom'); ?>

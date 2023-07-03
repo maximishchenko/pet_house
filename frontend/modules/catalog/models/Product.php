@@ -17,10 +17,11 @@ class Product extends backendProduct
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $productType)
+    public function search($params, $productType, $itemType)
     {
         $query = self::find();
         $query->product_type = $productType;
+        $query->item_type = $itemType;
         $query->where([self::tableName().'.status' => Status::STATUS_ACTIVE]);
 
         // add conditions that should always apply here

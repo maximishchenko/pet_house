@@ -17,11 +17,11 @@ class AppAsset extends AssetBundle
         'css/jquery-ui.css',
         'css/sortable.css',
         'css/checkbox.css',
-        '/lib/fancybox/fancybox.css',
+        'lib/fancybox/fancybox.css',
     ];
     public $js = [
         'js/jquery-ui.js',
-        '/lib/fancybox/fancybox.umd.js',
+        'lib/fancybox/fancybox.umd.js',
         'js/sortable.js',
     ];
     public $depends = [

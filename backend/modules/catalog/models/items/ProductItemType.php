@@ -39,6 +39,7 @@ class ProductItemType
         return [
             'backend\modules\catalog\models\abstracts\ProductAttribute' => self::PRODUCT_TYPE_PRODUCT,
             'backend\modules\catalog\models\abstracts\ProductItem' => self::PRODUCT_TYPE_PRODUCT,
+            'backend\modules\catalog\models\abstracts\ProductAccessory' => self::PRODUCT_TYPE_ACCESSORY,
         ];
     }
 }

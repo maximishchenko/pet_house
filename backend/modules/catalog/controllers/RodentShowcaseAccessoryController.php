@@ -2,24 +2,17 @@
 
 namespace backend\modules\catalog\controllers;
 
-use backend\modules\catalog\models\ProductAccessoryLink;
 use backend\modules\catalog\models\ProductImage;
 use Yii;
-use backend\modules\catalog\models\RodentShowcaseProduct;
+use backend\modules\catalog\models\RodentShowcaseAccessory;
 use backend\modules\catalog\models\root\Product;
-use backend\modules\catalog\models\search\RodentShowcaseProductSearch;
+use backend\modules\catalog\models\search\RodentShowcaseAccessorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * RodentProductController implements the CRUD actions for RodentProduct model.
- */
-class RodentShowcaseProductController extends Controller
+class RodentShowcaseAccessoryController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -32,13 +25,9 @@ class RodentShowcaseProductController extends Controller
         ];
     }
 
-    /**
-     * Lists all RodentProduct models.
-     * @return mixed
-     */
     public function actionIndex()
     {
-        $searchModel = new RodentShowcaseProductSearch();
+        $searchModel = new RodentShowcaseAccessorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,14 +36,9 @@ class RodentShowcaseProductController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new RodentProduct model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
-        $model = new RodentShowcaseProduct();
+        $model = new RodentShowcaseAccessory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record added'));
@@ -66,13 +50,6 @@ class RodentShowcaseProductController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing RodentProduct model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -87,13 +64,6 @@ class RodentShowcaseProductController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing RodentProduct model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -104,17 +74,6 @@ class RodentShowcaseProductController extends Controller
         }
 
         return $this->redirect(['index']);
-    }
-
-    public function actionDeleteImage(int $id)
-    {
-        $model = $this->findModel($id);
-        $file = $model->getPath(Product::UPLOAD_PATH, $model->image);
-        $model->removeSingleFileIfExist($file);
-        $model->image = null;
-        $model->save();
-        Yii::$app->session->setFlash('danger', 'Запись удалена!');
-        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionDeleteImages(int $id)
@@ -156,48 +115,9 @@ class RodentShowcaseProductController extends Controller
         print_r($order);
     }
 
-    /**
-     * Список аксессуаров для товара
-     *
-     * @param [type] $id
-     * @return void
-     */
-    public function actionAccessories($id)
-    {
-        $productModel = $this->findModel($id);
-        return $this->render('accessories', ['model' => $productModel]);
-    }
-
-    public function actionAddAccessory($id)
-    {
-        $productModel = $this->findModel($id);
-
-        $accessoryModel = new ProductAccessoryLink();
-        $accessoryModel->product_id = $productModel->id;
-        $accessoryModel->product_type = $productModel->product_type;
-
-        if ($accessoryModel->load(Yii::$app->request->post()) && $accessoryModel->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Accessory Record added'));
-            return $this->redirect(['accessories', 'id' => $productModel->id]);
-        }
-
-        return $this->render('add-accessory', ['model' => $productModel, 'accessoryModel' => $accessoryModel]);
-    }
-
-    public function actionDeleteAccessory($accessory_id)
-    {
-    }
-
-    /**
-     * Finds the RodentShowcaseProduct model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return RodentShowcaseProduct the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
-        if (($model = RodentShowcaseProduct::findOne($id)) !== null) {
+        if (($model = RodentShowcaseAccessory::findOne($id)) !== null) {
             return $model;
         }
 

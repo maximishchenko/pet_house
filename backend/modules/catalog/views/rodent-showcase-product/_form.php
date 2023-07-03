@@ -12,6 +12,8 @@ use yii\bootstrap4\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<?= $this->render('//layouts/_product_tabs', ['model' => $model]); ?>
+
 <div class="rodent-product-form">
     <?php $form = ActiveForm::begin([
         'id' => 'rodent-product-form',

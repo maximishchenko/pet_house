@@ -69,6 +69,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'catalog/default/calculate-price-constructor' => 'catalog/default/calculate-price-constructor',
                 'chinchilles' => 'catalog/default/index',
                 'chinchilles/<slug>' => 'catalog/default/view',
                 'catalog/<catalog_slug>' => 'catalog/default/index',

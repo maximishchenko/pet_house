@@ -3,13 +3,14 @@
 namespace backend\modules\catalog\models\root;
 
 use backend\interfaces\SingleTableInterface;
+use backend\modules\catalog\models\DogCageAccessory;
 use backend\modules\catalog\models\DogCageProduct;
 use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\ProductImage;
 use backend\modules\catalog\models\query\ProductQuery;
-use backend\modules\catalog\models\query\PropertyQuery;
+use backend\modules\catalog\models\RodentShowcaseAccessory;
 use backend\modules\catalog\models\RodentShowcaseProduct;
 use backend\traits\InheritanceTrait;
 use common\models\Sort;
@@ -63,25 +64,34 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
      */
     public static function instantiate($row)
     {
+        // Витрины для грызунов
         if (
             $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && 
             $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
             return new RodentShowcaseProduct();
         } 
+        elseif (
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && 
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_ACCESSORY) {
+            return new RodentShowcaseAccessory();
+        } 
+        // Клетки для собак
         elseif(
         
             $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && 
             $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
             return new DogCageProduct();
         } 
+        elseif (
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && 
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_ACCESSORY) {
+            return new DogCageAccessory();
+        } 
         else {
             return new self;
         }
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%product}}';
@@ -113,11 +123,6 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
     } 
     
-
-    /**
-     * {@inheritdoc}
-     * @return PropertyQuery the active query used by this AR class.
-     */
     public static function find()
     {
         $cls = get_called_class();
@@ -150,7 +155,8 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['wall_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['wall_id' => 'id']],
 
-            [['name', 'category_id'], 'required'],
+            // [['name', 'category_id'], 'required'],
+            [['name'], 'required'],
             [['name'], 'unique'],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
             [['view_count'], 'default', 'value'=> 1],
@@ -192,41 +198,21 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
     }
 
-    /**
-     * Gets query for [[Type]].
-     *
-     * @return \yii\db\ActiveQuery|PropertyQuery
-     */
     public function getProductType()
     {
         return $this->hasOne(Property::className(), ['id' => 'type_id']);
     }
 
-    /**
-     * Gets query for [[ProductImages]].
-     *
-     * @return \yii\db\ActiveQuery|ProductImageQuery
-     */
     public function getProductImages()
     {
         return $this->hasMany(ProductImage::className(), ['product_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
     }
     
-    /**
-     * Возвращает значение типа раздела (item_type) в зависимости от имени дочернего класса
-     *
-     * @return string|null
-     */
     public function getItemType(): ?string
     {
         return $this->setItemType();
     }
 
-    /**
-     * Возвращает значение типа продукта в зависимости от дочернего класса
-     *
-     * @return void
-     */
     public function getType()
     {
         return $this->setType();
@@ -262,8 +248,10 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         $cls = $this->getChildClassShortName();
         switch ($cls) {
             case 'RodentShowcaseProduct':
+            case 'RodentShowcaseAccessory':
                 return CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE;
             case 'DogCageProduct':
+            case 'DogCageAccessory':
                 return CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE;
             default:
                 return null;

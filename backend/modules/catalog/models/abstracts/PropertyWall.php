@@ -9,6 +9,6 @@ use yii\helpers\ArrayHelper;
 /**
  * Боковые стенки продукта
  */
-abstract class PropertyWall extends Property
+class PropertyWall extends Property
 {
 }

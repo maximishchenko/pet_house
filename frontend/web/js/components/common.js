@@ -29,7 +29,7 @@ setListener(mobBtncClose, 'click', () => {
 });
 
 const burgerBtn = document.querySelector('.burger-btn'),
-      mobWrapper = document.querySelector('.mob-wrapper');
+  mobWrapper = document.querySelector('.mob-wrapper');
 
 setListener(burgerBtn, 'click', () => {
   mobCatalog.classList.remove('mob-catalog--active');
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => { // DOM готов к вз�
   }
 
   onScrollHeader() // вызываем основную функцию onScrollHeader
- 
+
 });
 
 // Вопросы и ответы
@@ -78,3 +78,66 @@ document.querySelectorAll('.q-btn')
     let activElement = el.parentElement.closest('.q-el');
     activElement.classList.toggle('q-el--active');
   }));
+
+
+// ticker
+import Reeller from 'reeller';
+import gsap from 'gsap';
+Reeller.registerGSAP(gsap);
+
+if (document.querySelector('.tiker') != null) {
+  const reellerF = new Reeller({
+    container: '.tiker--f',
+    wrapper: '.tiker__wrapper--f',
+    itemSelector: '.tiker__item--f',
+    speed: 50,
+  });
+
+  const reellerS = new Reeller({
+    container: '.tiker--s',
+    wrapper: '.tiker__wrapper--s',
+    itemSelector: '.tiker__item--s',
+    speed: 50,
+    reversed: true,
+  });
+}
+
+/* let count = 0;
+
+function hideSwipe() {
+  const scrollDiv = document.querySelector('.scroll-wrapper');
+  const touchIc = document.querySelector('.touch_ic');
+
+
+
+  if (count == 0) {
+    scrollDiv.addEventListener('scroll', function () {
+      touchIc.style.display = 'none';
+      console.log('none');
+      count = 1;
+    });
+  }
+
+  console.log(count);
+}
+
+if (document.querySelector('.touch_ic') != null) {
+  hideSwipe()
+}
+
+ */
+
+
+if (document.querySelector('.scroll-wrapper') != null) {
+
+  const scrollDiv = document.querySelector('.scroll-wrapper');
+
+  scrollDiv.addEventListener('scroll', function () {
+    const touchIc = document.querySelector('.touch_ic');
+    if (touchIc.style.display != 'none') {
+      touchIc.style.display = 'none';
+    }
+  });
+  
+}
+

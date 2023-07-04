@@ -47,7 +47,7 @@ class Setting extends \yii\base\Model
     {
         return [
             self::TAB_CONTACT => [
-                'phone', 'email', 'telegram', 'whatsapp', 'vk', 'instagram', 'avito', 'livemaster', 'ozon', 'address', 'requisites',
+                'phone', 'email', 'telegram', 'whatsapp', 'vk', 'instagram', 'avito', 'livemaster', 'ozon', 'address', 'requisites', 'company_start_year'
             ],
             self::TAB_SERVICES => [
                 'mapLink',

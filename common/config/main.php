@@ -156,6 +156,17 @@ return [
                         'type' => 'textarea',
                     ],
                 ],
+                'companyStartYear' => [
+                    'path' => 'company_start_year',
+                    'label' => Yii::t('app', "COMANY START YEAR"),
+                    'description' => Yii::t('app', "COMANY START YEAR DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                    'inputOptions' => [
+                        'type' => 'integer',
+                    ],
+                ],
                 'seoDefaultKeywords' => [
                     'path' => 'seo_keywords',
                     'label' => Yii::t('app', "SEO_KEYWORDS"),

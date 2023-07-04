@@ -190,13 +190,19 @@
   padding-top: var(--size-xxl);
 }
 
+.pl-sl {
+  padding-left: 4.375rem;
+  margin-right: 30px;
+}
+
 .btn-a,
 .btn-b {
   padding: 1.5rem 2rem;
-  border-radius: var(--size-xs);
+  border-radius: var(--size-s);
   text-align: center;
   transition: color var(--hover), background var(--hover);
 }
+
 
 .btn-a {
   background: var(--color-brand);
@@ -226,5 +232,9 @@
 @include small-tablet {
   .section-headline {
     font-size: 2rem;
+  }
+
+  .media-info__head {
+    width: 100%;
   }
 }

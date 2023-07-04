@@ -81,6 +81,11 @@
   }
 }
 
+.instagram-desk {
+  color: var(--color-dark-80);
+  font-size: .7rem;
+}
+
 @include small-tablet {
   .subscription {
     &__wrapper {

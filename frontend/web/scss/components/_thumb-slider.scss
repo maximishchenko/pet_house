@@ -43,14 +43,19 @@
   }
 }
 
-.prod-slider {
+/* .prod-slider {
   .swiper-slide {
-    padding: 0 calc(var(--size-s) / 2);
+    padding: 0 calc(var(--size-s) / 2) 0 calc(var(--size-s) / 2);
   }
-}
+} */
 
 @include small-tablet {
   .thumb-slider__controls {
     display: none;
+  }
+
+  .prod-slider {
+    padding-left: var(--size-s);
+    margin-right: 0;
   }
 }

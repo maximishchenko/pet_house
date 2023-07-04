@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 ?>
 <footer class="footer pt-xxl mt-xxl">
@@ -10,7 +11,7 @@ use yii\helpers\Html;
           <a href="#" class="footer__phone">+7 (495) 088 90 48</a>
           <a href="#" class="footer__mail">
             <svg class="footer__mail-ic">
-              <use xlink:href="img/sprite.svg#mail"></use>
+              <use xlink:href="/img/sprite.svg#mail"></use>
             </svg>
             info@domgryzunov.ru
           </a>
@@ -19,20 +20,20 @@ use yii\helpers\Html;
           <div class="footer__messangers">
             <a href="#" class="footer__btn-wt">
               <svg>
-                <use xlink:href="img/sprite.svg#wt"></use>
+                <use xlink:href="/img/sprite.svg#wt"></use>
               </svg>
               Написать в Watsapp
             </a>
             <a href="#" class="footer__btn-tl">
               <svg>
-                <use xlink:href="img/sprite.svg#tl"></use>
+                <use xlink:href="/img/sprite.svg#tl"></use>
               </svg>
               Написать в Telegram
             </a>
           </div>
           <a href="#header" class="footer__up">
             <svg class="footer__up-ic">
-              <use xlink:href="img/sprite.svg#arrow_up"></use>
+              <use xlink:href="/img/sprite.svg#arrow_up"></use>
             </svg>
           </a>
         </div>
@@ -50,44 +51,40 @@ use yii\helpers\Html;
           </div>
 
           <ul class="social list-reset">
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
-                aria-label="Наша страничка в Фейсбуке">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Фейсбуке">
                 <svg>
-                  <use xlink:href="img/sprite.svg#in"></use>
+                  <use xlink:href="/img/sprite.svg#in"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
-                aria-label="Наша страничка во Вконтакте">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk" aria-label="Наша страничка во Вконтакте">
                 <svg>
-                  <use xlink:href="img/sprite.svg#wt"></use>
+                  <use xlink:href="/img/sprite.svg#wt"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
-                aria-label="Наша страничка в Твиттере">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw" aria-label="Наша страничка в Твиттере">
                 <svg>
-                  <use xlink:href="img/sprite.svg#tl"></use>
+                  <use xlink:href="/img/sprite.svg#tl"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
-                aria-label="Наша страничка в Фейсбуке">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Фейсбуке">
                 <svg>
-                  <use xlink:href="img/sprite.svg#vk"></use>
+                  <use xlink:href="/img/sprite.svg#vk"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
-                aria-label="Наша страничка во Вконтакте">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk" aria-label="Наша страничка во Вконтакте">
                 <svg>
-                  <use xlink:href="img/sprite.svg#av"></use>
+                  <use xlink:href="/img/sprite.svg#av"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
-                aria-label="Наша страничка в Твиттере">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw" aria-label="Наша страничка в Твиттере">
                 <svg>
-                  <use xlink:href="img/sprite.svg#lm"></use>
+                  <use xlink:href="/img/sprite.svg#lm"></use>
                 </svg>
               </a></li>
           </ul>
-
+          <span class="instagram-desk">
+            Деятельность компании Meta запрещена на территории РФ
+          </span>
         </div>
         <div class="footer__list-links">
           <ul class="list-reset footer__list">

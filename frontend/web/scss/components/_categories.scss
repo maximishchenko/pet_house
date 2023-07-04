@@ -40,3 +40,12 @@
     transition: color var(--hover);
   }
 }
+
+@include small-tablet {
+  .categories {
+    &__el:not(:last-child) {
+      margin-right: var(--size-s);
+    }
+  }
+
+}

@@ -1,4 +1,5 @@
 import FloatSidebar from 'float-sidebar';
+import noUiSlider from 'nouislider';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -55,5 +56,41 @@ document.addEventListener("DOMContentLoaded", () => {
       }));
 
   }
+
+  const sliderH = document.getElementById('slider-h');
+
+  noUiSlider.create(sliderH, {
+    start: 20,
+    connect: [true, false],
+    range: {
+      'min': 0,
+      'max': 100
+    }
+  });
+
+  const sliderW = document.getElementById('slider-w');
+
+  noUiSlider.create(sliderW, {
+    start: 40,
+    connect: [true, false],
+    range: {
+      'min': 0,
+      'max': 100
+    }
+  });
+
+  const sliderG = document.getElementById('slider-g');
+
+  noUiSlider.create(sliderG, {
+    start: 60,
+    connect: [true, false],
+    range: {
+      'min': 0,
+      'max': 100
+    }
+  });
 });
+
+
+
 

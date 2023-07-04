@@ -192,6 +192,7 @@
 
 .pl-sl {
   padding-left: 4.375rem;
+  margin-right: 30px;
 }
 
 .btn-a,
@@ -231,5 +232,9 @@
 @include small-tablet {
   .section-headline {
     font-size: 2rem;
+  }
+
+  .media-info__head {
+    width: 100%;
   }
 }

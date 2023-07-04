@@ -102,5 +102,42 @@ if (document.querySelector('.tiker') != null) {
   });
 }
 
+/* let count = 0;
 
+function hideSwipe() {
+  const scrollDiv = document.querySelector('.scroll-wrapper');
+  const touchIc = document.querySelector('.touch_ic');
+
+
+
+  if (count == 0) {
+    scrollDiv.addEventListener('scroll', function () {
+      touchIc.style.display = 'none';
+      console.log('none');
+      count = 1;
+    });
+  }
+
+  console.log(count);
+}
+
+if (document.querySelector('.touch_ic') != null) {
+  hideSwipe()
+}
+
+ */
+
+
+if (document.querySelector('.scroll-wrapper') != null) {
+
+  const scrollDiv = document.querySelector('.scroll-wrapper');
+
+  scrollDiv.addEventListener('scroll', function () {
+    const touchIc = document.querySelector('.touch_ic');
+    if (touchIc.style.display != 'none') {
+      touchIc.style.display = 'none';
+    }
+  });
+  
+}
 

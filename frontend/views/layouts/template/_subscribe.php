@@ -1,4 +1,4 @@
-<section class="subscription mb-xxl" data-aos="zoom-in">
+<section class="subscription mb-xxl" data-aos="fade-up" data-aos-once="true">
   <div class="container">
     <div class="subscription__wrapper">
       <div class="subscription__content-wrap">
@@ -21,6 +21,9 @@
             Instagram
           </a>
         </div>
+        <span class="instagram-desk">
+          Деятельность компании Meta запрещена на территории РФ
+        </span>
       </div>
       <a href="#" class="subscription__img-wrap">
         <img src="/img/mockup.png" class="subscription__img" alt="">
@@ -59,26 +62,20 @@
                   <stop offset="100%" stop-color="rgba(255,0,0, 0)"></stop>
                 </radialGradient>
               </defs>
-              <rect x="13.744%" y="1.18473%" width="100%" height="100%" fill="url(#Gradient1)"
-                transform="rotate(334.41 50 50)">
+              <rect x="13.744%" y="1.18473%" width="100%" height="100%" fill="url(#Gradient1)" transform="rotate(334.41 50 50)">
                 <animate attributeName="x" dur="20s" values="25%;0%;25%" repeatCount="indefinite"></animate>
                 <animate attributeName="y" dur="21s" values="0%;25%;0%" repeatCount="indefinite"></animate>
-                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="7s"
-                  repeatCount="indefinite"></animateTransform>
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="7s" repeatCount="indefinite"></animateTransform>
               </rect>
-              <rect x="-2.17916%" y="35.4267%" width="100%" height="100%" fill="url(#Gradient2)"
-                transform="rotate(255.072 50 50)">
+              <rect x="-2.17916%" y="35.4267%" width="100%" height="100%" fill="url(#Gradient2)" transform="rotate(255.072 50 50)">
                 <animate attributeName="x" dur="23s" values="-25%;0%;-25%" repeatCount="indefinite"></animate>
                 <animate attributeName="y" dur="24s" values="0%;50%;0%" repeatCount="indefinite"></animate>
-                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s"
-                  repeatCount="indefinite"></animateTransform>
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s" repeatCount="indefinite"></animateTransform>
               </rect>
-              <rect x="9.00483%" y="14.5733%" width="100%" height="100%" fill="url(#Gradient3)"
-                transform="rotate(139.903 50 50)">
+              <rect x="9.00483%" y="14.5733%" width="100%" height="100%" fill="url(#Gradient3)" transform="rotate(139.903 50 50)">
                 <animate attributeName="x" dur="25s" values="0%;25%;0%" repeatCount="indefinite"></animate>
                 <animate attributeName="y" dur="12s" values="0%;25%;0%" repeatCount="indefinite"></animate>
-                <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="9s"
-                  repeatCount="indefinite"></animateTransform>
+                <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="9s" repeatCount="indefinite"></animateTransform>
               </rect>
             </svg>
           </div>

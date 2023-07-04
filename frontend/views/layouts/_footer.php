@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 ?>
 <footer class="footer pt-xxl mt-xxl">
@@ -50,44 +51,40 @@ use yii\helpers\Html;
           </div>
 
           <ul class="social list-reset">
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
-                aria-label="Наша страничка в Фейсбуке">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Фейсбуке">
                 <svg>
                   <use xlink:href="/img/sprite.svg#in"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
-                aria-label="Наша страничка во Вконтакте">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk" aria-label="Наша страничка во Вконтакте">
                 <svg>
                   <use xlink:href="/img/sprite.svg#wt"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
-                aria-label="Наша страничка в Твиттере">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw" aria-label="Наша страничка в Твиттере">
                 <svg>
                   <use xlink:href="/img/sprite.svg#tl"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb"
-                aria-label="Наша страничка в Фейсбуке">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Фейсбуке">
                 <svg>
                   <use xlink:href="/img/sprite.svg#vk"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk"
-                aria-label="Наша страничка во Вконтакте">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk" aria-label="Наша страничка во Вконтакте">
                 <svg>
                   <use xlink:href="/img/sprite.svg#av"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw"
-                aria-label="Наша страничка в Твиттере">
+            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw" aria-label="Наша страничка в Твиттере">
                 <svg>
                   <use xlink:href="/img/sprite.svg#lm"></use>
                 </svg>
               </a></li>
           </ul>
-
+          <span class="instagram-desk">
+            Деятельность компании Meta запрещена на территории РФ
+          </span>
         </div>
         <div class="footer__list-links">
           <ul class="list-reset footer__list">

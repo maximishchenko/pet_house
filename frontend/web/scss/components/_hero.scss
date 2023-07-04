@@ -46,3 +46,11 @@
     margin-bottom: var(--size-s);
   }
 }
+
+@include small-tablet {
+  .hero {
+    &__slide-des {
+      display: none;
+    }
+  }
+}

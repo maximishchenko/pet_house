@@ -26,11 +26,6 @@
     z-index: -1;
   }
 
-  &__subtitle {
-    color: var(--color-dark);
-    opacity: .6;
-  }
-
   .section-headline {
     font-size: 3rem;
   }
@@ -44,6 +39,11 @@
 
   &__btn-wrapper {
     margin-bottom: var(--size-s);
+  }
+
+  &__btn {
+    background: var(--color-dark);
+    color: var(--color-light);
   }
 }
 

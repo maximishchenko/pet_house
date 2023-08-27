@@ -12,7 +12,7 @@ return [
     'bootstrap' => [
         'configManager',
         'queue',
-        'vendor\samdark\SimpleCart',
+        
     ],
     'components' => [
         'formatter' => [

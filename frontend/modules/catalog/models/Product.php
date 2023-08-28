@@ -3,13 +3,59 @@
 namespace frontend\modules\catalog\models;
 
 use backend\modules\catalog\models\root\Product as backendProduct;
+use backend\modules\catalog\models\root\Property;
 use common\models\Sort;
 use common\models\Status;
+use Yii;
 use yii\data\ActiveDataProvider;
 
 class Product extends backendProduct
 {
-    
+
+    public $height_value;
+
+    public function rules()
+    {
+        return [
+            [['type_id', 'category_id', 'is_available', 'height_value'], 'safe'],
+        ];
+    }
+
+
+    public function isCheckboxSearchParamSelected(string $parameterName, string $value)
+    {
+        $queryParams = Yii::$app->request->queryParams;
+        if (isset($queryParams) && isset($queryParams[$parameterName]) && ($queryParams[$parameterName] == $value || in_array($value, $queryParams[$parameterName]))) {
+            return "checked";
+        }
+        return null;
+    }
+
+    public function isRadioSearchParamSelected(string $parameterName, string $value)
+    {
+        $queryParams = Yii::$app->request->queryParams;
+        if (isset($queryParams) && isset($queryParams[$parameterName]) && $queryParams[$parameterName] == $value) {
+            return "checked";
+        }
+        return null;
+    }
+
+    public function isAvailableActive()
+    {
+        return (isset(Yii::$app->request->queryParams['is_available']) && Yii::$app->request->queryParams['is_available'] == 1) ? 'disabled' : null;
+    }
+
+    public function isAvailableChecked()
+    {
+        return (isset(Yii::$app->request->queryParams['is_available']) && Yii::$app->request->queryParams['is_available'] == 1) ? 'checked' : null;
+    }
+
+    public function isCategoryActive($id)
+    {
+        $queryParams = Yii::$app->request->queryParams;
+        return (isset($queryParams['category_id']) && in_array($id, $queryParams['category_id'])) ? 'disabled' : null;
+    }
+
     /**
      * Creates data provider instance with search query applied
      *
@@ -20,9 +66,14 @@ class Product extends backendProduct
     public function search($params, $productType, $itemType)
     {
         $query = self::find();
-        $query->product_type = $productType;
-        $query->item_type = $itemType;
-        $query->where([self::tableName().'.status' => Status::STATUS_ACTIVE]);
+        $query->joinWith(['heights']);
+        // $query->product_type = $productType;
+        // $query->item_type = $itemType;
+        $query->where([
+            self::tableName().'.product_type' => $productType,
+            self::tableName().'.item_type' => $itemType,
+            self::tableName().'.status' => Status::STATUS_ACTIVE
+        ]);
 
         // add conditions that should always apply here
 
@@ -40,36 +91,33 @@ class Product extends backendProduct
         }
 
         // grid filtering conditions
-        // $query->andFilterWhere([
-        //     'id' => $this->id,
-        //     'category_id' => $this->category_id,
-        //     'type_id' => $this->type_id,
-        //     'material_id' => $this->material_id,
-        //     'color_id' => $this->color_id,
-        //     'wall_id' => $this->wall_id,
-        //     'engraving_id' => $this->engraving_id,
-        //     'size_id' => $this->size_id,
-        //     'is_available' => $this->is_available,
-        //     'price' => $this->price,
-        //     'discount' => $this->discount,
-        //     'is_fix_price' => $this->is_fix_price,
-        //     'is_constructor_blocked' => $this->is_constructor_blocked,
-        //     'view_count' => $this->view_count,
-        //     'sort' => $this->sort,
-        //     'created_at' => $this->created_at,
-        //     'updated_at' => $this->updated_at,
-        //     'created_by' => $this->created_by,
-        //     'updated_by' => $this->updated_by,
-        // ]);
+        if (isset($this->is_available) && !empty($this->is_available) && $this->is_available == 1):
+            $query->andFilterWhere([
+                'is_available' => $this->is_available,
+            ]);
+        endif; 
+        if (isset($this->category_id) && !empty(array_filter($this->category_id))):
+            $query->andFilterWhere([
+                'category_id' => $this->category_id,
+            ]);
+        endif;
 
-        // $query->andFilterWhere(['like', 'name', $this->name])
-        //     ->andFilterWhere(['like', 'slug', $this->slug])
-        //     ->andFilterWhere(['like', 'comment', $this->comment])
-        //     ->andFilterWhere(['like', 'description', $this->description])
-        //     ->andFilterWhere(['like', 'product_type', $this->product_type])
-        //     ->andFilterWhere(['like', 'item_type', $this->item_type])
-        //     ->andFilterWhere(['like', 'status', $this->status]);
+        if (isset($this->type_id) && !empty(array_filter($this->type_id))):
+            $query->andFilterWhere([
+                'type_id' => $this->type_id,
+            ]);
+        endif;
+
+        if (isset($this->height_value) && !empty($this->height_value)):
+            $query->andFilterWhere([
+                Property::tableName().'.height_value' => $this->height_value,
+            ]);
+        endif;
 
         return $dataProvider;
+    }
+    
+    public function formName() {
+        return '';
     }
 }

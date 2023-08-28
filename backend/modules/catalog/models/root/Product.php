@@ -26,8 +26,8 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property string|null $name
  * @property string|null $slug
- * @property int|null $category_id
- * @property int|null $type_id
+ * @property int|null|array $category_id
+ * @property int|null|array $type_id
  * @property int|null $material_id
  * @property int|null $color_id
  * @property int|null $wall_id
@@ -218,6 +218,11 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         return $this->setType();
     }
     
+
+    public function getHeights()
+    {
+        return $this->hasOne(Property::className(), ['id' => 'size_id']);
+    }
 
     /**
      * Устанавливает значение item_type в зависимости от имени дочернего класса

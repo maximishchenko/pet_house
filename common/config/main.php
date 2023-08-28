@@ -12,6 +12,7 @@ return [
     'bootstrap' => [
         'configManager',
         'queue',
+        
     ],
     'components' => [
         'formatter' => [

@@ -31,6 +31,7 @@ use yii\helpers\ArrayHelper;
         unset($parent['imageFile']);
         $rule = [
             [['width', 'height', 'depth'], 'required'],
+            [['width_value', 'height_value', 'depth_value'], 'safe'],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'svg'],
         ];
         $rules = ArrayHelper::merge($parent, $rule);
@@ -68,6 +69,9 @@ use yii\helpers\ArrayHelper;
     {
         if (parent::beforeSave($insert)) {
             if ($this->validate()) {
+                $this->height_value = $this->height;
+                $this->width_value = $this->width;
+                $this->depth_value = $this->depth;
                 $this->name = $this->setName();
             } else {
                 foreach ($this->getErrors() as $key => $value) {

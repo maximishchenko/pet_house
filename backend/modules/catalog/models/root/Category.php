@@ -9,6 +9,7 @@ use backend\modules\catalog\models\items\CategoryItemTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\query\CategoryQuery;
 use backend\modules\catalog\models\RodentShowcaseCategory;
+use backend\traits\fileTrait;
 use backend\traits\InheritanceTrait;
 use common\models\Sort;
 use Yii;
@@ -42,6 +43,12 @@ use yii\behaviors\TimestampBehavior;
 class Category extends \yii\db\ActiveRecord implements SingleTableInterface
 {
     use InheritanceTrait;
+    use fileTrait;
+
+    public $imageFile;
+
+    const UPLOAD_PATH = 'uploads/category/';
+
     
     /**
      * {@inheritdoc}
@@ -126,6 +133,8 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
            
             [['name'], 'unique', 'targetClass' => self::classname()],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
+            'imageFile' => [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, avif, svg'],
+            [['imageFile'], 'safe'],
         ];
     }
 
@@ -139,6 +148,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
+            'imageFile' => Yii::t('app', 'Image'),
             'font_color' => Yii::t('app', 'Font Color'),
             'text_color' => Yii::t('app', 'Text Color'),
             'badge_color' => Yii::t('app', 'Badge Color'),
@@ -209,6 +219,42 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
                 return CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE;
             default:
                 return null;
+        }
+    }
+    
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if (Yii::$app->request->isPost) {
+                
+                if ($this->validate()) {
+                    
+                    /**
+                     * Загрузка файла изображения
+                     */
+                    $this->uploadFile('imageFile', 'image', self::UPLOAD_PATH); 
+                } else {
+                    foreach ($this->getErrors() as $key => $value) {
+                        Yii::debug($key.': '.$value[0]);
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    public function beforeDelete()
+    {
+
+        if (parent::beforeDelete()) {
+            /**
+             * Удаление файла изображения
+             */
+            $this->deleteSingleFile('image', self::UPLOAD_PATH);
+            return true;
+        } else {
+            return false;
         }
     }
 }

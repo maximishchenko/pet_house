@@ -1,8 +1,7 @@
 <?php
 
 $this->title = "Карточка товара";
-$this->params['breadcrumbs'][] = ['label' => "Шиншиллы", 'url' => ['catalog/category/Шиншиллы'], 'class' => 'breadcrumbs__link'];
-$this->params['breadcrumbs'][] = ['label' => "Витрины для шиншилл, дегу", 'url' => ['catalog/category/Шиншиллы/Витрины_для_шиншилл'], 'class' => 'breadcrumbs__link'];
+$this->params['breadcrumbs'][] = ['label' => "Шиншиллы", 'url' => ['/chinchilles'], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-mob"></div>

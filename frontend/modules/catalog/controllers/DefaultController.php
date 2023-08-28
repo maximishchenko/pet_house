@@ -2,7 +2,11 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use backend\modules\catalog\models\abstracts\PropertyType;
 use backend\modules\catalog\models\items\ProductItemType;
+use backend\modules\catalog\models\items\PropertyItemTypeItems;
+use backend\modules\catalog\models\root\Category;
+use backend\modules\catalog\models\root\Property;
 use common\models\Status;
 use yii\web\Controller;
 use frontend\models\Sections;
@@ -26,12 +30,41 @@ class DefaultController extends Controller
         $queryParams = $this->request->queryParams;
         $productType = $sections->setType();
 
+        $categories = Category::find()
+                        ->where([
+                            'status' => Status::STATUS_ACTIVE,
+                            'property_type' => $sections->setType(), 
+                            'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                        ])
+                        ->all();
+
+        $types = Property::find()
+                    ->where([
+                        'status' => Status::STATUS_ACTIVE, 
+                        'property_type' => $sections->setType(), 
+                        'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE
+                    ])
+                    ->all();
+
+        $heights = Property::find()
+                    ->select(['height_value', 'id'])
+                    ->where([
+                        'status' => Status::STATUS_ACTIVE, 
+                        'property_type' => $sections->setType(), 
+                        'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE
+                    ])
+                    ->groupBy(['height_value'])
+                    ->all();
+
         $searchModel = new Product();
         $dataProvider = $searchModel->search($queryParams, $productType, ProductItemType::PRODUCT_TYPE_PRODUCT);
         return $this->render('index', [
             'sections' => $sections,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'types' => $types,
+            'categories' => $categories,
+            'heights' => $heights,
         ]);
     }
 

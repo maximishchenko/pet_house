@@ -4,6 +4,8 @@ namespace backend\modules\catalog\controllers;
 
 use Yii;
 use backend\modules\catalog\models\RodentShowcaseCategory;
+use backend\modules\catalog\models\root\Category;
+use backend\modules\catalog\models\root\Property;
 use backend\modules\catalog\models\search\RodentShowcaseCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -94,6 +96,24 @@ class RodentShowcaseCategoryController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+            
+    /**
+     * Удаление единственного изображения
+     *
+     * @param int $id ID записи в которой удаляется изображение
+     * @return void
+     */
+    public function actionDeleteImage(int $id)
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(Category::UPLOAD_PATH, $model->image);
+        $model->removeSingleFileIfExist($file);
+        $model->image = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', 'Запись удалена!');
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**

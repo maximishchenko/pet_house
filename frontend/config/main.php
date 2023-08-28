@@ -72,6 +72,10 @@ return [
                 'catalog/default/calculate-price-constructor' => 'catalog/default/calculate-price-constructor',
                 'chinchilles' => 'catalog/default/index',
                 'chinchilles/<slug>' => 'catalog/default/view',
+                
+                'dogs' => 'catalog/default/index',
+                'dogs/<slug>' => 'catalog/default/view',
+                
                 'catalog/<catalog_slug>' => 'catalog/default/index',
                 'catalog/<catalog_slug>/<item_slug>' => 'catalog/default/view',
                 'privacy' => 'site/privacy',

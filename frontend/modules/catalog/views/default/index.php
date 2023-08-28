@@ -23,7 +23,10 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
 
 
 <!-- Фильтры Категориям -->
-<?= $this->render('_filter_category'); ?>
+<?= $this->render('_filter_category', [
+    'categories' => $categories,
+    'searchModel' => $searchModel,
+]); ?>
 
 
 <section class="catalog mb-xxl">
@@ -32,7 +35,12 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
             <div class="catalog__side">
         
                 <!-- Фильтры -->
-                <?= $this->render('_filter'); ?>
+                <?= $this->render('_filter', [
+                        'searchModel' => $searchModel,
+                        'types' => $types,
+                        'categories' => $categories,
+                        'heights' => $heights,
+                    ]); ?>
 
                 <!-- Элементы каталога -->
                 <div class="catalog__list">

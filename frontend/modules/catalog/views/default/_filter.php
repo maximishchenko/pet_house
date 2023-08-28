@@ -1,3 +1,9 @@
+<?php
+
+use backend\modules\catalog\models\root\Category;
+use backend\modules\catalog\models\root\Property;
+?>
+
 <div class="catalog__side-inner">
   <div class="thumb-filter__mobhead">
     <span class="thumb-filter__mobhead-title">Фильтр</span>
@@ -12,97 +18,92 @@
       </svg>
     </button>
   </div>
+
   <form action="" class="thumb-filter">
+
+
     <fieldset class="thumb-filter__area thumb-filter__area--switch">
-      <label for="s1" class="thumb-filter__title thumb-filter__title--switch">Только в наличии</label>
+      <label for="s1" class="thumb-filter__title thumb-filter__title--switch">
+        Только в наличии
+      </label>
       <ul class="list-reset">
         <li>
-          <label for="s1" class="switch">
-            <input id="s1" type="checkbox" class="switch">
+          <label for="is_available" class="switch">
+            <input id="is_available" type="checkbox" class="switch filter__submit" name="is_available" value="1" <?= $searchModel->isAvailableChecked(); ?> >
             <span class="slider round"></span>
           </label>
         </li>
       </ul>
     </fieldset>
+
+    <!-- Категории -->
+    <?php if(isset($categories) && !empty($categories)): ?>
     <fieldset class="thumb-filter__area">
       <legend class="thumb-filter__title">Категория витрины</legend>
       <ul class="list-reset">
+
+        <?php foreach($categories as $category): ?>
         <li class="thumb-filter__li">
-          <input class="hide-inp thumb-filter__check1-inp" type="checkbox" id="c1" name="Витрины с керамикой">
-          <label for="c1" class="thumb-filter__check1-label">
-            <span class="thumb-filter__check1-img" style="background-image: url('img/pop_сategories/1.jpg');"></span>
-            <span>Витрины с керамикой</span>
+          <input class="hide-inp thumb-filter__check1-inp filter__submit" type="checkbox" id="<?= $category->id; ?>" name="category_id[]" value="<?= $category->id; ?>" <?= $searchModel->isCheckboxSearchParamSelected('category_id', $category->id); ?> >
+          <label for="<?= $category->id; ?>" class="thumb-filter__check1-label">
+            <span class="thumb-filter__check1-img" style="background-image: url('/<?= Category::UPLOAD_PATH . $category->image; ?>');"></span>
+            <span>
+              <?= $category->name; ?>
+            </span>
           </label>
         </li>
-        <li class="thumb-filter__li">
-          <input class="hide-inp thumb-filter__check1-inp" type="checkbox" id="c2" name="Стандартные витрины">
-          <label for="c2" class="thumb-filter__check1-label">
-            <span class="thumb-filter__check1-img" style="background-image: url('img/pop_сategories/3.jpg');"></span>
-            <span>Стандартные витрины</span>
-          </label>
-        </li>
-        <li class="thumb-filter__li">
-          <input class="hide-inp thumb-filter__check1-inp" type="checkbox" id="c3" name="Базовые витрины">
-          <label for="c3" class="thumb-filter__check1-label">
-            <span class="thumb-filter__check1-img" style="background-image: url('img/pop_сategories/2.jpg');"></span>
-            <span>Базовые витрины</span>
-          </label>
-        </li>
+        <?php endforeach; ?>
       </ul>
     </fieldset>
+    <?php endif; ?>
+
+    <!-- Типы -->
+    <?php if(isset($types) && !empty($types)): ?>
     <fieldset class="thumb-filter__area">
       <legend class="thumb-filter__title">Тип витрины</legend>
       <ul class="list-reset">
+
+        <?php foreach($types as $type): ?>
         <li class="thumb-filter__li">
-          <input class="hide-inp thumb-filter__check-inp" type="checkbox" id="t1" name="Прямая витрина">
-          <label for="t1" class="thumb-filter__check-ic"><img src="img/p.svg" aria-hidden="true"><span class="thumb-filter__check-title">Прямая витрина</span></label>
+          <input class="hide-inp thumb-filter__check-inp filter__submit" type="checkbox" id="<?= $type->id; ?>" name="type_id[]" value="<?= $type->id; ?>"  <?= $searchModel->isCheckboxSearchParamSelected('type_id', $type->id); ?> >
+          <label for="<?= $type->id; ?>" class="thumb-filter__check-ic">
+            <img src="/<?= Property::UPLOAD_PATH . $type->image; ?>" aria-hidden="true">
+            <span class="thumb-filter__check-title">
+              <?= $type->name; ?>
+            </span>
+          </label>
         </li>
-        <li class="thumb-filter__li">
-          <input class="hide-inp thumb-filter__check-inp" type="checkbox" id="t2" name="Двойная витрина">
-          <label for="t2" class="thumb-filter__check-ic"><img src="img/u.svg" aria-hidden="true"><span class="thumb-filter__check-title">Двойная витрина</span></label>
-        </li>
-        <li class="thumb-filter__li">
-          <input class="hide-inp thumb-filter__check-inp" type="checkbox" id="t3" name="Угловая витрина">
-          <label for="t3" class="thumb-filter__check-ic"><img src="img/d.svg" aria-hidden="true"><span class="thumb-filter__check-title">Угловая витрина</span></label>
-        </li>
+        <?php endforeach; ?>
       </ul>
     </fieldset>
+    <?php endif; ?>
+
+
+    <?php if(isset($heights) && !empty($heights)): ?>
     <fieldset class="thumb-filter__area">
       <legend class="thumb-filter__title">Высота витрины</legend>
       <ul class="list-reset thumb-filter__table">
+
         <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h7" name="height" value="Все" checked>
-          <label class="thumb-filter__table-label" for="h7">Все</label>
+          <input class="hide-inp thumb-filter__table-inp filter__submit" type="radio" id="all_height" name="height_value" value="" >
+          <label class="thumb-filter__table-label" for="all_height">Все</label>
         </li>
+
+        <?php foreach($heights as $height): ?>
         <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h1" name="height" value="100 см">
-          <label class="thumb-filter__table-label" for="h1">100 см</label>
+          <input class="hide-inp thumb-filter__table-inp filter__submit" type="radio" id="<?= $height->id; ?>" name="height_value" value="<?= $height->height_value; ?>">
+          <label class="thumb-filter__table-label" for="<?= $height->id; ?>">
+            <?= $height->height_value; ?>
+          </label>
         </li>
-        <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h2" name="height" value="120 см">
-          <label class="thumb-filter__table-label" for="h2">120 см</label>
-        </li>
-        <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h3" name="height" value="140 см">
-          <label class="thumb-filter__table-label" for="h3">140 см</label>
-        </li>
-        <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h4" name="height" value="160 см">
-          <label class="thumb-filter__table-label" for="h4">160 см</label>
-        </li>
-        <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h5" name="height" value="180 см">
-          <label class="thumb-filter__table-label" for="h5">180 см</label>
-        </li>
-        <li class="thumb-filter__table-el">
-          <input class="hide-inp thumb-filter__table-inp" type="radio" id="h6" name="height" value="200 см">
-          <label class="thumb-filter__table-label" for="h6">200 см</label>
-        </li>
+        <?php endforeach;?>
       </ul>
     </fieldset>
+    <?php endif; ?>
+
     <div class="catalog-sidebar__controls">
-      <!--     <button class="catalog-sidebar__btn btn-reset btn-a" type="button">Применить</button> -->
-      <button class="catalog-sidebar__btn btn-reset btn-b" type="button">Сброить все</button>
+      <button type="submimt" class="catalog-sidebar__btn btn-reset btn-b" type="button">Поиск</button>
+      <a class="catalog-sidebar__btn btn-reset btn-b" href="<?= strtok(Yii::$app->request->getUrl(), '?'); ?>" type="button">Сбросить все</a>
     </div>
   </form>
 </div>

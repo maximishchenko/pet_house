@@ -3,8 +3,6 @@
 namespace frontend\models;
 
 use backend\modules\catalog\models\items\CatalogTypeItems;
-use backend\modules\catalog\models\root\Product;
-use yii\base\Model;
 use Yii;
 
 class Sections
@@ -14,9 +12,12 @@ class Sections
     const SECTION_CATS = "/cats";
     const SECTION_BIRDS = "/birds";
 
+    public $url;
+    public $title;
+
     public function __construct()
     {
-        $this->url = Yii::$app->request->getUrl();
+        $this->url = strtok(Yii::$app->request->getUrl(), '?');
     }
 
     public function getSectionName(): ?string

@@ -100,7 +100,7 @@ use backend\modules\catalog\models\root\Property;
       </ul>
     </fieldset>
     <?php endif; ?>
-
+    <input type="text" class="visually-hidden sort-inp"><!-- TODO Инпут для сортировки-->
     <div class="catalog-sidebar__controls">
       <button type="submimt" class="catalog-sidebar__btn btn-reset btn-b" type="button">Поиск</button>
       <a class="catalog-sidebar__btn btn-reset btn-b" href="<?= strtok(Yii::$app->request->getUrl(), '?'); ?>" type="button">Сбросить все</a>

@@ -199,7 +199,7 @@
   &__sort-toogle {
     position: absolute;
     overflow: hidden;
-    top: 127px;
+    top: 4rem;
     right: 0;
     height: 0;
     border-radius: var(--size-xs);
@@ -217,11 +217,11 @@
   }
 
   &__sort-item {
-    cursor: pointer;
     color: var(--color-dark-80);
     margin-right: var(--size-s);
     transition: color var(--hover);
     position: relative;
+    user-select: none;
 
     &:hover {
       color: var(--color-dark);

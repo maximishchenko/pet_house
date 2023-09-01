@@ -32,15 +32,15 @@
 
         </div>
       </div>
-      <div class="catalog-bar__sort-wrapper catalog-bar__sort-wrapper--active">
+      <div class="catalog-bar__sort-wrapper">
         <button class="btn-reset catalog-bar__sort-title">Сортировать по: <i><span class="catalog-bar__sort-title--select">Наименование</span><svg width="11" class="sort-arrow" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L5.5 5L10 1" stroke="#373737" stroke-linecap="round" stroke-linejoin="round" />
             </svg></i></button>
         <div class="catalog-bar__sort-toogle catalog-bar__sort-toogle--active">
           <div class="catalog-bar__sort-list">
-            <button class="btn-reset catalog-bar__sort-item">Наименование</button>
+            <button class="btn-reset catalog-bar__sort-item catalog-bar__sort-item--active">Наименование</button>
             <button class="btn-reset catalog-bar__sort-item">Популярные</button>
-            <button class="btn-reset catalog-bar__sort-item catalog-bar__sort-item--active">Дороже</button>
+            <button class="btn-reset catalog-bar__sort-item">Дороже</button>
             <button class="btn-reset catalog-bar__sort-item">Дешевле</button>
           </div>
         </div>

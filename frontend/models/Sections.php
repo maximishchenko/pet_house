@@ -41,6 +41,47 @@ class Sections
         return $this->title;
     }
     
+    /**
+     * Раздел хлебных крошек на основании вида продукции
+     *
+     * @param string $product_type
+     * @return void
+     */
+    public function getProductSectionName($product_type)
+    {
+        switch ($product_type) {
+            case CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE:
+                $this->title = Yii::t('app', "Breadcrumbs Chinchilles");
+                break;
+            case CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE:
+                $this->title = Yii::t('app', "Breadcrumbs Dogs");
+                break;
+            default:
+                $this->title = null;
+        }
+        return $this->title;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $product_type
+     * @return void
+     */
+    public function getProductSectionUrl($product_type)
+    {
+        switch ($product_type) {
+            case CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE:
+                $url = self::SECTION_CHINCHILLES;
+                break;
+            case CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE:
+                $url = self::SECTION_DOGS;
+                break;
+            default:
+                $url = null;
+        }
+        return $url;  
+    }
 
     public function getSectionTitle(): ?string
     {

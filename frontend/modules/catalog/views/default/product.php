@@ -1,10 +1,9 @@
 <?php
 
-use backend\modules\catalog\models\root\Product;
-
-$this->title = "Карточка товара";
-$this->params['breadcrumbs'][] = ['label' => "Шиншиллы", 'url' => ['/chinchilles'], 'class' => 'breadcrumbs__link'];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => $sections->getProductSectionName($model->product_type), 'url' => [$sections->getProductSectionUrl($model->product_type)], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="gallery-mob"></div>
 <div class="container">

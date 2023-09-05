@@ -73,6 +73,7 @@ class DefaultController extends Controller
 
     public function actionView($slug)
     {
+        $sections = new Sections();
         $model = $this->findModel($slug);
         $accessories = RootProduct::find()->where([
                 'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
@@ -80,6 +81,7 @@ class DefaultController extends Controller
             ])->orderBy(['view_count' => SORT_DESC])->all();
         return $this->render('product', [
             'model' => $model,
+            'sections' => $sections,
             'accessories' => $accessories,
         ]);
     }

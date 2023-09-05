@@ -195,56 +195,6 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
     }
 
     /**
-     * Gets query for [[Products0]].
-     *
-     * @return \yii\db\ActiveQuery|ProductQuery
-     */
-    // public function getProducts0()
-    // {
-    //     return $this->hasMany(Product::className(), ['engraving_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Products1]].
-     *
-     * @return \yii\db\ActiveQuery|ProductQuery
-     */
-    // public function getProducts1()
-    // {
-    //     return $this->hasMany(Product::className(), ['material_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Products2]].
-     *
-     * @return \yii\db\ActiveQuery|ProductQuery
-     */
-    // public function getProducts2()
-    // {
-    //     return $this->hasMany(Product::className(), ['type_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Products3]].
-     *
-     * @return \yii\db\ActiveQuery|ProductQuery
-     */
-    // public function getProducts3()
-    // {
-    //     return $this->hasMany(Product::className(), ['type_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Products4]].
-     *
-     * @return \yii\db\ActiveQuery|ProductQuery
-     */
-    // public function getProducts4()
-    // {
-    //     return $this->hasMany(Product::className(), ['wall_id' => 'id']);
-    // }
-
-    /**
      * Gets query for [[PropertyImages]].
      *
      * @return \yii\db\ActiveQuery|PropertyImageQuery

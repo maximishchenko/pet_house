@@ -82,6 +82,16 @@ class Product extends backendProduct
             'sort'=> Sort::setDefaultGridSort(),
         ]);
 
+        
+        $dataProvider->setSort([
+            'sortParam' => Sort::DEFAULT_SORT_PARAM,
+            'attributes' => [
+                'name',
+                'price',
+                'view_count',
+            ],
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {

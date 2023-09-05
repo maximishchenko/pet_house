@@ -71,4 +71,11 @@ return [
     'Chat' => 'Чат',
     'Available Products' => 'Товары в наличии',
     'Top Products' => 'Хиты продаж',
+    'Sort by Name' => 'Наименование',
+    'Sort by Popular' => 'Популярные',
+    'Sort by More Price' => 'Дороже',
+    'Sort by Less Price' => 'Дешевле',
+    'Sort By' => "Сортировать по: ",
+    'Move to cart' => 'В корзину',
+    'Accessories Items' => 'Аксессуары',
 ];

@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use backend\modules\catalog\models\root\Product;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 $settings = Yii::$app->get('configManager');
@@ -32,14 +33,15 @@ AppAsset::register($this);
 
             <?= $this->render('_breadcrumbs'); ?>
             <?= $content ?>
-            
-    
+        
         </main>
+
+        <!-- Хиты продаж -->
+        <?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'topSales' => Product::getTopSales()]); ?>
 
         <?php if (isset($this->blocks['subscribe'])): ?>
             <?= $this->blocks['subscribe'] ?>
         <?php endif ?>
-
        
         <?php if (isset($this->blocks['pop-categories'])): ?>
             <?= $this->blocks['pop-categories'] ?>

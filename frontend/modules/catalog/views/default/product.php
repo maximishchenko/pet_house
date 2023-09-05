@@ -1,5 +1,7 @@
 <?php
 
+use backend\modules\catalog\models\root\Product;
+
 $this->title = "Карточка товара";
 $this->params['breadcrumbs'][] = ['label' => "Шиншиллы", 'url' => ['/chinchilles'], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
@@ -13,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= $this->render('//layouts/product/_gallery', ['model' => $model]); ?>
       <div class="product__optional">
         <!-- Аксессуары -->
-        <?= $this->render('//layouts/product/_accessories', []); ?>
+        <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
         <!-- Промо -->
         <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
         <!-- Отзывы -->
@@ -27,8 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
   </section>
 </div>
 
-<!-- Хиты продаж -->
-<?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'model' => $model]); ?>
 
 
 <!-- Подписаться -->

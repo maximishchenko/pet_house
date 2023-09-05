@@ -2,10 +2,13 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use backend\modules\catalog\models\abstracts\ProductItem;
 use backend\modules\catalog\models\abstracts\PropertyType;
+use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\root\Category;
+use backend\modules\catalog\models\root\Product as RootProduct;
 use backend\modules\catalog\models\root\Property;
 use common\models\Status;
 use yii\web\Controller;
@@ -71,7 +74,14 @@ class DefaultController extends Controller
     public function actionView($slug)
     {
         $model = $this->findModel($slug);
-        return $this->render('product', ['model' => $model]);
+        $accessories = RootProduct::find()->where([
+                'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
+                'product_type' => $model->product_type
+            ])->orderBy(['view_count' => SORT_DESC])->all();
+        return $this->render('product', [
+            'model' => $model,
+            'accessories' => $accessories,
+        ]);
     }
 
     public function actionCalculatePriceConstructor()

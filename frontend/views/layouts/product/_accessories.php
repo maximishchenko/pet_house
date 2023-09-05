@@ -1,77 +1,33 @@
 <div class="add-accessories mb-xxl">
-  <h2 class="product-headline">Аксессуары</h2>
+  <h2 class="product-headline">
+    <?= Yii::t('app', 'Accessories Items'); ?>
+  </h2>
   <div class="swiper add-accessories__swiper">
     <div class="swiper-wrapper">
+
+    <?php foreach($accessories as $accessory): ?>
       <div class="swiper-slide">
         <div class="card-accessories">
           <div class="card-accessories__img-wrapper">
             <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
           </div>
           <div class="card-accessories__text-wrapper">
-            <span class="card-accessories__price">3 200 ₽</span>
-            <a href="#">
-              <h3 class="card-accessories__name">Сенница Белый-Бежевый</h3>
+            <span class="card-accessories__price">
+              <?= Yii::$app->formatter->asCurrency($accessory->price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+            </span>
+            <a href="javascript:void(0);">
+              <h3 class="card-accessories__name">
+                <?= $accessory->name; ?>
+              </h3>
             </a>
-            <button class="btn-reset card-accessories__btn" type="button">В корзину</button>
+            <button class="btn-reset card-accessories__btn" type="button">
+              <?= Yii::t('app', 'Move to cart'); ?>
+            </button>
           </div>
         </div>
       </div>
-      <div class="swiper-slide">
-        <div class="card-accessories">
-          <div class="card-accessories__img-wrapper">
-            <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-          </div>
-          <div class="card-accessories__text-wrapper">
-            <span class="card-accessories__price">3 200 ₽</span>
-            <a href="#">
-              <h3 class="card-accessories__name">Белый-Бежевый</h3>
-            </a>
-            <button class="btn-reset card-accessories__btn" type="button">В корзину</button>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="card-accessories">
-          <div class="card-accessories__img-wrapper">
-            <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-          </div>
-          <div class="card-accessories__text-wrapper">
-            <span class="card-accessories__price">3 200 ₽</span>
-            <a href="#">
-              <h3 class="card-accessories__name">Сенница Белый-Бежевый</h3>
-            </a>
-            <button class="btn-reset card-accessories__btn" type="button">В корзину</button>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="card-accessories">
-          <div class="card-accessories__img-wrapper">
-            <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-          </div>
-          <div class="card-accessories__text-wrapper">
-            <span class="card-accessories__price">3 200 ₽</span>
-            <a href="#">
-              <h3 class="card-accessories__name">Белый-Бежевый</h3>
-            </a>
-            <button class="btn-reset card-accessories__btn" type="button">В корзину</button>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="card-accessories">
-          <div class="card-accessories__img-wrapper">
-            <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-          </div>
-          <div class="card-accessories__text-wrapper">
-            <span class="card-accessories__price">3 200 ₽</span>
-            <a href="#">
-              <h3 class="card-accessories__name">Сенница Белый-Бежевый</h3>
-            </a>
-            <button class="btn-reset card-accessories__btn" type="button">В корзину</button>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
+
     </div>
     <div class="swiper-button-prev add-accessories__btn-prev"></div>
     <div class="swiper-button-next add-accessories__btn-next"></div>

@@ -86,4 +86,5 @@ return [
     'Product Category Block' => 'Категория витрины',
     'Catalog Type Block' => 'Тип витрины',
     'Catalog Height Block' => 'Высота витрины',
+    'FAQ_BOTTOM' => 'Вопросы и ответы',
 ];

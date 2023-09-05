@@ -270,7 +270,6 @@ use backend\modules\catalog\models\root\Product;
 <?php // echo $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Top Products")]); ?>
 
 <!-- Подписаться -->
+<?php $this->beginBlock('subscribe'); ?>
 <?= $this->render('//layouts/template/_subscribe'); ?>
-
-<!-- Вопросы и ответы -->
-<?= $this->render('//layouts/product/_faq_bottom'); ?>
+<?php $this->endBlock(); ?>

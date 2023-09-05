@@ -3,6 +3,7 @@
 namespace backend\modules\content\models;
 
 use common\models\Sort;
+use common\models\Status;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -116,5 +117,17 @@ class Question extends \yii\db\ActiveRecord
     public static function getEven($var)
     {
         return(!($var & 1));
+    }
+
+    public static function getShareQuestions()
+    {
+       $questions = self::find()
+                    ->where([
+                        'status' => Status::STATUS_ACTIVE,
+                        'position' => Question::POSITION_BOTTOM
+                    ])
+                    ->orderBy(['sort' => SORT_ASC])
+                    ->all();
+        return $questions;
     }
 }

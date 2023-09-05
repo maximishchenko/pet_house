@@ -211,5 +211,6 @@ return [
     "Delete All Images" => "Удалить изображения",
     'Rodent Accessory' => 'Аксессуары для шиншилл',
     'Rodent Accessory Edit' => 'Управление аксессуарами для шиншилл',
-
+    'Rodent Showcase Accessory Slug hint' => 'ЧПУ параметр аксессуара',
+    
 ];

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Промо -->
         <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
         <!-- Отзывы -->
-        <?= $this->render('//layouts/template/_faq', []); ?>
+        <?= $this->render('//layouts/template/_faq', ['questions' => $questions]); ?>
         <!-- Вопросы и ответы -->
         <?= $this->render('//layouts/product/_review', []); ?>
       </div>

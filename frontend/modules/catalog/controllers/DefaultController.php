@@ -10,6 +10,7 @@ use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Product as RootProduct;
 use backend\modules\catalog\models\root\Property;
+use backend\modules\content\models\Question;
 use common\models\Status;
 use yii\web\Controller;
 use frontend\models\Sections;
@@ -75,12 +76,26 @@ class DefaultController extends Controller
     {
         $sections = new Sections();
         $model = $this->findModel($slug);
-        $accessories = RootProduct::find()->where([
-                'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
-                'product_type' => $model->product_type
-            ])->orderBy(['view_count' => SORT_DESC])->all();
+
+        $questions = Question::find()
+                    ->where([
+                        'status' => Status::STATUS_ACTIVE,
+                        'position' => Question::POSITION_CARD
+                    ])
+                    ->orderBy(['sort' => SORT_ASC])
+                    ->all();
+
+        $accessories = RootProduct::find()
+                    ->where([
+                        'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
+                        'product_type' => $model->product_type
+                    ])
+                    ->orderBy(['view_count' => SORT_DESC])
+                    ->all();
+
         return $this->render('product', [
             'model' => $model,
+            'questions' => $questions,
             'sections' => $sections,
             'accessories' => $accessories,
         ]);

@@ -1,7 +1,5 @@
 <?php
-
 use backend\modules\catalog\models\root\Product;
-
 ?>
 <div class="add-accessories mb-xxl">
   <h2 class="product-headline">

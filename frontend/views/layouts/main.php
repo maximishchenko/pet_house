@@ -3,6 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use backend\modules\catalog\models\root\Product;
+use backend\modules\content\models\Question;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 $settings = Yii::$app->get('configManager');
@@ -32,22 +34,23 @@ AppAsset::register($this);
 
             <?= $this->render('_breadcrumbs'); ?>
             <?= $content ?>
-            
-    
+        
         </main>
+
+        <!-- Хиты продаж -->
+        <?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'topSales' => Product::getTopSales()]); ?>
 
         <?php if (isset($this->blocks['subscribe'])): ?>
             <?= $this->blocks['subscribe'] ?>
         <?php endif ?>
-
        
         <?php if (isset($this->blocks['pop-categories'])): ?>
             <?= $this->blocks['pop-categories'] ?>
         <?php endif ?>
 
-        <?php if (isset($this->blocks['faq_bottom'])): ?>
-            <?= $this->blocks['faq_bottom'] ?>
-        <?php endif ?>
+
+        <!-- Вопросы и ответы -->
+        <?= $this->render('//layouts/product/_faq_bottom', ['questions' => Question::getShareQuestions()]); ?>
 
     </div>
 </body>

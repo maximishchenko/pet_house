@@ -1,17 +1,8 @@
 <?php
 
-use backend\modules\catalog\models\root\Product;
-use common\models\Status;
-
-$topSales = Product::find()
-    ->where([
-        'status' => Status::STATUS_ACTIVE,
-        'item_type' => $model->item_type,
-        'product_type' => $model->product_type
-    ])
-    ->orderBy(['view_count' => SORT_DESC])
-    ->all();
+use yii\helpers\Url;
 ?>
+
 <?php if (!empty($topSales)) : ?>
     <section class="thumb-slider mt-xxl mb-xxl">
         <div class="container">
@@ -31,7 +22,7 @@ $topSales = Product::find()
 
                     <?php foreach ($topSales as $productItem) : ?>
                         <div class="swiper-slide">
-                            <a href="#" class="thumb-prod">
+                            <a href="<?= Url::toRoute($productItem->getSectionUrl() . '/' . $productItem->slug); ?>" class="thumb-prod">
                                 <div class="thumb-prod__img-wrapper">
                                     <img class="thumb-prod__img" src="/img/cage.jpg" alt="">
                                 </div>

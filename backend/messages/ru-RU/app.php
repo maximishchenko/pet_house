@@ -209,4 +209,8 @@ return [
     "Do delete all images answer" => "Удалить все изображения?",
     'All Images deleted' => "Все изображения удалены",
     "Delete All Images" => "Удалить изображения",
+    'Rodent Accessory' => 'Аксессуары для шиншилл',
+    'Rodent Accessory Edit' => 'Управление аксессуарами для шиншилл',
+    'Rodent Showcase Accessory Slug hint' => 'ЧПУ параметр аксессуара',
+    
 ];

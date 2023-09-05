@@ -1,17 +1,10 @@
 <?php
 
-use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\root\Product;
-use frontend\models\Sections;
 use yii\helpers\Url;
 
-if ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE) {
-  $url = Sections::SECTION_CHINCHILLES;
-} elseif ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
-  $url = Sections::SECTION_DOGS;
-}
 ?>
-<a href="<?= Url::toRoute($url . '/' . $model->slug)?>" class="thumb-prod">
+<a href="<?= Url::toRoute($model->getSectionUrl() . '/' . $model->slug); ?>" class="thumb-prod">
   <div class="thumb-prod__img-wrapper">
     <img class="thumb-prod__img" src="<?= "/" . Product::UPLOAD_PATH . $model->image . "?v=" . $model->updated_at; ?>" alt="<?= $model->name; ?>"> 
   </div>

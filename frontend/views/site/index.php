@@ -1,3 +1,7 @@
+<?php
+
+use backend\modules\catalog\models\root\Product;
+?>
 <section class="hero mb-n">
     <div class="swiper hero-slider">
         <div class="swiper-wrapper">
@@ -55,7 +59,7 @@
 
 
 <!-- Есть в наличии -->
-<?= $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Available Products")]); ?>
+<?= $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Available Products"), 'products' => Product::getAvailableProducts()]); ?>
 
 
 <section class="media-info mb-xxl">
@@ -263,10 +267,9 @@
 </section>
 
 <!-- Есть в наличии -->
-<?= $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Top Products")]); ?>
+<?php // echo $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Top Products")]); ?>
 
 <!-- Подписаться -->
+<?php $this->beginBlock('subscribe'); ?>
 <?= $this->render('//layouts/template/_subscribe'); ?>
-
-<!-- Вопросы и ответы -->
-<?= $this->render('//layouts/product/_faq_bottom'); ?>
+<?php $this->endBlock(); ?>

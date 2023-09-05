@@ -2,11 +2,15 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use backend\modules\catalog\models\abstracts\ProductItem;
 use backend\modules\catalog\models\abstracts\PropertyType;
+use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\root\Category;
+use backend\modules\catalog\models\root\Product as RootProduct;
 use backend\modules\catalog\models\root\Property;
+use backend\modules\content\models\Question;
 use common\models\Status;
 use yii\web\Controller;
 use frontend\models\Sections;
@@ -58,20 +62,60 @@ class DefaultController extends Controller
 
         $searchModel = new Product();
         $dataProvider = $searchModel->search($queryParams, $productType, ProductItemType::PRODUCT_TYPE_PRODUCT);
-        return $this->render('index', [
-            'sections' => $sections,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'types' => $types,
-            'categories' => $categories,
-            'heights' => $heights,
-        ]);
+
+
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
+        } else {
+            return $this->render('index', [
+                'sections' => $sections,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'types' => $types,
+                'categories' => $categories,
+                'heights' => $heights,
+            ]);
+        }
+
+
+        // return $this->render('index', [
+        //     'sections' => $sections,
+        //     'searchModel' => $searchModel,
+        //     'dataProvider' => $dataProvider,
+        //     'types' => $types,
+        //     'categories' => $categories,
+        //     'heights' => $heights,
+        // ]);
     }
 
     public function actionView($slug)
     {
+        $sections = new Sections();
         $model = $this->findModel($slug);
-        return $this->render('product', ['model' => $model]);
+
+        $questions = Question::find()
+                    ->where([
+                        'status' => Status::STATUS_ACTIVE,
+                        'position' => Question::POSITION_CARD
+                    ])
+                    ->orderBy(['sort' => SORT_ASC])
+                    ->all();
+
+        $accessories = RootProduct::find()
+                    ->where([
+                        'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
+                        'product_type' => $model->product_type
+                    ])
+                    ->orderBy(['view_count' => SORT_DESC])
+                    ->all();
+
+        return $this->render('product', [
+            'model' => $model,
+            'questions' => $questions,
+            'sections' => $sections,
+            'accessories' => $accessories,
+        ]);
     }
 
     public function actionCalculatePriceConstructor()

@@ -6,4 +6,5 @@ import './components/catalog';
 import './components/common';
 import './components/constructor';
 import './components/filter';
+import './components/sort';
 import './components/cart';

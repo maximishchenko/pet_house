@@ -7,7 +7,7 @@
 
           <div class="swiper-slide">
             <button class="catalog-bar__btn catalog-bar__btn--filter btn-reset" type="button">
-              Фильтр
+              <?= Yii::t('app', 'Filter Block'); ?>
               <svg>
                 <use xlink:href="/img/sprite.svg#chevron-right"></use>
               </svg>
@@ -16,7 +16,7 @@
 
           <div class="swiper-slide mob-dis">
             <button class="catalog-bar__btn btn-reset filter__category" data-search-name="is_available" data-search-value="1" type="button" <?= $searchModel->isAvailableActive(); ?>>
-              Только в наличии
+              <?= Yii::t('app', 'Only Available'); ?>
             </button>
           </div>
 
@@ -32,20 +32,11 @@
 
         </div>
       </div>
-      <div class="catalog-bar__sort-wrapper">
-        <button class="btn-reset catalog-bar__sort-title">Сортировать по: <i><span class="catalog-bar__sort-title--select">Наименование</span><svg width="11" class="sort-arrow" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L5.5 5L10 1" stroke="#373737" stroke-linecap="round" stroke-linejoin="round" />
-            </svg></i></button>
-        <div class="catalog-bar__sort-toogle catalog-bar__sort-toogle--active">
-          <div class="catalog-bar__sort-list">
-            <button class="btn-reset catalog-bar__sort-item catalog-bar__sort-item--active">Наименование</button>
-            <button class="btn-reset catalog-bar__sort-item">Популярные</button>
-            <button class="btn-reset catalog-bar__sort-item">Дороже</button>
-            <button class="btn-reset catalog-bar__sort-item">Дешевле</button>
-          </div>
-        </div>
 
-      </div>
+      <?= $this->render('_sort', [
+          'searchModel' => $searchModel
+      ]); ?>
+
     </div>
   </div>
 </div>

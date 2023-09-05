@@ -1,8 +1,9 @@
 <?php
 
-$this->title = "Карточка товара";
-$this->params['breadcrumbs'][] = ['label' => "Шиншиллы", 'url' => ['/chinchilles'], 'class' => 'breadcrumbs__link'];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => $sections->getProductSectionName($model->product_type), 'url' => [$sections->getProductSectionUrl($model->product_type)], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="gallery-mob"></div>
 <div class="container">
@@ -13,11 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= $this->render('//layouts/product/_gallery', ['model' => $model]); ?>
       <div class="product__optional">
         <!-- Аксессуары -->
-        <?= $this->render('//layouts/product/_accessories', []); ?>
+        <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
         <!-- Промо -->
         <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
         <!-- Отзывы -->
-        <?= $this->render('//layouts/template/_faq', []); ?>
+        <?= $this->render('//layouts/template/_faq', ['questions' => $questions]); ?>
         <!-- Вопросы и ответы -->
         <?= $this->render('//layouts/product/_review', []); ?>
       </div>
@@ -27,8 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
   </section>
 </div>
 
-<!-- Хиты продаж -->
-<?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'model' => $model]); ?>
 
 
 <!-- Подписаться -->

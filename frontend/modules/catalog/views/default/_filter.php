@@ -2,11 +2,15 @@
 
 use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Property;
+use yii\widgets\ActiveForm;
+
 ?>
 
 <div class="catalog__side-inner">
   <div class="thumb-filter__mobhead">
-    <span class="thumb-filter__mobhead-title">Фильтр</span>
+    <span class="thumb-filter__mobhead-title">
+      <?= Yii::t('app', 'Filter Block'); ?>
+    </span>
     <button type="button" class="btn-reset filter-mob_cloase">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask id="mask0_706_281" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
@@ -19,12 +23,21 @@ use backend\modules\catalog\models\root\Property;
     </button>
   </div>
 
-  <form action="" class="thumb-filter">
+  <!-- <form action="" class="thumb-filter"> -->
+    <?php
+    $form = ActiveForm::begin([
+      'id' => 'catalog_search',
+      'options' => ['class' => 'thumb-filter' ],
+      'action' => ['index'],
+      'method' => 'get',
+      'enableClientScript' => false,
+    ]); 
+    ?>
 
 
     <fieldset class="thumb-filter__area thumb-filter__area--switch">
       <label for="s1" class="thumb-filter__title thumb-filter__title--switch">
-        Только в наличии
+        <?= Yii::t('app', 'Only Available'); ?>
       </label>
       <ul class="list-reset">
         <li>
@@ -39,7 +52,9 @@ use backend\modules\catalog\models\root\Property;
     <!-- Категории -->
     <?php if(isset($categories) && !empty($categories)): ?>
     <fieldset class="thumb-filter__area">
-      <legend class="thumb-filter__title">Категория витрины</legend>
+      <legend class="thumb-filter__title">
+        <?= Yii::t('app', 'Product Category Block'); ?>
+      </legend>
       <ul class="list-reset">
 
         <?php foreach($categories as $category): ?>
@@ -60,7 +75,9 @@ use backend\modules\catalog\models\root\Property;
     <!-- Типы -->
     <?php if(isset($types) && !empty($types)): ?>
     <fieldset class="thumb-filter__area">
-      <legend class="thumb-filter__title">Тип витрины</legend>
+      <legend class="thumb-filter__title">
+        <?= Yii::t('app', 'Catalog Type Block'); ?>
+      </legend>
       <ul class="list-reset">
 
         <?php foreach($types as $type): ?>
@@ -81,12 +98,16 @@ use backend\modules\catalog\models\root\Property;
 
     <?php if(isset($heights) && !empty($heights)): ?>
     <fieldset class="thumb-filter__area">
-      <legend class="thumb-filter__title">Высота витрины</legend>
+      <legend class="thumb-filter__title">
+        <?= Yii::t('app', 'Catalog Height Block'); ?>
+      </legend>
       <ul class="list-reset thumb-filter__table">
 
         <li class="thumb-filter__table-el">
           <input class="hide-inp thumb-filter__table-inp filter__submit" type="radio" id="all_height" name="height_value" value="" >
-          <label class="thumb-filter__table-label" for="all_height">Все</label>
+          <label class="thumb-filter__table-label" for="all_height">
+            <?= Yii::t('app', 'All Values'); ?>
+          </label>
         </li>
 
         <?php foreach($heights as $height): ?>
@@ -102,9 +123,15 @@ use backend\modules\catalog\models\root\Property;
     <?php endif; ?>
     <input type="text" class="visually-hidden sort-inp"><!-- TODO Инпут для сортировки-->
     <div class="catalog-sidebar__controls">
-      <button type="submimt" class="catalog-sidebar__btn btn-reset btn-b" type="button">Поиск</button>
-      <a class="catalog-sidebar__btn btn-reset btn-b" href="<?= strtok(Yii::$app->request->getUrl(), '?'); ?>" type="button">Сбросить все</a>
+      <button type="submimt" class="catalog-sidebar__btn btn-reset btn-b" type="button">
+        <?= Yii::t('app', 'Do Search'); ?>
+      </button>
+      <a class="catalog-sidebar__btn btn-reset btn-b" href="<?= strtok(Yii::$app->request->getUrl(), '?'); ?>" type="button">
+          <?= Yii::t('app', "Reset all search"); ?>
+      </a>
     </div>
-  </form>
+  <!-- </form> -->
+  <?php ActiveForm::end(); ?>
+
 </div>
 </div>

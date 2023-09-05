@@ -14,6 +14,8 @@ use backend\modules\catalog\models\RodentShowcaseAccessory;
 use backend\modules\catalog\models\RodentShowcaseProduct;
 use backend\traits\InheritanceTrait;
 use common\models\Sort;
+use common\models\Status;
+use frontend\models\Sections;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
@@ -136,6 +138,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         $this->item_type = $this->getItemType();
         parent::init();
     }
+    
 
     /**
      * {@inheritdoc}
@@ -218,7 +221,6 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         return $this->setType();
     }
     
-
     public function getHeights()
     {
         return $this->hasOne(Property::className(), ['id' => 'size_id']);
@@ -261,6 +263,87 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             default:
                 return null;
         }
+    }
+
+    /**
+     * Возвращает доступные размеры для генерации секции конструктора
+     *
+     * @return void
+     */
+    public function getAvailableProductSizes()
+    {
+        $sizes = Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $this->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE])->all();
+        return $sizes;
+    }
+
+    /**
+     * Возвращает CSS-классы для конструктора размеров
+     *
+     * @return string
+     */
+    public function getSizesConstructorBlockCssClassList(): string
+    {
+        return ($this->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) ? "calc-el__list calc-el__list--slider" : "calc-el__list";
+    }
+
+    /**
+     * Возвращает доступный список боковых стенок для генерации секции конструктора
+     *
+     * @return void
+     */
+    public function getAvailableProductSideWalls()
+    {
+        $walls = Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $this->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL])->all();
+        return $walls;
+    }
+
+    /**
+     * Выборка хитов продаж
+     *
+     * @return void
+     */
+    public static function getTopSales()
+    {
+        
+        $topSales = Product::find()
+            ->where([
+                'status' => Status::STATUS_ACTIVE,
+                'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+            ])
+            ->orderBy(['view_count' => SORT_DESC])
+            ->all();
+
+        return $topSales;
+    }
+
+    /**
+     * Товары в наличии
+     *
+     * @return void
+     */
+    public static function getAvailableProducts()
+    {
+        $availables = Product::find()
+            ->where([
+                'status' => Status::STATUS_ACTIVE,
+                'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                'is_available' => 1,
+            ])
+            ->orderBy(['view_count' => SORT_DESC])
+            ->all();
+
+        return $availables;
+    }
+
+    public function getSectionUrl()
+    {
+        if ($this->product_type == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE) {
+            $url = Sections::SECTION_CHINCHILLES;
+        } elseif ($this->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
+            $url = Sections::SECTION_DOGS;
+        }
+
+        return $url;
     }
 
     // 

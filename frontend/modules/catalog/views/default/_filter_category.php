@@ -7,7 +7,7 @@
 
           <div class="swiper-slide">
             <button class="catalog-bar__btn catalog-bar__btn--filter btn-reset" type="button">
-              Фильтр
+              <?= Yii::t('app', 'Filter Block'); ?>
               <svg>
                 <use xlink:href="/img/sprite.svg#chevron-right"></use>
               </svg>
@@ -16,7 +16,7 @@
 
           <div class="swiper-slide mob-dis">
             <button class="catalog-bar__btn btn-reset filter__category" data-search-name="is_available" data-search-value="1" type="button" <?= $searchModel->isAvailableActive(); ?>>
-              Только в наличии
+              <?= Yii::t('app', 'Only Available'); ?>
             </button>
           </div>
 

@@ -78,4 +78,12 @@ return [
     'Sort By' => "Сортировать по: ",
     'Move to cart' => 'В корзину',
     'Accessories Items' => 'Аксессуары',
+    'Do Search' => 'Поиск',
+    'All Values' => 'Все',
+    'Reset all search' => 'Сбросить все',
+    'Filter Block' => 'Фильтр',
+    'Only Available' => 'Только в наличии',
+    'Product Category Block' => 'Категория витрины',
+    'Catalog Type Block' => 'Тип витрины',
+    'Catalog Height Block' => 'Высота витрины',
 ];

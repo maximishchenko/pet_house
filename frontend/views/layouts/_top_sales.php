@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Url;
+?>
+
 <?php if (!empty($topSales)) : ?>
     <section class="thumb-slider mt-xxl mb-xxl">
         <div class="container">
@@ -17,8 +22,7 @@
 
                     <?php foreach ($topSales as $productItem) : ?>
                         <div class="swiper-slide">
-                            <!-- TODO сгенерировать URL для перехода в карточку товара -->
-                            <a href="#" class="thumb-prod">
+                            <a href="<?= Url::toRoute($productItem->getSectionUrl() . '/' . $productItem->slug); ?>" class="thumb-prod">
                                 <div class="thumb-prod__img-wrapper">
                                     <img class="thumb-prod__img" src="/img/cage.jpg" alt="">
                                 </div>

@@ -15,6 +15,7 @@ use backend\modules\catalog\models\RodentShowcaseProduct;
 use backend\traits\InheritanceTrait;
 use common\models\Sort;
 use common\models\Status;
+use frontend\models\Sections;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
@@ -332,6 +333,17 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             ->all();
 
         return $availables;
+    }
+
+    public function getSectionUrl()
+    {
+        if ($this->product_type == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE) {
+            $url = Sections::SECTION_CHINCHILLES;
+        } elseif ($this->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
+            $url = Sections::SECTION_DOGS;
+        }
+
+        return $url;
     }
 
     // 

@@ -1,3 +1,9 @@
+<?php
+
+use yii\helpers\Url;
+
+?>
+
 <section class="thumb-slider mt-xxl mb-xxl">
   <div class="container">
     <div class="thumb-slider__head">
@@ -15,8 +21,7 @@
 
       <?php foreach($products as $product): ?>
       <div class="swiper-slide">
-        <!-- TODO сгенерировать ссылки на карточку -->
-        <a href="#" class="thumb-prod">
+        <a href="<?= Url::toRoute($product->getSectionUrl() . '/' . $model->slug); ?>" class="thumb-prod">
           <div class="thumb-prod__img-wrapper">
             <img class="thumb-prod__img" src="img/cage.jpg" alt="">
           </div>

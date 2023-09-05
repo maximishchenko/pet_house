@@ -2,6 +2,8 @@
 
 use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Property;
+use yii\widgets\ActiveForm;
+
 ?>
 
 <div class="catalog__side-inner">
@@ -21,7 +23,16 @@ use backend\modules\catalog\models\root\Property;
     </button>
   </div>
 
-  <form action="" class="thumb-filter">
+  <!-- <form action="" class="thumb-filter"> -->
+    <?php
+    $form = ActiveForm::begin([
+      'id' => 'catalog_search',
+      'options' => ['class' => 'thumb-filter' ],
+      'action' => ['index'],
+      'method' => 'get',
+      'enableClientScript' => false,
+    ]); 
+    ?>
 
 
     <fieldset class="thumb-filter__area thumb-filter__area--switch">
@@ -119,6 +130,8 @@ use backend\modules\catalog\models\root\Property;
           <?= Yii::t('app', "Reset all search"); ?>
       </a>
     </div>
-  </form>
+  <!-- </form> -->
+  <?php ActiveForm::end(); ?>
+
 </div>
 </div>

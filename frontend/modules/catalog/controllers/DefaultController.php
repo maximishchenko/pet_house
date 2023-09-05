@@ -62,14 +62,31 @@ class DefaultController extends Controller
 
         $searchModel = new Product();
         $dataProvider = $searchModel->search($queryParams, $productType, ProductItemType::PRODUCT_TYPE_PRODUCT);
-        return $this->render('index', [
-            'sections' => $sections,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'types' => $types,
-            'categories' => $categories,
-            'heights' => $heights,
-        ]);
+
+
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
+        } else {
+            return $this->render('index', [
+                'sections' => $sections,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'types' => $types,
+                'categories' => $categories,
+                'heights' => $heights,
+            ]);
+        }
+
+
+        // return $this->render('index', [
+        //     'sections' => $sections,
+        //     'searchModel' => $searchModel,
+        //     'dataProvider' => $dataProvider,
+        //     'types' => $types,
+        //     'categories' => $categories,
+        //     'heights' => $heights,
+        // ]);
     }
 
     public function actionView($slug)

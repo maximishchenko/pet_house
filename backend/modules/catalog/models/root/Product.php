@@ -13,6 +13,7 @@ use backend\modules\catalog\models\query\ProductQuery;
 use backend\modules\catalog\models\RodentShowcaseAccessory;
 use backend\modules\catalog\models\RodentShowcaseProduct;
 use backend\traits\InheritanceTrait;
+use common\models\PriceValue;
 use common\models\Sort;
 use common\models\Status;
 use frontend\models\Sections;
@@ -394,6 +395,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getOldPrice()
     {
         $oldPrice = $this->price + (($this->price * $this->discount)/100);
+        $oldPrice = PriceValue::roundToHundreds($oldPrice);
         return $oldPrice;
     }
 

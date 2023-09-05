@@ -58,9 +58,13 @@ class ProductPrice
         $itemsPrice = $this->getItemsPrice();
         $price = $basePrice + $accessoriesPrice + $itemsPrice;
         $price = PriceValue::roundToHundreds($price);
+
+        $oldPrice = $this->getOldPrice($price);
+        $oldPrice = PriceValue::roundToHundreds($oldPrice);
+        
         return [
             static::PRICE_KEY => Yii::$app->formatter->asCurrency($price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]), 
-            static::OLD_PRICE_KEY => Yii::$app->formatter->asCurrency(40000, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100])
+            static::OLD_PRICE_KEY => Yii::$app->formatter->asCurrency($oldPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100])
         ];
     }
 
@@ -140,4 +144,14 @@ class ProductPrice
     {
         return $this->color->price + $this->wall->price;
     }    
+
+    protected function getOldPrice($price): int
+    {
+        if (isset($this->product->discount) && !empty($this->product->discount)) {
+            $discount = $this->product->discount;
+            $oldPrice = $price + (($price * $discount) / 100);
+            return $oldPrice;
+        }
+        return $price;
+    }
 }

@@ -1,3 +1,8 @@
+<?php
+
+use backend\modules\catalog\models\root\Product;
+
+?>
 <div class="add-accessories mb-xxl">
   <h2 class="product-headline">
     <?= Yii::t('app', 'Accessories Items'); ?>
@@ -9,7 +14,7 @@
       <div class="swiper-slide">
         <div class="card-accessories">
           <div class="card-accessories__img-wrapper">
-            <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
+            <img class="card-accessories__img" src="/<?= Product::UPLOAD_PATH . $accessory->image; ?>" alt="<?= $accessory->name; ?>">
           </div>
           <div class="card-accessories__text-wrapper">
             <span class="card-accessories__price">

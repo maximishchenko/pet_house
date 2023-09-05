@@ -166,12 +166,16 @@ use backend\modules\catalog\models\root\Property;
             <span id="constructor_price">
               <?= Yii::$app->formatter->asCurrency($model->price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
             </span>
+
+            <?php if(isset($model->discount) && $model->discount > 0): ?>
             <span class="product__price-old" id="constructor_price_old">
               <?= Yii::$app->formatter->asCurrency($model->oldPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
             </span>
+            <?php endif; ?>
+
           </span>
         </div>
-        <button class="btn-reset btn-a product__action-btn" type="button">
+        <button class="btn-reset btn-a product__action-btn" type="button" data-add-to-cart>
           <?= Yii::t('app', 'To cart'); ?>
         </button>
       </div>

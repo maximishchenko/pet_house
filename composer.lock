@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6367806113469ff7eae0976dd599744",
+    "content-hash": "9f04cbacf2a7d01c7f637e6c9315fe3e",
     "packages": [
         {
             "name": "aki/yii2-bot-telegram",
@@ -254,6 +254,57 @@
                 "source": "https://github.com/cebe/markdown"
             },
             "time": "2018-03-26T11:24:36+00:00"
+        },
+        {
+            "name": "devanych/yii2-cart",
+            "version": "v1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devanych/yii2-cart.git",
+                "reference": "a17190c8c6552a82aa6f4646b83f8123748fe1a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devanych/yii2-cart/zipball/a17190c8c6552a82aa6f4646b83f8123748fe1a3",
+                "reference": "a17190c8c6552a82aa6f4646b83f8123748fe1a3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "devanych\\cart\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Zyubin",
+                    "email": "info@zyubin.ru",
+                    "homepage": "https://zyubin.ru"
+                }
+            ],
+            "description": "Shopping cart for Yii2",
+            "keywords": [
+                "yii2",
+                "yii2-cart",
+                "yii2-extension",
+                "yii2-shopping-cart"
+            ],
+            "support": {
+                "issues": "https://github.com/devanych/yii2-cart/issues?state=open",
+                "source": "https://github.com/devanych/yii2-cart"
+            },
+            "time": "2019-10-18T10:25:54+00:00"
         },
         {
             "name": "doctrine/deprecations",

@@ -46,7 +46,7 @@ class ProductAccessoryLink extends \yii\db\ActiveRecord
             'product_id' => Yii::t('app', 'Product ID'),
             'accessory_id' => Yii::t('app', 'Accessory Name'),
             'product_type' => Yii::t('app', 'Product Type'),
-            'count' => Yii::t('app', 'Count'),
+            'count' => Yii::t('app', 'Count Product Accessories'),
         ];
     }
 

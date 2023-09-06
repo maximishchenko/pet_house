@@ -23,18 +23,6 @@ return [
         ],
     ],
     'components' => [
-        'cart' => [
-            'class' => 'devanych\cart\Cart',
-            'storageClass' => 'devanych\cart\storage\SessionStorage',
-            'calculatorClass' => 'devanych\cart\calculators\SimpleCalculator',
-            'params' => [
-                'key' => 'cart',
-                'expire' => 604800,
-                'productClass' => 'backend\modules\catalog\models\Product',
-                'productFieldId' => 'id',
-                'productFieldPrice' => 'price',
-            ],
-        ],
         'assetManager' => [
             'linkAssets' => true,
             'appendTimestamp' => true,

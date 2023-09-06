@@ -178,6 +178,8 @@
     }
   }
 
+
+
   &__btn-pen {
     fill: none;
     stroke: var(--color-dark);
@@ -270,6 +272,24 @@
   .noUi-handle::after,
   .noUi-handle::before {
     display: none;
+  }
+}
+
+.calc-el__btn-control--dis {
+  cursor: auto;
+
+  .calc-el__btn-icons {
+    svg {
+      opacity: .2;
+    }
+
+    &:hover {
+      background: var(--color-light);
+
+      .calc-el__btn-pen {
+        stroke: var(--color-dark);
+      }
+    }
   }
 }
 

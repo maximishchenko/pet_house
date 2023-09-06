@@ -51,8 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.calc-el__btn-control')
       .forEach(el => el.addEventListener('click', function (e) {
-        let activElement = el.parentElement.closest('.calc-el');
-        activElement.classList.toggle('calc-el--active');
+        if (!el.classList.contains('calc-el__btn-control--dis')) {
+          let activElement = el.parentElement.closest('.calc-el');
+          activElement.classList.toggle('calc-el--active');
+        }
       }));
 
   }
@@ -71,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
         'max': 100
       }
     });
-  
+
     const sliderW = document.getElementById('slider-w');
-  
+
     noUiSlider.create(sliderW, {
       start: 40,
       connect: [true, false],
@@ -82,9 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
         'max': 100
       }
     });
-  
+
     const sliderG = document.getElementById('slider-g');
-  
+
     noUiSlider.create(sliderG, {
       start: 60,
       connect: [true, false],

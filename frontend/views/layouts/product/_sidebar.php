@@ -68,7 +68,7 @@ use backend\modules\catalog\models\root\Property;
 
               <!-- Размеры -->
               <div class="calc-el">
-                <button class="calc-el__btn-control btn-reset" type="button">
+                <button class="calc-el__btn-control calc-el__btn-control--dis btn-reset" type="button">
                   <span class="calc-el__btn-wrapper">
                     <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" style="background-image: url('/img/size.jpg');"></span>
                     <span class="calc-el__btn-text">

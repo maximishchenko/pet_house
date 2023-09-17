@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
         'js/lib/jquery-3.6.0.min.js',
         'js/vendor/masonry.pkgd.min.js',
         'assets/build/js/main.js',
-        'js/components/constructor.js',
+        // 'js/components/constructor.js',
     ];
     public $jsOptions = [
         'position' => \yii\web\View::POS_HEAD,

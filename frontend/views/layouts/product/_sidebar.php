@@ -59,7 +59,7 @@ use backend\modules\catalog\models\root\Property;
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
                   <div class="calc-el__list">
                     <?php foreach ($model->getColorItems() as $color) : ?>
-                      <span onclick="setConstructorColor(this); return false" class="calc-el__list-item" style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
+                      <span class="calc-el__list-item color-item" style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
 
                       </span>
                     <?php endforeach; ?>
@@ -72,7 +72,14 @@ use backend\modules\catalog\models\root\Property;
                 <!-- TODO Класс для блокировки -->
                 <button class="<?= $model->getConstructorCssClass(); ?>" type="button"> 
                   <span class="calc-el__btn-wrapper">
-                    <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" style="background-image: url('/img/size.jpg');"></span>
+                    <span 
+                      class="calc-el__btn-preview"
+                      data-constructor-size-id="<?= $model->size->id; ?>"
+                      data-constructor-size-height="<?= $model->size->height; ?>"
+                      data-constructor-size-width="<?= $model->size->width; ?>"
+                      data-constructor-size-depth="<?= $model->size->depth; ?>"
+                      style="background-image: url('/img/size.jpg');"
+                    ></span>
                     <span class="calc-el__btn-text">
                       <span class="calc-el__btn-title"><?= Yii::t('app', 'Base Size'); ?></span>
                       <span class="calc-el__btn-val">
@@ -131,7 +138,7 @@ use backend\modules\catalog\models\root\Property;
                   <div class="calc-el__list">
                     <?php foreach ($model->getAvailableProductSideWalls() as $wall) : ?>
 
-                      <?= $this->render('//layouts/product/_constructor_items/_all_wall', ['model' => $model]); ?>
+                      <?= $this->render('//layouts/product/_constructor_items/_all_wall', ['wall' => $wall]); ?>
 
                     <?php endforeach; ?>
                   </div>
@@ -166,13 +173,13 @@ use backend\modules\catalog\models\root\Property;
           </span>
           <span class="product__price">
             <span id="constructor_price">
-              <?= Yii::$app->formatter->asCurrency($model->price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
-            </span>
+              <?= number_format($model->price, 0, '', ' '); ?>
+            </span> ₽
 
             <?php if(isset($model->discount) && $model->discount > 0): ?>
             <span class="product__price-old" id="constructor_price_old">
-              <?= Yii::$app->formatter->asCurrency($model->oldPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
-            </span>
+              <?= number_format($model->oldPrice, 0, '', ' '); ?>
+            </span> ₽
             <?php endif; ?>
 
           </span>

@@ -2,9 +2,6 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use backend\modules\catalog\models\abstracts\ProductItem;
-use backend\modules\catalog\models\abstracts\PropertyType;
-use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\root\Category;
@@ -77,16 +74,6 @@ class DefaultController extends Controller
                 'heights' => $heights,
             ]);
         }
-
-
-        // return $this->render('index', [
-        //     'sections' => $sections,
-        //     'searchModel' => $searchModel,
-        //     'dataProvider' => $dataProvider,
-        //     'types' => $types,
-        //     'categories' => $categories,
-        //     'heights' => $heights,
-        // ]);
     }
 
     public function actionView($slug)
@@ -124,10 +111,16 @@ class DefaultController extends Controller
         if (Yii::$app->request->isAjax) {
             $product_id = Yii::$app->request->get('product_id');
             $color_id = Yii::$app->request->get('color');
-            $size_id = Yii::$app->request->get('size');
+
+            // $size_id = Yii::$app->request->get('size');
+            
+            $height = Yii::$app->request->get('height');
+            $width = Yii::$app->request->get('width');
+            $depth = Yii::$app->request->get('depth');
             $walls_id = Yii::$app->request->get('walls');
 
-            $productPrice = new ProductPrice($product_id, $color_id, $size_id, $walls_id);
+            // $productPrice = new ProductPrice($product_id, $color_id, $size_id, $walls_id);
+            $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
             
             $data = json_encode($productPrice->getPriceValues());
             return $data;

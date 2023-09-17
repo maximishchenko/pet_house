@@ -1,5 +1,6 @@
 <?php
 
+use frontend\modules\cart\models\Cart;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -34,8 +35,10 @@ use yii\helpers\Url;
         </a>
       <?php endif; ?>
       <!-- TODO Менять класс "bag-icon--acrive" -->
-      <a href="<?= Url::toRoute("/cart") ?>" class="header__bag bag-icon bag-icon--acrive">
-        <span class="cart-val">2</span>
+      <a href="<?= Url::toRoute("/cart") ?>" class="header__bag bag-icon <?= (Cart::getTotalCount() > 0) ? 'bag-icon--acrive' : ''; ?>">
+        <span class="cart-val">
+          <?= Cart::getTotalCount(); ?>
+        </span>
         <svg class="bag-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="bag-fill" d="M3.93366 7.92875C3.97104 7.40545 4.40648 7 4.93112 7H19.0689C19.5935 7 20.029 7.40545 20.0663 7.92875L20.9235 19.9288C20.9648 20.5076 20.5064 21 19.926 21H4.07398C3.49363 21 3.03517 20.5076 3.07652 19.9288L3.93366 7.92875Z" stroke-linejoin="round" />
           <path d="M8 11V6.21053C8 3.88512 9.79086 2 12 2C14.2091 2 16 3.88512 16 6.21053V11" stroke-linecap="round" stroke-linejoin="round" />

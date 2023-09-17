@@ -2,107 +2,65 @@
 
 namespace frontend\modules\cart\models;
 
-use frontend\modules\cart\interfaces\CartInterface;
 use frontend\modules\cart\models\CartSession;
-
-/**
- * ~~~
- * $_SESSION['cart'] = [
- *  [$id] => [
- *      
- *  ],
- *  [1] => [
- * 
- *  ],
- *  [...] => [
- * 
- *  ],
- *  [N] => [
- * 
- *  ],
- * ];
- * ~~~
- */
-class Cart extends CartSession implements CartInterface
+class Cart extends CartSession
 {
-    
-    public function getItems()
+    public static function getTotalCount(): int
     {
-
+        $cart = new self();
+        return count($cart->cartProducts);
     }
 
-    /**
-     * Возвращает количество элементов в корзине
-     *
-     * @return integer
-     */
-    public function getCount(): int
+    public static function getTotalPrice(): int
     {
-        return 0;
+        $cart = new self();
+        $totalPrice = 0;
+        foreach ($cart->cartProducts as $product) {
+            $cartItem = new CartProduct();
+            $prices = $cartItem->getProductPrice(
+                $product[CartProduct::PRODUCT_ID],
+                $product[CartProduct::COLOR_ID],
+                $product[CartProduct::WALL_ID],
+                $product[CartProduct::HEIGHT],
+                $product[CartProduct::WIDTH],
+                $product[CartProduct::DEPTH],
+            );
+            $price = $prices['price'];
+            $count = $cartItem->getCount($product[CartProduct::PRODUCT_ID]);
+            $itemPrice = $price * $count;
+            $totalPrice = $totalPrice + $itemPrice;
+        }
+        return $totalPrice;
     }
 
-    public function getTotalCost(): float
+    public static function getItemCount($product_id): int
     {
-        return 0;
+        $cart = new CartProduct();
+        return $cart->getCount($product_id);
     }
 
-    public function getItem(int $id)
+    public function clearCart()
     {
-
+        $this->session->set($this->cartSessionSection, []);
     }
 
-    public function getPrice(int $id): float
+    public function getProducts()
     {
-        return 1000;
+        return $this->cartProducts;
     }
 
-    public function getOldPrice(int $id): ?float
+    public function deleteItem($product_id)
     {
-        return 2000;
+        $products = $this->cartProducts;
+        unset($products[$product_id]);
+        $this->session->set($this->cartSessionSection, $products);
     }
 
-    public function getDiscount(int $id): ?int
+    public function updateProductCount($product_id, $count): int
     {
-
-    }
-
-    public function addItem(int $id, int $quantity = 1, $params = [])
-    {
-
-    }
-
-    public function changeCount(int $id, int $quantity)
-    {
-
-    }
-
-    public function deleteItem(int $id)
-    {
-
-    }
-
-    /**
-     * Очистка корзины
-     *
-     * @return void
-     */
-    public function clear()
-    {
-        $this->removeCartSessionStorage();
-    }
-
-    protected function findItem($id)
-    {
-
-    }
-
-    protected function checkItemIsProduct($id)
-    {
-
-    }
-
-    protected function checkItemIsAccessory($id)
-    {
-
+        $products = $this->cartProducts;
+        $products[$product_id][CartProduct::COUNT] = $count;
+        $this->session->set($this->cartSessionSection, $products);
+        return $this->getTotalPrice();
     }
 }

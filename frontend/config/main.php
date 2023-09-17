@@ -69,6 +69,13 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'cart' => 'cart/default/index',
+                'cart/add-to-cart' => 'cart/default/add-to-cart',
+                'cart/clear-cart' => 'cart/default/clear-cart',
+                'cart/get-total-count' => 'cart/default/get-total-count',
+                'cart/delete-item' => 'cart/default/delete-item',
+                'cart/update-product-count' => 'cart/default/update-product-count',
+
                 'catalog/default/calculate-price-constructor' => 'catalog/default/calculate-price-constructor',
                 'chinchilles' => 'catalog/default/index',
                 'chinchilles/<slug>' => 'catalog/default/view',
@@ -80,6 +87,7 @@ return [
                 'catalog/<catalog_slug>/<item_slug>' => 'catalog/default/view',
                 'privacy' => 'site/privacy',
                 'delivery' => 'site/delivery',
+
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

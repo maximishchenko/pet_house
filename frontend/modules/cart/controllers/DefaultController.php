@@ -2,6 +2,11 @@
 
 namespace frontend\modules\cart\controllers;
 
+use common\components\Word;
+use frontend\modules\cart\models\Cart;
+use frontend\modules\cart\models\CartProduct;
+use frontend\modules\catalog\models\ProductPrice;
+use Yii;
 use yii\web\Controller;
 
 /**
@@ -15,6 +20,71 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $cart = new Cart();
+        return $this->render('index', [
+            'cart' => $cart,
+        ]);
+    }
+
+    public function actionAddToCart()
+    {
+        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isAjax) {
+
+            $cart = new CartProduct();
+            $cart->product_id = Yii::$app->request->get('product_id');
+            $cart->color_id = Yii::$app->request->get('color');
+            $cart->walls_id = Yii::$app->request->get('walls');
+            $cart->height = Yii::$app->request->get('height');
+            $cart->width = Yii::$app->request->get('width');
+            $cart->depth = Yii::$app->request->get('depth');
+            $cart->count = 1;
+            $cart->addToCart();
+            // name, image, price, totalprice, count
+            $lastProductNameWithImage = $cart->getProductNameWithImage($cart->product_id);
+            $lastProductInCart = [
+                'name' => $lastProductNameWithImage[CartProduct::NAME],
+                'image' => $lastProductNameWithImage[CartProduct::IMAGE],
+                'price' => $cart->getProductPrice($cart->product_id, $cart->color_id, $cart->walls_id, $cart->height, $cart->width, $cart->depth),
+                'total_price' => Cart::getTotalPrice(),
+                'count' => $cart->getCount($cart->product_id),
+                'total_count' => Word::numWord($cart->getCount($cart->product_id), ['товар', 'товара', 'товаров']),
+            ];
+            return json_encode($lastProductInCart);
+            Yii::$app->end();
+        }
+    }
+
+    public function actionClearCart()
+    {
+        // $this->enableCsrfValidation = false;
+        // if (Yii::$app->request->isAjax) {
+            $cart = new Cart();
+            $cart->clearCart();
+        // }
+        // Yii::$app->end();
+    }
+
+    public function actionGetTotalCount()
+    {
+        $cart = new Cart();
+        return $cart->getTotalCount();
+    }
+
+    public function actionDeleteItem($product_id)
+    {
+        $cart = new Cart();
+        $cart->deleteItem($product_id);
+        return $this->redirect("/cart");
+    }
+
+    public function actionUpdateProductCount($product_id, $count)
+    {
+        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isAjax) {
+            $cart = new Cart();
+            return $cart->updateProductCount($product_id, $count);
+        }
+        Yii::$app->end();
     }
 }

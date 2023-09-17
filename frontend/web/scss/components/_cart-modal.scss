@@ -143,7 +143,8 @@
     align-items: center;
 
     &__val {
-        margin: 0 var(--size-xs);
+        //margin: 0 var(--size-xs);
+        margin-right: 0.3em;
     }
 
     &__btn-min,
@@ -164,6 +165,8 @@
     }
 
     &__btn-min {
+        margin-right: var(--size-xs);
+
         &::after {
             height: 2px;
             width: 16px;
@@ -175,6 +178,8 @@
     }
 
     &__btn-plus {
+        margin-left: var(--size-xs);
+
         &::after {
             height: 2px;
             width: 16px;

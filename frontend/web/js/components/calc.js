@@ -60,41 +60,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
+  // TODO указать шаг, уточнить ценообразование
   if (sidebar != null) {
 
     const sliderH = document.getElementById('slider-h');
 
-    noUiSlider.create(sliderH, {
-      start: 20,
-      connect: [true, false],
-      range: {
-        'min': 0,
-        'max': 100
-      }
-    });
-
     const sliderW = document.getElementById('slider-w');
-
-    noUiSlider.create(sliderW, {
-      start: 40,
-      connect: [true, false],
-      range: {
-        'min': 0,
-        'max': 100
-      }
-    });
 
     const sliderG = document.getElementById('slider-g');
 
-    noUiSlider.create(sliderG, {
-      start: 60,
-      connect: [true, false],
-      range: {
-        'min': 0,
-        'max': 100
-      }
-    });
+    if (sliderH != null && sliderW != null && sliderG != null) {
+      
+      noUiSlider.create(sliderH, {
+        start: 20,
+        connect: [true, false],
+        range: {
+          'min': 0,
+          'max': 100
+        }
+      });
+  
+      noUiSlider.create(sliderW, {
+        start: 40,
+        connect: [true, false],
+        range: {
+          'min': 0,
+          'max': 100
+        }
+      });
+  
+      noUiSlider.create(sliderG, {
+        start: 60,
+        connect: [true, false],
+        range: {
+          'min': 0,
+          'max': 100
+        }
+      });
+  
+  
+      sliderH.noUiSlider.on('update', function (values, handle, unencoded) {
+        let item_size_height = document.getElementById("constructor_height");
+        let item_size_height_val = document.getElementById("constructor_height_val");
+        item_size_height.innerHTML = values[handle] ;
+        item_size_height_val.innerHTML = values[handle] ;
+      });
+      sliderW.noUiSlider.on('update', function (values, handle, unencoded) {
+        let item_size_width = document.getElementById("constructor_width");
+        let item_size_width_val = document.getElementById("constructor_width_val");
+        item_size_width.innerHTML = values[handle] ;
+        item_size_width_val.innerHTML = values[handle] ;
+      });
+      sliderG.noUiSlider.on('update', function (values, handle, unencoded) {
+        let item_size_depth = document.getElementById("constructor_depth");
+        let item_size_depth_val = document.getElementById("constructor_depth_val");
+        item_size_depth.innerHTML = values[handle] ;
+        item_size_depth_val.innerHTML = values[handle] ;
+      });
+    }
+
   }
 
 });

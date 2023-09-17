@@ -13,6 +13,8 @@ abstract class CartSession
      */
     protected $cartSessionSection = 'cart';
 
+    protected $cartProducts;
+
     /**
      * Объект сессии
      */
@@ -22,6 +24,7 @@ abstract class CartSession
     {
         $this->session = Yii::$app->session;
         $this->createCartSessionStorageIfNotExists();
+        $this->cartProducts = $this->session->get($this->cartSessionSection);
     }
 
     /**

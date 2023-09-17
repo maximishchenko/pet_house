@@ -34,6 +34,7 @@ class ProductAccessoryLink extends \yii\db\ActiveRecord
             [['product_id', 'accessory_id'], 'integer'],
             [['product_type', 'count'], 'string', 'max' => 255],
             [['product_id', 'accessory_id'], 'unique', 'targetAttribute' => ['product_id', 'accessory_id']],
+            [['count'], 'default', 'value'=> 1],
         ];
     }
 

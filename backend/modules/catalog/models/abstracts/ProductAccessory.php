@@ -12,7 +12,8 @@ use yii\web\UploadedFile;
 /**
  * Аксессуары
  */
-abstract class ProductAccessory extends Product
+// abstract class ProductAccessory extends Product
+class ProductAccessory extends Product
 {   
 
     use fileTrait;

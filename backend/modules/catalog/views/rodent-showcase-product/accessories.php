@@ -1,8 +1,10 @@
 <?php
 
 use yii\data\ActiveDataProvider;
+use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\catalog\models\RodentProduct */
@@ -48,6 +50,25 @@ echo GridView::widget([
             'attribute' => 'count',
         ],
         
+        [
+            'class' => ActionColumn::className(),
+            'contentOptions' => ['style' => 'width:100px;'],
+            'template' => '{delete-accessory}',
+            'buttons' => [
+                'delete-accessory' => function($url, $model, $key) {
+                    return Html::a(
+                        '<i class="fa fa-trash"></i>', $url, []
+                    );
+                },
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'delete-accessory') {
+                        return Url::toRoute(['delete-accessory', 'product_id' => $model->id, 'accessory_id' => $model->accessory_id]);
+                    } else {
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    }
+                }
+            ]
+        ],
     ],
 ]);
 

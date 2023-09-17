@@ -374,6 +374,11 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return ['prompt' => Yii::t('app', 'Choose product category')];
     }
+
+    public function getConstructorCssClass()
+    {
+        return $this->is_available || $this->is_constructor_blocked ? "calc-el__btn-control calc-el__btn-control--dis btn-reset" : "calc-el__btn-control btn-reset";
+    }
     
     /**
      * Генерация данных выпадающего списка свойств в зависимости от типа параметра и вида продукта

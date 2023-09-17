@@ -212,5 +212,10 @@ return [
     'Rodent Accessory' => 'Аксессуары для шиншилл',
     'Rodent Accessory Edit' => 'Управление аксессуарами для шиншилл',
     'Rodent Showcase Accessory Slug hint' => 'ЧПУ параметр аксессуара',
-    
+    'Accessory for Rodent Product: {name}' => 'Аксессуары для {name}',
+    'Add Accessory Record' => "Добавить аксессуар",
+    'Count Product Accessories' => 'Кол-во',
+    'Accessory Record deleted' => 'Удалена связь с аксессуаром',
+    'Accessory Name' => 'Аксессуар',
+    'Accessory Record added' => 'Аксессуар добавлен',
 ];

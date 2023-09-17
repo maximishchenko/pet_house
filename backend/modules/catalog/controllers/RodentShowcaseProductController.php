@@ -184,8 +184,17 @@ class RodentShowcaseProductController extends Controller
         return $this->render('add-accessory', ['model' => $productModel, 'accessoryModel' => $accessoryModel]);
     }
 
-    public function actionDeleteAccessory($accessory_id)
+    public function actionDeleteAccessory($product_id, $accessory_id)
     {
+        $productAccessory = ProductAccessoryLink::findOne(['product_id' => $product_id, 'accessory_id' => $accessory_id]);
+        if ($productAccessory !== null)
+        {
+            $productAccessory->delete();
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Accessory Record deleted'));
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
     /**

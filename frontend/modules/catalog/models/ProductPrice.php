@@ -22,7 +22,13 @@ class ProductPrice
 
     protected $color_id;
 
-    protected $size_id;
+    // protected $size_id;
+
+    protected $height;
+
+    protected $width;
+
+    protected $depth;
 
     protected $walls_id;
 
@@ -35,15 +41,23 @@ class ProductPrice
     protected $wall;
 
 
-    function __construct($product_id, $color_id, $size_id, $walls_id)
+    // function __construct($product_id, $color_id, $height, $width, $depth, $size_id, $walls_id)
+    function __construct($product_id, $color_id, $height, $width, $depth, $walls_id)
     {
         $this->product_id = $product_id;
         $this->color_id = $color_id;
-        $this->size_id = $size_id;
+        
+        // $this->size_id = $size_id;
+        
+        $this->height = $height;
+        $this->width = $width;
+        $this->depth = $depth;
         $this->walls_id = $walls_id;
 
         $this->product = $this->getCurrentProduct();
-        $this->size = $this->getItemSize();
+
+        // $this->size = $this->getItemSize();
+
         $this->color = $this->getItemColor();
         $this->wall = $this->getItemWall();
     }
@@ -63,8 +77,10 @@ class ProductPrice
         $oldPrice = PriceValue::roundToHundreds($oldPrice);
         
         return [
-            static::PRICE_KEY => Yii::$app->formatter->asCurrency($price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]), 
-            static::OLD_PRICE_KEY => Yii::$app->formatter->asCurrency($oldPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100])
+            // static::PRICE_KEY => Yii::$app->formatter->asCurrency($price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]), 
+            // static::OLD_PRICE_KEY => Yii::$app->formatter->asCurrency($oldPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100])
+            static::PRICE_KEY => $price, 
+            static::OLD_PRICE_KEY => $oldPrice,
         ];
     }
 
@@ -77,10 +93,10 @@ class ProductPrice
     /**
      * Возвращает данные размеров, заданных в конструкторе
      */
-    protected function getItemSize()
-    {
-        return PropertySize::find()->where(['status' => Status::STATUS_ACTIVE, 'id' => $this->size_id])->one();
-    }
+    // protected function getItemSize()
+    // {
+    //     return PropertySize::find()->where(['status' => Status::STATUS_ACTIVE, 'id' => $this->size_id])->one();
+    // }
 
     /**
      * Возвращает данные цвета, заданного в конструкторе
@@ -107,14 +123,23 @@ class ProductPrice
         $baseHeight = Size::convertMilimeterToMeter($this->product->size->height);
         $baseWidth = Size::convertMilimeterToMeter($this->product->size->width);
         $baseDepth = Size::convertMilimeterToMeter($this->product->size->depth);
+        
+        // TODO удалить после проверки
         // Приведение форматов указанных размеров из мм в м
-        $sizeHeight = Size::convertMilimeterToMeter($this->size->height);
-        $sizeWidth = Size::convertMilimeterToMeter($this->size->width);
-        $sizeDepth = Size::convertMilimeterToMeter($this->size->depth);
+        // $sizeHeight = Size::convertMilimeterToMeter($this->size->height);
+        // $sizeWidth = Size::convertMilimeterToMeter($this->size->width);
+        // $sizeDepth = Size::convertMilimeterToMeter($this->size->depth);
+
+        $sizeHeight = Size::convertMilimeterToMeter($this->height);
+        $sizeWidth = Size::convertMilimeterToMeter($this->width);
+        $sizeDepth = Size::convertMilimeterToMeter($this->depth);
+
         // Чистая стоимость каркаса в исходных размерах
         $base = $this->product->price - $this->product->wall->price - $this->product->color->price;
+
         // Базовая стоимость каркаса в исходных размерах
         $basePriceSource = $base / ($baseHeight * $baseWidth * $baseDepth);
+
         // Базовая стоимость каркаса в размерах, указанных в конструкторе
         $basePrice = $basePriceSource * ($sizeHeight * $sizeWidth * $sizeDepth);
         return $basePrice;
@@ -127,12 +152,12 @@ class ProductPrice
      */
     protected function getAccessoriesPrice(): int
     {
-        // $accessoriesPrice = 0;
-        // foreach ($this->product->activeAccessories as $accessory) {
-        //     $accessoriesPrice += $accessory->price;
-        // }
-        // return $accessoriesPrice;
-        return 0;
+        $accessoriesPrice = 0;
+        foreach ($this->product->activeAccessories as $accessory) {
+            $accessoriesPrice += $accessory->price;
+        }
+        return $accessoriesPrice;
+        // return 0;
     }
 
     /**

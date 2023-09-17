@@ -1,7 +1,5 @@
 <?php
 
-use yii\widgets\ListView;
-
 $this->title = $sections->getSectionTitle();
 $this->params['breadcrumbs'][] = $sections->getSectionName();
 
@@ -43,17 +41,6 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
                 <!-- Элементы каталога -->
                 <div class="catalog__list">
                     <?= Yii::$app->controller->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]); ?>
-                    <?php
-                    // echo ListView::widget([
-                    //     'dataProvider' => $dataProvider,
-                    //     'layout' => "{items}",  
-                    //     'itemView' => '_catalog_items',
-                    //     'options' => [
-                    //         'tag' => false,
-                    //     ],
-                    // ]); 
-                    ?>
-                    <?php // $this->render("_catalog_items"); ?>
                 </div>
 
             </div>

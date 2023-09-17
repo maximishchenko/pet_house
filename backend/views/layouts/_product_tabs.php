@@ -19,7 +19,4 @@ function isActionActive(array $actArray) {
   <li class="nav-item">
     <?= Html::a('Аксессуары', ['accessories', 'id' => $model->id], ['class' => isActionActive(['accessories'])]); ?>
   </li>
-  <li class="nav-item">
-    <?= Html::a('Калькуляция', ['price', 'id' => $model->id], ['class' => isActionActive(['price'])]); ?>
-  </li>
 </ul>

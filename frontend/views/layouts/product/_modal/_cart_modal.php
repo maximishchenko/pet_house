@@ -2,6 +2,7 @@
 
 use common\components\Word;
 use frontend\modules\cart\models\Cart;
+use frontend\modules\cart\models\CartProduct;
 use yii\helpers\Url;
 
 ?>
@@ -28,11 +29,11 @@ use yii\helpers\Url;
                 </span>
                 <div class="cart-sidebar-el__price-wrapper">
                     <div class="counter">
-                        <button class="btn-reset counter__btn-min"></button>
+                        <button class="btn-reset counter__btn-min" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>"></button>
                         <span class="counter__val cart-sidebar-count-item">
                             <!-- 2 -->
                         </span>
-                        <button class="btn-reset counter__btn-plus"></button>
+                        <button class="btn-reset counter__btn-plus" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>"></button>
                     </div>
                     <span class="cart-sidebar-el__price">
                         <span class="cart-sidebar-price-item">
@@ -48,7 +49,7 @@ use yii\helpers\Url;
             <span class="cart-sidebar__price-sub">
               Итого <span class="cart-sidebar-totalcount-item"></span> на сумму
             </span>
-            <span class="cart-sidebar-totalprice-item">  
+            <span class="cart-sidebar-totalprice-item total__cart__price">  
             </span> ₽
           </span>
         </div>

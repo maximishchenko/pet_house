@@ -218,4 +218,11 @@ return [
     'Accessory Record deleted' => 'Удалена связь с аксессуаром',
     'Accessory Name' => 'Аксессуар',
     'Accessory Record added' => 'Аксессуар добавлен',
+    'Review' => 'Отзывы',
+    'Reviews' => 'Отзывы',
+    'Review Edit' => 'Управление и наполнение содержимого раздела "Отзывы"',
+    'Avatar' => 'Аватар',
+    'Is Favorite' => 'Показывать на главной',
+    'Review Text' => 'Текст отзыва',
+    'Client Review Name' => 'Ф.И.О.',
 ];

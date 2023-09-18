@@ -43,6 +43,7 @@ class DefaultController extends Controller
             // name, image, price, totalprice, count
             $lastProductNameWithImage = $cart->getProductNameWithImage($cart->product_id);
             $lastProductInCart = [
+                'product_id' => $cart->product_id,
                 'name' => $lastProductNameWithImage[CartProduct::NAME],
                 'image' => $lastProductNameWithImage[CartProduct::IMAGE],
                 'price' => $cart->getProductPrice($cart->product_id, $cart->color_id, $cart->walls_id, $cart->height, $cart->width, $cart->depth),

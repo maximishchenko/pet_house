@@ -178,6 +178,9 @@ function addToCart()
             document.querySelector(".cart-sidebar-price-item").innerHTML = sidebar_data['price']['price'].toLocaleString('ru-RU', { minimumFractionDigits: 0 });
             document.querySelector(".cart-sidebar-totalcount-item").innerHTML = sidebar_data['total_count'];
             document.querySelector(".cart-sidebar-totalprice-item").innerHTML = sidebar_data['total_price'];
+
+            document.querySelector(".counter__btn-min").setAttribute('data-product-id', sidebar_data['product_id']);
+            document.querySelector(".counter__btn-plus").setAttribute('data-product-id', sidebar_data['product_id']);
             
             sideBarToggle();         
         },

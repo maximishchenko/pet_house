@@ -24,7 +24,9 @@
         "yii2tech/config": "^1.0",
         "yii2tech/crontab": "^1.0",
         "kartik-v/yii2-widget-select2": "^2.2",
-        "devanych/yii2-cart": "*"
+        "devanych/yii2-cart": "*",
+        "vova07/yii2-imperavi-widget": "*",
+        "kartik-v/yii2-widget-datepicker": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

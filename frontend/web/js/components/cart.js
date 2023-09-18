@@ -112,11 +112,13 @@ function getConstructorPriceAjax()
         beforeSend: function () {
         },
         complete: function (data) {
+
             data = JSON.parse(data.responseText);
             priceValueFormatted = data.price.toLocaleString('ru-RU', { minimumFractionDigits: 0 });
             oldPriceValueFormatted = data.old_price.toLocaleString('ru-RU', { minimumFractionDigits: 0 });
             document.getElementById("constructor_price").innerHTML = priceValueFormatted;
             document.getElementById("constructor_price_old").innerHTML = oldPriceValueFormatted;
+            
         },
         error: function () {
         }

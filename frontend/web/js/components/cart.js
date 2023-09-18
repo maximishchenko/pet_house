@@ -209,7 +209,7 @@ const counterVal = document.querySelector('.counter__val');
 const counterDec = document.querySelector('.counter__btn-min');
 const counterInc = document.querySelector('.counter__btn-plus');
 
-let cartCounter = counterVal.textContent;
+let cartCounter = counterVal?.textContent;
 
 function updateCartCount(product_id, count)
 {

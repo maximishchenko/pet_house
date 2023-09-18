@@ -19,6 +19,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x60x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '60',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x70x40'] = [
     'id' => 2,
@@ -29,6 +32,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x60x50'] = [
     'id' => 3,
@@ -39,6 +45,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x60x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '60',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x80x40'] = [
     'id' => 4,
@@ -49,6 +58,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x80x50'] = [
     'id' => 5,
@@ -59,6 +71,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x60x40'] = [
     'id' => 6,
@@ -69,6 +84,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x60x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '60',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x70x40'] = [
     'id' => 7,
@@ -79,6 +97,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x70x50'] = [
     'id' => 8,
@@ -89,6 +110,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '70',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x80x40'] = [
     'id' => 9,
@@ -99,6 +123,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x80x50'] = [
     'id' => 10,
@@ -109,6 +136,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x60x40'] = [
     'id' => 11,
@@ -119,6 +149,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x60x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '140',
+    'width_value' => '60',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x70x40'] = [
     'id' => 12,
@@ -129,6 +162,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '140',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x70x50'] = [
     'id' => 13,
@@ -139,6 +175,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '170',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x80x40'] = [
     'id' => 14,
@@ -149,6 +188,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '140',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x80x50'] = [
     'id' => 15,
@@ -159,6 +201,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '150',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x60x40'] = [
     'id' => 16,
@@ -169,6 +214,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x60x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '60',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x40'] = [
     'id' => 17,
@@ -179,6 +227,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x50'] = [
     'id' => 18,
@@ -189,6 +240,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x40'] = [
     'id' => 19,
@@ -199,6 +253,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x50'] = [
     'id' => 20,
@@ -209,6 +266,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x40'] = [
     'id' => 21,
@@ -219,6 +279,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x40'] = [
     'id' => 22,
@@ -229,6 +292,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x50'] = [
     'id' => 23,
@@ -239,6 +305,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '70',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x40'] = [
     'id' => 24,
@@ -249,6 +318,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x50'] = [
     'id' => 25,
@@ -259,6 +331,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 ### Угловые
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x60x60'] = [
@@ -270,6 +345,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x60x60'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '60',
+    'depth_value' => '60',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x70x70'] = [
     'id' => 27,
@@ -280,6 +358,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x70x70'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '70',
+    'depth_value' => '70',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x80x80'] = [
     'id' => 28,
@@ -290,6 +371,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'100x80x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '100',
+    'width_value' => '80',
+    'depth_value' => '80',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x60x60'] = [
     'id' => 29,
@@ -300,6 +384,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x60x60'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '60',
+    'depth_value' => '60',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x70x70'] = [
     'id' => 30,
@@ -310,6 +397,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x70x70'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '70',
+    'depth_value' => '70',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x80x80'] = [
     'id' => 31,
@@ -320,6 +410,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'120x80x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '120',
+    'width_value' => '80',
+    'depth_value' => '80',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x60x60'] = [
     'id' => 32,
@@ -330,6 +423,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x60x60'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '140',
+    'width_value' => '60',
+    'depth_value' => '60',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x70x70'] = [
     'id' => 33,
@@ -340,6 +436,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x70x70'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '140',
+    'width_value' => '70',
+    'depth_value' => '70',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x80x80'] = [
     'id' => 34,
@@ -350,6 +449,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'140x80x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '140',
+    'width_value' => '80',
+    'depth_value' => '80',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x60x60'] = [
     'id' => 35,
@@ -360,6 +462,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x60x60'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '60',
+    'depth_value' => '60',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x70'] = [
     'id' => 36,
@@ -370,6 +475,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x70'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '70',
+    'depth_value' => '70',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x80'] = [
     'id' => 37,
@@ -380,6 +488,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '80',
+    'depth_value' => '80',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x60x60'] = [
     'id' => 38,
@@ -390,6 +501,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x60x60'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '60',
+    'depth_value' => '60',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x70'] = [
     'id' => 39,
@@ -400,6 +514,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x70'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '70',
+    'depth_value' => '70',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x80'] = [
     'id' => 40,
@@ -410,6 +527,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '80',
+    'depth_value' => '80',
 ];
 ### Двойные
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x40'] = [
@@ -421,6 +541,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x50'] = [
     'id' => 42,
@@ -431,6 +554,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '70',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x40'] = [
     'id' => 43,
@@ -441,6 +567,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x50'] = [
     'id' => 44,
@@ -451,6 +580,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x90x50'] = [
     'id' => 45,
@@ -461,6 +593,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'160x90x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '160',
+    'width_value' => '90',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x40'] = [
     'id' => 46,
@@ -471,6 +606,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x50'] = [
     'id' => 47,
@@ -481,6 +619,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '70',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x40'] = [
     'id' => 48,
@@ -491,6 +632,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x50'] = [
     'id' => 49,
@@ -501,6 +645,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x90x50'] = [
     'id' => 50,
@@ -511,6 +658,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'180x90x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '180',
+    'width_value' => '90',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x70x40'] = [
     'id' => 51,
@@ -521,6 +671,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x70x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '200',
+    'width_value' => '70',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x70x50'] = [
     'id' => 52,
@@ -531,6 +684,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x70x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '200',
+    'width_value' => '70',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x80x40'] = [
     'id' => 53,
@@ -541,6 +697,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x80x40'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '200',
+    'width_value' => '80',
+    'depth_value' => '40',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x80x50'] = [
     'id' => 54,
@@ -551,6 +710,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x80x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '200',
+    'width_value' => '80',
+    'depth_value' => '50',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x90x50'] = [
     'id' => 55,
@@ -561,6 +723,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE.'200x90x50'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '200',
+    'width_value' => '90',
+    'depth_value' => '50',
 ];
 
 
@@ -575,6 +740,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE.'90x200x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '90',
+    'width_value' => '200',
+    'depth_value' => '80',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE.'95x200x80'] = [
     'id' => 57,
@@ -585,6 +753,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE.'95x200x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '95',
+    'width_value' => '200',
+    'depth_value' => '80',
 ];
 $property[CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE.'95x135x80'] = [
     'id' => 58,
@@ -595,6 +766,9 @@ $property[CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE.'95x135x80'] = [
     'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
     'created_at' => time(),
     'updated_at' => time(),
+    'height_value' => '95',
+    'width_value' => '135',
+    'depth_value' => '80',
 ];
 
 

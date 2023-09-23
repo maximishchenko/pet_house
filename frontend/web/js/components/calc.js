@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let galleryBlock = mobWrapper.querySelector('.product-gallary');
 
-      if (screen.width < 768 && galleryBlock == null) {
+   /*    if (screen.width < 768 && galleryBlock == null) {
 
         mobWrapper.appendChild(gallary);
         mobWrapper.appendChild(calcBages);
         calcMobWrapper.prepend(calc);
 
-      } else if (screen.width > 768 && galleryBlock) {
+      } else if (screen.width > 768 && galleryBlock) { */
 
         gallaryWrapper.prepend(gallary);
         calcBackWrapper.appendChild(calc);
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         floatSidebar.forceUpdate();
 
       }
-    }
+    //}
 
     addEventListener("resize", () => {
       adapt();

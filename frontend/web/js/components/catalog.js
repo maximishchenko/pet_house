@@ -37,8 +37,9 @@ if (document.querySelector('.catalog-bar__btn--filter')) {
       let btnText = el.textContent;
 
       sortBtnText.textContent = btnText;
-      sortInp.value = btnText;
-
+      sortInp.value = el.getAttribute('data-sort-param');
+      
+    
       sortItemBtn.forEach(el => {
         el.classList.remove('catalog-bar__sort-item--active');
       });

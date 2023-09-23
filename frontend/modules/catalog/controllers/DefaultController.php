@@ -63,6 +63,7 @@ class DefaultController extends Controller
 
 
         if (Yii::$app->request->isAjax) {
+            // print_r(Yii::$app->request->queryParams); die();
             return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
         } else {
             return $this->render('index', [

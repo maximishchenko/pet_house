@@ -120,8 +120,8 @@ use yii\widgets\ActiveForm;
         <?php endforeach;?>
       </ul>
     </fieldset>
-    <?php endif; ?>
-    <input type="text" class="visually-hidden sort-inp"><!-- TODO Инпут для сортировки-->
+    <?php endif; ?> <!-- visually-hidden -->
+    <input type="text" class="sort-inp" name="order" value="name"><!-- TODO Инпут для сортировки-->
     <div class="catalog-sidebar__controls">
       <button type="submimt" class="catalog-sidebar__btn btn-reset btn-b" type="button">
         <?= Yii::t('app', 'Do Search'); ?>

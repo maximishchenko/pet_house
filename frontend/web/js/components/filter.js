@@ -13,69 +13,65 @@ filterCategory.forEach(element => {
   })
 });
 
-const catalogForm = document.querySelector('#catalog_search');
-const catalogFormInputs = document.querySelectorAll('#catalog_search input');
+if (document.querySelector('#catalog_search')) {
+  function searchFormSubmit() {
+    const catalogForm = document.querySelector('#catalog_search');
+    const queryString = new URLSearchParams(new FormData(catalogForm)).toString();
+    let searchUrlAction = `${catalogForm.action}?${queryString}`;
 
-function handleFormSubmit(event) {
-  event.preventDefault()
+    fetch(searchUrlAction, {
+      method: catalogForm.method,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+    }).then((response) => response.text())
+      .then((data) => {
+        document.querySelector('.catalog__list').innerHTML = data;
+      });
 
-  let formData = new FormData(catalogForm);
-  let formDataString = new URLSearchParams(formData).toString();
+    let url = window.location.origin + window.location.pathname
+    let searchUrl = url + "?" + formDataString;
+    history.replaceState("", "", searchUrl);
+  }
 
-  const queryString = new URLSearchParams(new FormData(catalogForm)).toString();
-  let searchUrlAction = `${catalogForm.action}?${queryString}`;
+  const catalogFormInputs = document.querySelectorAll('#catalog_search input');
 
-  fetch(searchUrlAction, {
-    method: catalogForm.method,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
-      'X-Requested-With': 'XMLHttpRequest'
-    },
-  }).then((response) => response.text())
-    .then((data) => {
-      document.querySelector('.catalog__list').innerHTML = data;
+  catalogFormInputs.forEach(el => {
+    el.addEventListener('change', searchFormSubmit);
+  })
+
+  const sortItemBtn = document.querySelectorAll('.catalog-bar__sort-item'),
+    sortBtn = document.querySelector('.catalog-bar__sort-title'),
+    sortBtnText = document.querySelector('.catalog-bar__sort-title--select'),
+    sortWrapper = document.querySelector('.catalog-bar__sort-wrapper'),
+    sortInp = document.querySelector('.sort-inp');
+
+  function showSort() {
+    sortWrapper.classList.toggle('catalog-bar__sort-wrapper--active');
+  }
+
+  sortItemBtn.forEach(el => {
+    el.addEventListener('click', () => {
+      let btnText = el.textContent;
+
+      sortBtnText.textContent = btnText;
+      sortInp.value = el.getAttribute('data-sort-param');
+
+
+      sortItemBtn.forEach(el => {
+        el.classList.remove('catalog-bar__sort-item--active');
+      });
+
+      el.classList.add('catalog-bar__sort-item--active');
+
+      showSort();
+      searchFormSubmit();
     });
-
-  let url = window.location.origin + window.location.pathname
-  let searchUrl = url + "?" + formDataString;
-  history.replaceState("", "", searchUrl);
-}
-
-catalogForm?.addEventListener('submit', () => {
-  handleFormSubmit();
-})
-
-catalogFormInputs?.forEach(item => {
-  item.addEventListener('change', handleFormSubmit);
-
-})
-
-
-
-/* $('#catalog_search').on('beforeSubmit', function (e) {
-  alert('before submit');
-}).on('submit', function (e) {
-  e.preventDefault();
-  var form = $(this);
-  var formData = form.serialize();
-  console.log(formData)
-  $.ajax({
-    url: form.attr('action'),
-    type: form.attr('method'),
-    data: formData,
-    beforeSend: function () {
-    },
-    complete: function (data) {
-      console.log(data)
-      $('.catalog__list').html(data.responseText);
-      var url = window.location.origin + window.location.pathname
-      var searchUrl = url + "?" + formData;
-      history.replaceState("", "", searchUrl);
-
-    },
-    error: function () {
-      console.log("Something went wrong");
-    }
   });
-}); */
+
+  sortBtn.addEventListener('click', () => {
+    showSort();
+  });
+}

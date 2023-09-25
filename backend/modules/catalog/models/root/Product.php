@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\models\root;
 
 use backend\interfaces\SingleTableInterface;
+use backend\modules\catalog\models\abstracts\PropertySize;
 use backend\modules\catalog\models\DogCageAccessory;
 use backend\modules\catalog\models\DogCageProduct;
 use backend\modules\catalog\models\items\CatalogTypeItems;
@@ -273,7 +274,9 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
      */
     public function getAvailableProductSizes()
     {
+        // TODO Размеры из типов
         $sizes = Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $this->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE])->all();
+        // $sizes = $this->hasOne(PropertySize::className(), ['id' => 'size_id'])->onCondition(['status' => Status::STATUS_ACTIVE]);
         return $sizes;
     }
 

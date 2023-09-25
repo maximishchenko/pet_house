@@ -24,23 +24,22 @@ use yii\helpers\Url;
               <img class="cart-sidebar-el__img cart-sidebar-img-item" src="" alt="">
             </div>
             <div class="cart-sidebar-el__inner">
-                <span class="cart-sidebar-el__title cart-sidebar-title-item">
-                    <!-- Прямая витрина Р2B -->
-                </span>
-                <div class="cart-sidebar-el__price-wrapper">
-                    <div class="counter">
-                        <button class="btn-reset counter__btn-min" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>"></button>
-                        <span class="counter__val cart-sidebar-count-item">
-                            <!-- 2 -->
-                        </span>
-                        <button class="btn-reset counter__btn-plus" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>"></button>
-                    </div>
-                    <span class="cart-sidebar-el__price">
-                        <span class="cart-sidebar-price-item">
-                            <!-- 40 000 -->
-                        </span> ₽
-                    </span>
+              <span class="cart-sidebar-el__title cart-sidebar-title-item">
+                <!-- Прямая витрина Р2B -->
+              </span>
+              <div class="cart-sidebar-el__price-wrapper">
+                <div class="counter">
+                  <button class="btn-reset counter__btn-min" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>"></button>
+                  <span class="counter__val cart-sidebar-count-item">
+                  </span>
+                  <button class="btn-reset counter__btn-plus" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>"></button>
                 </div>
+                <span class="cart-sidebar-el__price">
+                  <span class="cart-sidebar-price-item">
+                    <!-- 40 000 -->
+                  </span> ₽
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -49,8 +48,10 @@ use yii\helpers\Url;
             <span class="cart-sidebar__price-sub">
               Итого <span class="cart-sidebar-totalcount-item"></span> на сумму
             </span>
-            <span class="cart-sidebar-totalprice-item total__cart__price">  
-            </span> ₽
+            <span>
+              <span class="cart-sidebar-totalprice-item total__cart__price">
+              </span> ₽
+            </span>
           </span>
         </div>
 
@@ -58,7 +59,7 @@ use yii\helpers\Url;
           Оформитиь заказ
         </a>
 
-           <div class="add-accessories mt-xxl">
+        <div class="add-accessories mt-xxl">
           <h2 class="">С этим товаром покупают</h2>
           <div class="swiper add-accessories__swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">

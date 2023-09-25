@@ -204,11 +204,6 @@ if (cartSidebarBtnCloase != null) {
     })
 }
 
-const counterVal = document.querySelector('.counter__val');
-const counterDec = document.querySelector('.counter__btn-min');
-const counterInc = document.querySelector('.counter__btn-plus');
-let cartCounter = counterVal?.textContent;
-
 
 function updateCartCount(product_id, count) {
     fetch(`/cart/update-product-count?product_id=${product_id}&count=${count}`, {
@@ -229,9 +224,15 @@ function updateCartCount(product_id, count) {
         })
 }
 
+const counterVal = document.querySelector('.counter__val');
+const counterDec = document.querySelector('.counter__btn-min');
+const counterInc = document.querySelector('.counter__btn-plus');
+
 if (counterVal != null && counterDec != null && counterInc != null) {
 
-    
+
+    let cartCounter = counterVal.textContent; //TODO При загрузки страницы суда попадает '<!-- 2 -->' по этому он себя так и ведет
+
 
     counterInc.addEventListener('click', () => {
 
@@ -256,3 +257,4 @@ if (counterVal != null && counterDec != null && counterInc != null) {
     })
 
 }
+

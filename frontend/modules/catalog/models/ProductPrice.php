@@ -67,10 +67,11 @@ class ProductPrice
         // Базовая стоимость каркаса в размерах, указанных в конструкторе
         $basePrice = $this->getBasePrice();
         // Стоимость аксессуаров, включенных в стоимость витрины
-        $accessoriesPrice = $this->getAccessoriesPrice();
+        // $accessoriesPrice = $this->getAccessoriesPrice();
         // Стоимость комплектующих, указанных в конструкторе (краска, стены и т.п.)
         $itemsPrice = $this->getItemsPrice();
-        $price = $basePrice + $accessoriesPrice + $itemsPrice;
+        // $price = $basePrice + $accessoriesPrice + $itemsPrice;
+        $price = $basePrice + $itemsPrice;
         $price = PriceValue::roundToHundreds($price);
 
         $oldPrice = $this->getOldPrice($price);
@@ -135,13 +136,14 @@ class ProductPrice
         $sizeDepth = Size::convertMilimeterToMeter($this->depth);
 
         // Чистая стоимость каркаса в исходных размерах
-        $base = $this->product->price - $this->product->wall->price - $this->product->color->price;
-
+        $base = ($this->product->price - $this->product->wall->price - $this->product->color->price) / ($baseHeight * $baseWidth * $baseDepth);
+        
         // Базовая стоимость каркаса в исходных размерах
-        $basePriceSource = $base / ($baseHeight * $baseWidth * $baseDepth);
+        // $basePriceSource = $base / ($baseHeight * $baseWidth * $baseDepth);
 
         // Базовая стоимость каркаса в размерах, указанных в конструкторе
-        $basePrice = $basePriceSource * ($sizeHeight * $sizeWidth * $sizeDepth);
+        // $basePrice = $basePriceSource * ($sizeHeight * $sizeWidth * $sizeDepth);
+        $basePrice = $base * $sizeHeight * $sizeWidth * $sizeDepth;
         return $basePrice;
     }
 

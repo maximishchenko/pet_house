@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 <?php $form = ActiveForm::begin([
         'id' => 'order-form',
         'options' => [
-            'class' => 'order-form'
+            'class' => 'order-form order-form--cart'
         ],
     ]); ?>
 

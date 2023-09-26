@@ -167,7 +167,7 @@ use yii\helpers\Url;
   </div>
 </div>
 
-<div class="graph-modal">
+<div class="graph-modal graph-modal-personal">
   <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="personal-order">
     <button class="btn-reset js-modal-close graph-modal__close" aria-label="Закрыть модальное окно">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -179,8 +179,8 @@ use yii\helpers\Url;
         </g>
       </svg>
     </button>
-    <div class="graph-modal__content">
-      <form class="order-form personal-form" action="" method="post">
+    <div class="graph-modal__content graph-modal__content-personal">
+      <form class="order-form personal-form" action="/" method="post">
         <input type="hidden" name="_csrf-frontend" value="cUcekswBtHKOpsooMQ2qlglwEfPjkvr9dv9kpmJAuhwBCnDBu1LlC7_0-gV6Wuf-fwMku6nhv64Uiyn1BAeXfg==">
         <h3 class="order-form__title">Персональный заказ</h3>
 
@@ -191,6 +191,8 @@ use yii\helpers\Url;
         <input class="order-form__inp input-reset" type="email" placeholder="Почта">
 
         <textarea class="order-form__inp input-reset" name="coment" id="" cols="20" rows="7" placeholder="Комментарий"></textarea>
+
+        <input class="personal-file-inp" type="file" multiple="multiple">
 
         <p class="order-form__politics">
           Нажимая на кнопку «Оформить заказ», вы соглашаетесь с <a class="order-form__link" href="/privacy">Политикой конфиденциальности</a> </p>

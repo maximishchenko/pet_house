@@ -185,6 +185,31 @@ function addToCart() {
             document.querySelector(".counter__btn-min").setAttribute('data-product-id', data.product_id);
             document.querySelector(".counter__btn-plus").setAttribute('data-product-id', data.product_id);
             sideBarToggle();
+
+            let cartCounter = counterVal.textContent;
+
+
+            counterInc.addEventListener('click', () => {
+
+                let product_id = counterInc.getAttribute('data-product-id');
+
+                if (cartCounter < 50) {
+                    cartCounter++
+                    counterVal.textContent = cartCounter;
+                    updateCartCount(product_id, cartCounter);
+                }
+            })
+
+            counterDec.addEventListener('click', () => {
+
+                let product_id = counterDec.getAttribute('data-product-id');
+
+                if (cartCounter > 1) {
+                    cartCounter--
+                    counterVal.textContent = cartCounter;
+                    updateCartCount(product_id, cartCounter);
+                }
+            })
         });
 }
 

@@ -1,6 +1,8 @@
 <?php
 
 use backend\modules\catalog\models\root\Product;
+use backend\modules\content\models\Review;
+
 ?>
 <section class="hero mb-n">
     <div class="swiper hero-slider">
@@ -225,42 +227,32 @@ use backend\modules\catalog\models\root\Product;
     <div class="meadia-reviews">
         <div class="container">
             <div class="meadia-reviews__wrapper">
+
+            <?php if (isset($reviews) && !empty($reviews)): ?>
+
+                <?php foreach($reviews as $review): ?>
+
                 <div class="meadia-reviews__el" data-aos-offset="-500" data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="top-bottom">
-                    <p class="meadia-reviews__text">Пришлось немного попривыкать,
-                        но наш Борька справился! Уже начал грызть полки, но ничего, мы знаем, где взять новые, если что ) Думаю,
-                        обратимся к вам снова!</p>
+                    <p class="meadia-reviews__text">
+                        <?= $review->text; ?>
+                    </p>
                     <div class="meadia-reviews__row">
-                        <div class="meadia-reviews__photo" style="background-image: url(img/avatars/3.jpg);"></div>
+                        <div class="meadia-reviews__photo" style="background-image: url(<?= '/' . Review::UPLOAD_PATH . $review->image; ?>);"></div>
                         <div class="meadia-reviews__autor">
-                            <span class="meadia-reviews__name">Елена</span>
-                            <span class="meadia-reviews__date">25 января</span>
+                            <span class="meadia-reviews__name">
+                                <?= $review->name; ?>
+                            </span>
+                            <span class="meadia-reviews__date">
+                                <?= $review->created_at; ?>
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="meadia-reviews__el" data-aos="fade-up" data-aos-offset="-500" data-aos-duration="2200" data-aos-anchor-placement="top-bottom">
-                    <p class="meadia-reviews__text">Пришлось немного попривыкать,
-                        но наш Борька справился! Уже начал грызть полки, но ничего, мы знаем, где взять новые, если что ) Думаю,
-                        обратимся к вам снова!</p>
-                    <div class="meadia-reviews__row">
-                        <div class="meadia-reviews__photo" style="background-image: url(img/avatars/1.jpg);"></div>
-                        <div class="meadia-reviews__autor">
-                            <span class="meadia-reviews__name">Елена</span>
-                            <span class="meadia-reviews__date">25 января</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="meadia-reviews__el" data-aos="fade-up" data-aos-offset="-500" data-aos-duration="2400" data-aos-anchor-placement="top-bottom">
-                    <p class="meadia-reviews__text">Пришлось немного попривыкать,
-                        но наш Борька справился! Уже начал грызть полки, но ничего, мы знаем, где взять новые, если что ) Думаю,
-                        обратимся к вам снова!</p>
-                    <div class="meadia-reviews__row">
-                        <div class="meadia-reviews__photo" style="background-image: url(img/avatars/2.jpg);"></div>
-                        <div class="meadia-reviews__autor">
-                            <span class="meadia-reviews__name">Елена</span>
-                            <span class="meadia-reviews__date">25 января</span>
-                        </div>
-                    </div>
-                </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+
             </div>
         </div>
     </div>

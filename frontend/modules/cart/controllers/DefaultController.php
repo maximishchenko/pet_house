@@ -5,6 +5,7 @@ namespace frontend\modules\cart\controllers;
 use common\components\Word;
 use frontend\modules\cart\models\Cart;
 use frontend\modules\cart\models\CartProduct;
+use frontend\modules\cart\models\Order;
 use frontend\modules\catalog\models\ProductPrice;
 use Yii;
 use yii\web\Controller;
@@ -21,8 +22,17 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $cart = new Cart();
+        $order = new Order();
+    
+        if ($order->load(Yii::$app->request->post()) && $order->save()) {
+            // TODO clear cart
+            // TODO add product_items
+            return $this->refresh();
+        }
+
         return $this->render('index', [
             'cart' => $cart,
+            'order' => $order,
         ]);
     }
 

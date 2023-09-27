@@ -87,4 +87,10 @@ return [
     'Catalog Type Block' => 'Тип витрины',
     'Catalog Height Block' => 'Высота витрины',
     'FAQ_BOTTOM' => 'Вопросы и ответы',
+    'Order Name' => "Ф.И.О.*",
+    'Order Phone' => "Телефон*", 
+    'Order Email' => "Почта", 
+    'Order Comment' => "Комментарий",
+    'Order Delivery Address' => "Адрес доставки*",
+    "Our clients reviews" => "Отзывы наших клиентов",
 ];

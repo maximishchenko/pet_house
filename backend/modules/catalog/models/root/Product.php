@@ -10,6 +10,7 @@ use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\ProductImage;
+use backend\modules\catalog\models\PropertyLink;
 use backend\modules\catalog\models\query\ProductQuery;
 use backend\modules\catalog\models\RodentShowcaseAccessory;
 use backend\modules\catalog\models\RodentShowcaseProduct;
@@ -274,9 +275,10 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
      */
     public function getAvailableProductSizes()
     {
-        // TODO Размеры из типов
-        $sizes = Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $this->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE])->all();
-        // $sizes = $this->hasOne(PropertySize::className(), ['id' => 'size_id'])->onCondition(['status' => Status::STATUS_ACTIVE]);
+        $type_id = $this->type_id;
+        $typeSizes = PropertyLink::find()->select(['target_id'])->where(['source_id' => $type_id, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE, 'property_type' => $this->product_type])->asArray()->all();
+        $typeSizesArray = ArrayHelper::getColumn($typeSizes, 'target_id');
+        $sizes = Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $this->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE, 'id' => $typeSizesArray])->all();
         return $sizes;
     }
 

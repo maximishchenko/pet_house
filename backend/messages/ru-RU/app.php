@@ -225,4 +225,11 @@ return [
     'Is Favorite' => 'Показывать на главной',
     'Review Text' => 'Текст отзыва',
     'Client Review Name' => 'Ф.И.О.',
+    'Orders' => 'Заказы',
+    'Order Name' => "Ф.И.О.",
+    'Order Phone' => 'Тел.',
+    'Order Email' => 'Email',
+    'Order Comment' => 'Комментарий',
+    'Delivery Type' => 'Тип доставки',
+    'Delivery Address' => 'Адрес доставки'
 ];

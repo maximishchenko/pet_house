@@ -8,6 +8,7 @@ use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Product as RootProduct;
 use backend\modules\catalog\models\root\Property;
 use backend\modules\content\models\Question;
+use backend\modules\content\models\Review;
 use common\models\Status;
 use yii\web\Controller;
 use frontend\models\Sections;
@@ -81,6 +82,7 @@ class DefaultController extends Controller
     {
         $sections = new Sections();
         $model = $this->findModel($slug);
+        $reviews = Review::find()->where(['status' => Status::STATUS_ACTIVE, 'is_favorite' => false])->all();
 
         $questions = Question::find()
                     ->where([
@@ -103,6 +105,7 @@ class DefaultController extends Controller
             'questions' => $questions,
             'sections' => $sections,
             'accessories' => $accessories,
+            'reviews' => $reviews,
         ]);
     }
 

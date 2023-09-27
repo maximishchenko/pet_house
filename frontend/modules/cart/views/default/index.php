@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $this->render('//layouts/_item_slider'); ?>
 
                 <!-- Форма оформления заказа -->
-                <?= $this->render('_cart_order_form'); ?>
+                <?= $this->render('_cart_order_form', ['order' => $order]); ?>
         </div>
     </div>
 </section>

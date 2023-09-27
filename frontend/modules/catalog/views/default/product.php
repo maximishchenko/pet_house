@@ -4,6 +4,9 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => $sections->getProductSectionName($model->product_type), 'url' => [$sections->getProductSectionUrl($model->product_type)], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
 
+// echo "<pre>";
+// print_r($model->getAvailableProductSizes());
+// echo "</pre>";
 ?>
 <div class="gallery-mob"></div>
 <div class="container">
@@ -17,10 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
         <!-- Промо -->
         <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
-        <!-- Отзывы -->
-        <?= $this->render('//layouts/template/_faq', ['questions' => $questions]); ?>
         <!-- Вопросы и ответы -->
-        <?= $this->render('//layouts/product/_review', []); ?>
+        <?= $this->render('//layouts/template/_faq', ['questions' => $questions]); ?>
+        <!-- Отзывы -->
+        <?= $this->render('//layouts/product/_review', ['reviews' => $reviews]); ?>
       </div>
     </div>
     <!-- Конструктор -->

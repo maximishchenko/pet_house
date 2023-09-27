@@ -4,9 +4,6 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => $sections->getProductSectionName($model->product_type), 'url' => [$sections->getProductSectionUrl($model->product_type)], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
 
-// echo "<pre>";
-// print_r($model->getAvailableProductSizes());
-// echo "</pre>";
 ?>
 <div class="gallery-mob"></div>
 <div class="container">

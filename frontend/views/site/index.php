@@ -237,7 +237,7 @@ use backend\modules\content\models\Review;
                         <?= $review->text; ?>
                     </p>
                     <div class="meadia-reviews__row">
-                        <div class="meadia-reviews__photo" style="background-image: url(<?= '/' . Review::UPLOAD_PATH . $review->image; ?>);"></div>
+                        <div class="meadia-reviews__photo" style="background-image: url(<?= '/' . Review::UPLOAD_PATH . $review->avatar; ?>);"></div>
                         <div class="meadia-reviews__autor">
                             <span class="meadia-reviews__name">
                                 <?= $review->name; ?>

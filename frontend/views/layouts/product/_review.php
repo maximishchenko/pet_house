@@ -17,7 +17,6 @@ use yii\helpers\Html;
     <div class="grid-item">
       <div class="grid-masonry-item__container">
         <a class="product-reviews__link" href="<?= '/' . Review::UPLOAD_PATH . $review->image; ?>" data-fancybox="reviews-gallery">
-          <img class="product-reviews__img" src="/img/reviews/1.jpg" alt="" width="300">
           <?= Html::img('/' . Review::UPLOAD_PATH . $review->image, ['class' => "product-reviews__img", 'width' => 300]); ?>
         </a>
         <span class="product-reviews__autor">

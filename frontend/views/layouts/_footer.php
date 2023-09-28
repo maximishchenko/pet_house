@@ -44,8 +44,8 @@ use yii\helpers\Html;
           <div class="address-wrapper">
             <div class="flex-column">
               <span class="footer__list-title">Адрес</span>
-              <a href="#" class="footer__link">
-                Московская область,<br>Солнечногорский район, <br>пос. Поварово, ул. Буровая, 2А
+              <a href="<?= Yii::$app->configManager->getItemValue('contactMapLink'); ?>" class="footer__link">
+                <?= Yii::$app->configManager->getItemValue('contactAddress'); ?>
               </a>
             </div>
           </div>

@@ -102,31 +102,6 @@ if (document.querySelector('.tiker') != null) {
   });
 }
 
-/* let count = 0;
-
-function hideSwipe() {
-  const scrollDiv = document.querySelector('.scroll-wrapper');
-  const touchIc = document.querySelector('.touch_ic');
-
-
-
-  if (count == 0) {
-    scrollDiv.addEventListener('scroll', function () {
-      touchIc.style.display = 'none';
-      console.log('none');
-      count = 1;
-    });
-  }
-
-  console.log(count);
-}
-
-if (document.querySelector('.touch_ic') != null) {
-  hideSwipe()
-}
-
- */
-
 
 if (document.querySelector('.scroll-wrapper') != null) {
 
@@ -138,6 +113,63 @@ if (document.querySelector('.scroll-wrapper') != null) {
       touchIc.style.display = 'none';
     }
   });
-  
+
 }
 
+// Кнопка неверх
+let scrollToTop = document.querySelector(".footer__up");
+scrollToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return false;
+});
+
+function throttle(callee, timeout) {
+  let timer = null
+
+  return function perform(...args) {
+    if (timer) return
+
+    timer = setTimeout(() => {
+      callee(...args)
+
+      clearTimeout(timer)
+      timer = null
+    }, timeout)
+  }
+}
+
+function updateCatalog() {
+  const catalogList = document.querySelector('.catalog__list');
+  const screenHeight = window.innerHeight;
+  let catalogListOffset = catalogList.offsetTop,
+    catalogListHeight = catalogList.clientHeight,
+    scrolledOffset = catalogListHeight + catalogListOffset,
+    scrolled = window.scrollY,
+    showMore = document.querySelector("#showMore"),
+    pageNumber = showMore.getAttribute('data-page'),
+    totalPages = showMore.getAttribute('data-page-count'),
+    csrfToken = showMore.getAttribute('data-csrf-token'),
+    page = parseInt(pageNumber),
+    pageCount = parseInt(totalPages);
+
+  if (scrolledOffset <= scrolled + screenHeight && page <= pageCount) {
+
+    fetch(window.location.href, {
+      method: 'POST',
+      body: `page=${page + 1}&_csrf-frontend=${csrfToken}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        let next_page = page + 1
+        showMore.setAttribute('data-page', next_page);
+        catalogList.insertAdjacentHTML('beforeend', data);
+      })
+  }
+}
+
+window.addEventListener('scroll', throttle(updateCatalog, 550));

@@ -210,7 +210,9 @@ abstract class ProductItem extends Product
             /**
              * Удаление связанных изображений
              */
-            $this->deleteMultipleFiles('imageFiles', 'image', Product::UPLOAD_PATH);
+            if ($this->imagesFiles) {
+                $this->deleteMultipleFiles('imageFiles', 'image', Product::UPLOAD_PATH);
+            }
             return true;
         } else {
             return false;

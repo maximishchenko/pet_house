@@ -10,5 +10,11 @@ use yii\widgets\ListView;
     'options' => [
         'tag' => false,
     ],
+    'pager'=>[
+        'maxButtonCount' => 5,
+        'options'=>[
+            'class'=>'paginator',
+        ]
+    ],
 ]); 
 ?>

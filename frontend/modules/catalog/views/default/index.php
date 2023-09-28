@@ -29,14 +29,14 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
     <div class="container">
         <div class="catalog__wrapper">
             <div class="catalog__side">
-        
+
                 <!-- Фильтры -->
                 <?= $this->render('_filter', [
-                        'searchModel' => $searchModel,
-                        'types' => $types,
-                        'categories' => $categories,
-                        'heights' => $heights,
-                    ]); ?>
+                    'searchModel' => $searchModel,
+                    'types' => $types,
+                    'categories' => $categories,
+                    'heights' => $heights,
+                ]); ?>
 
                 <!-- Элементы каталога -->
                 <div class="catalog__list">
@@ -48,6 +48,20 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
     </div>
 </section>
 
+
+
+
+<?php //if ($dataProvider->getTotalCount() > $dataProvider->pagination->pageCount): 
+?>
+
+<div id="showMore" 
+class="visually-hidden" 
+data-page="<?= (int)Yii::$app->request->get('page', 1); ?>" 
+data-page-count="<?= (int)$dataProvider->pagination->pageCount; ?>" 
+data-csrf-token="<?= Yii::$app->request->csrfToken; ?>" 
+data-csrf-param="<?= Yii::$app->request->csrfParam; ?>">Показать ещё</div>
+<?php // endif; 
+?>
 
 <!-- Подписаться -->
 <?= $this->render('//layouts/template/_subscribe'); ?>

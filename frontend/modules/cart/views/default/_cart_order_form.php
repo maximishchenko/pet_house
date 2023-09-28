@@ -1,19 +1,20 @@
 <?php
 
+use frontend\modules\cart\models\Cart;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 ?>
 
 <?php $form = ActiveForm::begin([
-        'id' => 'order-form',
-        // 'action' => ['index'],
-        // 'method' => 'get',
-        'options' => [
-            'class' => 'order-form order-form--cart',
-            'autocomplete' => 'off',
-        ],
-    ]); ?>
+    'id' => 'order-form',
+    // 'action' => ['index'],
+    // 'method' => 'get',
+    'options' => [
+        'class' => (Cart::getTotalCount() > 0) ? 'order-form order-form--cart' : 'order-form order-form--cart order-form--dis',
+        'autocomplete' => 'off',
+    ],
+]); ?>
 
 <h3 class="order-form__title">
     <?= Yii::t('app', "Submit order"); ?>
@@ -33,7 +34,7 @@ use yii\widgets\ActiveForm;
             <?= Html::button(Yii::t('app', "Delivery Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button']); ?>
         </li>
         <li class="tabs__nav-item">
-            <?= Html::button(Yii::t('app', "Pickup Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button'])?>
+            <?= Html::button(Yii::t('app', "Pickup Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button']) ?>
         </li>
     </ul>
     <div class="tabs__content">

@@ -32,7 +32,7 @@ if (document.querySelector('#catalog_search')) {
       });
 
     let url = window.location.origin + window.location.pathname
-    let searchUrl = url + "?" + formDataString;
+    let searchUrl = url + "?" + queryString;
     history.replaceState("", "", searchUrl);
   }
 

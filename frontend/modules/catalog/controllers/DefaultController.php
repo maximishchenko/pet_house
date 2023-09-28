@@ -16,6 +16,7 @@ use frontend\modules\catalog\models\Product;
 use frontend\modules\catalog\models\ProductPrice;
 use Yii;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * Default controller for the `catalog` module
@@ -28,6 +29,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        $this->processPageRequest('page');
+
         $sections = new Sections();
         $queryParams = $this->request->queryParams;
         $productType = $sections->setType();
@@ -64,8 +67,13 @@ class DefaultController extends Controller
 
 
         if (Yii::$app->request->isAjax) {
-            // print_r(Yii::$app->request->queryParams); die();
+            // print_r($_POST["page"]);die();
+            \Yii::$app->response->format = Response::FORMAT_HTML;     
             return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
+            // return json_encode($response, JSON_UNESCAPED_UNICODE ) ;
+            Yii::$app->end();
+
+            // return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
         } else {
             return $this->render('index', [
                 'sections' => $sections,
@@ -140,5 +148,12 @@ class DefaultController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+    
+
+    protected function processPageRequest($param='page')
+    {
+        if (Yii::$app->request->isAjax && isset($_POST[$param]))
+            $_GET[$param] = Yii::$app->request->post($param);
     }
 }

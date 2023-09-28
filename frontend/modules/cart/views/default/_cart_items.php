@@ -15,6 +15,7 @@ $productItemPrice = $productItem->getProductPrice(
 );
 $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUCT_ID]);
 ?>
+
 <div class="cart-el">
 
     <span class="cart-el__img" style="background-image: url('<?= $oneProduct[CartProduct::IMAGE]; ?>');"></span>

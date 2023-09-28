@@ -1,0 +1,38 @@
+.delivery-page-head__wrapper {
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--size-xxl);
+}
+
+.delivery {
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--size-n);
+    }
+
+    &__faq-wrapper {
+        .q-el:not(:last-child) {
+            margin-bottom: var(--size-xs);
+        }
+    }
+
+    &__title {
+        color: var(--color-dark);
+    }
+
+    &__text,
+    &__list {
+        line-height: 140%;
+        color: var(--color-dark);
+    }
+
+    &__text {
+        margin-bottom: var(--size-n);
+    }
+
+    &__list {
+        .delivery__list-item:not(:last-child) {
+            margin-bottom: var(--size-xs);
+        }
+    }
+}

@@ -17,33 +17,44 @@ $this->params['breadcrumbs'][] = $this->title;
             </h1>
         </div>
 
-        <div class="cart__wrapper">
+        <div class="cart__wrapper"> <!-- TODO Пустая корзина -->
             <div class="cart__list">
 
-                <?php if(Cart::getTotalCount() > 0): ?>
-                
-                <!-- Товары в корзине -->
-                <?php foreach($cart->getProducts() as $product): ?>
-                <div class="cart__list-inner">
-                    <?= $this->render('_cart_items', ['product' => $product]); ?>
-                </div>
-                <?php endforeach; ?>
-
-                <div class="list-order">
-                    <div class="list-order__wrapper">
-                        <span class="list-order__subtitle">
-                            <?= Yii::t('app', "Total amount"); ?> 
-                        </span>
-                        <span class="list-order__price">
-                            <span class="total__cart__price">
-                                <?= number_format(Cart::getTotalPrice(), 0, '', ' '); ?>
-                            </span> ₽
-                        </span>
-                        <span class="list-order__subtitle">
-                            <?= Yii::t('app', 'Total amount except delivery'); ?> 
-                        </span>
+                <div class="s-cart__el-empty">
+                    <div class="s-cart__el-empty__iner">
+                        <span>
+                            В&nbsp;корзине пусто </span>
+                        <p>
+                            Посмотрите предложения на&nbsp;главной странице<br> или воспользуйтесь каталогом </p>
                     </div>
+                    <a href="/" class="btn-a">
+                        Вернуться на&nbsp;главную </a>
                 </div>
+
+                <?php if (Cart::getTotalCount() > 0) : ?>
+
+                    <!-- Товары в корзине -->
+                    <?php foreach ($cart->getProducts() as $product) : ?>
+                        <div class="cart__list-inner">
+                            <?= $this->render('_cart_items', ['product' => $product]); ?>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <div class="list-order">
+                        <div class="list-order__wrapper">
+                            <span class="list-order__subtitle">
+                                <?= Yii::t('app', "Total amount"); ?>
+                            </span>
+                            <span class="list-order__price">
+                                <span class="total__cart__price">
+                                    <?= number_format(Cart::getTotalPrice(), 0, '', ' '); ?>
+                                </span> ₽
+                            </span>
+                            <span class="list-order__subtitle">
+                                <?= Yii::t('app', 'Total amount except delivery'); ?>
+                            </span>
+                        </div>
+                    </div>
 
                 <?php endif; ?>
 
@@ -52,8 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <!-- Форма оформления заказа -->
                 <?= $this->render('_cart_order_form', ['order' => $order]); ?>
+            </div>
         </div>
-    </div>
 </section>
 <!-- Вопросы и ответы -->
 <?= $this->render('//layouts/product/_faq_bottom'); ?>

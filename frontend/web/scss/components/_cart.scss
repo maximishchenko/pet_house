@@ -322,6 +322,28 @@
   }
 }
 
+.s-cart__el-empty {
+  background: var(--color-gray);
+  padding: var(--size-n);
+  margin: var(--size-n) 0;
+  border-radius: var(--size-s);
+  color: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .btn-a {
+    display: inline-block;
+  }
+
+  span {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+}
+
 @include small-tablet {
   .cart {
     &__wrapper {

@@ -2,7 +2,8 @@
   line-height: 140%;
 
   &__img-wrapper {
-    margin-bottom: var(--size-s);
+    margin-bottom: var(--size-xs);
+    position: relative;
   }
 
   &__img {
@@ -11,7 +12,7 @@
 
   &__price {
     color: var(--color-dark);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &__price-old {
@@ -41,10 +42,47 @@
 
   &__desc {
     width: 80%;
-    margin-top: var(--size-xs);
     display: block;
-    font-size: .8rem;
-    line-height: 130%;
+    line-height: 160%;
     color: var(--color-dark-80);
+  }
+
+  &__bage-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  &__bage {
+    padding: .2rem .8rem;
+    color: var(--color-light);
+    font-size: .6rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    width: fit-content;
+  }
+
+  &__bage--stock {
+    background: var(--color-dark);
+    color: var(--color-light);
+  }
+
+  &__bage--sale {
+    background: var(--color-brand);
+  }
+
+  &__bage--type {
+    background: var(--color-dark);
+    color: var(--color-light);
+  }
+
+
+  &__type-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }

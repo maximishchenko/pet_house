@@ -33,7 +33,7 @@ const thumbsSlider = new Swiper('.prod-slider', {
 
   breakpoints: {
     1024: {
-      slidesPerView: 4.3,
+      slidesPerView: 3.1,
     },
   }
 });

@@ -271,7 +271,7 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     column-gap: var(--size-s);
     row-gap: var(--size-m);
   }

@@ -101,7 +101,7 @@ use backend\modules\catalog\models\root\Property;
                 <div class="<?= $model->getSizesConstructorBlockCssClassList() ?>">
                   <?php if($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
 
-                      <?= $this->render('//layouts/product/_constructor_items/_dog_cage_size', []); ?>
+                      <?= $this->render('//layouts/product/_constructor_items/_dog_cage_size', ['model' => $model]); ?>
 
                   <?php else: ?>
 

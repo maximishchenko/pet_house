@@ -45,7 +45,7 @@ use yii\bootstrap4\ActiveForm;
                         $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE)
                     )->hint(Yii::t('app', "Rodent Showcase Type hint")); ?>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4"> -->
                 <!-- <div class="form-group"> -->
                     <!-- <label for="millingexample-coating_id"> -->
                         <?php // $model->getAttributeLabel('size_id'); ?>
@@ -64,11 +64,13 @@ use yii\bootstrap4\ActiveForm;
                 //     ]);
                 ?>
                 <!-- </div> -->
-                <?= $form->field($model, 'size_id')->dropDownList(
-                        $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE),
-                        $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE)
-                    )->hint(Yii::t('app', "Rodent Showcase Size hint")); ?>
-            </div>
+                <?php 
+                // echo $form->field($model, 'size_id')->dropDownList(
+                //         $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE),
+                //         $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE)
+                //     )->hint(Yii::t('app', "Rodent Showcase Size hint")); 
+                ?>
+            <!-- </div> -->
             <div class="col-md-4">
                 <?= $form->field($model, 'material_id')->dropDownList(
                         $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_MATERIAL),
@@ -92,6 +94,60 @@ use yii\bootstrap4\ActiveForm;
                         $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL),
                         $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL)
                     )->hint(Yii::t('app', "Rodent Showcase Wall hint")); ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4">
+                <?= $form->field($model, 'height')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Height hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'width')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Width hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'depth')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Depth hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'min_height')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Min Height hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'min_width')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Min Width hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'min_depth')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Min Depth hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'max_height')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Max Height hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'max_width')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Max Width hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'max_depth')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Max Depth hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'step')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Step hint")); ?>
             </div>
         </div>
     </div>

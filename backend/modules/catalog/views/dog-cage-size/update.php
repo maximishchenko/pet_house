@@ -9,7 +9,7 @@ $this->title = Yii::t('app', 'Update Dog Cage Size: {name}', [
     'name' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CATALOG_MODULE'), 'url' => ['/catalog']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Rodent Showcase Sizes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Dog Cage Sizes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->name;
 ?>
 <div class="dog-cage-size-update">

@@ -46,13 +46,6 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>
     </div>
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-12">
-                <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-            </div>
-        </div>
-    </div>
 
     <?php ActiveForm::end(); ?>
 

@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\modules\catalog\models\RodentProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Rodent Products');
+$this->title = Yii::t('app', 'Dog Cage Products');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CATALOG_MODULE'), 'url' => ['/catalog']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

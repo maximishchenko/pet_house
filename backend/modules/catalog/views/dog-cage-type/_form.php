@@ -48,13 +48,13 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>
     </div>
-    <div class="jumbotron">
+    <!-- <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
-                <?= $form->field($model, 'sizesArray')->checkboxList($model->getSizeCheckboxListItems(), ['class' => 'checkbox__group']) ?>
             </div>
         </div>
-    </div>
+    </div> -->
+    <?php //echo $form->field($model, 'sizesArray')->checkboxList($model->getSizeCheckboxListItems(), ['class' => 'checkbox__group']) ?>
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">

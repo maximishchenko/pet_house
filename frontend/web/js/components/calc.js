@@ -45,37 +45,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // TODO указать шаг, уточнить ценообразование
     const sliderH = document.getElementById('slider-h');
-
     const sliderW = document.getElementById('slider-w');
-
     const sliderG = document.getElementById('slider-g');
 
     if (sliderH != null && sliderW != null && sliderG != null) {
 
+      let heightSlider =document.querySelector('#constructor_height_val') 
+      let startHeight = heightSlider.getAttribute("data-slider-height");
+      let minHeight = heightSlider.getAttribute("data-slider-min-height");
+      let maxHeight = heightSlider.getAttribute("data-slider-max-height");
+      let stepHeight = heightSlider.getAttribute("data-slider-step-height");
       noUiSlider.create(sliderH, {
-        start: 20,
+        start: startHeight,
         connect: [true, false],
         range: {
-          'min': 0,
-          'max': 100
+          'min': Number(minHeight),
+          'max': Number(maxHeight)
         }
       });
 
+      let widthSlider = document.querySelector('#constructor_width_val');
+      let startWidth = widthSlider.getAttribute("data-slider-width");
+      let minWidth = widthSlider.getAttribute("data-slider-min-width");
+      let maxWidth = widthSlider.getAttribute("data-slider-max-width");
+      let stepWidth = widthSlider.getAttribute("data-slider-step-width");
       noUiSlider.create(sliderW, {
-        start: 40,
+        start: startWidth,
         connect: [true, false],
         range: {
-          'min': 0,
-          'max': 100
+          'min': Number(minWidth),
+          'max': Number(maxWidth)
         }
       });
 
+      let depthSlider = document.querySelector('#constructor_depth_val');
+      let startDepth = depthSlider.getAttribute("data-slider-depth");
+      let minDepth = depthSlider.getAttribute("data-slider-min-depth");
+      let maxDepth = depthSlider.getAttribute("data-slider-max-depth");
+      let stepDepth = depthSlider.getAttribute("data-slider-step-depth");
       noUiSlider.create(sliderG, {
-        start: 60,
+        start: startDepth,
         connect: [true, false],
         range: {
-          'min': 0,
-          'max': 100
+          'min': Number(minDepth),
+          'max': Number(maxDepth),
         }
       });
 

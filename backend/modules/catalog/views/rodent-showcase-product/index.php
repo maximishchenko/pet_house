@@ -5,7 +5,6 @@ use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\Status;
 use yii\grid\ActionColumn;
-use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 

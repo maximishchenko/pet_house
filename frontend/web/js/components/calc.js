@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noUiSlider.create(sliderH, {
         start: startHeight,
         connect: [true, false],
+        step: stepHeight,
         range: {
           'min': Number(minHeight),
           'max': Number(maxHeight)
@@ -72,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noUiSlider.create(sliderW, {
         start: startWidth,
         connect: [true, false],
+        step: stepWidth,
         range: {
           'min': Number(minWidth),
           'max': Number(maxWidth)
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noUiSlider.create(sliderG, {
         start: startDepth,
         connect: [true, false],
+        step: stepDepth,
         range: {
           'min': Number(minDepth),
           'max': Number(maxDepth),

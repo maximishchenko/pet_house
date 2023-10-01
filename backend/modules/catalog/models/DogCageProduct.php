@@ -33,6 +33,8 @@ class DogCageProduct extends ProductItem
     public function setAttributeLabels(): array
     {
         return [
+            'imageFile' => Yii::t('app', 'Image'),
+            'imagesFiles' => Yii::t('app', 'Images Files'),
             'width' => Yii::t('app', 'Width value'),
             'height' => Yii::t('app', 'Height value'),
             'depth' => Yii::t('app', 'Depth value'),
@@ -74,28 +76,34 @@ class DogCageProduct extends ProductItem
         if (parent::beforeSave($insert)) {
             if ($this->validate()) {
                 if ($insert) {
+                    Yii::debug("new");
                     $size = new DogCageSize();
                 } else {
-                    $size = DogCageSize::findOne(['id' => $this->size_id]);
+                    Yii::debug("Exists");
+                    $size = DogCageSize::find()->where(['id' => $this->size_id])->one();
                 }
-                $size->height = $this->height;
-                $size->width = $this->width;
-                $size->depth = $this->depth;
-                $size->min_height = $this->min_height;
-                $size->min_width = $this->min_width;
-                $size->min_depth = $this->min_depth;
-                $size->max_height = $this->max_height;
-                $size->max_width = $this->max_width;
-                $size->max_depth = $this->max_depth;
-                $size->step = $this->step;
-                $size->status = (string) Status::STATUS_ACTIVE;
-                if (!$size->save()) {
-                    foreach ($size->getErrors() as $key => $value) {
-                        Yii::debug($key.': '.$value[0]);
+                if ($this->size->height_value != $this->height || $this->size->width_value != $this->width || $this->size->depth_value != $this->depth) {
+                    $size->height = $this->height;
+                    $size->width = $this->width;
+                    $size->depth = $this->depth;
+                    $size->min_height = $this->min_height;
+                    $size->min_width = $this->min_width;
+                    $size->min_depth = $this->min_depth;
+                    $size->max_height = $this->max_height;
+                    $size->max_width = $this->max_width;
+                    $size->max_depth = $this->max_depth;
+                    $size->step = $this->step;
+                    $size->status = (string) Status::STATUS_ACTIVE;
+                    if (!$size->save()) {
+                        foreach ($size->getErrors() as $key => $value) {
+                            Yii::debug($key.': '.$value[0]);
+                        }
+                        return false;
                     }
-                    return false;
+                    $this->size_id = $size->id;
                 }
-                $this->size_id = $size->id;
+
+                parent::beforeSave($insert);
             } else {
                 foreach ($this->getErrors() as $key => $value) {
                     Yii::debug($key.': '.$value[0]);

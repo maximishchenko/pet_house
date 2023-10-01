@@ -4,6 +4,8 @@ namespace backend\modules\catalog\controllers;
 
 use Yii;
 use backend\modules\catalog\models\DogCageProduct;
+use backend\modules\catalog\models\ProductImage;
+use backend\modules\catalog\models\root\Product;
 use backend\modules\catalog\models\search\DogCageProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -110,5 +112,55 @@ class DogCageProductController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionDeleteImage(int $id)
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(Product::UPLOAD_PATH, $model->image);
+        $model->removeSingleFileIfExist($file);
+        $model->image = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', 'Запись удалена!');
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionDeleteImages(int $id)
+    {
+        $model = ProductImage::findOne($id);
+        if ($model != null) {
+            $file = $model->getPath(Product::UPLOAD_PATH, $model->image);
+            $model->removeSingleFileIfExist($file);
+            $model->delete();
+            Yii::$app->session->setFlash('danger', 'Запись удалена!');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+    }
+
+    public function actionDeleteAllImages($id)
+    {
+        $images = ProductImage::find()->where(['product_id' => $id])->all();
+        foreach ($images as $image) {
+            $image->delete();
+        }
+        Yii::$app->session->setFlash('warning', Yii::t('app', 'All Images deleted'));
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    
+    /**
+     * Drag'n'Drop сортировка изображений
+     */
+    public function actionSaveImageSort()
+    {
+        $order = Yii::$app->request->post('order');
+        foreach($order as $sort => $imageId) {
+            if(isset($imageId) && !empty($imageId)) {
+                $image = ProductImage::findOne($imageId);
+                $image->sort = $sort;
+                $image->save();
+            }
+        }
+        print_r($order);
     }
 }

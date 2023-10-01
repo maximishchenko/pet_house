@@ -165,7 +165,7 @@ function updateCatalog() {
     })
       .then((response) => response.text())
       .then((data) => {
-        let next_page = page + 1
+        let next_page = page + 2
         showMore.setAttribute('data-page', next_page);
         catalogList.insertAdjacentHTML('beforeend', data);
       })

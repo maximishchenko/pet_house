@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }));
 
     // TODO указать шаг, уточнить ценообразование
-    const sliderH = document.getElementById('slider-h');
+    /* const sliderH = document.getElementById('slider-h');
     const sliderW = document.getElementById('slider-w');
     const sliderG = document.getElementById('slider-g');
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noUiSlider.create(sliderH, {
         start: startHeight,
         connect: [true, false],
-        step: stepHeight,
+        step: Number(stepHeight),
         range: {
           'min': Number(minHeight),
           'max': Number(maxHeight)
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noUiSlider.create(sliderW, {
         start: startWidth,
         connect: [true, false],
-        step: stepWidth,
+        step: Number(stepWidth),
         range: {
           'min': Number(minWidth),
           'max': Number(maxWidth)
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noUiSlider.create(sliderG, {
         start: startDepth,
         connect: [true, false],
-        step: stepDepth,
+        step: Number(stepDepth),
         range: {
           'min': Number(minDepth),
           'max': Number(maxDepth),
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         item_size_depth_val.innerHTML = values[handle];
       });
     }
-
+ */
   }
 
 

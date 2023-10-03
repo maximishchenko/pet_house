@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
     'searchModel' => $searchModel,
 ]); ?>
 
+<?= $productType; ?>
 
 <section class="catalog mb-xxl">
     <div class="container">

@@ -1,5 +1,7 @@
 <?php
 
+use backend\modules\catalog\models\abstracts\ProductItem;
+use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Property;
 use yii\widgets\ActiveForm;
@@ -73,6 +75,7 @@ use yii\widgets\ActiveForm;
     <?php endif; ?>
 
     <!-- Типы -->
+    <?php if ($searchModel->product_type != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
     <?php if(isset($types) && !empty($types)): ?>
     <fieldset class="thumb-filter__area">
       <legend class="thumb-filter__title">
@@ -94,6 +97,8 @@ use yii\widgets\ActiveForm;
       </ul>
     </fieldset>
     <?php endif; ?>
+    <?php endif; ?>
+
 
 
     <?php if(isset($heights) && !empty($heights)): ?>

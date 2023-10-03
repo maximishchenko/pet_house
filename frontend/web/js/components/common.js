@@ -154,22 +154,27 @@ function updateCatalog() {
 
   if (scrolledOffset <= scrolled + screenHeight && page <= pageCount) {
 
-    fetch(window.location.href, {
-      method: 'POST',
-      body: `page=${page + 1}&_csrf-frontend=${csrfToken}`,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
-        'X-Requested-With': 'XMLHttpRequest'
-      }
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        let next_page = page + 2
-        showMore.setAttribute('data-page', next_page);
-        catalogList.insertAdjacentHTML('beforeend', data);
+    if (page < pageCount) {
+      page = page + 1;
+      fetch(window.location.href, {
+        method: 'POST',
+        body: `page=${page}&_csrf-frontend=${csrfToken}`,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
       })
+        .then((response) => response.text())
+        .then((data) => {
+          // let next_page = page + 1
+          showMore.setAttribute('data-page', page);
+          catalogList.insertAdjacentHTML('beforeend', data);
+          console.log(page);
+        })
+    }
   }
+
 }
 
 window.addEventListener('scroll', throttle(updateCatalog, 550));

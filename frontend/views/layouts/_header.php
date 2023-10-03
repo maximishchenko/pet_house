@@ -22,7 +22,7 @@ use yii\helpers\Url;
           </li>
           <li class="nav__item">
             <!-- <?= Html::a(Yii::t('app', "Menu Item Personal Order"), ['#'], ['class' => 'nav__link']); ?> -->
-            <button class="btn-reset" data-graph-path="personal-order">Персональный заказ</button>
+            <button class="btn-reset nav__link" data-graph-path="personal-order">Персональный заказ</button>
           </li>
           <li class="nav__item">
             <?= Html::a(Yii::t('app', 'Delivery and Payment'), ['/delivery'], ['class' => "nav__link"]); ?>

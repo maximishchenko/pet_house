@@ -43,8 +43,10 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
                 <div class="catalog__list">
                     <?= Yii::$app->controller->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]); ?>
                 </div>
-
             </div>
+        </div>
+        <div class="spinner-container mt-xxl">
+            <div class="spinner"></div>
         </div>
     </div>
 </section>
@@ -55,12 +57,7 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
 <?php //if ($dataProvider->getTotalCount() > $dataProvider->pagination->pageCount): 
 ?>
 
-<div id="showMore" 
-class="visually-hidden" 
-data-page="<?= (int)Yii::$app->request->get('page', 1); ?>" 
-data-page-count="<?= (int)$dataProvider->pagination->pageCount; ?>" 
-data-csrf-token="<?= Yii::$app->request->csrfToken; ?>" 
-data-csrf-param="<?= Yii::$app->request->csrfParam; ?>">Показать ещё</div>
+<div id="showMore" class="visually-hidden" data-page="<?= (int)Yii::$app->request->get('page', 1); ?>" data-page-count="<?= (int)$dataProvider->pagination->pageCount; ?>" data-csrf-token="<?= Yii::$app->request->csrfToken; ?>" data-csrf-param="<?= Yii::$app->request->csrfParam; ?>">Показать ещё</div>
 <?php // endif; 
 ?>
 

@@ -122,7 +122,7 @@ scrollToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return false;
 });
-
+/* 
 function throttle(callee, timeout) {
   let timer = null
 
@@ -171,6 +171,8 @@ function updateCatalog() {
           showMore.setAttribute('data-page', page);
           catalogList.insertAdjacentHTML('beforeend', data);
           console.log(page);
+          console.log(pageCount)
+          console.log(window.location.href);
         })
     }
   }
@@ -178,3 +180,4 @@ function updateCatalog() {
 }
 
 window.addEventListener('scroll', throttle(updateCatalog, 550));
+ */

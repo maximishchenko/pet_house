@@ -15,6 +15,7 @@ use frontend\models\Sections;
 use frontend\modules\catalog\models\Product;
 use frontend\modules\catalog\models\ProductPrice;
 use Yii;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -67,13 +68,14 @@ class DefaultController extends Controller
 
 
         if (Yii::$app->request->isAjax) {
-            // print_r($_POST["page"]);die();
-            \Yii::$app->response->format = Response::FORMAT_HTML;     
-            return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
-            // return json_encode($response, JSON_UNESCAPED_UNICODE ) ;
-            Yii::$app->end();
-
+            \Yii::$app->response->format = Response::FORMAT_HTML;   
+            $response = [
+                'totalCount' => $dataProvider->getTotalCount(), 
+                'content' => $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider])
+            ];
+            return Json::encode($response);
             // return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
+            Yii::$app->end();
         } else {
             return $this->render('index', [
                 'sections' => $sections,

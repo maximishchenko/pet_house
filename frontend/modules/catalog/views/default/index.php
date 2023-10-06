@@ -40,14 +40,17 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
                 ]); ?>
 
                 <!-- Элементы каталога -->
-                <div class="catalog__list">
-                    <?= Yii::$app->controller->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]); ?>
+                <div class="catalog__list-wrapper">
+                    <div class="catalog__list">
+                        <?= Yii::$app->controller->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]); ?>
+                    </div>
+                    <div class="spinner-container mt-xxl">
+                        <div class="spinner"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="spinner-container mt-xxl">
-            <div class="spinner"></div>
-        </div>
+
     </div>
 </section>
 

@@ -1,4 +1,4 @@
-<section class="subscription mb-xxl" data-aos="fade-up" data-aos-once="true">
+<section class="subscription mb-xxl">
   <div class="container">
     <div class="subscription__wrapper">
       <div class="subscription__content-wrap">

@@ -47,24 +47,26 @@ if (document.querySelector('.catalog-cat')) {
         }
     }
 
+    let updateCatalogCounter = 0;
+
     function updateCatalog() {
-        const catalogList = document.querySelector('.catalog__list');
-        const screenHeight = window.innerHeight;
-        const catalogSpiner = document.querySelector('.spinner-container');
 
-        let catalogListOffset = catalogList.offsetTop;
-        let catalogListHeight = catalogList.clientHeight;
-        let scrolledOffset = catalogListHeight + catalogListOffset;
-        let scrolled = window.scrollY;
+        const catalogList = document.querySelector('.catalog__list'),
+            screenHeight = window.innerHeight,
+            catalogSpiner = document.querySelector('.spinner-container'),
+            updateInfo = document.querySelector('#showMore');
 
-        const updateInfo = document.querySelector('#showMore');
+        let catalogListOffset = catalogList.offsetTop,
+            catalogListHeight = catalogList.clientHeight,
+            scrolledOffset = catalogListHeight + catalogListOffset - 500,
+            scrolled = window.scrollY,
+            pageNumber = parseInt(updateInfo.getAttribute('data-page')),
+            totalPages = parseInt(updateInfo.getAttribute('data-page-count')),
+            csrfToken = updateInfo.getAttribute('data-csrf-token');
 
-        let pageNumber = parseInt(updateInfo.getAttribute('data-page'));
-        let totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
-        let csrfToken = updateInfo.getAttribute('data-csrf-token');
+        if (scrolledOffset <= scrolled + screenHeight && totalPages > pageNumber && updateCatalogCounter == 0) {
 
-        if (scrolledOffset <= scrolled + screenHeight && totalPages > pageNumber) {
-            catalogSpiner.classList.add('spinner-container--show');  
+            updateCatalogCounter++
 
             fetch(window.location.pathname, {
                 method: 'POST',
@@ -83,18 +85,17 @@ if (document.querySelector('.catalog-cat')) {
                 })
                 .then((data) => {
                     catalogSpiner.classList.remove('spinner-container--show');
-                    pageNumber++
+                    updateCatalogCounter = 0;
+                    pageNumber++;
                     showMore.setAttribute('data-page', pageNumber);
                     catalogList.insertAdjacentHTML('beforeend', data);
-                })
+
+                    if (pageNumber <= totalPages) {
+                        catalogSpiner.classList.add('spinner-container--hide');
+                    }
+                });
         }
-
     }
-
-    window.addEventListener('scroll', throttle(updateCatalog, 1550));
-
-
-
-
+    window.addEventListener('scroll', throttle(updateCatalog, 2000));
 }
 

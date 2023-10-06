@@ -621,13 +621,13 @@ input:checked+.slider:before {
 .spinner-container {
   width: 100%;
   height: 100px;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.spinner-container--show {
-  display: flex;
+.spinner-container--hide {
+  display: none;
 }
 
 .spinner {

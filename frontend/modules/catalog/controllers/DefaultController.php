@@ -68,9 +68,11 @@ class DefaultController extends Controller
 
 
         if (Yii::$app->request->isAjax) {
+            $dataProvider->prepare();
             \Yii::$app->response->format = Response::FORMAT_HTML;   
             $response = [
                 'totalCount' => $dataProvider->getTotalCount(), 
+                'pagesCount' => $dataProvider->pagination->pageCount,
                 'content' => $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider])
             ];
             return Json::encode($response);

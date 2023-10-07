@@ -47,22 +47,31 @@ if (document.querySelector('.catalog-cat')) {
         }
     }
 
-    let updateCatalogCounter = 0;
+    const catalogSpiner = document.querySelector('.spinner-container'),
+        updateInfo = document.querySelector('#showMore');
+
+    let updateCatalogCounter = 0,
+        pageNumber = parseInt(updateInfo.getAttribute('data-page')),
+        totalPages = parseInt(updateInfo.getAttribute('data-page-count')),
+        csrfToken = updateInfo.getAttribute('data-csrf-token');
+
+    function hideSpiner() {
+        if (pageNumber == totalPages) {
+            catalogSpiner.classList.add('spinner-container--hide');
+        }
+    }
+
+    hideSpiner();
 
     function updateCatalog() {
 
         const catalogList = document.querySelector('.catalog__list'),
-            screenHeight = window.innerHeight,
-            catalogSpiner = document.querySelector('.spinner-container'),
-            updateInfo = document.querySelector('#showMore');
+            screenHeight = window.innerHeight;
 
         let catalogListOffset = catalogList.offsetTop,
             catalogListHeight = catalogList.clientHeight,
             scrolledOffset = catalogListHeight + catalogListOffset - 500,
-            scrolled = window.scrollY,
-            pageNumber = parseInt(updateInfo.getAttribute('data-page')),
-            totalPages = parseInt(updateInfo.getAttribute('data-page-count')),
-            csrfToken = updateInfo.getAttribute('data-csrf-token');
+            scrolled = window.scrollY;
 
         if (scrolledOffset <= scrolled + screenHeight && totalPages > pageNumber && updateCatalogCounter == 0) {
 
@@ -89,10 +98,7 @@ if (document.querySelector('.catalog-cat')) {
                     pageNumber++;
                     showMore.setAttribute('data-page', pageNumber);
                     catalogList.insertAdjacentHTML('beforeend', data);
-
-                    if (pageNumber <= totalPages) {
-                        catalogSpiner.classList.add('spinner-container--hide');
-                    }
+                    hideSpiner();
                 });
         }
     }

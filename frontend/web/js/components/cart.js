@@ -283,9 +283,6 @@ if (counterVal != null && counterDec != null && counterInc != null) {
         }
     })
 
-
-
-
     // TODO указать шаг, уточнить ценообразование
     const sliderH = document.getElementById('slider-h');
     const sliderW = document.getElementById('slider-w');

@@ -28,6 +28,7 @@ if (document.querySelector('.catalog-cat')) {
             el.classList.add('catalog-bar__sort-item--active');
 
             showSort();
+            catalogSearchSend();
         });
     });
 
@@ -51,11 +52,13 @@ if (document.querySelector('.catalog-cat')) {
         updateInfo = document.querySelector('#showMore');
 
     let updateCatalogCounter = 0,
-        pageNumber = parseInt(updateInfo.getAttribute('data-page')),
-        totalPages = parseInt(updateInfo.getAttribute('data-page-count')),
+
         csrfToken = updateInfo.getAttribute('data-csrf-token');
 
     function hideSpiner() {
+        let pageNumber = parseInt(updateInfo.getAttribute('data-page')),
+            totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
+
         if (pageNumber == totalPages) {
             catalogSpiner.classList.add('spinner-container--hide');
         }
@@ -64,6 +67,16 @@ if (document.querySelector('.catalog-cat')) {
     hideSpiner();
 
     function updateCatalog() {
+
+        let data = new FormData(searchForm);
+        let params = new URLSearchParams(data);
+        let formatParams = params.toString();
+
+        let url = window.location.origin + window.location.pathname
+        let searchUrl = url + "?" + formatParams;
+
+        let pageNumber = parseInt(updateInfo.getAttribute('data-page')),
+            totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
 
         const catalogList = document.querySelector('.catalog__list'),
             screenHeight = window.innerHeight;
@@ -77,7 +90,7 @@ if (document.querySelector('.catalog-cat')) {
 
             updateCatalogCounter++
 
-            fetch(window.location.pathname, {
+            fetch(searchUrl, {
                 method: 'POST',
                 body: `page=${pageNumber + 1}&_csrf-frontend=${csrfToken}`,
                 headers: {
@@ -90,18 +103,60 @@ if (document.querySelector('.catalog-cat')) {
                     if (!response.ok) {
                         location.reload();
                     }
-                    return response.text()
+                    return response.json();
                 })
                 .then((data) => {
-                    catalogSpiner.classList.remove('spinner-container--show');
                     updateCatalogCounter = 0;
                     pageNumber++;
                     showMore.setAttribute('data-page', pageNumber);
-                    catalogList.insertAdjacentHTML('beforeend', data);
+                    catalogList.insertAdjacentHTML('beforeend', data.content);
                     hideSpiner();
                 });
         }
     }
     window.addEventListener('scroll', throttle(updateCatalog, 2000));
-}
 
+    const searchForm = document.querySelector('#catalog_search');
+    const searchBtn = document.querySelector('#catalog__searh-btn');
+    const searchFormIntp = document.querySelectorAll('#catalog_search input');
+    const catalogList = document.querySelector('.catalog__list');
+
+    function catalogSearchSend() {
+        let data = new FormData(searchForm);
+        let params = new URLSearchParams(data);
+        let formatParams = params.toString();
+
+        fetch(`${window.location.pathname}?${formatParams}`, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    location.reload();
+                }
+                return response.json();
+            })
+            .then((data) => {
+                catalogList.innerHTML = data.content;
+                let pageCount = Math.floor(data.totalCount / 6 + 1);
+                updateInfo.setAttribute('data-page', 1);
+                updateInfo.setAttribute('data-page-count', pageCount);
+            });
+
+        let url = window.location.origin + window.location.pathname
+        let searchUrl = url + "?" + formatParams;
+        history.replaceState("", "", searchUrl);
+    }
+
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        catalogSearchSend();
+    });
+
+    searchFormIntp.forEach(el => {
+        el.addEventListener('change', catalogSearchSend);
+    });
+}  

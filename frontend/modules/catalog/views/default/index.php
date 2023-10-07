@@ -59,7 +59,6 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
 
 <?php //if ($dataProvider->getTotalCount() > $dataProvider->pagination->pageCount): 
 ?>
-
 <div id="showMore" class="visually-hidden" data-page="<?= (int)Yii::$app->request->get('page', 1); ?>" data-page-count="<?= (int)$dataProvider->pagination->pageCount; ?>" data-csrf-token="<?= Yii::$app->request->csrfToken; ?>" data-csrf-param="<?= Yii::$app->request->csrfParam; ?>">Показать ещё</div>
 <?php // endif; 
 ?>

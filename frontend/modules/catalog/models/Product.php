@@ -80,7 +80,7 @@ class Product extends backendProduct
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 3,
+                'pageSize' => 6,
             ],
             'sort'=> Sort::setDefaultGridSort(),
         ]);

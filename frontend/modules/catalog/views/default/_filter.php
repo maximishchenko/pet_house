@@ -128,7 +128,7 @@ use yii\widgets\ActiveForm;
     <?php endif; ?> <!-- visually-hidden -->
     <input type="text" class="sort-inp" name="order" value="name"><!-- TODO Инпут для сортировки-->
     <div class="catalog-sidebar__controls">
-      <button type="submimt" class="catalog-sidebar__btn btn-reset btn-b" type="button">
+      <button type="submimt" id="catalog__searh-btn" class="catalog-sidebar__btn btn-reset btn-b" type="button">
         <?= Yii::t('app', 'Do Search'); ?>
       </button>
       <a class="catalog-sidebar__btn btn-reset btn-b" href="<?= strtok(Yii::$app->request->getUrl(), '?'); ?>" type="button">

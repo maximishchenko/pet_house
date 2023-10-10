@@ -67,7 +67,7 @@ return [
     'Size Height' => 'В',
     'Size Width' => 'Ш',
     'Size Depth' => 'Г',
-    'Size mm' => ' мм',
+    'Size mm' => ' cм',
     'Chat' => 'Чат',
     'Available Products' => 'Товары в наличии',
     'Top Products' => 'Хиты продаж',

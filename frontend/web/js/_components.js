@@ -4,7 +4,6 @@ import './components/fancy';
 import './components/calc';
 import './components/catalog';
 import './components/common';
-import './components/filter';
 import './components/sort';
 import './components/cart';
 import './components/dropzone';

@@ -47,6 +47,8 @@ if (document.querySelector('.catalog-cat')) {
             let data = new FormData(filterForm);
             let params = new URLSearchParams(data);
             let formatParams = params.toString();
+            console.log('form');
+            
 
             return formatParams
       }
@@ -93,8 +95,11 @@ if (document.querySelector('.catalog-cat')) {
       const searchFormIntp = document.querySelectorAll('#catalog_search input');
 
       function catalogSearchSend() {
-            catalogObserver.disconnect()
-            fetch(`${window.location.pathname}?${catalogUrlParams()}`, {
+            
+            catalogObserver.disconnect();
+            let searchParams = catalogUrlParams();
+
+            fetch(`${window.location.pathname}?${searchParams}`, {
                   headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
@@ -115,7 +120,7 @@ if (document.querySelector('.catalog-cat')) {
                   });
 
             let url = window.location.origin + window.location.pathname
-            let searchUrl = url + "?" + catalogUrlParams();
+            let searchUrl = url + "?" + searchParams;
             history.replaceState("", "", searchUrl);
       }
 

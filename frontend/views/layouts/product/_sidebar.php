@@ -71,7 +71,17 @@ use backend\modules\catalog\models\root\Property;
               <div class="calc-el">
                 <button class="calc-el__btn-control btn-reset" type="button"> <!-- TODO Класс для блокировки -->
                   <span class="calc-el__btn-wrapper">
-                    <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" data-constructor-size-height="<?= $model->size->height; ?>" data-constructor-size-width="<?= $model->size->width; ?>" data-constructor-size-depth="<?= $model->size->depth; ?>" style="background-image: url('/img/size.jpg');"></span>
+                    <span class="calc-el__btn-preview" 
+                        data-constructor-size-id="<?= $model->size->id; ?>" 
+                        data-constructor-size-height="<?= $model->size->height; ?>" 
+                        data-constructor-size-width="<?= $model->size->width; ?>" 
+                        data-constructor-size-depth="<?= $model->size->depth; ?>" 
+                        data-constructor-size-height-price="<?= $model->size->height_price; ?>" 
+                        data-constructor-size-width-price="<?= $model->size->width_price; ?>" 
+                        data-constructor-size-depth-price="<?= $model->size->depth_price; ?>" 
+                        style="background-image: url('/img/size.jpg');"
+                      >
+                    </span>
                     <span class="calc-el__btn-text">
                       <span class="calc-el__btn-title"><?= Yii::t('app', 'Base Size'); ?></span>
                       <span class="calc-el__btn-val">

@@ -10,6 +10,9 @@ sizeItem?.forEach(item => {
         let size_height = item.getAttribute("data-size-height");
         let size_width = item.getAttribute("data-size-width");
         let size_depth = item.getAttribute("data-size-depth");
+        let size_height_price = item.getAttribute("data-size-height-price");
+        let size_width_price = item.getAttribute("data-size-width-price");
+        let size_depth_price = item.getAttribute("data-size-depth-price");
         let size_id = item.getAttribute('data-size-id');
 
         let item_size_height = document.getElementById("constructor_height");
@@ -23,9 +26,14 @@ sizeItem?.forEach(item => {
         item_size_depth.innerHTML = size_depth;
 
         item_size.setAttribute("data-constructor-size-id", size_id);
+
         item_size.setAttribute("data-constructor-size-height", size_height);
         item_size.setAttribute("data-constructor-size-width", size_width);
         item_size.setAttribute("data-constructor-size-depth", size_depth);
+        
+        item_size.setAttribute("data-constructor-size-height-price", size_height_price);
+        item_size.setAttribute("data-constructor-size-width-price", size_width_price);
+        item_size.setAttribute("data-constructor-size-depth-price", size_depth_price);
 
         getConstructorPriceAjax()
 
@@ -78,14 +86,14 @@ function getConstructorData() {
     // let constructorProductSize = document.querySelector('span[data-constructor-size-id]');
     // let constructorProductSizeId = constructorProductSize.getAttribute("data-constructor-size-id");
 
-    let constructorProductSizeHeight = document.querySelector('span[data-constructor-size-height]');
-    let constructorProductSizeHeightValue = constructorProductSizeHeight.getAttribute("data-constructor-size-height");
+    let constructorProductSizeHeightPrice = document.querySelector('span[data-constructor-size-height-price]');
+    let constructorProductSizeHeightPriceValue = constructorProductSizeHeightPrice.getAttribute("data-constructor-size-height-price");
 
-    let constructorProductSizeWidth = document.querySelector('span[data-constructor-size-width]');
-    let constructorProductSizeWidthValue = constructorProductSizeWidth.getAttribute("data-constructor-size-width");
+    let constructorProductSizeWidthPrice = document.querySelector('span[data-constructor-size-width-price]');
+    let constructorProductSizeWidthPriceValue = constructorProductSizeWidthPrice.getAttribute("data-constructor-size-width-price");
 
-    let constructorProductDepthSize = document.querySelector('span[data-constructor-size-depth]');
-    let constructorProductSizeDepthValue = constructorProductDepthSize.getAttribute("data-constructor-size-depth");
+    let constructorProductDepthSizePrice = document.querySelector('span[data-constructor-size-depth-price]');
+    let constructorProductSizeDepthPriceValue = constructorProductDepthSizePrice.getAttribute("data-constructor-size-depth-price");
 
     let constructorProductWall = document.querySelector('span[data-constructor-wall-id]');
     let constructorProductWallId = constructorProductWall.getAttribute("data-constructor-wall-id");
@@ -93,11 +101,11 @@ function getConstructorData() {
 
     let data = {
         'product_id': constructorProductId,
-        'color': constructorProductColorId,
-        'height': constructorProductSizeHeightValue,
-        'width': constructorProductSizeWidthValue,
-        'depth': constructorProductSizeDepthValue,
-        'walls': constructorProductWallId,
+        'color_id': constructorProductColorId,
+        'wall_id': constructorProductWallId,
+        'heightPrice': constructorProductSizeHeightPriceValue,
+        'widthPrice': constructorProductSizeWidthPriceValue,
+        'depthPrice': constructorProductSizeDepthPriceValue,
         '_csrf': constructorCsrfToken,
     };
     return new URLSearchParams(data).toString();

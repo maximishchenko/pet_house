@@ -31,7 +31,7 @@ use yii\helpers\ArrayHelper;
         unset($parent['imageFile']);
         $rule = [
             [['width', 'height', 'depth'], 'required'],
-            [['width_value', 'height_value', 'depth_value'], 'safe'],
+            [['width_value', 'height_value', 'depth_value', 'width_price', 'height_price', 'depth_price'], 'safe'],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'svg'],
         ];
         $rules = ArrayHelper::merge($parent, $rule);

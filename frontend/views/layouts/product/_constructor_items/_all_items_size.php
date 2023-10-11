@@ -10,6 +10,9 @@ use backend\modules\catalog\models\root\Property;
         data-size-height="<?= $size->height; ?>" 
         data-size-width="<?= $size->width; ?>" 
         data-size-depth="<?= $size->depth; ?>" 
+        data-size-height-price="<?= $size->height_price; ?>" 
+        data-size-width-price="<?= $size->width_price; ?>" 
+        data-size-depth-price="<?= $size->depth_price; ?>" 
     >
     </span>
 <?php endforeach; ?>

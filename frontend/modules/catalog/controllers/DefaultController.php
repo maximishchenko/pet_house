@@ -131,17 +131,14 @@ class DefaultController extends Controller
         $this->enableCsrfValidation = false;
         if (Yii::$app->request->isAjax) {
             $product_id = Yii::$app->request->get('product_id');
-            $color_id = Yii::$app->request->get('color');
-
-            // $size_id = Yii::$app->request->get('size');
+            $color_id = Yii::$app->request->get('color_id');
+            $wall_id = Yii::$app->request->get('wall_id');
             
-            $height = Yii::$app->request->get('height');
-            $width = Yii::$app->request->get('width');
-            $depth = Yii::$app->request->get('depth');
-            $walls_id = Yii::$app->request->get('walls');
+            $heightPrice = Yii::$app->request->get('heightPrice');
+            $widthPrice = Yii::$app->request->get('widthPrice');
+            $depthPrice = Yii::$app->request->get('depthPrice');
 
-            // $productPrice = new ProductPrice($product_id, $color_id, $size_id, $walls_id);
-            $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
+            $productPrice = new ProductPrice($product_id, $color_id, $wall_id, $heightPrice, $widthPrice, $depthPrice);
             
             $data = json_encode($productPrice->getPriceValues());
             return $data;

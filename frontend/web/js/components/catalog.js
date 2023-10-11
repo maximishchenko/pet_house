@@ -39,16 +39,14 @@ if (document.querySelector('.catalog-cat')) {
       function catalogUrlParams() {
             let data = new FormData(filterForm);
             let params = new URLSearchParams(data);
-            let formatParams = params.toString();
-
-            return formatParams
+            return params.toString()
       }
 
       function updateCatalog() {
             let pageNumber = parseInt(updateInfo.getAttribute('data-page'));
             let totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
 
-            if (pageNumber != totalPages) {
+            if (pageNumber !== totalPages) {
 
                   catalogSpinner.classList.add('spinner-container--show');
 
@@ -137,8 +135,7 @@ if (document.querySelector('.catalog-cat')) {
 
       sortItemBtn.forEach(el => {
             el.addEventListener('click', () => {
-                  let btnText = el.textContent;
-                  sortBtnText.textContent = btnText;
+                  sortBtnText.textContent = el.textContent;
                   sortInp.value = el.getAttribute('data-sort-param');
 
                   sortItemBtn.forEach(el => {
@@ -154,5 +151,4 @@ if (document.querySelector('.catalog-cat')) {
 
 
 }
-
 

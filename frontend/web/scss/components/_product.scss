@@ -229,6 +229,33 @@
     outline: 2px solid var(--color-border);
   }
 
+  &__list-item--active {
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 12px;
+      height: 6px;
+      position: absolute;
+      bottom: 18px;
+      right: 14px;
+      border-left: 2px solid var(--color-light);
+      border-bottom: 2px solid var(--color-light);
+      transform: rotate(-45deg);
+    }
+
+    &::before {
+      content: '';
+      background: var(--color-dark);
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 100%;
+    }
+  }
+
   &__list-slider-wrapper:not(:last-child) {
     margin-bottom: var(--size-s);
   }
@@ -250,6 +277,7 @@
 
   .noUi-target {
     &:hover {
+
       .noUi-handle,
       .noUi-connect {
         background: var(--color-brand);

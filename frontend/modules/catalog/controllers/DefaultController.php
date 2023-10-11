@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use backend\modules\catalog\models\items\GroupTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\root\Category;
@@ -19,15 +20,9 @@ use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
-/**
- * Default controller for the `catalog` module
- */
+
 class DefaultController extends Controller
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionIndex()
     {
         $this->processPageRequest('page');
@@ -41,6 +36,16 @@ class DefaultController extends Controller
                             'status' => Status::STATUS_ACTIVE,
                             'property_type' => $sections->setType(), 
                             'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                            'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY
+                        ])
+                        ->all();
+
+        $groups = Category::find()
+                        ->where([
+                            'status' => Status::STATUS_ACTIVE,
+                            'property_type' => $sections->setType(), 
+                            'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                            'group_type' => GroupTypeItems::GROUP_TYPE_GROUP
                         ])
                         ->all();
 
@@ -76,7 +81,6 @@ class DefaultController extends Controller
                 'content' => $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider])
             ];
             return Json::encode($response);
-            // return $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider]);
             Yii::$app->end();
         } else {
             return $this->render('index', [
@@ -85,6 +89,7 @@ class DefaultController extends Controller
                 'dataProvider' => $dataProvider,
                 'types' => $types,
                 'categories' => $categories,
+                'groups' => $groups,
                 'heights' => $heights,
             ]);
         }

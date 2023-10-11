@@ -17,7 +17,7 @@ class Product extends backendProduct
     public function rules()
     {
         return [
-            [['type_id', 'category_id', 'is_available', 'height_value'], 'safe'],
+            [['type_id', 'category_id', 'is_available', 'height_value', 'group_id'], 'safe'],
         ];
     }
 
@@ -112,6 +112,12 @@ class Product extends backendProduct
         if (isset($this->category_id) && !empty(array_filter($this->category_id))):
             $query->andFilterWhere([
                 'category_id' => $this->category_id,
+            ]);
+        endif;
+
+        if (isset($this->group_id) && !empty(array_filter($this->group_id))):
+            $query->andFilterWhere([
+                'group_id' => $this->group_id,
             ]);
         endif;
 

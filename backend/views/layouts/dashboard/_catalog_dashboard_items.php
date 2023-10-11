@@ -91,6 +91,16 @@ if(Yii::$app->user->can(User::ROLE_ADMIN)):
             'linkUrl' => Url::to(['/catalog/rodent-showcase-category'])
         ]) ?>
     </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Groups'),
+            'text' => Yii::t('app', 'Groups Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'primary',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/catalog/rodent-showcase-group'])
+        ]) ?>
+    </div>
 </div>
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -199,6 +209,16 @@ if(Yii::$app->user->can(User::ROLE_ADMIN)):
             'theme' => 'primary',
             'linkText' => Yii::t('app', 'GO_LINK'),
             'linkUrl' => Url::to(['/catalog/dog-cage-category'])
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Groups'),
+            'text' => Yii::t('app', 'Groups Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'primary',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/catalog/dog-cage-group'])
         ]) ?>
     </div>
 </div>

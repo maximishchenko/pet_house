@@ -94,4 +94,5 @@ return [
     'Order Delivery Address' => "Адрес доставки*",
     "Our clients reviews" => "Отзывы наших клиентов",
     "Page Title Dogs" => "Клетки для собак",
+    'In available' => 'В наличии',
 ];

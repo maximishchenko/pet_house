@@ -7,6 +7,7 @@ use backend\modules\catalog\models\abstracts\PropertySize;
 use backend\modules\catalog\models\DogCageAccessory;
 use backend\modules\catalog\models\DogCageProduct;
 use backend\modules\catalog\models\items\CatalogTypeItems;
+use backend\modules\catalog\models\items\GroupTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\ProductImage;
@@ -32,6 +33,7 @@ use yii\helpers\ArrayHelper;
  * @property string|null $name
  * @property string|null $slug
  * @property int|null|array $category_id
+ * @property int|null|array $group_id
  * @property int|null|array $type_id
  * @property int|null $material_id
  * @property int|null $color_id
@@ -149,7 +151,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function rules()
     {
         return [
-            [['category_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['category_id', 'group_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['price'], 'number'],
             [['comment', 'description'], 'string'],
             [['name', 'slug', 'product_type', 'item_type', 'status', 'image'], 'string', 'max' => 255],
@@ -180,6 +182,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
             'category_id' => Yii::t('app', 'Category ID'),
+            'group_id' => Yii::t('app', 'Group ID'),
             'type_id' => Yii::t('app', 'Type ID'),
             'material_id' => Yii::t('app', 'Material ID'),
             'color_id' => Yii::t('app', 'Color ID'),
@@ -364,7 +367,8 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         $categories = Category::find()
                         ->where([
                             'item_type' => $this->item_type,
-                            'property_type' => $this->product_type
+                            'property_type' => $this->product_type,
+                            'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY,
                         ])->all(); 
         $items = ArrayHelper::map($categories,'id', 'name');
         return $items;
@@ -379,6 +383,24 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return ['prompt' => Yii::t('app', 'Choose product category')];
     }
+
+    public function getGroupsItems()
+    {
+        $categories = Category::find()
+                        ->where([
+                            'item_type' => $this->item_type,
+                            'property_type' => $this->product_type,
+                            'group_type' => GroupTypeItems::GROUP_TYPE_GROUP,
+                        ])->all(); 
+        $items = ArrayHelper::map($categories,'id', 'name');
+        return $items;
+    }
+
+    public function getGroupsParams()
+    {
+        return ['prompt' => Yii::t('app', 'Choose product group')];
+    }
+    
 
     public function getConstructorCssClass()
     {

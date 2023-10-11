@@ -252,4 +252,13 @@ return [
     "Rodent Showcase Max Width hint" => "Максимальное значнеие глубины витрины в конструкторе",
     "Rodent Showcase Max Depth hint" => "Максимальное значнеие глубины витрины в конструкторе",
     "Rodent Showcase Step hint" => "Шаг изменения размера в конструкторе",
+    'Groups' => 'Группы',
+    'Groups Edit' => 'Управление группами',
+    'Rodent Showcase Groups' => 'Группы витрин для грызунов',
+    'Update Rodent Showcase Group: {name}' => 'Группа: {name}',
+    'Dog Cage Groups' => 'Группы клеток для собак',
+    'Update Dog Cage Group: {name}' => 'Группа: {name}',
+    'Group ID' => 'Группа товаров',
+    'Choose product group' => 'Выберите группу',
+    'Rodent Showcase Group hint' => 'Элемент справочника группы',
 ];

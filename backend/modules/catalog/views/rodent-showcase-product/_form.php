@@ -4,12 +4,7 @@ use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\root\Product;
 use backend\widgets\SingleImagePreviewWidget;
 use yii\helpers\Html;
-use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model backend\modules\catalog\models\RodentProduct */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <?= $this->render('//layouts/_product_tabs', ['model' => $model]); ?>
@@ -39,9 +34,10 @@ use yii\bootstrap4\ActiveForm;
                     )->hint(Yii::t('app', "Rodent Showcase Category hint")); ?>
             </div>
             <div class="col-md-4">
-                <?= $form->field($model, 'slug')->textInput([
-                        'disabled' => true
-                    ])->hint(Yii::t('app', "Rodent Showcase Slug hint")); ?>
+                <?= $form->field($model, 'group_id')->dropDownList(
+                        $model->getGroupsItems(),
+                        $model->getGroupsParams()
+                    )->hint(Yii::t('app', "Rodent Showcase Group hint")); ?>
             </div>
             <div class="col-md-4">
                 <?= $form->field($model, 'type_id')->dropDownList(
@@ -79,6 +75,15 @@ use yii\bootstrap4\ActiveForm;
                         $model->getPropertiesItems(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL),
                         $model->getPropertiesParams(PropertyItemTypeItems::PROPERTY_ITEM_TYPE_WALL)
                     )->hint(Yii::t('app', "Rodent Showcase Wall hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'slug')->textInput([
+                        'disabled' => true
+                    ])->hint(Yii::t('app', "Rodent Showcase Slug hint")); ?>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
             </div>
         </div>
     </div>

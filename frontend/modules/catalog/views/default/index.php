@@ -21,10 +21,10 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
 <!-- Фильтры Категориям -->
 <?= $this->render('_filter_category', [
     'categories' => $categories,
+    'groups' => $groups,
     'searchModel' => $searchModel,
 ]); ?>
 
-<?= $productType; ?>
 
 <section class="catalog mb-xxl">
     <div class="container">

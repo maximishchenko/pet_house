@@ -13,6 +13,8 @@ class CategoryQuery extends \yii\db\ActiveQuery
     
     public $item_type;
 
+    public $group_type;
+
     public function prepare($builder)
     {
         if ($this->property_type !== null) {
@@ -20,6 +22,9 @@ class CategoryQuery extends \yii\db\ActiveQuery
         }
         if ($this->item_type !== null) {
             $this->andWhere(['item_type' => $this->item_type]);
+        }
+        if ($this->group_type !== null) {
+            $this->andWhere(['group_type' => $this->group_type]);
         }
         return parent::prepare($builder);
     }

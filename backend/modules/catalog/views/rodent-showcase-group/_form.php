@@ -1,18 +1,15 @@
 <?php
 
-use backend\modules\catalog\models\root\Property;
+use backend\modules\catalog\models\root\Category;
 use backend\widgets\SingleImagePreviewWidget;
 use yii\bootstrap4\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model backend\modules\catalog\models\RodentShowcaseSize */
-/* @var $form yii\widgets\ActiveForm */
-
 ?>
-<div class="rodent-showcase-size-form">
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'rodent-showcase-size-form',
+<div class="rodent-showcase-group-form">
+
+<?php $form = ActiveForm::begin([
+        'id' => 'rodent-showcase-group-form',
         'options' => ['enctype' => 'multipart/form-data'],
         'fieldConfig' => ['template' => "{label}\n{input}\n{hint}\n{error}"],
         'encodeErrorSummary' => false,
@@ -25,31 +22,27 @@ use yii\bootstrap4\ActiveForm;
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-6">
-                <?= $form->field($model, 'height')->textInput() ?>
-            </div>
-            <div class="col-md-6">
-                <?= $form->field($model, 'width')->textInput() ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <?= $form->field($model, 'depth')->textInput() ?>
-            </div>
-            <div class="col-md-6">
-                <?= $form->field($model, 'price')->textInput(['type' => 'number']) ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'slug')->textInput(['disabled' => true]) ?>
                 <?= $form->field($model, 'sort')->textInput() ?>
                 <?= $form->field($model, 'status')->checkbox() ?>
             </div>
             <div class="col-md-6">
-                <?= $form->field($model, 'comment')->textarea(['rows' => 3]) ?>
+                <?= $form->field($model, 'font_color')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'text_color')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'badge_color')->textInput(['maxlength' => true]) ?>
             </div>
-        </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            </div>
+        </div>    
     </div>
-    
+
+
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
@@ -58,7 +51,7 @@ use yii\bootstrap4\ActiveForm;
                     <div class="row">
                         <?= SingleImagePreviewWidget::widget([
                             'id' => $model->id,
-                            'filePath' => $model->getUrl(Property::UPLOAD_PATH, $model->image),
+                            'filePath' => $model->getUrl(Category::UPLOAD_PATH, $model->image),
                             'url' => 'delete-image',
                             'fancyboxGalleryName' => "SinglePropertyImage",
                         ]); ?>
@@ -69,7 +62,9 @@ use yii\bootstrap4\ActiveForm;
     </div>
 
 
+
     <?php ActiveForm::end(); ?>
 
 </div>
-<?= $this->render('//layouts/forms/_buttons', ['formId' => 'rodent-showcase-size-form']); ?>
+
+<?= $this->render('//layouts/forms/_buttons', ['formId' => 'rodent-showcase-group-form']); ?>

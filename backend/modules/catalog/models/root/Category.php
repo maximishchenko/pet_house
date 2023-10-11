@@ -4,11 +4,14 @@ namespace backend\modules\catalog\models\root;
 
 use backend\interfaces\SingleTableInterface;
 use backend\modules\catalog\models\DogCageCategory;
+use backend\modules\catalog\models\DogCageGroup;
 use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\CategoryItemTypeItems;
+use backend\modules\catalog\models\items\GroupTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\query\CategoryQuery;
 use backend\modules\catalog\models\RodentShowcaseCategory;
+use backend\modules\catalog\models\RodentShowcaseGroup;
 use backend\traits\fileTrait;
 use backend\traits\InheritanceTrait;
 use common\models\Sort;
@@ -50,9 +53,6 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
     const UPLOAD_PATH = 'uploads/category/';
 
     
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%category}}';
@@ -85,44 +85,39 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
     } 
     
-    /**
-    * Возвращает 
-    *
-    * @param [type] $row
-    * @return void
-    */
    public static function instantiate($row)
    {
-       if ($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
+    // Категории
+       if ($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT && $row['group_type'] == GroupTypeItems::GROUP_TYPE_CATEGORY) {
            return new RodentShowcaseCategory();
-       } elseif($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
+       } elseif($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT && $row['group_type'] == GroupTypeItems::GROUP_TYPE_CATEGORY) {
            return new DogCageCategory();
+       }
+    //    Группы
+       elseif ($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT && $row['group_type'] == GroupTypeItems::GROUP_TYPE_GROUP) {
+           return new RodentShowcaseGroup();
+       } elseif($row['property_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT && $row['group_type'] == GroupTypeItems::GROUP_TYPE_GROUP) {
+           return new DogCageGroup();
        } else {
            return new self;
        }
    }
 
-   /**
-    * {@inheritdoc}
-    * @return \backend\modules\catalog\models\query\AttributeQuery the active query used by this AR class.
-    */
    public static function find()
    {
        $cls = get_called_class();
        $clsItem = new $cls;
-       return new CategoryQuery($cls, ['property_type' => $clsItem->property_type, 'item_type' => $clsItem->item_type]);
+       return new CategoryQuery($cls, ['property_type' => $clsItem->property_type, 'item_type' => $clsItem->item_type, 'group_type' => $clsItem->group_type]);
    }
    
    public function init()
    {
        $this->property_type = $this->getType();
        $this->item_type = $this->getItemType();
+       $this->group_type = $this->getGroupType();
        parent::init();
    }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -138,9 +133,6 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -165,11 +157,6 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
     }
 
-    /**
-     * Gets query for [[Products]].
-     *
-     * @return \yii\db\ActiveQuery|PropertyQuery
-     */
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['category_id' => 'id']);
@@ -184,6 +171,11 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getItemTYpe()
     {
         return $this->setItemType();
+    }
+
+    public function getGroupType()
+    {
+        return $this->setGroupType();
     }
 
     /**
@@ -213,10 +205,35 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         $cls = $this->getChildClassShortName();
         switch ($cls) {
+            // Категории
             case 'RodentShowcaseCategory':
                 return CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE;
             case 'DogCageCategory':
                 return CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE;
+            // Группы
+            case 'RodentShowcaseGroup':
+                return CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE;
+            case 'DogCageGroup':
+                return CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE;
+            default:
+                return null;
+        }
+    }
+
+    protected function setGroupType()
+    {
+        $cls = $this->getChildClassShortName();
+        switch ($cls) {
+            // Категории
+            case 'RodentShowcaseCategory':
+                return GroupTypeItems::GROUP_TYPE_CATEGORY;
+            case 'DogCageCategory':
+                return GroupTypeItems::GROUP_TYPE_CATEGORY;
+            // Группы
+            case 'RodentShowcaseGroup':
+                return GroupTypeItems::GROUP_TYPE_GROUP;
+            case 'DogCageGroup':
+                return GroupTypeItems::GROUP_TYPE_GROUP;
             default:
                 return null;
         }

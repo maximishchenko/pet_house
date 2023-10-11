@@ -7,11 +7,23 @@ use yii\helpers\Url;
 <a href="<?= Url::toRoute($model->getSectionUrl() . '/' . $model->slug); ?>" class="thumb-prod">
   <div class="thumb-prod__img-wrapper">
     <div class="thumb-prod__bage-wrapper">
-      <span class="thumb-prod__bage thumb-prod__bage--stock">есть керамика</span>
-      <span class="thumb-prod__bage thumb-prod__bage--sale">-10%</span>
+      <?php if($model->group_id): ?>
+      <span class="thumb-prod__bage thumb-prod__bage--stock">
+        <?= $model->group->name; ?>
+      </span>
+      <?php endif; ?>
+      <?php if($model->discount): ?>
+      <span class="thumb-prod__bage thumb-prod__bage--sale">
+        <?= $model->discount . "%"; ?>
+      </span>
+      <?php endif; ?>
     </div>
     <div class="thumb-prod__type-wrapper">
-      <span class="thumb-prod__bage thumb-prod__bage--type">В наличии</span>
+      <?php if($model->is_available): ?>
+      <span class="thumb-prod__bage thumb-prod__bage--type">
+        <?= Yii::t('app', 'In available'); ?>
+      </span>
+      <?php endif; ?>
     </div>
     <img class="thumb-prod__img" src="<?= "/" . Product::UPLOAD_PATH . $model->image . "?v=" . $model->updated_at; ?>" alt="<?= $model->name; ?>">
   </div>

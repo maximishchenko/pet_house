@@ -2,10 +2,12 @@
 
 namespace backend\modules\catalog\models\abstracts;
 
+use backend\modules\catalog\models\items\GroupTypeItems;
 use backend\modules\catalog\models\root\Attribute;
 use backend\modules\catalog\models\items\PropertyItemTypeItems;
 use backend\modules\catalog\models\ProductAccessoryLink;
 use backend\modules\catalog\models\ProductImage;
+use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Product;
 use backend\modules\catalog\models\root\Property;
 use backend\modules\content\models\Information;
@@ -58,6 +60,11 @@ abstract class ProductItem extends Product
     public function getSize()
     {
         return $this->hasOne(PropertySize::className(), ['id' => 'size_id']);
+    }
+
+    public function getGroup()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'group_id'])->onCondition(['group_type' => GroupTypeItems::GROUP_TYPE_GROUP]);
     }
 
     public function getMaterial()
@@ -116,9 +123,6 @@ abstract class ProductItem extends Product
                     ->column();
     }   
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getProductAttributes()
     {
         return $this->hasMany(Attribute::className(), ['id' => 'attribute_id'])
@@ -154,9 +158,6 @@ abstract class ProductItem extends Product
                     ->column();
     }   
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getInformations()
     {
         return $this->hasMany(Information::className(), ['id' => 'information_item_id'])
@@ -186,7 +187,6 @@ abstract class ProductItem extends Product
         return false;
     }
 
-
     public function afterSave($insert, $changedAttributes)
     {
         $this->setProductImageAttribute();
@@ -195,8 +195,6 @@ abstract class ProductItem extends Product
     
         parent::afterSave($insert, $changedAttributes);
     }
-
-    
 
     public function beforeDelete()
     {

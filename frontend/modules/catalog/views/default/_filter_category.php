@@ -20,11 +20,11 @@
             </button>
           </div>
 
-          <?php if (isset($categories) && !empty($categories)) : ?>
-            <?php foreach ($categories as $category) : ?>
+          <?php if (isset($groups) && !empty($groups)) : ?>
+            <?php foreach ($groups as $group) : ?>
               <div class="swiper-slide mob-dis">
-                <button class="catalog-bar__btn btn-reset filter__category" data-search-name="category_id[]" data-search-value="<?= $category->id; ?>" type="button" <?= $searchModel->isCategoryActive($category->id); ?>>
-                  <?= $category->name; ?>
+                <button class="catalog-bar__btn btn-reset filter__category" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>" type="button" <?= $searchModel->isCategoryActive($group->id); ?>>
+                  <?= $group->name; ?>
                 </button>
               </div>
             <?php endforeach; ?>

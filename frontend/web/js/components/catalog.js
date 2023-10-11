@@ -14,15 +14,8 @@ if (document.querySelector('.catalog-cat')) {
             }
       }
 
-      filterBtn.addEventListener('click', () => {
-            showFilter();
-      });
-
-      btnMobCloase.addEventListener('click', () => {
-            showFilter();
-      });
-
-
+      filterBtn.addEventListener('click', showFilter);
+      btnMobCloase.addEventListener('click', showFilter);
 
       const updateInfo = document.querySelector('#showMore');
       const csrfToken = updateInfo.getAttribute('data-csrf-token');
@@ -46,21 +39,14 @@ if (document.querySelector('.catalog-cat')) {
       function catalogUrlParams() {
             let data = new FormData(filterForm);
             let params = new URLSearchParams(data);
-            let formatParams = params.toString();
-            console.log('form');
-            
-
-            return formatParams
+            return params.toString()
       }
 
-
       function updateCatalog() {
-            console.log('dawd');
-
             let pageNumber = parseInt(updateInfo.getAttribute('data-page'));
             let totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
 
-            if (pageNumber != totalPages) {
+            if (pageNumber !== totalPages) {
 
                   catalogSpinner.classList.add('spinner-container--show');
 
@@ -95,7 +81,7 @@ if (document.querySelector('.catalog-cat')) {
       const searchFormIntp = document.querySelectorAll('#catalog_search input');
 
       function catalogSearchSend() {
-            
+
             catalogObserver.disconnect();
             let searchParams = catalogUrlParams();
 
@@ -149,8 +135,7 @@ if (document.querySelector('.catalog-cat')) {
 
       sortItemBtn.forEach(el => {
             el.addEventListener('click', () => {
-                  let btnText = el.textContent;
-                  sortBtnText.textContent = btnText;
+                  sortBtnText.textContent = el.textContent;
                   sortInp.value = el.getAttribute('data-sort-param');
 
                   sortItemBtn.forEach(el => {
@@ -166,5 +151,4 @@ if (document.querySelector('.catalog-cat')) {
 
 
 }
-
 

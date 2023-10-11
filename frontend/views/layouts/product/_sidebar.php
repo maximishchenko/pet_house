@@ -59,8 +59,8 @@ use backend\modules\catalog\models\root\Property;
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
                   <div class="calc-el__list">
                     <?php foreach ($model->getColorItems() as $color) : ?>
-                      <span class="calc-el__list-item color-item" style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
-
+                      <span class="calc-el__list-item color-item " style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
+                        <!-- TODO calc-el__list-item--active добавить класс для выбранных элементов -->
                       </span>
                     <?php endforeach; ?>
                   </div>
@@ -71,14 +71,7 @@ use backend\modules\catalog\models\root\Property;
               <div class="calc-el">
                 <button class="calc-el__btn-control btn-reset" type="button"> <!-- TODO Класс для блокировки -->
                   <span class="calc-el__btn-wrapper">
-                    <span 
-                      class="calc-el__btn-preview"
-                      data-constructor-size-id="<?= $model->size->id; ?>"
-                      data-constructor-size-height="<?= $model->size->height; ?>"
-                      data-constructor-size-width="<?= $model->size->width; ?>"
-                      data-constructor-size-depth="<?= $model->size->depth; ?>"
-                      style="background-image: url('/img/size.jpg');"
-                    ></span>
+                    <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" data-constructor-size-height="<?= $model->size->height; ?>" data-constructor-size-width="<?= $model->size->width; ?>" data-constructor-size-depth="<?= $model->size->depth; ?>" style="background-image: url('/img/size.jpg');"></span>
                     <span class="calc-el__btn-text">
                       <span class="calc-el__btn-title"><?= Yii::t('app', 'Base Size'); ?></span>
                       <span class="calc-el__btn-val">
@@ -98,17 +91,17 @@ use backend\modules\catalog\models\root\Property;
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
 
-                <div class="<?= $model->getSizesConstructorBlockCssClassList() ?>">
-                  <?php if($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
+                  <div class="<?= $model->getSizesConstructorBlockCssClassList() ?>">
+                    <?php if ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) : ?>
 
                       <?= $this->render('//layouts/product/_constructor_items/_dog_cage_size', ['model' => $model]); ?>
 
-                  <?php else: ?>
+                    <?php else : ?>
 
                       <?= $this->render('//layouts/product/_constructor_items/_all_items_size', ['model' => $model]); ?>
 
-                  <?php endif; ?>
-                </div>
+                    <?php endif; ?>
+                  </div>
 
                 </div>
               </div>
@@ -175,10 +168,10 @@ use backend\modules\catalog\models\root\Property;
               <?= number_format($model->price, 0, '', ' '); ?>
             </span> ₽
 
-            <?php if(isset($model->discount) && $model->discount > 0): ?>
-            <span class="product__price-old" id="constructor_price_old">
-              <?= number_format($model->oldPrice, 0, '', ' '); ?>
-            </span> ₽
+            <?php if (isset($model->discount) && $model->discount > 0) : ?>
+              <span class="product__price-old" id="constructor_price_old">
+                <?= number_format($model->oldPrice, 0, '', ' '); ?>
+              </span> ₽
             <?php endif; ?>
 
           </span>

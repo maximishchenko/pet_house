@@ -43,83 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }));
 
-    // TODO указать шаг, уточнить ценообразование
-    /* const sliderH = document.getElementById('slider-h');
-    const sliderW = document.getElementById('slider-w');
-    const sliderG = document.getElementById('slider-g');
-
-    if (sliderH != null && sliderW != null && sliderG != null) {
-
-      let heightSlider =document.querySelector('#constructor_height_val') 
-      let startHeight = heightSlider.getAttribute("data-slider-height");
-      let minHeight = heightSlider.getAttribute("data-slider-min-height");
-      let maxHeight = heightSlider.getAttribute("data-slider-max-height");
-      let stepHeight = heightSlider.getAttribute("data-slider-step-height");
-      noUiSlider.create(sliderH, {
-        start: startHeight,
-        connect: [true, false],
-        step: Number(stepHeight),
-        range: {
-          'min': Number(minHeight),
-          'max': Number(maxHeight)
-        }
-      });
-
-      let widthSlider = document.querySelector('#constructor_width_val');
-      let startWidth = widthSlider.getAttribute("data-slider-width");
-      let minWidth = widthSlider.getAttribute("data-slider-min-width");
-      let maxWidth = widthSlider.getAttribute("data-slider-max-width");
-      let stepWidth = widthSlider.getAttribute("data-slider-step-width");
-      noUiSlider.create(sliderW, {
-        start: startWidth,
-        connect: [true, false],
-        step: Number(stepWidth),
-        range: {
-          'min': Number(minWidth),
-          'max': Number(maxWidth)
-        }
-      });
-
-      let depthSlider = document.querySelector('#constructor_depth_val');
-      let startDepth = depthSlider.getAttribute("data-slider-depth");
-      let minDepth = depthSlider.getAttribute("data-slider-min-depth");
-      let maxDepth = depthSlider.getAttribute("data-slider-max-depth");
-      let stepDepth = depthSlider.getAttribute("data-slider-step-depth");
-      noUiSlider.create(sliderG, {
-        start: startDepth,
-        connect: [true, false],
-        step: Number(stepDepth),
-        range: {
-          'min': Number(minDepth),
-          'max': Number(maxDepth),
-        }
-      });
-
-
-      sliderH.noUiSlider.on('update', function (values, handle, unencoded) {
-        let item_size_height = document.getElementById("constructor_height");
-        let item_size_height_val = document.getElementById("constructor_height_val");
-        item_size_height.innerHTML = values[handle];
-        item_size_height_val.innerHTML = values[handle];
-      });
-      sliderW.noUiSlider.on('update', function (values, handle, unencoded) {
-        let item_size_width = document.getElementById("constructor_width");
-        let item_size_width_val = document.getElementById("constructor_width_val");
-        item_size_width.innerHTML = values[handle];
-        item_size_width_val.innerHTML = values[handle];
-      });
-      sliderG.noUiSlider.on('update', function (values, handle, unencoded) {
-        let item_size_depth = document.getElementById("constructor_depth");
-        let item_size_depth_val = document.getElementById("constructor_depth_val");
-        item_size_depth.innerHTML = values[handle];
-        item_size_depth_val.innerHTML = values[handle];
-      });
-    }
- */
+    document.querySelectorAll('.calc-el__list-item')
+      .forEach(el => {
+        el.addEventListener('click', () => {
+          el.classList.toggle('calc-el__list-item--active');
+        })
+      })
   }
-
-
-
 });
 
 

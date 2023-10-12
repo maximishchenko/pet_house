@@ -43,12 +43,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }));
 
-    document.querySelectorAll('.calc-el__list-item')
-      .forEach(el => {
-        el.addEventListener('click', () => {
-          el.classList.toggle('calc-el__list-item--active');
-        })
+
+    const calcElements = document.querySelectorAll('.calc-el__list-item');
+    calcElements.forEach(el => {
+      el.addEventListener('click', () => {
+        hideActive();
+        el.classList.add('calc-el__list-item--active');
       })
+    });
+
+    function hideActive() {
+      calcElements.forEach(el => {
+        el.classList.remove('calc-el__list-item--active')
+      })
+    }
   }
 });
 

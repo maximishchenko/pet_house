@@ -152,7 +152,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return [
             [['category_id', 'group_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['price'], 'number'],
+            [['price', 'height_price', 'width_price', 'depth_price'], 'number'],
             [['comment', 'description'], 'string'],
             [['name', 'slug', 'product_type', 'item_type', 'status', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -190,6 +190,9 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             'engraving_id' => Yii::t('app', 'Engraving ID'),
             'size_id' => Yii::t('app', 'Size ID'),
             'is_available' => Yii::t('app', 'Is Available'),
+            'height_price' => Yii::t('app', 'Height Price'),
+            'width_price' => Yii::t('app', 'Width Price'),
+            'depth_price' => Yii::t('app', 'Depth Price'),
             'price' => Yii::t('app', 'Price'),
             'discount' => Yii::t('app', 'Discount'),
             'is_constructor_blocked' => Yii::t('app', 'Is Constructor Blocked'),

@@ -146,6 +146,23 @@ use yii\bootstrap4\ActiveForm;
                         'maxlength' => true
                     ])->hint(Yii::t('app', "Rodent Showcase Max Depth hint")); ?>
             </div>
+
+            <div class="col-md-4">
+                <?= $form->field($model, 'height_price')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Height Price hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'width_price')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Width Price hint")); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'depth_price')->textInput([
+                        'maxlength' => true
+                    ])->hint(Yii::t('app', "Depth Price hint")); ?>
+            </div>
+
             <div class="col-md-4">
                 <?= $form->field($model, 'step')->textInput([
                         'maxlength' => true

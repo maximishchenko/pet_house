@@ -2,9 +2,6 @@
 
 use yii\bootstrap4\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model backend\modules\catalog\models\DogCageSize */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="dog-cage-size-form">

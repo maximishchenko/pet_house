@@ -67,6 +67,9 @@ class DogCageProduct extends ProductItem
         $this->max_width = $this->size->max_width;
         $this->max_height = $this->size->max_height;
         $this->max_depth = $this->size->max_depth;
+        $this->height_price = $this->size->height_price;
+        $this->width_price = $this->size->width_price;
+        $this->depth_price = $this->size->depth_price;
         $this->step = $this->size->step;
         parent::afterFind();
     }
@@ -82,7 +85,7 @@ class DogCageProduct extends ProductItem
                     Yii::debug("Exists");
                     $size = DogCageSize::find()->where(['id' => $this->size_id])->one();
                 }
-                if ($this->size->height_value != $this->height || $this->size->width_value != $this->width || $this->size->depth_value != $this->depth) {
+                if ($this->isSizeValueChanged()) {
                     $size->height = $this->height;
                     $size->width = $this->width;
                     $size->depth = $this->depth;
@@ -92,6 +95,9 @@ class DogCageProduct extends ProductItem
                     $size->max_height = $this->max_height;
                     $size->max_width = $this->max_width;
                     $size->max_depth = $this->max_depth;
+                    $size->height_price = $this->height_price;
+                    $size->width_price = $this->width_price;
+                    $size->depth_price = $this->depth_price;
                     $size->step = $this->step;
                     $size->status = (string) Status::STATUS_ACTIVE;
                     if (!$size->save()) {
@@ -113,5 +119,10 @@ class DogCageProduct extends ProductItem
             return true;
         }
         return false;
+    }
+
+    private function isSizeValueChanged(): bool
+    {
+        return $this->size->height_value != $this->height || $this->size->width_value != $this->width || $this->size->depth_value != $this->depth || $this->size->height_price != $this->height_price || $this->size->height_price != $this->height_price || $this->size->depth_price != $this->depth_price;
     }
 }

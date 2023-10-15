@@ -4,6 +4,7 @@ namespace frontend\modules\catalog\models;
 
 use backend\modules\catalog\models\abstracts\PropertyColor;
 use backend\modules\catalog\models\abstracts\PropertyWall;
+use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\root\Product;
 use common\models\PriceValue;
 use common\models\Status;
@@ -30,8 +31,8 @@ class ProductPrice
 
     function __construct($product_id, $color_id, $wall_id, $heightPrice, $widthPrice, $depthPrice)
     {
-        $this->newSizePrice = $this->getNewSizePrice($heightPrice, $widthPrice, $depthPrice);
         $this->product = $this->getProduct($product_id);
+        $this->newSizePrice = $this->getNewSizePriceByProductType($heightPrice, $widthPrice, $depthPrice);
         $this->color = $this->getColor($color_id);
         $this->wall = $this->getWall($wall_id);
     }
@@ -65,9 +66,22 @@ class ProductPrice
      * @param float $depthPrice
      * @return float
      */
-    protected function getNewSizePrice($heightPrice, $widthPrice, $depthPrice): float
+    protected function getNewSizePriceByProductType($heightPrice, $widthPrice, $depthPrice): float
     {
-        return $heightPrice + $widthPrice + $depthPrice;
+        if ($this->product->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
+            return 0;
+        } else {
+            return $heightPrice + $widthPrice + $depthPrice;
+        }
+    }
+
+    protected function getCurrentSizePriceByProductType()
+    {
+        if ($this->product->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
+            return 0;
+        } else {
+            return $this->product->size->height_price + $this->product->size->width_price + $this->product->size->depth_price;
+        }
     }
 
     /**
@@ -89,7 +103,8 @@ class ProductPrice
      */
     protected function getCurrentItemsPrice(): float
     {
-        $currentSizePrice = $this->product->size->height_price + $this->product->size->width_price + $this->product->size->depth_price;
+        // $currentSizePrice = $this->product->size->height_price + $this->product->size->width_price + $this->product->size->depth_price;
+        $currentSizePrice = $this->getCurrentSizePriceByProductType();
         $currentColorPrice = $this->product->color->price;
         $currentWallPrice = $this->product->wall->price;
         return $currentSizePrice + $currentColorPrice + $currentWallPrice;

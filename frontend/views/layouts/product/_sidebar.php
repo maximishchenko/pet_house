@@ -78,7 +78,13 @@ use backend\modules\catalog\models\root\Property;
                         data-constructor-size-depth="<?= $model->size->depth; ?>" 
                         data-constructor-size-height-price="<?= $model->size->height_price; ?>" 
                         data-constructor-size-width-price="<?= $model->size->width_price; ?>" 
-                        data-constructor-size-depth-price="<?= $model->size->depth_price; ?>" 
+                        data-constructor-size-depth-price="<?= $model->size->depth_price; ?>"
+                        
+                        data-constructor-size-height-price-calc="<?php // echo $model->size->height_price; ?>"
+                        data-constructor-size-width-price-calc="<?php // echo $model->size->width_price; ?>"
+                        data-constructor-size-depth-price-calc="<?php // echo $model->size->depth_price; ?>"
+                        data-constructor-step="<?php // echo $model->size->step; ?>"
+
                         style="background-image: url('/img/size.jpg');"
                       >
                     </span>
@@ -118,6 +124,7 @@ use backend\modules\catalog\models\root\Property;
               <!-- Размеры -->
 
               <!-- Боковые стенки -->
+              <?php if($model->product_type != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
               <div class="calc-el">
                 <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
                   <span class="calc-el__btn-wrapper">
@@ -146,6 +153,7 @@ use backend\modules\catalog\models\root\Property;
                   </div>
                 </div>
               </div>
+              <?php endif; ?>
               <!-- Боковые стенки -->
 
             </div>

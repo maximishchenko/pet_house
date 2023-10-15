@@ -95,8 +95,9 @@ function getConstructorData() {
     let constructorProductDepthSizePrice = document.querySelector('span[data-constructor-size-depth-price]');
     let constructorProductSizeDepthPriceValue = constructorProductDepthSizePrice.getAttribute("data-constructor-size-depth-price");
 
+
     let constructorProductWall = document.querySelector('span[data-constructor-wall-id]');
-    let constructorProductWallId = constructorProductWall.getAttribute("data-constructor-wall-id");
+    let constructorProductWallId = (constructorProductWall != null) ? constructorProductWall.getAttribute("data-constructor-wall-id") : 0;
 
 
     let data = {
@@ -347,29 +348,55 @@ if (counterVal != null && counterDec != null && counterInc != null) {
         });
 
         let item_size = document.querySelector('span[data-constructor-size-id]');
+        // let stepCount = item_size.getAttribute("data-constructor-step");
 
-        sliderH.noUiSlider.on('update', function (values, handle, unencoded) {
+
+
+        sliderH.noUiSlider.on('end', function (values, handle, unencoded) {
             let item_size_height = document.getElementById("constructor_height");
             let item_size_height_val = document.getElementById("constructor_height_val");
             item_size_height.innerHTML = Math.trunc(values[handle]);
             item_size_height_val.innerHTML = `${Math.trunc(values[handle])} см`;
+
+
+            // let heightValue = item_size.getAttribute('data-constructor-size-height');
+            // let heightPriceCalc = item_size.getAttribute("data-constructor-size-height-price-calc");
+
+            // let heightPrice =  heightPriceCalc / stepCount * heightValue;
+            
             item_size.setAttribute("data-constructor-size-height", values[handle]);
+            // item_size.setAttribute("data-constructor-size-height-price", heightPrice);
             getConstructorPriceAjax();
         });
-        sliderW.noUiSlider.on('update', function (values, handle, unencoded) {
+        sliderW.noUiSlider.on('end', function (values, handle, unencoded) {
             let item_size_width = document.getElementById("constructor_width");
             let item_size_width_val = document.getElementById("constructor_width_val");
             item_size_width.innerHTML = Math.trunc(values[handle]);
             item_size_width_val.innerHTML = `${Math.trunc(values[handle])} см`;
+
+
+            // let widthValue = item_size.getAttribute('data-constructor-size-width');
+            // let widthtPriceCalc = item_size.getAttribute("data-constructor-size-width-price-calc");
+
+            // let widthPrice =  widthtPriceCalc / stepCount * widthValue;
+
             item_size.setAttribute("data-constructor-size-width", values[handle]);
+            // item_size.setAttribute("data-constructor-size-width-price", widthPrice);
             getConstructorPriceAjax();
         });
-        sliderG.noUiSlider.on('update', function (values, handle, unencoded) {
+        sliderG.noUiSlider.on('end', function (values, handle, unencoded) {
             let item_size_depth = document.getElementById("constructor_depth");
             let item_size_depth_val = document.getElementById("constructor_depth_val");
             item_size_depth.innerHTML = Math.trunc(values[handle]);
             item_size_depth_val.innerHTML = `${Math.trunc(values[handle])} см`;
+
+            // let depthValue = item_size.getAttribute('data-constructor-size-depth');
+            // let depthPriceCalc = item_size.getAttribute("data-constructor-size-depth-price-calc");
+
+            // let depthPrice =  depthPriceCalc / stepCount * depthValue;
+
             item_size.setAttribute("data-constructor-size-depth", values[handle]);
+            // item_size.setAttribute("data-constructor-size-depth-price", depthPrice);
             getConstructorPriceAjax();
         });
     }

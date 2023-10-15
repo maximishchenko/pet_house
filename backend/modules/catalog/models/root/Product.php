@@ -63,6 +63,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
 
     const UPLOAD_PATH = 'uploads/product/';
 
+    public $height_price;
+
+    public $width_price;
+
+    public $depth_price;
+
     /**
      * Возвращает 
      *
@@ -153,6 +159,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         return [
             [['category_id', 'group_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['price', 'height_price', 'width_price', 'depth_price'], 'number'],
+            [['height_price', 'width_price', 'depth_price'], 'safe'],
             [['comment', 'description'], 'string'],
             [['name', 'slug', 'product_type', 'item_type', 'status', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],

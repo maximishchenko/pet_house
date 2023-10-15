@@ -121,7 +121,7 @@ async function getConstructorPriceAjax() {
     })
         .then((response) => {
             if (!response.ok) {
-                window.location.reload();
+                /* window.location.reload(); */
             }
             return response.json()
         })

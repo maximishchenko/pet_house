@@ -100,6 +100,44 @@ function getConstructorData() {
     let constructorProductWallId = (constructorProductWall != null) ? constructorProductWall.getAttribute("data-constructor-wall-id") : 0;
 
 
+    // 
+
+    let startStepHeight = document.querySelector('span[data-start-step-height]');
+    let currentStepHeight = document.querySelector('span[data-current-step-height]');
+    let minStepHeight = document.querySelector('span[data-minimal-step-height]');
+    let stepPriceHeight = document.querySelector('span[data-step-price-height');
+
+    let startStepWidth = document.querySelector('span[data-start-step-width]');
+    let currentStepWidth = document.querySelector('span[data-current-step-width]');
+    let minStepWidth = document.querySelector('span[data-minimal-step-width]');
+    let stepPriceWidth = document.querySelector('span[data-step-price-width');
+
+    let startStepDepth = document.querySelector('span[data-start-step-depth]');
+    let currentStepDepth = document.querySelector('span[data-current-step-depth]');
+    let minStepDepth = document.querySelector('span[data-minimal-step-depth]');
+    let stepPriceDepth = document.querySelector('span[data-step-price-depth');
+
+    let stepSize = document.querySelector('span[data-step-size');
+    
+    let startStepHeightValue = (startStepHeight != null) ? startStepHeight.getAttribute('data-start-step-height') : null;
+    let currentStepHeightValue = (currentStepHeight != null) ? currentStepHeight.getAttribute('data-current-step-height') : null;
+    let minStepHeightValue = (minStepHeight != null) ? minStepHeight.getAttribute('data-minimal-step-height') : null;
+    let stepPriceHeightValue = (stepPriceHeight != null) ? stepPriceHeight.getAttribute('data-step-price-height') : null;
+    
+    let startStepWidthValue = (startStepWidth != null) ? startStepWidth.getAttribute('data-start-step-width') : null;
+    let currentStepWidthValue = (currentStepWidth != null) ? currentStepWidth.getAttribute('data-current-step-width') : null;
+    let minStepWidthValue = (minStepWidth != null) ? minStepWidth.getAttribute('data-minimal-step-width') : null;
+    let stepPriceWidthValue = (stepPriceWidth != null) ? stepPriceWidth.getAttribute('data-step-price-width') : null;
+    
+    let startStepDepthValue = (startStepDepth != null) ? startStepDepth.getAttribute('data-start-step-depth') : null;
+    let currentStepDepthValue = (currentStepDepth != null) ? currentStepDepth.getAttribute('data-current-step-depth') : null;
+    let minStepDepthValue = (minStepDepth != null) ? minStepDepth.getAttribute('data-minimal-step-depth') : null;
+    let stepPriceDepthValue = (stepPriceDepth != null) ? stepPriceDepth.getAttribute('data-step-price-depth') : null;
+    
+    let stepSizeValue = (stepSize != null) ? stepSize.getAttribute('data-step-size') : null;
+
+    // 
+
     let data = {
         'product_id': constructorProductId,
         'color_id': constructorProductColorId,
@@ -107,12 +145,30 @@ function getConstructorData() {
         'heightPrice': constructorProductSizeHeightPriceValue,
         'widthPrice': constructorProductSizeWidthPriceValue,
         'depthPrice': constructorProductSizeDepthPriceValue,
+        // 
+        'start-step-height': startStepHeightValue,
+        'current-step-height': currentStepHeightValue,
+        'minimal-step-height': minStepHeightValue,
+        'step-price-height': stepPriceHeightValue,
+
+        'start-step-width': startStepWidthValue,
+        'current-step-width': currentStepWidthValue,
+        'minimal-step-width': minStepWidthValue,
+        'step-price-width': stepPriceWidthValue,
+
+        'start-step-depth': startStepDepthValue,
+        'current-step-depth': currentStepDepthValue,
+        'minimal-step-depth': minStepDepthValue,
+        'step-price-depth': stepPriceDepthValue, 
+        'step-size': stepSizeValue,
+        // 
         '_csrf': constructorCsrfToken,
     };
     return new URLSearchParams(data).toString();
 }
 
 async function getConstructorPriceAjax() {
+   
     fetch(`/catalog/default/calculate-price-constructor?${getConstructorData()}`, {
         method: 'GET',
         headers: {
@@ -358,6 +414,9 @@ if (counterVal != null && counterDec != null && counterInc != null) {
             item_size_height.innerHTML = Math.trunc(values[handle]);
             item_size_height_val.innerHTML = `${Math.trunc(values[handle])} см`;
 
+            let heightParamsContainer = document.querySelector('span[data-current-step-height]');
+            heightParamsContainer.setAttribute('data-current-step-height', Math.trunc(values[handle]));
+
 
             // let heightValue = item_size.getAttribute('data-constructor-size-height');
             // let heightPriceCalc = item_size.getAttribute("data-constructor-size-height-price-calc");
@@ -374,6 +433,10 @@ if (counterVal != null && counterDec != null && counterInc != null) {
             item_size_width.innerHTML = Math.trunc(values[handle]);
             item_size_width_val.innerHTML = `${Math.trunc(values[handle])} см`;
 
+            
+            let widthParamsContainer = document.querySelector('span[data-current-step-width]');
+            widthParamsContainer.setAttribute('data-current-step-width', Math.trunc(values[handle]));
+
 
             // let widthValue = item_size.getAttribute('data-constructor-size-width');
             // let widthtPriceCalc = item_size.getAttribute("data-constructor-size-width-price-calc");
@@ -389,6 +452,9 @@ if (counterVal != null && counterDec != null && counterInc != null) {
             let item_size_depth_val = document.getElementById("constructor_depth_val");
             item_size_depth.innerHTML = Math.trunc(values[handle]);
             item_size_depth_val.innerHTML = `${Math.trunc(values[handle])} см`;
+            
+            let depthParamsContainer = document.querySelector('span[data-current-step-depth]');
+            depthParamsContainer.setAttribute('data-current-step-depth', Math.trunc(values[handle]));
 
             // let depthValue = item_size.getAttribute('data-constructor-size-depth');
             // let depthPriceCalc = item_size.getAttribute("data-constructor-size-depth-price-calc");

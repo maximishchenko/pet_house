@@ -138,13 +138,35 @@ class DefaultController extends Controller
             $widthPrice = Yii::$app->request->get('widthPrice');
             $depthPrice = Yii::$app->request->get('depthPrice');
 
-            $productPrice = new ProductPrice($product_id, $color_id, $wall_id, $heightPrice, $widthPrice, $depthPrice);
+            $startStepHeightValue = Yii::$app->request->get('start-step-height');
+            $currentStepHeightValue = Yii::$app->request->get('current-step-height');
+            $minStepHeightValue = Yii::$app->request->get('minimal-step-height');
+            $stepPriceHeightValue = Yii::$app->request->get('step-price-height');
+            
+            $startStepWidthValue = Yii::$app->request->get('start-step-width');
+            $currentStepWidthValue = Yii::$app->request->get('current-step-width');
+            $minStepWidthValue = Yii::$app->request->get('minimal-step-width');
+            $stepPriceWidthValue = Yii::$app->request->get('step-price-width');
+            
+            $startStepDepthValue = Yii::$app->request->get('start-step-depth');
+            $currentStepDepthValue = Yii::$app->request->get('current-step-depth');
+            $minStepDepthValue = Yii::$app->request->get('minimal-step-depth');
+            $stepPriceDepthValue = Yii::$app->request->get('step-price-depth');
+
+            $stepSizeValue = Yii::$app->request->get('step-size');
+
+            $productPrice = new ProductPrice(
+                $product_id, $color_id, $wall_id, $heightPrice, $widthPrice, $depthPrice,
+                $startStepHeightValue, $currentStepHeightValue, $minStepHeightValue, $stepPriceHeightValue,
+                $startStepWidthValue, $currentStepWidthValue, $minStepWidthValue, $stepPriceWidthValue,
+                $startStepDepthValue, $currentStepDepthValue, $minStepDepthValue, $stepPriceDepthValue,
+                $stepSizeValue
+            );
             
             $data = json_encode($productPrice->getPriceValues());
             return $data;
         }
         Yii::$app->end();
-
     }
 
     protected function findModel($slug)

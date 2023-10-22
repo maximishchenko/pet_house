@@ -8,6 +8,7 @@ use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\root\Product;
 use common\models\PriceValue;
 use common\models\Status;
+use Yii;
 
 class ProductPrice 
 {
@@ -29,12 +30,66 @@ class ProductPrice
      */
     protected $newSizePrice;
 
-    function __construct($product_id, $color_id, $wall_id, $heightPrice, $widthPrice, $depthPrice)
+    protected $startStepHeightValue;
+
+    protected $currentStepHeightValue;
+
+    protected $minStepHeightValue;
+
+    protected $stepPriceHeightValue;
+
+    protected $startStepWidthValue;
+
+    protected $currentStepWidthValue;
+
+    protected $minStepWidthValue;
+
+    protected $stepPriceWidthValue;
+
+    protected $startStepDepthValue;
+
+    protected $currentStepDepthValue;
+
+    protected $minStepDepthValue;
+
+    protected $stepPriceDepthValue;
+
+    protected $stepSizeValue;
+
+    function __construct(
+        $product_id, $color_id, $wall_id, $heightPrice, $widthPrice, $depthPrice,
+        $startStepHeightValue, $currentStepHeightValue, $minStepHeightValue, $stepPriceHeightValue,
+        $startStepWidthValue, $currentStepWidthValue, $minStepWidthValue, $stepPriceWidthValue,
+        $startStepDepthValue, $currentStepDepthValue, $minStepDepthValue, $stepPriceDepthValue,
+        $stepSizeValue
+    )
     {
         $this->product = $this->getProduct($product_id);
+
+        // 
+        $this->startStepHeightValue = $startStepHeightValue;
+        $this->currentStepHeightValue = $currentStepHeightValue;
+        $this->minStepHeightValue = $minStepHeightValue;
+        $this->stepPriceHeightValue = $stepPriceHeightValue;
+        
+        $this->startStepWidthValue = $startStepWidthValue;
+        $this->currentStepWidthValue = $currentStepWidthValue;
+        $this->minStepWidthValue = $minStepWidthValue;
+        $this->stepPriceWidthValue = $stepPriceWidthValue;
+        
+        $this->startStepDepthValue = $startStepDepthValue;
+        $this->currentStepDepthValue = $currentStepDepthValue;
+        $this->minStepDepthValue = $minStepDepthValue;
+        $this->stepPriceDepthValue = $stepPriceDepthValue;
+        
+        $this->stepSizeValue = $stepSizeValue;
+        // 
+
         $this->newSizePrice = $this->getNewSizePriceByProductType($heightPrice, $widthPrice, $depthPrice);
         $this->color = $this->getColor($color_id);
         $this->wall = $this->getWall($wall_id);
+
+
     }
 
     public function getPriceValues(): array
@@ -69,19 +124,29 @@ class ProductPrice
     protected function getNewSizePriceByProductType($heightPrice, $widthPrice, $depthPrice): float
     {
         if ($this->product->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
-            return 0;
+            $newHeightPrice = (($this->currentStepHeightValue - $this->minStepHeightValue) / $this->stepSizeValue) * $this->stepPriceHeightValue;
+            $newWidthPrice = (($this->currentStepWidthValue - $this->minStepWidthValue) / $this->stepSizeValue) * $this->stepPriceWidthValue;
+            $newDepthPrice = (($this->currentStepDepthValue - $this->minStepDepthValue) / $this->stepSizeValue) * $this->stepPriceDepthValue;
         } else {
-            return $heightPrice + $widthPrice + $depthPrice;
+            $newHeightPrice = $heightPrice;
+            $newWidthPrice = $widthPrice;
+            $newDepthPrice = $depthPrice;
         }
+        return $newHeightPrice + $newWidthPrice + $newDepthPrice;
     }
 
     protected function getCurrentSizePriceByProductType()
     {
         if ($this->product->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) {
-            return 0;
+            $currentHeightPrice = (($this->startStepHeightValue - $this->minStepHeightValue) / $this->stepSizeValue) * $this->stepPriceHeightValue;
+            $currentWidthPrice = (($this->startStepWidthValue - $this->minStepWidthValue) / $this->stepSizeValue) * $this->stepPriceWidthValue;
+            $currentDepthPrice = (($this->startStepDepthValue - $this->minStepDepthValue) / $this->stepSizeValue) * $this->stepPriceDepthValue;
         } else {
-            return $this->product->size->height_price + $this->product->size->width_price + $this->product->size->depth_price;
+            $currentHeightPrice = $this->product->size->height_price;
+            $currentWidthPrice = $this->product->size->width_price;
+            $currentDepthPrice = $this->product->size->depth_price;
         }
+        return $currentHeightPrice + $currentWidthPrice + $currentDepthPrice;
     }
 
     /**

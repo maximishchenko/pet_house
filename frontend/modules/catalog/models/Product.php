@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Product as backendProduct;
 use backend\modules\catalog\models\root\Property;
 use common\models\Sort;
@@ -56,6 +57,13 @@ class Product extends backendProduct
         return (isset($queryParams['category_id']) && in_array($id, $queryParams['category_id'])) ? 'disabled' : null;
     }
 
+    
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
     /**
      * Creates data provider instance with search query applied
      *
@@ -82,6 +90,7 @@ class Product extends backendProduct
             'pagination' => [
                 'pageSize' => 6,
             ],
+
             'sort'=> Sort::setDefaultGridSort(),
         ]);
 

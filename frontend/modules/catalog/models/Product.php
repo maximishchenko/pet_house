@@ -14,6 +14,8 @@ class Product extends backendProduct
 {
 
     public $height_value;
+    public $nameSort;
+
 
     public function rules()
     {
@@ -57,13 +59,6 @@ class Product extends backendProduct
         return (isset($queryParams['category_id']) && in_array($id, $queryParams['category_id'])) ? 'disabled' : null;
     }
 
-    
-
-    public function getCategory()
-    {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
-    }
-
     /**
      * Creates data provider instance with search query applied
      *
@@ -74,7 +69,7 @@ class Product extends backendProduct
     public function search($params, $productType, $itemType)
     {
         $query = self::find();
-        $query->joinWith(['heights']);
+        $query->joinWith(['heights', 'category']);
         // $query->product_type = $productType;
         // $query->item_type = $itemType;
         $query->where([
@@ -90,8 +85,13 @@ class Product extends backendProduct
             'pagination' => [
                 'pageSize' => 6,
             ],
-
-            'sort'=> Sort::setDefaultGridSort(),
+            'sort' => [
+                'defaultOrder' => [
+                    Category::tableName().'.sort' => SORT_DESC,
+                    'catalog_name' => SORT_DESC
+                ],
+            ],
+            // 'sort'=> Sort::setDefaultGridSort(),
         ]);
 
         
@@ -101,6 +101,12 @@ class Product extends backendProduct
                 'name',
                 'price',
                 'view_count',
+                'nameSort' => [
+                    'asc' => [Category::tableName().'.sort' => SORT_ASC, 'name' => SORT_DESC],
+                    'desc' => [Category::tableName().'.sort' => SORT_DESC, 'name' => SORT_DESC],
+                    'default' => SORT_DESC
+                ],
+
             ],
         ]);
 

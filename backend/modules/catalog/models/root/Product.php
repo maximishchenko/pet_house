@@ -241,6 +241,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return $this->hasOne(Property::className(), ['id' => 'size_id']);
     }
+    
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
 
     /**
      * Устанавливает значение item_type в зависимости от имени дочернего класса

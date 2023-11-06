@@ -2,7 +2,6 @@
 
 $this->title = $sections->getSectionTitle();
 $this->params['breadcrumbs'][] = $sections->getSectionName();
-
 ?>
 <div class="page-head">
     <div class="container">
@@ -15,7 +14,9 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
 </div>
 
 <!-- Фильтры по типам -->
-<?= $this->render('_filter_type'); ?>
+<?= $this->render('_filter_type', [
+    'categories' => $categories,
+]); ?>
 
 
 <!-- Фильтры Категориям -->

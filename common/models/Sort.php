@@ -19,7 +19,7 @@ class Sort
     /**
      * Значение параметра сортировки по умолнчанию
      */
-    const BASE_SORT_VALUE = 'name';
+    const BASE_SORT_VALUE = 'nameSort';
 
     /**
      * CSS-класс пункта виджера сортировки по умолчанию

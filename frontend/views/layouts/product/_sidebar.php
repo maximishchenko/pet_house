@@ -35,16 +35,16 @@ use backend\modules\catalog\models\root\Property;
           </ul>
           <div class="tabs__content">
             <div class="tabs__panel">
-              <div class="calc-el">
+              <div class="calc-el calc-el--color">
                 <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
                   <span class="calc-el__btn-wrapper">
-                    <span class="calc-el__btn-preview" data-constructor-color-id="<?= $model->color->id; ?>" data-constructor-color-image style="background-image: url(<?= "/" . Property::UPLOAD_PATH . "/" . $model->color->image; ?>);">
+                    <span class="calc-el__btn-preview"  id="calc-color-img" data-constructor-color-id="<?= $model->color->id; ?>" data-constructor-color-image style="background-image: url(<?= "/" . Property::UPLOAD_PATH . "/" . $model->color->image; ?>);">
                     </span>
                     <span class="calc-el__btn-text">
                       <span class="calc-el__btn-title">
                         <?= Yii::t('app', 'Base color'); ?>
                       </span>
-                      <span class="calc-el__btn-val" data-constructor-color-name>
+                      <span class="calc-el__btn-val" id="calc-color-title" data-constructor-color-name>
                         <?= $model->color->name ?>
                       </span>
                     </span>
@@ -57,9 +57,9 @@ use backend\modules\catalog\models\root\Property;
                   </span>
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
-                  <div class="calc-el__list">
+                  <div class="calc-el__list calc-el__list--color">
                     <?php foreach ($model->getColorItems() as $color) : ?>
-                      <span class="calc-el__list-item color-item " style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
+                      <span class="calc-el__list-item <?= ($model->color_id == $color->id) ? "calc-el__list-item--active" : ""; ?>" style="background-image: url(/uploads/property/<?= $color->image; ?>);"  data-price="<?= $color->price; ?>" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
                         <!-- TODO calc-el__list-item--active добавить класс для выбранных элементов -->
                       </span>
                     <?php endforeach; ?>
@@ -107,7 +107,7 @@ use backend\modules\catalog\models\root\Property;
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
 
-                  <div class="<?= $model->getSizesConstructorBlockCssClassList() ?>">
+                  <div class="<?= $model->getSizesConstructorBlockCssClassList() ?> calc-el__list--size">
                     <?php if ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) : ?>
 
                       <?= $this->render('//layouts/product/_constructor_items/_dog_cage_size', ['model' => $model]); ?>
@@ -128,10 +128,10 @@ use backend\modules\catalog\models\root\Property;
               <div class="calc-el">
                 <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
                   <span class="calc-el__btn-wrapper">
-                    <span class="calc-el__btn-preview" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/color.jpg');"></span>
+                    <span class="calc-el__btn-preview"  id="calc-walls-img" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/color.jpg');"></span>
                     <span class="calc-el__btn-text">
                       <span class="calc-el__btn-title"><?= Yii::t('app', 'Base material'); ?></span>
-                      <span class="calc-el__btn-val" data-constructor-wall-name>
+                      <span class="calc-el__btn-val"  id="calc-walls-title" data-constructor-wall-name>
                         <?= $model->wall->name; ?>
                       </span>
                     </span>
@@ -144,7 +144,7 @@ use backend\modules\catalog\models\root\Property;
                   </span>
                 </button>
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
-                  <div class="calc-el__list">
+                  <div class="calc-el__list calc-el__list--walls">
                     <?php foreach ($model->getAvailableProductSideWalls() as $wall) : ?>
 
                       <?= $this->render('//layouts/product/_constructor_items/_all_wall', ['wall' => $wall]); ?>

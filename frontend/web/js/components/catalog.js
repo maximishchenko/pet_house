@@ -45,7 +45,7 @@ if (document.querySelector('.catalog-cat')) {
       function updateCatalog() {
             let pageNumber = parseInt(updateInfo.getAttribute('data-page'));
             let totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
-
+            
             if (pageNumber !== totalPages) {
 
                   catalogSpinner.classList.add('spinner-container--show');

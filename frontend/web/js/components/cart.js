@@ -470,3 +470,51 @@ if (counterVal != null && counterDec != null && counterInc != null) {
 
 
 }
+
+// собаки 
+/* class DogCage {
+
+    price;
+
+    setPrice(jump, stepPrice) {
+        return this.price + (jump * stepPrice)
+    }
+}
+
+class DogCageAttribute {
+    priceValuesContainer;
+    constructor() {
+        this.priceValuesContainer = document.getElementById('dogCageSizeParams');
+    }
+
+    getPrice() {
+        return this.priceValuesContainer.getAttribute('data-product-price');
+    }
+
+    getStepPrice($paramType) {
+        let prices = getParamsPrice();
+        let pricesParam = Object.keys(prices);
+        if (pricesParam.includes($paramType)) {
+            return prices[$paramType];
+        }
+        throw new Error('Incorrect Param Type');
+    }
+
+    getParamsPrice() {
+        return { 'width': this.#getWidthPrice(), 'height': this.#getHeightPrice(), 'depth': this.#getWidthDepthPrice() };
+    }
+
+    #getWidthPrice() {
+        return this.priceValuesContainer.getAttribute('data-width-price');
+
+    }
+
+    #getHeightPrice() {
+        return this.priceValuesContainer.getAttribute('data-height-price');
+    }
+
+    #getWidthDepthPrice() {
+        return this.priceValuesContainer.getAttribute('data-depth-price');
+    }
+}
+ */

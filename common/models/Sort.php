@@ -48,7 +48,7 @@ class Sort
     {
         return [
             'defaultOrder' => [
-                'id'=>SORT_DESC,
+                'name'=>SORT_DESC,
             ]
         ];
     }

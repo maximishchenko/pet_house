@@ -109,6 +109,7 @@ class Product extends backendProduct
                 ],
 
             ],
+            'defaultOrder' => ['name' => SORT_ASC]
         ]);
 
         $this->load($params);

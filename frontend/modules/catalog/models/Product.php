@@ -72,6 +72,7 @@ class Product extends backendProduct
         $query->joinWith(['heights', 'category']);
         // $query->product_type = $productType;
         // $query->item_type = $itemType;
+        
         $query->where([
             self::tableName().'.product_type' => $productType,
             self::tableName().'.item_type' => $itemType,

@@ -222,6 +222,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
         return $this->hasOne(Property::className(), ['id' => 'type_id']);
     }
 
+    public function getProductTypeValue()
+    {
+        
+        return $this->hasOne(Property::className(), ['id' => 'type_id'])->from(['type' => Property::tableName()]);        
+    }
+
     public function getProductImages()
     {
         return $this->hasMany(ProductImage::className(), ['product_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
@@ -241,7 +247,6 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return $this->hasOne(Property::className(), ['id' => 'size_id']);
     }
-    
 
     public function getCategory()
     {

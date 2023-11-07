@@ -14,7 +14,6 @@ class Product extends backendProduct
 {
 
     public $height_value;
-    public $nameSort;
 
 
     public function rules()
@@ -69,13 +68,11 @@ class Product extends backendProduct
     public function search($params, $productType, $itemType)
     {
         $query = self::find();
-        $query->joinWith(['heights']);
-        // $query->product_type = $productType;
-        // $query->item_type = $itemType;
-        
+        $query->joinWith(['heights', 'productTypeValue']);
+
         $query->where([
             self::tableName().'.product_type' => $productType,
-            self::tableName().'.item_type' => $itemType,
+            // self::tableName().'.item_type' => $itemType,
             self::tableName().'.status' => Status::STATUS_ACTIVE
         ]);
 
@@ -86,34 +83,20 @@ class Product extends backendProduct
             'pagination' => [
                 'pageSize' => 6,
             ],
-            // 'sort' => [
-            //     'defaultOrder' => [
-            //         Property::tableName().'.sort' => SORT_DESC,
-            //         'name' => SORT_DESC
-            //     ],
-            // ],
-            // 'sort'=> Sort::setDefaultGridSort(),
-        ]);
-
-        
-        $dataProvider->setSort([
-            'sortParam' => Sort::DEFAULT_SORT_PARAM,
-            'attributes' => [
-                'name',
-                'price',
-                'view_count',
-                'nameSort' => [
-                    'asc' => [Property::tableName().'.sort' => SORT_ASC, 'name' => SORT_ASC],
-                    'desc' => [Property::tableName().'.sort' => SORT_DESC, 'name' => SORT_DESC],
-                    'default' => SORT_ASC
+            'sort' => [
+                'sortParam' => Sort::DEFAULT_SORT_PARAM,
+                'attributes' => [
+                    'name',
+                    'price',
+                    'view_count',
+                    'nameSort' => [
+                        'asc' => ['{{%type}}.sort' => SORT_ASC, Product::tableName().'.name' => SORT_ASC],
+                        'desc' => ['{{%type}}.sort' => SORT_DESC, Product::tableName().'.name' => SORT_DESC],
+                        'default' => SORT_ASC
+                    ],
                 ],
-
+                'defaultOrder' => ['nameSort' => SORT_ASC]
             ],
-            // 'defaultOrder' => [
-            //     Property::tableName().'.sort' => SORT_DESC,
-            //     'name' => SORT_DESC
-            // ],
-            'defaultOrder' => [Property::tableName().'.sort' => SORT_ASC, 'name' => SORT_ASC]
         ]);
 
         $this->load($params);

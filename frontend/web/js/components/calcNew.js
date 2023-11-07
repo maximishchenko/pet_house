@@ -155,7 +155,7 @@ class BtnProductCalc extends ProductCalc {
 }
 
 
-let sliderCalc = new SliderProductCalc('#constructor_price', '#constructor_price_old', '#dogCageSizeParams');
+
 let buttonCalc = new BtnProductCalc('#constructor_price', '#constructor_price_old');
 
 // Показать/скрыть элемент кеалькулятора
@@ -225,6 +225,8 @@ const sliderW = document.getElementById('slider-w');
 const sliderD = document.getElementById('slider-g');
 
 if (sliderH != null && sliderW != null && sliderD != null) {
+
+    let sliderCalc = new SliderProductCalc('#constructor_price', '#constructor_price_old', '#dogCageSizeParams');
 
     let heightSlider = document.querySelector('#constructor_height_val'),
         startHeight = heightSlider.getAttribute("data-slider-height"),

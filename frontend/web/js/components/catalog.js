@@ -1,4 +1,4 @@
-if (document.querySelector('.catalog-cat')) {
+if (document.querySelector('.catalog__list')) {
 
       const filterBtn = document.querySelector('.catalog-bar__btn--filter'),
             catalogSide = document.querySelector('.catalog__side'),

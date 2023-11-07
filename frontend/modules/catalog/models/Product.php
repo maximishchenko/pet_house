@@ -69,7 +69,7 @@ class Product extends backendProduct
     public function search($params, $productType, $itemType)
     {
         $query = self::find();
-        $query->joinWith(['heights', 'category']);
+        $query->joinWith(['heights']);
         // $query->product_type = $productType;
         // $query->item_type = $itemType;
         
@@ -86,12 +86,12 @@ class Product extends backendProduct
             'pagination' => [
                 'pageSize' => 6,
             ],
-            'sort' => [
-                'defaultOrder' => [
-                    Category::tableName().'.sort' => SORT_DESC,
-                    'catalog_name' => SORT_DESC
-                ],
-            ],
+            // 'sort' => [
+            //     'defaultOrder' => [
+            //         Property::tableName().'.sort' => SORT_DESC,
+            //         'name' => SORT_DESC
+            //     ],
+            // ],
             // 'sort'=> Sort::setDefaultGridSort(),
         ]);
 
@@ -103,13 +103,17 @@ class Product extends backendProduct
                 'price',
                 'view_count',
                 'nameSort' => [
-                    'asc' => [Category::tableName().'.sort' => SORT_ASC, 'name' => SORT_DESC],
-                    'desc' => [Category::tableName().'.sort' => SORT_DESC, 'name' => SORT_DESC],
-                    'default' => SORT_DESC
+                    'asc' => [Property::tableName().'.sort' => SORT_ASC, 'name' => SORT_ASC],
+                    'desc' => [Property::tableName().'.sort' => SORT_DESC, 'name' => SORT_DESC],
+                    'default' => SORT_ASC
                 ],
 
             ],
-            'defaultOrder' => ['name' => SORT_ASC]
+            // 'defaultOrder' => [
+            //     Property::tableName().'.sort' => SORT_DESC,
+            //     'name' => SORT_DESC
+            // ],
+            'defaultOrder' => [Property::tableName().'.sort' => SORT_ASC, 'name' => SORT_ASC]
         ]);
 
         $this->load($params);

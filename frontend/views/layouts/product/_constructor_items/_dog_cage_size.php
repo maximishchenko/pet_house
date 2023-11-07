@@ -1,3 +1,10 @@
+<div 
+  id="dogCageSizeParams" 
+  data-product-price="<?= $model->price; ?>" 
+  data-height-price="<?= $model->size->height_price; ?>" 
+  data-width-price="<?= $model->size->width_price; ?>" 
+  data-depth-price="<?= $model->size->depth_price; ?>"
+></div>
 
   <div class="calc-el__list-slider-wrapper">
     <div class="calc-el__list-head">

@@ -1,9 +1,10 @@
 import './components/header';
 import './components/swiper';
 import './components/fancy';
-import './components/calc';
+// import './components/calc';
 import './components/catalog';
 import './components/common';
 import './components/sort';
-import './components/cart';
+//import './components/cart';
 import './components/dropzone';
+import './components/calcNew';

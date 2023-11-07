@@ -82,7 +82,8 @@ class Product extends backendProduct
             'pagination' => [
                 'pageSize' => 6,
             ],
-            'sort'=> Sort::setDefaultGridSort(),
+            // 'sort'=> Sort::setDefaultGridSort(),
+            'sort'=> ['defaultOrder' => ['name' => SORT_ASC]],
         ]);
 
         
@@ -93,6 +94,7 @@ class Product extends backendProduct
                 'price',
                 'view_count',
             ],
+            'defaultOrder' => ['name' => SORT_ASC]
         ]);
 
         $this->load($params);

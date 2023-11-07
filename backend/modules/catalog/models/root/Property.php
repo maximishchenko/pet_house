@@ -147,7 +147,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
         return [
             [['property_type', 'item_type'], 'required'],
             'name' => ['name', 'required'],
-            [['name'], 'unique', 'targetClass' => self::classname()],
+            // [['name'], 'unique', 'targetClass' => self::classname()],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
             ['property_type', 'in', 'range' => array_keys(CatalogTypeItems::getCatalogTypesArray())],
             ['item_type', 'in', 'range' => array_keys(PropertyItemTypeItems::getItemTypesArray())],

@@ -38,7 +38,9 @@ use yii\helpers\Url;
       <?= $model->name; ?>
     </h3>
     <span class="thumb-prod__desc">
+      <?php if(isset($model->size->id) && !empty($model->size->id)): ?>
       <?= Yii::t('app', 'Height {height} Width {width} Depth {depth} mm', ['height' => $model->size->height, 'width' => $model->size->width, 'depth' => $model->size->depth]); ?>,
+      <?php endif; ?>
       <?= $model->material->name; ?>
     </span>
   </div>

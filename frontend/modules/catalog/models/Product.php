@@ -14,7 +14,6 @@ class Product extends backendProduct
 {
 
     public $height_value;
-    public $nameSort;
 
 
     public function rules()
@@ -69,13 +68,11 @@ class Product extends backendProduct
     public function search($params, $productType, $itemType)
     {
         $query = self::find();
-        $query->joinWith(['heights', 'category']);
-        // $query->product_type = $productType;
-        // $query->item_type = $itemType;
-        
+        $query->joinWith(['heights', 'productTypeValue']);
+
         $query->where([
             self::tableName().'.product_type' => $productType,
-            self::tableName().'.item_type' => $itemType,
+            // self::tableName().'.item_type' => $itemType,
             self::tableName().'.status' => Status::STATUS_ACTIVE
         ]);
 
@@ -87,29 +84,19 @@ class Product extends backendProduct
                 'pageSize' => 6,
             ],
             'sort' => [
-                'defaultOrder' => [
-                    Category::tableName().'.sort' => SORT_DESC,
-                    'catalog_name' => SORT_DESC
+                'sortParam' => Sort::DEFAULT_SORT_PARAM,
+                'attributes' => [
+                    'name',
+                    'price',
+                    'view_count',
+                    'nameSort' => [
+                        'asc' => ['{{%type}}.sort' => SORT_ASC, Product::tableName().'.name' => SORT_ASC],
+                        'desc' => ['{{%type}}.sort' => SORT_DESC, Product::tableName().'.name' => SORT_DESC],
+                        'default' => SORT_ASC
+                    ],
                 ],
+                'defaultOrder' => ['nameSort' => SORT_ASC]
             ],
-            // 'sort'=> Sort::setDefaultGridSort(),
-        ]);
-
-        
-        $dataProvider->setSort([
-            'sortParam' => Sort::DEFAULT_SORT_PARAM,
-            'attributes' => [
-                'name',
-                'price',
-                'view_count',
-                'nameSort' => [
-                    'asc' => [Category::tableName().'.sort' => SORT_ASC, 'name' => SORT_DESC],
-                    'desc' => [Category::tableName().'.sort' => SORT_DESC, 'name' => SORT_DESC],
-                    'default' => SORT_DESC
-                ],
-
-            ],
-            'defaultOrder' => ['name' => SORT_ASC]
         ]);
 
         $this->load($params);

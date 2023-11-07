@@ -50,6 +50,11 @@ class ProductAccessory extends Product
         parent::afterSave($insert, $changedAttributes);
     }
 
+
+    public function getMaterial()
+    {
+        return $this->hasOne(PropertyMaterial::className(), ['id' => 'material_id']);
+    }
     
 
     public function beforeDelete()

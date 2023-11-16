@@ -2,7 +2,6 @@
 
 namespace frontend\modules\catalog\models;
 
-use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\Product as backendProduct;
 use backend\modules\catalog\models\root\Property;
 use common\models\Sort;
@@ -73,7 +72,7 @@ class Product extends backendProduct
 
         $query->where([
             self::tableName().'.product_type' => $productType,
-            // self::tableName().'.item_type' => $itemType,
+            self::tableName().'.item_type' => $itemType,
             self::tableName().'.status' => Status::STATUS_ACTIVE
         ]);
 
@@ -87,7 +86,7 @@ class Product extends backendProduct
             'sort' => [
                 'sortParam' => Sort::DEFAULT_SORT_PARAM,
                 'attributes' => [
-                    'name',
+                    // 'name',
                     'price',
                     'view_count',
                     'nameSort' => [
@@ -109,6 +108,7 @@ class Product extends backendProduct
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
+            $query->joinWith(['heights', 'productTypeValue']);
             return $dataProvider;
         }
 

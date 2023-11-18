@@ -8,6 +8,7 @@ use common\models\Sort;
 use common\models\Status;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 
 class Product extends backendProduct
 {
@@ -84,17 +85,23 @@ class Product extends backendProduct
             ],
             'sort' => [
                 'sortParam' => Sort::DEFAULT_SORT_PARAM,
+                'defaultOrder' => ['nameSort' => SORT_ASC],
                 'attributes' => [
                     // 'name',
                     'price',
                     'view_count',
                     'nameSort' => [
-                        'asc' => ['{{%type}}.sort' => SORT_ASC, Product::tableName().'.name' => SORT_ASC],
-                        'desc' => ['{{%type}}.sort' => SORT_DESC, Product::tableName().'.name' => SORT_DESC],
+                        // 'asc' => [Product::tableName().'.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, Product::tableName().'.name' => SORT_ASC],
+                        // 'desc' => [Product::tableName().'.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, Product::tableName().'.name' => SORT_DESC],
+                        // 'asc' => [Product::tableName().'.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, new Expression('left({{product}}.name, 2), LENGTH({{product}}.name), {{product}}.name')],
+                        // 'desc' => [Product::tableName().'.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, new Expression('left({{product}}.name, 2), LENGTH({{product}}.name), {{product}}.name')],
+                        // 'asc' => [Product::tableName().'.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, '{{%product}}.price' => SORT_ASC],
+                        // 'desc' => [Product::tableName().'.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, '{{%product}}.price' => SORT_ASC],
+                        'asc' => ['{{%product}}.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, '{{%product}}.price' => SORT_ASC],
+                        'desc' => ['{{%product}}.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, '{{%product}}.price' => SORT_ASC],
                         'default' => SORT_ASC
                     ],
                 ],
-                'defaultOrder' => ['nameSort' => SORT_ASC]
             ],
         ]);
 

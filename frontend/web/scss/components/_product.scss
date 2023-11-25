@@ -104,6 +104,7 @@
   }
 }
 
+
 .calc-el {
   border: 2px solid var(--color-gray);
   background: var(--color-gray);
@@ -254,6 +255,15 @@
       bottom: 5px;
       border-radius: 100%;
     }
+  }
+
+  .wall-item {
+    background-size: contain;
+    background-position: right;
+  }
+
+  .size-item {
+    background-size: width;
   }
 
   &__list-slider-wrapper:not(:last-child) {

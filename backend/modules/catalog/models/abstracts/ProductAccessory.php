@@ -65,7 +65,7 @@ class ProductAccessory extends Product
             /**
              * Удаление связанных изображений
              */
-            $this->deleteMultipleFiles('imageFiles', 'image', Product::UPLOAD_PATH);
+            $this->deleteMultipleFiles('imagesFiles', 'image', Product::UPLOAD_PATH);
             return true;
         } else {
             return false;

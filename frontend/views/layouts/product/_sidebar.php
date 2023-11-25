@@ -1,6 +1,7 @@
 <?php
 
 use backend\modules\catalog\models\items\CatalogTypeItems;
+use backend\modules\catalog\models\items\ProductItemType;
 use backend\modules\catalog\models\root\Product;
 use backend\modules\catalog\models\root\Property;
 
@@ -179,7 +180,11 @@ use backend\modules\catalog\models\root\Property;
         </div>
         <div class="product__price-row">
           <span class="product__price-desc">
-            <?= Yii::t('app', 'Price with content'); ?>
+            <?php if($model->product_type == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && $model->item_type != ProductItemType::PRODUCT_TYPE_ACCESSORY): ?>
+              <?= Yii::t('app', 'Price with content'); ?>
+            <?php else: ?>
+              <?= Yii::t('app', 'Price value'); ?>
+            <?php endif; ?>
           </span>
           <span class="product__price">
             <span id="constructor_price">

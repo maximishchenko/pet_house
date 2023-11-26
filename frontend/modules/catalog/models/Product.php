@@ -72,7 +72,7 @@ class Product extends backendProduct
 
         $query->where([
             self::tableName().'.product_type' => $productType,
-            self::tableName().'.item_type' => $itemType,
+            // self::tableName().'.item_type' => $itemType,
             self::tableName().'.status' => Status::STATUS_ACTIVE
         ]);
 

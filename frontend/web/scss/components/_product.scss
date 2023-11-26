@@ -136,6 +136,7 @@
     background-repeat: no-repeat;
   }
 
+
   &__btn-text {
     margin-left: var(--size-xs);
     display: flex;
@@ -226,9 +227,33 @@
   &__list-item {
     border-radius: 0.7rem;
     width: 100%;
-    height: 8rem;
+    height: 11rem;
     outline: 2px solid var(--color-border);
+    padding: 1rem;
+    display: flex;
+
   }
+
+  &__list-item-img {
+    width: auto;
+    height: 100%;
+    background-size: cover;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /*   &__list-item--size {
+    align-items: end;
+  } */
+
+  &__list-item-ineer {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+
 
   &__list-item--active {
     position: relative;
@@ -609,16 +634,6 @@
 }
 
 // Отзывы
-
-
-.grid-item {
-  width: calc(33.3% - 1.875rem);
-  margin-bottom: var(--size-n);
-}
-
-.gutter-sizer {
-  width: 1.875rem;
-}
 
 .product-reviews {
   &__img {

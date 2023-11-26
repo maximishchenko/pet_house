@@ -26,7 +26,8 @@ use yii\helpers\Html;
           <?= $review->text; ?>
         </p>
         <span class="product-reviews__date">
-          <?= Yii::$app->formatter->asDate($review->created_at); ?>
+          <?php // echo Yii::$app->formatter->asDate($review->created_at); ?>
+          <?= Yii::$app->formatter->asDate(strtotime($review->created_at)); ?>
         </span>
       </div>
     </div>

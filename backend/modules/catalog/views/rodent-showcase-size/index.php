@@ -1,9 +1,11 @@
 <?php
 
+use backend\modules\catalog\models\root\Property;
 use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\Status;
+use yii\bootstrap4\Html;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
@@ -43,7 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'sort',
             'updated_at:datetime',
-            'comment:ntext',      
+            'comment:ntext',   
+            [
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => function($data) {
+                    return Html::img('/'.Property::UPLOAD_PATH.$data->image, []);
+                }
+            ],
             [
                 'class' => SetColumn::className(),
                 'filter' => Status::getStatusesArray(),

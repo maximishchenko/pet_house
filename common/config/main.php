@@ -18,6 +18,7 @@ return [
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'locale' => 'ru-RU',
+            'dateFormat' => 'php:d.m.Y',
             'thousandSeparator' => ' ',
             'decimalSeparator' => ',',
             'currencyCode' => 'RUB',

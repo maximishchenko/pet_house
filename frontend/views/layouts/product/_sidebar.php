@@ -23,11 +23,15 @@ use backend\modules\catalog\models\root\Property;
         </h1>
         <div class="tabs calc-tab" data-tabs="calc-tab">
           <ul class="tabs__nav">
+            
+            <?php if($model->item_type == ProductItemType::PRODUCT_TYPE_PRODUCT): ?>
             <li class="tabs__nav-item">
               <button class="tabs__nav-btn btn-reset" type="button">
                 <?= Yii::t('app', "Sidebar Configuration"); ?>
               </button>
             </li>
+            <?php endif; ?>
+
             <li class="tabs__nav-item">
               <button class="tabs__nav-btn btn-reset" type="button">
                 <?= Yii::t('app', 'Sidebar Characteristics'); ?>
@@ -35,6 +39,8 @@ use backend\modules\catalog\models\root\Property;
             </li>
           </ul>
           <div class="tabs__content">
+            
+            <?php if($model->item_type == ProductItemType::PRODUCT_TYPE_PRODUCT): ?>
             <div class="tabs__panel">
               <div class="calc-el calc-el--color">
                 <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
@@ -158,6 +164,10 @@ use backend\modules\catalog\models\root\Property;
               <!-- Боковые стенки -->
 
             </div>
+            <?php endif; ?>
+
+
+            
             <!-- Характеристики -->
             <div class="tabs__panel">
               <div class="specifications">

@@ -51,8 +51,8 @@ class Review extends \yii\db\ActiveRecord
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
             [['avatarFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
-            [['created_at'], 'datetime', 'format' => 'dd.MM.yyyy'],
-            [['avatarFile', 'imageFile'], 'safe']
+            // [['created_at'], 'datetime', 'format' => 'dd.MM.yyyy'],
+            [['avatarFile', 'imageFile', 'created_at'], 'safe']
         ];
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use backend\modules\catalog\models\items\ProductItemType;
+
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => $sections->getProductSectionName($model->product_type), 'url' => [$sections->getProductSectionUrl($model->product_type)], 'class' => 'breadcrumbs__link'];
 $this->params['breadcrumbs'][] = $this->title;
@@ -13,10 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
       <!-- Галлерея -->
       <?= $this->render('//layouts/product/_gallery', ['model' => $model]); ?>
       <div class="product__optional">
+        <?php if($model->item_type != ProductItemType::PRODUCT_TYPE_ACCESSORY): ?>
         <!-- Аксессуары -->
-        <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
+          <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
         <!-- Промо -->
-        <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
+          <?= $this->render('//layouts/product/_promo', ['model' => $model]); ?>
+        <?php endif; ?>
         <!-- Вопросы и ответы -->
         <?= $this->render('//layouts/template/_faq', ['questions' => $questions]); ?>
         <!-- Отзывы -->

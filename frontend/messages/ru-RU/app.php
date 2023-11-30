@@ -96,4 +96,5 @@ return [
     "Page Title Dogs" => "Клетки для собак",
     'In available' => 'В наличии',
     'Price value' => 'Цена',
+    'Show more reviews' => 'Показать больше отзывов',
 ];

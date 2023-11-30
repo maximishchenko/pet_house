@@ -68,6 +68,10 @@ use backend\modules\catalog\models\root\Property;
                     <?php foreach ($model->getColorItems() as $color) : ?>
                       <span class="calc-el__list-item <?= ($model->color_id == $color->id) ? "calc-el__list-item--active" : ""; ?>" style="background-image: url(/uploads/property/<?= $color->image; ?>);"  data-price="<?= $color->price; ?>" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
                         <!-- TODO calc-el__list-item--active добавить класс для выбранных элементов -->
+                        <span class="calc-el__list-item-ineer">
+                          <span><?= $color->name; ?></span>
+                          <span>+ <?= $color->price; ?></span>
+                        </span>
                       </span>
                     <?php endforeach; ?>
                   </div>
@@ -154,7 +158,7 @@ use backend\modules\catalog\models\root\Property;
                   <div class="calc-el__list calc-el__list--walls">
                     <?php foreach ($model->getAvailableProductSideWalls() as $wall) : ?>
 
-                      <?= $this->render('//layouts/product/_constructor_items/_all_wall', ['wall' => $wall]); ?>
+                      <?= $this->render('//layouts/product/_constructor_items/_all_wall', ['wall' => $wall, 'model' => $model]); ?>
 
                     <?php endforeach; ?>
                   </div>

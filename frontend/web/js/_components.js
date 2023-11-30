@@ -8,3 +8,4 @@ import './components/sort';
 //import './components/cart';
 import './components/dropzone';
 import './components/calcNew';
+import './components/masonry';

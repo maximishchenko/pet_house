@@ -53,6 +53,27 @@ use yii\bootstrap4\ActiveForm;
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
+                <?= $form->field($model, 'productAttributesArray')->checkboxList($model->getAttributesCheckboxListItems(), ['class' => 'checkbox__group']) ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'imageFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->image) && !empty($model->image)): ?>
+                    <div class="row">
+                        <?= SingleImagePreviewWidget::widget([
+                            'id' => $model->id,
+                            'filePath' => $model->getUrl(Product::UPLOAD_PATH, $model->image),
+                            'url' => 'delete-image',
+                            'fancyboxGalleryName' => "SingleProductImage",
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-6">
                 <?= $form->field($model, 'imagesFiles[]', ['template' => '{label}<br/> {input} {error}'])->fileInput(['multiple' => true]) ?>
                 <?php if(isset($model->productImages) && !empty($model->productImages)):?>
                 <ul style="margin: 0; padding: 0;">

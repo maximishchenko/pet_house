@@ -79,7 +79,7 @@ use backend\modules\catalog\models\root\Property;
               </div>
 
               <!-- Размеры -->
-              <div class="calc-el">
+              <div class="calc-el calc-el--active">
                 <button class="calc-el__btn-control btn-reset" type="button"> <!-- TODO Класс для блокировки -->
                   <span class="calc-el__btn-wrapper">
                     <span class="calc-el__btn-preview" 
@@ -139,7 +139,7 @@ use backend\modules\catalog\models\root\Property;
               <div class="calc-el">
                 <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
                   <span class="calc-el__btn-wrapper">
-                    <span class="calc-el__btn-preview"  id="calc-walls-img" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/color.jpg');"></span>
+                    <span class="calc-el__btn-preview calc-el__btn-preview--wall"  id="calc-walls-img" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/color.jpg');"></span>
                     <span class="calc-el__btn-text">
                       <span class="calc-el__btn-title"><?= Yii::t('app', 'Base material'); ?></span>
                       <span class="calc-el__btn-val"  id="calc-walls-title" data-constructor-wall-name>

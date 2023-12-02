@@ -70,10 +70,7 @@ class SliderCalc extends CageCalc {
         console.log(teat)
     }
 }
-/* 
-let cageCalcBtn = new CageCalc('#constructor_price', '#constructor_price_old');
-let test = new SliderCalc('#constructor_price', '#constructor_price_old');
- */
+
 
 class ProductCalc {
 
@@ -175,9 +172,6 @@ function unselectAllCalcSelects() {
 }
 calcSelects.forEach(el => {
     el.addEventListener('click', () => {
-
-        // Удалить условие после испровления
-        const priceOld = Number(el.parentNode.querySelector('.calc-el__list-item--active').getAttribute('data-price'));
 
         unselectAllCalcSelects();
         el.classList.add('calc-el__list-item--active');

@@ -136,6 +136,10 @@
     background-repeat: no-repeat;
   }
 
+  &__btn-preview--wall {
+    background-position: center;
+  }
+
 
   &__btn-text {
     margin-left: var(--size-xs);

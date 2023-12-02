@@ -300,9 +300,23 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getAvailableProductSizes()
     {
         $type_id = $this->type_id;
-        $typeSizes = PropertyLink::find()->select(['target_id'])->where(['source_id' => $type_id, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE, 'property_type' => $this->product_type])->asArray()->all();
+        $typeSizes = PropertyLink::find()
+                        ->select(['target_id'])
+                        ->where([
+                            'source_id' => $type_id, 
+                            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE, 
+                            'property_type' => $this->product_type
+                        ])
+                        ->asArray()
+                        ->all();
         $typeSizesArray = ArrayHelper::getColumn($typeSizes, 'target_id');
-        $sizes = Property::find()->where(['status' => Status::STATUS_ACTIVE, 'property_type' => $this->product_type, 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE, 'id' => $typeSizesArray])->all();
+        $sizes = Property::find()->where([
+                'status' => Status::STATUS_ACTIVE, 
+                'property_type' => $this->product_type, 
+                'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
+                'height_value'  => $this->heights->height_value,
+                'id' => $typeSizesArray
+            ])->all();
         return $sizes;
     }
 

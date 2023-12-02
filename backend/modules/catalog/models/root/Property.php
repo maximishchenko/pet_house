@@ -227,7 +227,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if (Yii::$app->request->isPost) {
+            // if (Yii::$app->request->isPost) {
                 
                 if ($this->validate()) {
                     
@@ -240,7 +240,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
                         Yii::debug($key.': '.$value[0]);
                     }
                 }
-            }
+            // }
             return true;
         }
         return false;

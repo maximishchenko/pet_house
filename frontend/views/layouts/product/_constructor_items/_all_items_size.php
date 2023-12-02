@@ -16,6 +16,7 @@ use backend\modules\catalog\models\root\Property;
         <span class="calc-el__list-item-ineer">
             <span class="calc-el__list-item-img" style="background-image: url('/<?= Property::UPLOAD_PATH . $size->image; ?>');"></span>
             <span> + <?= $size->price; ?></span>
+            <span> + <?= $size->height_value; ?></span>
         </span>
     </span>
 <?php endforeach; ?>

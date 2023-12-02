@@ -242,12 +242,8 @@
     margin-bottom: 1rem;
   }
 
-  /*   &__list-item--size {
-    align-items: end;
-  } */
-
   &__list-item-ineer {
-    color: red;
+    color: var(--color-dark);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -278,6 +274,7 @@
       position: absolute;
       right: 5px;
       bottom: 5px;
+      border: 2px solid #ffffff50;
       border-radius: 100%;
     }
   }
@@ -285,6 +282,10 @@
   .wall-item {
     background-size: contain;
     background-position: right;
+
+    .calc-el__list-item-ineer {
+      width: 60%;
+    }
   }
 
   .size-item {

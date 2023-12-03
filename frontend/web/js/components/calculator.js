@@ -21,11 +21,9 @@ if (document.querySelector('.product')) {
     function sideBarController() {
         if (screen.width < 768 && !modAdaptContainer.querySelector('.product__col-calc')) {
             modAdaptContainer.append(sideBar);
-            console.log('1');
         } else if (screen.width > 768 && !productContainer.children[1]) {
             productContainer.append(sideBar)
             stickybar.refresh();
-            console.log('2');
         }
     }
 

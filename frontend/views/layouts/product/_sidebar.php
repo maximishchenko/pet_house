@@ -197,12 +197,12 @@ use backend\modules\catalog\models\root\Property;
           <span class="product__price">
             <span id="constructor_price">
               <?= number_format($model->price, 0, '', ' '); ?>
-            </span> ₽
+            </span><span class="">₽</span>
 
             <?php if (isset($model->discount) && $model->discount > 0) : ?>
               <span class="product__price-old" id="constructor_price_old">
                 <?= number_format($model->oldPrice, 0, '', ' '); ?>
-              </span> ₽
+              </span><span class="constructor_price-val-old">₽</span>
             <?php endif; ?>
 
           </span>

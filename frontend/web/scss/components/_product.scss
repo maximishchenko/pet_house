@@ -184,8 +184,6 @@
     }
   }
 
-
-
   &__btn-pen {
     fill: none;
     stroke: var(--color-dark);
@@ -353,6 +351,12 @@
   .noUi-handle::before {
     display: none;
   }
+}
+
+.constructor_price-val-old {
+  font-size: 1.5rem;
+  color: var(--color-dark-80);
+  font-weight: normal;
 }
 
 .calc-el__btn-control--dis {
@@ -685,6 +689,9 @@
 }
 
 @include small-tablet {
+  .grid-item {
+    width: 100% !important;
+  }
 
   .product__bage-wrapper {
     position: absolute;

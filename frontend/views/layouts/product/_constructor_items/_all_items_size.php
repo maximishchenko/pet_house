@@ -10,13 +10,12 @@ use backend\modules\catalog\models\root\Property;
             data-size-height="<?= $size->height; ?>" 
             data-size-width="<?= $size->width; ?>" 
             data-size-depth="<?= $size->depth; ?>" 
-            data-size-price="<?= $size->price; ?>"
+            data-price="<?= $size->price; ?>"
         >
 
         <span class="calc-el__list-item-ineer">
             <span class="calc-el__list-item-img" style="background-image: url('/<?= Property::UPLOAD_PATH . $size->image; ?>');"></span>
             <span> + <?= $size->price; ?></span>
-            <span> + <?= $size->height_value; ?></span>
         </span>
     </span>
 <?php endforeach; ?>

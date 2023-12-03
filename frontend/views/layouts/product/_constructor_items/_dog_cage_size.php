@@ -54,21 +54,3 @@
     </div>
     <div id="slider-g" class="calc-el__slider"></div>
   </div>
-
-  
-<span data-start-step-height="<?= $model->size->height; ?>"></span>
-<span data-current-step-height="<?= $model->size->height; ?>"></span>
-<span data-minimal-step-height="<?= $model->size->min_height; ?>"></span>
-<span data-step-price-height="<?= $model->size->height_price; ?>"></span>
-
-<span data-start-step-width="<?= $model->size->width; ?>"></span>
-<span data-current-step-width="<?= $model->size->width; ?>"></span>
-<span data-minimal-step-width="<?= $model->size->min_width; ?>"></span>
-<span data-step-price-width="<?= $model->size->width_price; ?>"></span>
-
-<span data-start-step-depth="<?= $model->size->depth; ?>"></span>
-<span data-current-step-depth="<?= $model->size->depth; ?>"></span>
-<span data-minimal-step-depth="<?= $model->size->min_depth; ?>"></span>
-<span data-step-price-depth="<?= $model->size->depth_price; ?>"></span>
-
-<span data-step-size="<?= $model->size->step; ?>"></span>

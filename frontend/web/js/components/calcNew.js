@@ -165,15 +165,10 @@ document.querySelectorAll('.calc-el__btn-control').forEach(el => {
 // Вобор элемента калькулятора
 const calcSelects = document.querySelectorAll('.calc-el__list-item');
 
-function unselectAllCalcSelects() {
-    calcSelects.forEach(el => {
-        el.classList.remove('calc-el__list-item--active');
-    });
-}
+
 calcSelects.forEach(el => {
     el.addEventListener('click', () => {
 
-        unselectAllCalcSelects();
         el.classList.add('calc-el__list-item--active');
 
         if (el.parentNode.classList.contains('calc-el__list--color')) {
@@ -182,7 +177,7 @@ calcSelects.forEach(el => {
             const colorTitle = document.querySelector('#calc-color-title');
             colorImg.style.backgroundImage = el.style.backgroundImage;
             colorTitle.textContent = el.getAttribute('data-color-name');
-            buttonCalc.btnCalc(priceOld, colorPrice)
+            //buttonCalc.btnCalc(priceOld, colorPrice);
         }
 
         if (el.parentNode.classList.contains('calc-el__list--size')) {
@@ -195,7 +190,7 @@ calcSelects.forEach(el => {
             constructorDepth.textContent = el.getAttribute('data-size-depth');
 
 
-            buttonCalc.btnCalc(priceOld, colorPrice)
+            buttonCalc.btnCalc(priceOld, colorPrice);
         }
 
         if (el.parentNode.classList.contains('calc-el__list--walls')) {
@@ -206,7 +201,7 @@ calcSelects.forEach(el => {
             wallsTitle.textContent = el.getAttribute('data-wall-name');
 
 
-            buttonCalc.btnCalc(priceOld, colorPrice)
+           // buttonCalc.btnCalc(priceOld, colorPrice)
         }
 
     });
@@ -219,6 +214,9 @@ const sliderW = document.getElementById('slider-w');
 const sliderD = document.getElementById('slider-g');
 
 if (sliderH != null && sliderW != null && sliderD != null) {
+
+    
+
 
     let sliderCalc = new SliderProductCalc('#constructor_price', '#constructor_price_old', '#dogCageSizeParams');
 

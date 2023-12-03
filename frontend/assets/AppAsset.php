@@ -17,7 +17,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/lib/jquery-3.6.0.min.js',
-        'js/vendor/masonry.pkgd.min.js',
+       /*  'js/vendor/masonry.pkgd.min.js', */
         'assets/build/js/main.js',
         // 'js/components/constructor.js',
     ];

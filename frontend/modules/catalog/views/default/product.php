@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= $this->render('//layouts/product/_gallery', ['model' => $model]); ?>
       <div class="product__optional">
         <?php if($model->item_type != ProductItemType::PRODUCT_TYPE_ACCESSORY): ?>
+          <div class="mob-adapt-calc"></div>
         <!-- Аксессуары -->
           <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
         <!-- Промо -->

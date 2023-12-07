@@ -39,7 +39,7 @@ class DefaultController extends Controller
     public function actionAddToCart()
     {
         $this->enableCsrfValidation = false;
-        if (Yii::$app->request->isAjax) {
+        // if (Yii::$app->request->isAjax) {
 
             $cart = new CartProduct();
             $cart->product_id = Yii::$app->request->get('product_id');
@@ -48,6 +48,8 @@ class DefaultController extends Controller
             $cart->height = Yii::$app->request->get('height');
             $cart->width = Yii::$app->request->get('width');
             $cart->depth = Yii::$app->request->get('depth');
+            $cart->price = Yii::$app->request->get('price');
+            $cart->old_price = Yii::$app->request->get('old_price');
             $cart->count = 1;
             $cart->addToCart();
             // name, image, price, totalprice, count
@@ -56,14 +58,15 @@ class DefaultController extends Controller
                 'product_id' => $cart->product_id,
                 'name' => $lastProductNameWithImage[CartProduct::NAME],
                 'image' => $lastProductNameWithImage[CartProduct::IMAGE],
-                'price' => $cart->getProductPrice($cart->product_id, $cart->color_id, $cart->walls_id, $cart->height, $cart->width, $cart->depth),
+                'price' => $cart->price,
+                // 'price' => $cart->getProductPrice($cart->product_id, $cart->color_id, $cart->walls_id, $cart->height, $cart->width, $cart->depth),
                 'total_price' => Cart::getTotalPrice(),
                 'count' => $cart->getCount($cart->product_id),
                 'total_count' => Word::numWord($cart->getCount($cart->product_id), ['товар', 'товара', 'товаров']),
             ];
             return json_encode($lastProductInCart);
             Yii::$app->end();
-        }
+        // }
     }
 
     public function actionClearCart()

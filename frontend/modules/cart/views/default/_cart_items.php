@@ -5,14 +5,15 @@ use frontend\modules\catalog\models\ProductPrice;
 use yii\helpers\Url;
 
 $productItem = new CartProduct();
-$productItemPrice = $productItem->getProductPrice(
-    $product[CartProduct::PRODUCT_ID], 
-    $product[CartProduct::COLOR_ID], 
-    $product[CartProduct::WALL_ID], 
-    $product[CartProduct::HEIGHT], 
-    $product[CartProduct::WIDTH], 
-    $product[CartProduct::DEPTH]
-);
+// $productItemPrice = $productItem->getProductPrice(
+//     $product[CartProduct::PRODUCT_ID], 
+//     $product[CartProduct::COLOR_ID], 
+//     $product[CartProduct::WALL_ID], 
+//     $product[CartProduct::HEIGHT], 
+//     $product[CartProduct::WIDTH], 
+//     $product[CartProduct::DEPTH]
+// );
+// $productItemPrice = $productItem->getProductPrice();
 $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUCT_ID]);
 ?>
 
@@ -40,7 +41,8 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
     </div>
 
     <span class="cart-el__price">
-        <?= Yii::$app->formatter->asCurrency($productItemPrice[ProductPrice::PRICE_KEY], null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+        <?php // echo Yii::$app->formatter->asCurrency($productItemPrice[ProductPrice::PRICE_KEY], null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+        <?= Yii::$app->formatter->asCurrency($product[CartProduct::PRICE], null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
     </span>
 
     <a href="<?= Url::toRoute(['/cart/delete-item', 'product_id' => $product[CartProduct::PRODUCT_ID]]); ?>" class="cart-el__del btn-reset" type="button" title="Удалить">

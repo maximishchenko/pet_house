@@ -19,6 +19,8 @@ class CartProduct extends CartSession
     const COUNT = 'count';
     const NAME = 'name';
     const IMAGE = 'image';
+    const PRICE = 'price';
+    const OLD_PRICE = 'old_price';
 
 
     public $product_id;
@@ -28,6 +30,8 @@ class CartProduct extends CartSession
     public $width;
     public $depth;
     public $count;
+    public $price;
+    public $old_price;
 
     public function addToCart()
     {
@@ -45,10 +49,12 @@ class CartProduct extends CartSession
         return ['name' => $product->name, 'image' => '/' . Product::UPLOAD_PATH . $product->image];
     }
 
-    public function getProductPrice($product_id, $color_id, $walls_id, $height, $width, $depth)
+    public function getProductPrice()
+    // public function getProductPrice($product_id, $color_id, $walls_id, $height, $width, $depth)
     {
-        $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
-        return $productPrice->getPriceValues();
+        return ['price' => $this->price, 'old_price' => $this->old_price];
+        // $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
+        // return $productPrice->getPriceValues();
     }
 
     public function getColorName($color_id)
@@ -83,6 +89,8 @@ class CartProduct extends CartSession
             static::WIDTH => $this->width,
             static::DEPTH => $this->depth,
             static::COUNT => $this->count,
+            static::PRICE => $this->price,
+            static::OLD_PRICE => $this->old_price,
         ];
     }
 

@@ -1,19 +1,9 @@
 <?php
 
 use frontend\modules\cart\models\CartProduct;
-use frontend\modules\catalog\models\ProductPrice;
 use yii\helpers\Url;
 
 $productItem = new CartProduct();
-// $productItemPrice = $productItem->getProductPrice(
-//     $product[CartProduct::PRODUCT_ID], 
-//     $product[CartProduct::COLOR_ID], 
-//     $product[CartProduct::WALL_ID], 
-//     $product[CartProduct::HEIGHT], 
-//     $product[CartProduct::WIDTH], 
-//     $product[CartProduct::DEPTH]
-// );
-// $productItemPrice = $productItem->getProductPrice();
 $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUCT_ID]);
 ?>
 
@@ -26,7 +16,9 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
             <?= $oneProduct[CartProduct::NAME]; ?>
         </div>
         <div class="cart-el__subtitle">
+            <?php if($productItem->getWallName($product[CartProduct::WALL_ID])): ?>
             <?= $productItem->getWallName($product[CartProduct::WALL_ID]); ?>, 
+            <?php endif; ?>
             <?= $productItem->getColorName($product[CartProduct::COLOR_ID]); ?>, 
             <?= $product[CartProduct::HEIGHT] . '×' . $product[CartProduct::WIDTH] . '×' . $product[CartProduct::DEPTH] . ' см'; ?>
         </div>
@@ -41,7 +33,6 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
     </div>
 
     <span class="cart-el__price">
-        <?php // echo Yii::$app->formatter->asCurrency($productItemPrice[ProductPrice::PRICE_KEY], null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
         <?= Yii::$app->formatter->asCurrency($product[CartProduct::PRICE], null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
     </span>
 

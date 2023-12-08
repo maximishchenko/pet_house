@@ -5,7 +5,6 @@ namespace frontend\modules\cart\models;
 use backend\modules\catalog\models\root\Property;
 use frontend\modules\cart\models\CartSession;
 use frontend\modules\catalog\models\Product;
-use frontend\modules\catalog\models\ProductPrice;
 
 class CartProduct extends CartSession
 {
@@ -50,11 +49,8 @@ class CartProduct extends CartSession
     }
 
     public function getProductPrice()
-    // public function getProductPrice($product_id, $color_id, $walls_id, $height, $width, $depth)
     {
         return ['price' => $this->price, 'old_price' => $this->old_price];
-        // $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
-        // return $productPrice->getPriceValues();
     }
 
     public function getColorName($color_id)
@@ -76,6 +72,29 @@ class CartProduct extends CartSession
 
     protected function isProductExists(): bool
     {
+        if (isset($this->cartProducts[$this->product_id]) && !empty($this->cartProducts[$this->product_id])) {
+            $existsProductInCart = $this->cartProducts[$this->product_id];
+            // print_r($existsProductInCart);
+            // die();
+    // public $product_id;
+    // public $color_id;
+    // public $walls_id;
+    // public $height;
+    // public $width;
+    // public $depth;
+    // public $count;
+    // public $price;
+    // public $old_price;
+            return 
+                $this->color_id == $existsProductInCart['color_id'] && 
+                $this->walls_id == $existsProductInCart['walls_id'] && 
+                $this->height == $existsProductInCart['height'] && 
+                $this->width == $existsProductInCart['width'] && 
+                $this->depth == $existsProductInCart['price'] && 
+                $this->price == $existsProductInCart['walls_id'] && 
+                $this->old_price == $existsProductInCart['old_price'];
+        }
+        return false;
         return isset($this->cartProducts[$this->product_id]) && !empty($this->cartProducts[$this->product_id]);
     }
 

@@ -6,6 +6,9 @@ use frontend\modules\cart\models\Cart;
 $this->title = Yii::t('app', 'Cart');
 $this->params['breadcrumbs'][] = $this->title;
 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <section class="cart mb-xxl">
     <div class="container cart-container">

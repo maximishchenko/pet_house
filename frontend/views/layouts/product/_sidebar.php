@@ -66,7 +66,7 @@ use backend\modules\catalog\models\root\Property;
                 <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
                   <div class="calc-el__list calc-el__list--color">
                     <?php foreach ($model->getColorItems() as $color) : ?>
-                      <span class="calc-el__list-item <?= ($model->color_id == $color->id) ? "calc-el__list-item--active" : ""; ?>" style="background-image: url(/uploads/property/<?= $color->image; ?>);"  data-price="<?= $color->price; ?>" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
+                      <span class="calc-el__list-item color-item <?= ($model->color_id == $color->id) ? "calc-el__list-item--active" : ""; ?>" style="background-image: url(/uploads/property/<?= $color->image; ?>);"  data-price="<?= $color->price; ?>" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
                         <!-- TODO calc-el__list-item--active добавить класс для выбранных элементов -->
                         <span class="calc-el__list-item-ineer">
                           <span><?= $color->name; ?></span>

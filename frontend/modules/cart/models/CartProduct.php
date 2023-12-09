@@ -50,11 +50,8 @@ class CartProduct extends CartSession
     }
 
     public function getProductPrice()
-    // public function getProductPrice($product_id, $color_id, $walls_id, $height, $width, $depth)
     {
         return ['price' => $this->price, 'old_price' => $this->old_price];
-        // $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
-        // return $productPrice->getPriceValues();
     }
 
     public function getColorName($color_id)
@@ -82,6 +79,7 @@ class CartProduct extends CartSession
     protected function createProductItemArray()
     {
         $this->cartProducts[$this->product_id] = [
+        // $this->cartProducts[] = [
             static::PRODUCT_ID => $this->product_id,
             static::COLOR_ID => $this->color_id,
             static::WALL_ID => $this->walls_id,

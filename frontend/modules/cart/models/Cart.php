@@ -8,6 +8,13 @@ class Cart extends CartSession
     public static function getTotalCount(): int
     {
         $cart = new self();
+        $count = 0;
+        if ($cart->cartProducts) {
+            foreach ($cart->cartProducts as $k => $product) {
+                $count = $count + $product['count'];
+            }
+        }
+        return $count;
         return count($cart->cartProducts);
     }
 
@@ -16,18 +23,7 @@ class Cart extends CartSession
         $cart = new self();
         $totalPrice = 0;
         foreach ($cart->cartProducts as $product) {
-            // print_r($product['price']);
             $cartItem = new CartProduct();
-            // $prices = $cartItem->getProductPrice(
-            //     $product[CartProduct::PRODUCT_ID],
-            //     $product[CartProduct::COLOR_ID],
-            //     $product[CartProduct::WALL_ID],
-            //     $product[CartProduct::HEIGHT],
-            //     $product[CartProduct::WIDTH],
-            //     $product[CartProduct::DEPTH],
-            // );
-            // $prices = $cartItem->getProductPrice();
-            // $price = $prices['price'];
             $price = $product['price'];
             $count = $cartItem->getCount($product[CartProduct::PRODUCT_ID]);
             $itemPrice = $price * $count;

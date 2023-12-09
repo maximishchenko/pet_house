@@ -6,7 +6,6 @@ use common\components\Word;
 use frontend\modules\cart\models\Cart;
 use frontend\modules\cart\models\CartProduct;
 use frontend\modules\cart\models\Order;
-use frontend\modules\catalog\models\ProductPrice;
 use Yii;
 use yii\web\Controller;
 
@@ -25,8 +24,6 @@ class DefaultController extends Controller
         $order = new Order();
     
         if ($order->load(Yii::$app->request->post()) && $order->save()) {
-            // TODO clear cart
-            // TODO add product_items
             return $this->refresh();
         }
 
@@ -59,7 +56,6 @@ class DefaultController extends Controller
                 'name' => $lastProductNameWithImage[CartProduct::NAME],
                 'image' => $lastProductNameWithImage[CartProduct::IMAGE],
                 'price' => $cart->price,
-                // 'price' => $cart->getProductPrice($cart->product_id, $cart->color_id, $cart->walls_id, $cart->height, $cart->width, $cart->depth),
                 'total_price' => Cart::getTotalPrice(),
                 'count' => $cart->getCount($cart->product_id),
                 'total_count' => Word::numWord($cart->getCount($cart->product_id), ['товар', 'товара', 'товаров']),

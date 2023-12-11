@@ -20,6 +20,8 @@ class CartProduct extends CartSession
     const IMAGE = 'image';
     const PRICE = 'price';
     const OLD_PRICE = 'old_price';
+    const TOTAL_PRICE = 'total_price';
+    const TOTAL_COUNT = 'total_count';
 
 
     public $product_id;

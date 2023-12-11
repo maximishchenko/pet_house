@@ -27,16 +27,17 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
     <div class="cart-score">
         <button class="cart-score__min btn-reset counter__btn-min" type="button" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>" title="Удалить"></button>
         <span class="cart-score__val counter__val">
-            <?= $productItem->getCount($product[CartProduct::PRODUCT_ID]); ?>
+            <?= $product[CartProduct::COUNT]; ?>
         </span> <span>шт.</span>
         <button class="cart-score__plus btn-reset counter__btn-plus" type="button" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>" title="Добавить"></button>
     </div>
 
     <span class="cart-el__price">
-        <?= Yii::$app->formatter->asCurrency($product[CartProduct::PRICE], null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+        <?php $productPrice = $product[CartProduct::COUNT] * $product[CartProduct::PRICE]; ?>
+        <?= Yii::$app->formatter->asCurrency($productPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
     </span>
 
-    <a href="<?= Url::toRoute(['/cart/delete-item', 'product_id' => $product[CartProduct::PRODUCT_ID]]); ?>" class="cart-el__del btn-reset" type="button" title="Удалить">
+    <a href="<?= Url::toRoute(['/cart/delete-item', 'itemKey' => $productKey ]); ?>" class="cart-el__del btn-reset" type="button" title="Удалить">
         <svg class="cart-el__del-icon">
             <use xlink:href="img/sprite.svg#close"></use>
         </svg>

@@ -26,6 +26,7 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
 
     <div class="cart-score">
         <button class="cart-score__min btn-reset counter__btn-min" type="button" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>" title="Удалить"></button>
+        
         <span class="cart-score__val counter__val">
             <?= $productItem->getCount($product[CartProduct::PRODUCT_ID]); ?>
         </span> <span>шт.</span>

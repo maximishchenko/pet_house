@@ -91,10 +91,10 @@ class DefaultController extends Controller
     public function actionUpdateProductCount($product_id, $count)
     {
         $this->enableCsrfValidation = false;
-        if (Yii::$app->request->isAjax) {
+        // if (Yii::$app->request->isAjax) {
             $cart = new Cart();
             return $cart->updateProductCount($product_id, $count);
-        }
+        // }
         Yii::$app->end();
     }
 }

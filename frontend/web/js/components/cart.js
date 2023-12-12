@@ -7,7 +7,7 @@ const addToCartBtn = document.querySelector('.product__action-btn'),
     sidebarProductImg = document.querySelector('.cart-sidebar-el__img'),
     sidebarProductPrice = document.querySelector('.cart-sidebar-price-item'),
     sidebarProductCountVal = document.querySelector('.counter__val'),
-    sidebarTotalCount = document.querySelector('.cart-sidebar-totalcount-item'),
+    sidebarTotalCount = document.querySelector('.cart-sidebar-count-item'),
     sidebarTotalPrice = document.querySelector('.cart-sidebar-totalprice-item');
 
 function toLocale(number) {
@@ -57,7 +57,7 @@ async function addToCart() {
 
     const res = await fetch(`http://pet-house.local/cart/default/add-to-cart?product_id=${productId}&color=${productParams.color}&walls=${productParams.wall}&height=${productParams.size.heigth}&width=${productParams.size.width}&depth=${productParams.size.depth}&price=${productParams.price}&old_price=${productParams.oldPrice}`);
     const data = await res.json();
-
+    
     sidebarProductTitle.textContent = data.name;
     sidebarProductImg.src = data.image;
     sidebarProductCountVal.textContent = data.count;

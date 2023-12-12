@@ -83,9 +83,13 @@ sideBarBtn?.addEventListener('click', toggleSideBar);
 async function cartCounter(id, count, selector) {
     const res = await fetch(`http://pet-house.local/cart/default/update-product-count?product_id=${id}&count=${count}`);
     const data = await res.json();
+    console.log(data);
+    
 }
 
 /* cartCounter(17, 3) */
 
+
+// fetch('http://pet-house.local/cart/default/update-product-count?itemKey=0&count=15');
 
 //http://pet-house.local/cart/default/update-product-count?product_id=123&count=15

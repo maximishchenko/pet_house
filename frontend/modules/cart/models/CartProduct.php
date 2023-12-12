@@ -52,7 +52,7 @@ class CartProduct extends CartSession
 
     public function getProductPrice()
     {
-        return ['price' => $this->price, 'old_price' => $this->old_price];
+        return [self::PRICE => $this->price, self::OLD_PRICE => $this->old_price];
     }
 
     public function getColorName($color_id)
@@ -76,24 +76,13 @@ class CartProduct extends CartSession
     {
         if (isset($this->cartProducts[$this->product_id]) && !empty($this->cartProducts[$this->product_id])) {
             $existsProductInCart = $this->cartProducts[$this->product_id];
-            // print_r($existsProductInCart);
-            // die();
-    // public $product_id;
-    // public $color_id;
-    // public $walls_id;
-    // public $height;
-    // public $width;
-    // public $depth;
-    // public $count;
-    // public $price;
-    // public $old_price;
-            return 
-                $this->color_id == $existsProductInCart['color_id'] && 
-                $this->walls_id == $existsProductInCart['walls_id'] && 
-                $this->height == $existsProductInCart['height'] && 
-                $this->width == $existsProductInCart['width'] && 
-                $this->depth == $existsProductInCart['price'] && 
-                $this->price == $existsProductInCart['walls_id'] && 
+            return
+                $this->color_id == $existsProductInCart['color_id'] &&
+                $this->walls_id == $existsProductInCart['walls_id'] &&
+                $this->height == $existsProductInCart['height'] &&
+                $this->width == $existsProductInCart['width'] &&
+                $this->depth == $existsProductInCart['price'] &&
+                $this->price == $existsProductInCart['walls_id'] &&
                 $this->old_price == $existsProductInCart['old_price'];
         }
         return false;
@@ -103,7 +92,6 @@ class CartProduct extends CartSession
     protected function createProductItemArray()
     {
         $this->cartProducts[$this->product_id] = [
-        // $this->cartProducts[] = [
             static::PRODUCT_ID => $this->product_id,
             static::COLOR_ID => $this->color_id,
             static::WALL_ID => $this->walls_id,
@@ -119,7 +107,7 @@ class CartProduct extends CartSession
     protected function updateProductItemCount($count = null)
     {
         if ($count == null) {
-            $this->cartProducts[$this->product_id][static::COUNT] = $this->cartProducts[$this->product_id][static::COUNT] + 1 ;
+            $this->cartProducts[$this->product_id][static::COUNT] = $this->cartProducts[$this->product_id][static::COUNT] + 1;
         } else {
             $this->cartProducts[$this->product_id][static::COUNT] = $count;
         }

@@ -3,6 +3,7 @@
 namespace frontend\modules\cart\models;
 
 use frontend\modules\cart\models\CartSession;
+
 class Cart extends CartSession
 {
     public static function getTotalCount(): int
@@ -24,8 +25,6 @@ class Cart extends CartSession
         $totalPrice = 0;
         foreach ($cart->cartProducts as $product) {
             $cartItem = new CartProduct();
-            // $price = $product['price'];
-            // $count = $cartItem->getCount($product[CartProduct::PRODUCT_ID]);
             $price = $product[CartProduct::PRICE];
             $count = $product[CartProduct::COUNT];
             $itemPrice = $price * $count;
@@ -57,11 +56,12 @@ class Cart extends CartSession
         $this->session->set($this::$cartSessionSection, $products);
     }
 
-    public function updateProductCount($itemKey, $count): int
+    public function updateProductCount($itemKey, $count)
     {
         $products = $this->cartProducts;
         $products[$itemKey][CartProduct::COUNT] = $count;
         $this->session->set($this::$cartSessionSection, $products);
-        return $this->getTotalPrice();
+        $result = [CartProduct::TOTAL_PRICE => $this->getTotalPrice(), CartProduct::TOTAL_COUNT => $this->getTotalCount()];
+        return $result;
     }
 }

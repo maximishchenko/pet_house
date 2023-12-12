@@ -23,7 +23,7 @@ class DefaultController extends Controller
     {
         $cart = new Cart();
         $order = new Order();
-    
+
         if ($order->load(Yii::$app->request->post()) && $order->save()) {
             return $this->refresh();
         }
@@ -35,77 +35,68 @@ class DefaultController extends Controller
     }
 
 
-    
+
     public function actionAddToCart()
     {
         $this->enableCsrfValidation = false;
         // if (Yii::$app->request->isAjax) {
-            $productsSession = $this->getProductsSession();
+        $productsSession = $this->getProductsSession();
+        $cart = new CartProduct();
+        $cart->product_id = Yii::$app->request->get('product_id');
+        $cart->color_id = Yii::$app->request->get('color');
+        $cart->walls_id = Yii::$app->request->get('walls');
+        $cart->height = Yii::$app->request->get('height');
+        $cart->width = Yii::$app->request->get('width');
+        $cart->depth = Yii::$app->request->get('depth');
+        $cart->price = Yii::$app->request->get('price');
+        $cart->old_price = Yii::$app->request->get('old_price');
+        $cart->count = 1;
 
-            // $product_id = Yii::$app->request->get('product_id');
-            // $color_id = Yii::$app->request->get('color');
-            // $walls_id = Yii::$app->request->get('walls');
-            // $height = Yii::$app->request->get('height');
-            // $width = Yii::$app->request->get('width');
-            // $depth = Yii::$app->request->get('depth');
-            // $price = Yii::$app->request->get('price');
-            // $old_price = Yii::$app->request->get('old_price');
-            // $count = 1;
-
-            $cart = new CartProduct();
-            $cart->product_id = Yii::$app->request->get('product_id');
-            $cart->color_id = Yii::$app->request->get('color');
-            $cart->walls_id = Yii::$app->request->get('walls');
-            $cart->height = Yii::$app->request->get('height');
-            $cart->width = Yii::$app->request->get('width');
-            $cart->depth = Yii::$app->request->get('depth');
-            $cart->price = Yii::$app->request->get('price');
-            $cart->old_price = Yii::$app->request->get('old_price');
-            $cart->count = 1;
-
-            $flag = false;
-            for ($i = 0; $i < count($productsSession); $i++) {
-                if ($productsSession[$i][CartProduct::PRODUCT_ID] === $cart->product_id && 
-                    $productsSession[$i][CartProduct::COLOR_ID] === $cart->color_id && 
-                    $productsSession[$i][CartProduct::WALL_ID] === $cart->walls_id && 
-                    $productsSession[$i][CartProduct::HEIGHT] === $cart->height &&
-                    $productsSession[$i][CartProduct::WIDTH] === $cart->width && 
-                    $productsSession[$i][CartProduct::DEPTH] === $cart->depth &&  
-                    $productsSession[$i][CartProduct::PRICE] === $cart->price && 
-                    $productsSession[$i][CartProduct::OLD_PRICE] === $cart->old_price &&
-                    $productsSession[$i][CartProduct::COUNT] === $cart->count
-                ) {
-                    $flag = true;
-                    $productsSession[$i][CartProduct::COUNT] = $productsSession[$i][CartProduct::COUNT] + 1;
-                }
+        $flag = false;
+        for ($i = 0; $i < count($productsSession); $i++) {
+            if (
+                $productsSession[$i][CartProduct::PRODUCT_ID] === $cart->product_id &&
+                $productsSession[$i][CartProduct::COLOR_ID] === $cart->color_id &&
+                $productsSession[$i][CartProduct::WALL_ID] === $cart->walls_id &&
+                $productsSession[$i][CartProduct::HEIGHT] === $cart->height &&
+                $productsSession[$i][CartProduct::WIDTH] === $cart->width &&
+                $productsSession[$i][CartProduct::DEPTH] === $cart->depth &&
+                $productsSession[$i][CartProduct::PRICE] === $cart->price &&
+                $productsSession[$i][CartProduct::OLD_PRICE] === $cart->old_price &&
+                $productsSession[$i][CartProduct::COUNT] === $cart->count
+            ) {
+                $flag = true;
+                $productsSession[$i][CartProduct::COUNT] = $productsSession[$i][CartProduct::COUNT] + 1;
             }
-            if (!$flag) {
-                array_push($productsSession, [
-                    CartProduct::PRODUCT_ID => $cart->product_id,
-                    CartProduct::COLOR_ID => $cart->color_id,
-                    CartProduct::WALL_ID => $cart->walls_id,
-                    CartProduct::HEIGHT => $cart->height,
-                    CartProduct::WIDTH => $cart->width,
-                    CartProduct::DEPTH => $cart->depth,
-                    CartProduct::PRICE => $cart->price,
-                    CartProduct::OLD_PRICE => $cart->old_price,
-                    CartProduct::COUNT => $cart->count,
-                ]);    
-            }
-
-            Yii::$app->session->set(Cart::$cartSessionSection, $productsSession);
-            
-            $lastProductNameWithImage = $cart->getProductNameWithImage($cart->product_id);
-            $lastProductInCart = [
+        }
+        if (!$flag) {
+            array_push($productsSession, [
                 CartProduct::PRODUCT_ID => $cart->product_id,
-                CartProduct::NAME => $lastProductNameWithImage[CartProduct::NAME],
-                CartProduct::IMAGE => $lastProductNameWithImage[CartProduct::IMAGE],
+                CartProduct::COLOR_ID => $cart->color_id,
+                CartProduct::WALL_ID => $cart->walls_id,
+                CartProduct::HEIGHT => $cart->height,
+                CartProduct::WIDTH => $cart->width,
+                CartProduct::DEPTH => $cart->depth,
                 CartProduct::PRICE => $cart->price,
-                CartProduct::TOTAL_PRICE => Cart::getTotalPrice(),
-                CartProduct::COUNT => $cart->getCount($cart->product_id),
-                CartProduct::TOTAL_COUNT => Word::numWord($cart->getCount($cart->product_id), ['товар', 'товара', 'товаров']),
-            ];
-            return json_encode($lastProductInCart);
+                CartProduct::OLD_PRICE => $cart->old_price,
+                CartProduct::COUNT => $cart->count,
+            ]);
+        }
+
+        Yii::$app->session->set(Cart::$cartSessionSection, $productsSession);
+
+        $lastProductNameWithImage = $cart->getProductNameWithImage($cart->product_id);
+        $lastProductInCart = [
+            CartProduct::PRODUCT_ID => $cart->product_id,
+            CartProduct::NAME => $lastProductNameWithImage[CartProduct::NAME],
+            CartProduct::IMAGE => $lastProductNameWithImage[CartProduct::IMAGE],
+            CartProduct::PRICE => $cart->price,
+            CartProduct::TOTAL_PRICE => Cart::getTotalPrice(),
+            CartProduct::COUNT => $cart->getCount($cart->product_id),
+            'total_count_per_one_product' => Word::numWord($cart->getCount($cart->product_id), ['товар', 'товара', 'товаров']),
+            CartProduct::TOTAL_COUNT => Cart::getTotalCount(),
+        ];
+        return json_encode($lastProductInCart);
         // }
         Yii::$app->end();
     }
@@ -113,12 +104,12 @@ class DefaultController extends Controller
 
     public function actionClearCart()
     {
-        // $this->enableCsrfValidation = false;
-        // if (Yii::$app->request->isAjax) {
+        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isAjax) {
             $cart = new Cart();
             $cart->clearCart();
-        // }
-        // Yii::$app->end();
+        }
+        Yii::$app->end();
     }
 
     public function actionGetTotalCount()
@@ -137,13 +128,10 @@ class DefaultController extends Controller
     public function actionUpdateProductCount($itemKey, $count)
     {
         $this->enableCsrfValidation = false;
-        // if (Yii::$app->request->isAjax) {
-        // if (Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax) {
             $cart = new Cart();
-            return $cart->updateProductCount($itemKey, $count);
-        // }
-            return $cart->updateProductCount($product_id, $count);
-        // }
+            return json_encode($cart->updateProductCount($itemKey, $count));
+        }
         Yii::$app->end();
     }
 

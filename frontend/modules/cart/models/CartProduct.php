@@ -20,6 +20,8 @@ class CartProduct extends CartSession
     const IMAGE = 'image';
     const PRICE = 'price';
     const OLD_PRICE = 'old_price';
+    const TOTAL_PRICE = 'total_price';
+    const TOTAL_COUNT = 'total_count';
 
 
     public $product_id;
@@ -101,6 +103,7 @@ class CartProduct extends CartSession
     protected function createProductItemArray()
     {
         $this->cartProducts[$this->product_id] = [
+        // $this->cartProducts[] = [
             static::PRODUCT_ID => $this->product_id,
             static::COLOR_ID => $this->color_id,
             static::WALL_ID => $this->walls_id,

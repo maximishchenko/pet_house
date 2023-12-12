@@ -1,6 +1,7 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\Url;
+
 ?>
 <footer class="footer pt-xxl mt-xxl">
   <div class="container">
@@ -51,32 +52,32 @@ use yii\helpers\Html;
           </div>
 
           <ul class="social list-reset">
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Фейсбуке">
+            <li class="social__item"><a href="<?= Yii::$app->configManager->getItemValue('contactInstagram'); ?>" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Инстаграмм">
                 <svg>
                   <use xlink:href="/img/sprite.svg#in"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk" aria-label="Наша страничка во Вконтакте">
+            <li class="social__item"><a href="<?= Yii::$app->configManager->getItemValue('contactWhatsapp'); ?>" target="_blank" class="social__link social__link--vk" aria-label="Связаться в WhatsApp">
                 <svg>
                   <use xlink:href="/img/sprite.svg#wt"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw" aria-label="Наша страничка в Твиттере">
+            <li class="social__item"><a href="<?= Yii::$app->configManager->getItemValue('contactTelegram'); ?>" target="_blank" class="social__link social__link--tw" aria-label="Связаться в Telegram">
                 <svg>
                   <use xlink:href="/img/sprite.svg#tl"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в Фейсбуке">
+            <li class="social__item"><a href="<?= Yii::$app->configManager->getItemValue('contactVk'); ?>" target="_blank" class="social__link social__link--fb" aria-label="Наша страничка в ВК">
                 <svg>
                   <use xlink:href="/img/sprite.svg#vk"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--vk" aria-label="Наша страничка во Вконтакте">
+            <li class="social__item"><a href="<?= Yii::$app->configManager->getItemValue('contactAvito'); ?>" target="_blank" class="social__link social__link--vk" aria-label="Мы на Авито">
                 <svg>
                   <use xlink:href="/img/sprite.svg#av"></use>
                 </svg>
               </a></li>
-            <li class="social__item"><a href="#" target="_blank" class="social__link social__link--tw" aria-label="Наша страничка в Твиттере">
+            <li class="social__item"><a href="<?= Yii::$app->configManager->getItemValue('contactLiveMaster'); ?>" target="_blank" class="social__link social__link--tw" aria-label="LiveMaster">
                 <svg>
                   <use xlink:href="/img/sprite.svg#lm"></use>
                 </svg>
@@ -90,17 +91,18 @@ use yii\helpers\Html;
           <ul class="list-reset footer__list">
             <li class="footer__list-title">Каталог</li>
             <li class="footer__list-item">
-              <a href="#" class="footer__link">Шиншиллы</a>
+              <a href="<?= Url::toRoute('/chinchilles'); ?>" class="footer__link">Шиншиллы</a>
             </li>
             <li class="footer__list-item">
-              <a href="#" class="footer__link">Собаки</a>
+              <a href="<?= Url::toRoute('/dogs'); ?>" class="footer__link">Собаки</a>
             </li>
-            <li class="footer__list-item">
+            <!-- <li class="footer__list-item">
               <a href="#" class="footer__link">Кошки</a>
             </li>
             <li class="footer__list-item">
               <a href="#" class="footer__link">Птицы</a>
-            </li>
+            </li> -->
+            <!-- TODO запуск модального окна -->
             <li class="footer__list-item">
               <a href="#" class="footer__link">Персональный заказ</a>
             </li>
@@ -108,8 +110,9 @@ use yii\helpers\Html;
           <ul class="list-reset footer__list">
             <li class="footer__list-title">Информация для покупателей</li>
             <li class="footer__list-item">
-              <a href="#" class="footer__link">Доставка и оплата</a>
+              <a href="<?= Url::toRoute('/delivery'); ?>" class="footer__link">Доставка и оплата</a>
             </li>
+            <!-- TODO запуск модального окна -->
             <li class="footer__list-item">
               <a href="#" class="footer__link">Реквизиты</a>
             </li>
@@ -118,8 +121,8 @@ use yii\helpers\Html;
       </div>
     </div>
     <div class="footer__fin">
-      <span>© 2016 – 2023 домгрызунов.рф</span>
-      <a href="#">Политика конфидециальности</a>
+      <span>© 2016 – <?= date('Y'); ?> домгрызунов.рф</span>
+      <a href="<?= Url::toRoute('/privacy'); ?>">Политика конфидециальности</a>
     </div>
   </div>
 </footer>

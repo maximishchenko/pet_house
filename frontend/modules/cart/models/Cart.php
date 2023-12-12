@@ -24,8 +24,10 @@ class Cart extends CartSession
         $totalPrice = 0;
         foreach ($cart->cartProducts as $product) {
             $cartItem = new CartProduct();
-            $price = $product['price'];
-            $count = $cartItem->getCount($product[CartProduct::PRODUCT_ID]);
+            // $price = $product['price'];
+            // $count = $cartItem->getCount($product[CartProduct::PRODUCT_ID]);
+            $price = $product[CartProduct::PRICE];
+            $count = $product[CartProduct::COUNT];
             $itemPrice = $price * $count;
             $totalPrice = $totalPrice + $itemPrice;
         }
@@ -40,7 +42,7 @@ class Cart extends CartSession
 
     public function clearCart()
     {
-        $this->session->set($this->cartSessionSection, []);
+        $this->session->set($this::$cartSessionSection, []);
     }
 
     public function getProducts()
@@ -48,18 +50,18 @@ class Cart extends CartSession
         return $this->cartProducts;
     }
 
-    public function deleteItem($product_id)
+    public function deleteItem($itemKey)
     {
         $products = $this->cartProducts;
-        unset($products[$product_id]);
-        $this->session->set($this->cartSessionSection, $products);
+        unset($products[$itemKey]);
+        $this->session->set($this::$cartSessionSection, $products);
     }
 
-    public function updateProductCount($product_id, $count): int
+    public function updateProductCount($itemKey, $count): int
     {
         $products = $this->cartProducts;
-        $products[$product_id][CartProduct::COUNT] = $count;
-        $this->session->set($this->cartSessionSection, $products);
+        $products[$itemKey][CartProduct::COUNT] = $count;
+        $this->session->set($this::$cartSessionSection, $products);
         return $this->getTotalPrice();
     }
 }

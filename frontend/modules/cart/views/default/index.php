@@ -6,9 +6,6 @@ use frontend\modules\cart\models\Cart;
 $this->title = Yii::t('app', 'Cart');
 $this->params['breadcrumbs'][] = $this->title;
 
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
 ?>
 <section class="cart mb-xxl">
     <div class="container cart-container">
@@ -27,10 +24,18 @@ echo "</pre>";
 
                 <?php if (Cart::getTotalCount() > 0) : ?>
 
+                    <pre>
+                    <?php
+                        
+                    $columnProductIds = array_column($cart->getProducts(), 'product_id');
+                    print_r($columnProductIds);
+                    ?>
+                    </pre>
+
                     <!-- Товары в корзине -->
-                    <?php foreach ($cart->getProducts() as $product) : ?>
+                    <?php foreach ($cart->getProducts() as $productKey => $product) : ?>
                         <div class="cart__list-inner">
-                            <?= $this->render('_cart_items', ['product' => $product]); ?>
+                            <?= $this->render('_cart_items', ['product' => $product, 'productKey' => $productKey]); ?>
                         </div>
                     <?php endforeach; ?>
 

@@ -2,6 +2,7 @@
 
 use backend\modules\catalog\models\root\Product;
 use backend\modules\content\models\Review;
+use yii\helpers\Url;
 
 ?>
 <section class="hero mb-n">
@@ -41,22 +42,22 @@ use backend\modules\content\models\Review;
 
 
 <section class="categories mb-xxl mt-n">
-    <a href="#" class="categories__el">
-        <div class="categories__img" style="background-image: url('img/ic_ch.svg');"></div>
+    <a href="<?= Url::toRoute('/chinchilles'); ?>" class="categories__el">
+        <div class="categories__img" style="background-image: url('/img/ic_ch.svg');"></div>
         <h3 class="categories__title">Грызуны</h3>
     </a>
-    <a href="#" class="categories__el">
-        <div class="categories__img" style="background-image: url('img/ic_d.svg');"></div>
+    <a href="<?= Url::toRoute('/dogs'); ?>" class="categories__el">
+        <div class="categories__img" style="background-image: url('/img/ic_d.svg');"></div>
         <h3 class="categories__title">Собаки</h3>
     </a>
-    <a href="#" class="categories__el">
-        <div class="categories__img" style="background-image: url('img/ic_c.svg');"></div>
+    <!-- <a href="#" class="categories__el">
+        <div class="categories__img" style="background-image: url('/img/ic_c.svg');"></div>
         <h3 class="categories__title">Кошки</h3>
     </a>
     <a href="#" class="categories__el">
-        <div class="categories__img" style="background-image: url('img/ic_b.svg');"></div>
+        <div class="categories__img" style="background-image: url('/img/ic_b.svg');"></div>
         <h3 class="categories__title">Птицы</h3>
-    </a>
+    </a> -->
 </section>
 
 

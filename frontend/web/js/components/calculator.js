@@ -57,7 +57,7 @@ if (document.querySelector('.product')) {
 
             if (type == 'btn-calc') {
 
-                let price = this.#totalPrice - Number(val2) + Number(val1);
+                let price = Math.round(this.#totalPrice - Number(val2) + Number(val1));
                 this.#totalPrice = price;
                 this.#setCalcPrice(price, this.#calcSalePrice(price));
 

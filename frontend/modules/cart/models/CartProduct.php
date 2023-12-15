@@ -5,7 +5,6 @@ namespace frontend\modules\cart\models;
 use backend\modules\catalog\models\root\Property;
 use frontend\modules\cart\models\CartSession;
 use frontend\modules\catalog\models\Product;
-use frontend\modules\catalog\models\ProductPrice;
 
 class CartProduct extends CartSession
 {
@@ -19,6 +18,10 @@ class CartProduct extends CartSession
     const COUNT = 'count';
     const NAME = 'name';
     const IMAGE = 'image';
+    const PRICE = 'price';
+    const OLD_PRICE = 'old_price';
+    const TOTAL_PRICE = 'total_price';
+    const TOTAL_COUNT = 'total_count';
 
 
     public $product_id;
@@ -28,6 +31,8 @@ class CartProduct extends CartSession
     public $width;
     public $depth;
     public $count;
+    public $price;
+    public $old_price;
 
     public function addToCart()
     {
@@ -45,10 +50,9 @@ class CartProduct extends CartSession
         return ['name' => $product->name, 'image' => '/' . Product::UPLOAD_PATH . $product->image];
     }
 
-    public function getProductPrice($product_id, $color_id, $walls_id, $height, $width, $depth)
+    public function getProductPrice()
     {
-        $productPrice = new ProductPrice($product_id, $color_id, $height, $width, $depth, $walls_id);
-        return $productPrice->getPriceValues();
+        return [self::PRICE => $this->price, self::OLD_PRICE => $this->old_price];
     }
 
     public function getColorName($color_id)
@@ -70,6 +74,18 @@ class CartProduct extends CartSession
 
     protected function isProductExists(): bool
     {
+        if (isset($this->cartProducts[$this->product_id]) && !empty($this->cartProducts[$this->product_id])) {
+            $existsProductInCart = $this->cartProducts[$this->product_id];
+            return
+                $this->color_id == $existsProductInCart['color_id'] &&
+                $this->walls_id == $existsProductInCart['walls_id'] &&
+                $this->height == $existsProductInCart['height'] &&
+                $this->width == $existsProductInCart['width'] &&
+                $this->depth == $existsProductInCart['price'] &&
+                $this->price == $existsProductInCart['walls_id'] &&
+                $this->old_price == $existsProductInCart['old_price'];
+        }
+        return false;
         return isset($this->cartProducts[$this->product_id]) && !empty($this->cartProducts[$this->product_id]);
     }
 
@@ -83,13 +99,15 @@ class CartProduct extends CartSession
             static::WIDTH => $this->width,
             static::DEPTH => $this->depth,
             static::COUNT => $this->count,
+            static::PRICE => $this->price,
+            static::OLD_PRICE => $this->old_price,
         ];
     }
 
     protected function updateProductItemCount($count = null)
     {
         if ($count == null) {
-            $this->cartProducts[$this->product_id][static::COUNT] = $this->cartProducts[$this->product_id][static::COUNT] + 1 ;
+            $this->cartProducts[$this->product_id][static::COUNT] = $this->cartProducts[$this->product_id][static::COUNT] + 1;
         } else {
             $this->cartProducts[$this->product_id][static::COUNT] = $count;
         }

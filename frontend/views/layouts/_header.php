@@ -101,22 +101,24 @@ use yii\helpers\Url;
   <div class="mob-catalog__wrapper">
 
     <div class="mob-catalog__inner">
-      <a class="mob-catalog__link" href="#">
+      <a class="mob-catalog__link" href="<?= Url::toRoute('/chinchilles'); ?>">
         <span class="mob-catalog__img" style="background-image: url('img/c_1.jpg');"></span>
         <?= Yii::t('app', "Menu Item Rodent"); ?>
       </a>
-      <a class="mob-catalog__link" href="#">
+      <a class="mob-catalog__link" href="<?= Url::toRoute('/dogs'); ?>">
         <span class="mob-catalog__img" style="background-image: url('img/c_2.jpg');"></span>
         <?= Yii::t('app', "Menu Item Dog"); ?>
       </a>
-      <a class="mob-catalog__link" href="#">
+      <!-- <a class="mob-catalog__link" href="#">
         <span class="mob-catalog__img" style="background-image: url('img/c_3.jpg');"></span>
-        <?= Yii::t('app', "Menu Item Cat"); ?>
+        <?php // echo Yii::t('app', "Menu Item Cat"); 
+        ?>
       </a>
       <a class="mob-catalog__link" href="#">
         <span class="mob-catalog__img" style="background-image: url('img/c_4.jpg');"></span>
-        <?= Yii::t('app', "Menu Item Bird"); ?>
-      </a>
+        <?php // echo Yii::t('app', "Menu Item Bird"); 
+        ?>
+      </a> -->
     </div>
 
     <section class="pop-categories mt-xl mb-m">

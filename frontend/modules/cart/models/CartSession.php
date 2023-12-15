@@ -11,7 +11,7 @@ abstract class CartSession
      *
      * @var string
      */
-    protected $cartSessionSection = 'cart';
+    public static $cartSessionSection = 'cart';
 
     protected $cartProducts;
 
@@ -24,7 +24,7 @@ abstract class CartSession
     {
         $this->session = Yii::$app->session;
         $this->createCartSessionStorageIfNotExists();
-        $this->cartProducts = $this->session->get($this->cartSessionSection);
+        $this->cartProducts = $this->session->get($this::$cartSessionSection);
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class CartSession
      */
     protected function isCartSessionSectionExists(): bool
     {
-        return $this->session->has($this->cartSessionSection);
+        return $this->session->has($this::$cartSessionSection);
     }
 
     /**
@@ -69,7 +69,7 @@ abstract class CartSession
      */
     protected function createEmptyCartSessionStorage()
     {
-        $this->session->set($this->cartSessionSection, []);
+        $this->session->set($this::$cartSessionSection, []);
     }
     
     /**
@@ -79,6 +79,6 @@ abstract class CartSession
      */
     protected function removeCartSessionStorage()
     {
-        $this->session->remove($this->cartSessionSection);
+        $this->session->remove($this::$cartSessionSection);
     }
 }

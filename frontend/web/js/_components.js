@@ -7,3 +7,4 @@ import './components/sort';
 import './components/dropzone';
 import './components/calculator';
 import './components/masonry';
+import './components/cart'

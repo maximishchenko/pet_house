@@ -3,11 +3,19 @@
 namespace frontend\modules\cart\models;
 
 use frontend\modules\cart\models\CartSession;
+
 class Cart extends CartSession
 {
     public static function getTotalCount(): int
     {
         $cart = new self();
+        $count = 0;
+        if ($cart->cartProducts) {
+            foreach ($cart->cartProducts as $k => $product) {
+                $count = $count + $product['count'];
+            }
+        }
+        return $count;
         return count($cart->cartProducts);
     }
 
@@ -17,16 +25,8 @@ class Cart extends CartSession
         $totalPrice = 0;
         foreach ($cart->cartProducts as $product) {
             $cartItem = new CartProduct();
-            $prices = $cartItem->getProductPrice(
-                $product[CartProduct::PRODUCT_ID],
-                $product[CartProduct::COLOR_ID],
-                $product[CartProduct::WALL_ID],
-                $product[CartProduct::HEIGHT],
-                $product[CartProduct::WIDTH],
-                $product[CartProduct::DEPTH],
-            );
-            $price = $prices['price'];
-            $count = $cartItem->getCount($product[CartProduct::PRODUCT_ID]);
+            $price = $product[CartProduct::PRICE];
+            $count = $product[CartProduct::COUNT];
             $itemPrice = $price * $count;
             $totalPrice = $totalPrice + $itemPrice;
         }
@@ -41,7 +41,7 @@ class Cart extends CartSession
 
     public function clearCart()
     {
-        $this->session->set($this->cartSessionSection, []);
+        $this->session->set($this::$cartSessionSection, []);
     }
 
     public function getProducts()
@@ -49,18 +49,19 @@ class Cart extends CartSession
         return $this->cartProducts;
     }
 
-    public function deleteItem($product_id)
+    public function deleteItem($itemKey)
     {
         $products = $this->cartProducts;
-        unset($products[$product_id]);
-        $this->session->set($this->cartSessionSection, $products);
+        unset($products[$itemKey]);
+        $this->session->set($this::$cartSessionSection, $products);
     }
 
-    public function updateProductCount($product_id, $count): int
+    public function updateProductCount($itemKey, $count)
     {
         $products = $this->cartProducts;
-        $products[$product_id][CartProduct::COUNT] = $count;
-        $this->session->set($this->cartSessionSection, $products);
-        return $this->getTotalPrice();
+        $products[$itemKey][CartProduct::COUNT] = $count;
+        $this->session->set($this::$cartSessionSection, $products);
+        $result = [CartProduct::TOTAL_PRICE => $this->getTotalPrice(), CartProduct::TOTAL_COUNT => $this->getTotalCount()];
+        return $result;
     }
 }

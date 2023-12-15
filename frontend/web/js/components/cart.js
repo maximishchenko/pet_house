@@ -65,6 +65,9 @@ async function addToCart() {
     sidebarTotalPrice.textContent = toLocale(data.total_price);
     sidebarTotalCount.textContent = data.total_count
 
+    console.log(data);
+    
+
 }
 
 function toggleSideBar() {
@@ -81,13 +84,13 @@ sideBarBg?.addEventListener('click', toggleSideBar);
 sideBarBtn?.addEventListener('click', toggleSideBar);
 
 async function cartCounter(id, count, selector) {
-    const res = await fetch(`http://pet-house.local/cart/default/update-product-count?product_id=${id}&count=${count}`);
-    const data = await res.json();
+    const res = await fetch(`http://pet-house.local/cart/default/update-product-count?itemKey=${id}&count=${count}`);
+    const data = await res.text();
     console.log(data);
     
 }
 
-/* cartCounter(17, 3) */
+cartCounter(0, 3)
 
 
 // fetch('http://pet-house.local/cart/default/update-product-count?itemKey=0&count=15');

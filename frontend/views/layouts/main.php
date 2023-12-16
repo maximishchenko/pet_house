@@ -7,6 +7,9 @@ use backend\modules\catalog\models\root\Product;
 use backend\modules\content\models\Question;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use frontend\modules\seo\models\MetaTag;
+use frontend\modules\seo\models\Script;
+
 $settings = Yii::$app->get('configManager');
 
 AppAsset::register($this);
@@ -20,12 +23,22 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#111111">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+
+
+    <?php MetaTag::setMetaTag($property); ?>
+    <title>
+        <?= Html::encode($this->title); ?>
+    </title>
+
     <?php $this->head() ?>
+
+    <?php Script::getScripts(Script::BEFORE_END_HEAD); ?>
+    
 </head>
 <body>
 <?php $this->beginBody() ?>
 
+<?php Script::getScripts(Script::AFTER_BEGIN_BODY); ?>
 
 <body class="page__body">
     <div class="site-container">
@@ -53,6 +66,7 @@ AppAsset::register($this);
         <?= $this->render('//layouts/product/_faq_bottom', ['questions' => Question::getShareQuestions()]); ?>
 
     </div>
+    <?php Script::getScripts(Script::BEFORE_END_BODY); ?>
 </body>
 
 <?= $this->render('_footer', ['settings' => $settings]); ?>

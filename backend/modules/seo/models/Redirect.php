@@ -3,6 +3,7 @@
 namespace backend\modules\seo\models;
 
 use common\models\Core;
+use common\models\Sort;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;

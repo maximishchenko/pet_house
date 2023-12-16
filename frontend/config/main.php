@@ -21,6 +21,9 @@ return [
         'cart' => [
             'class' => 'frontend\modules\cart\Module',
         ],
+        'seo' => [
+            'class' => 'frontend\modules\seo\Module',
+        ],
     ],
     'components' => [
         'assetManager' => [

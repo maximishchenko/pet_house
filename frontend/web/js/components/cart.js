@@ -8,6 +8,7 @@ const addToCartBtn = document.querySelector('.product__action-btn'),
     sidebarProductPrice = document.querySelector('.cart-sidebar-price-item'),
     sidebarProductCountVal = document.querySelector('.counter__val'),
     sidebarTotalCount = document.querySelector('.cart-sidebar-count-item'),
+    sidebarTotalCartPos = document.querySelector('.cart-sidebar-totalcount-item')
     sidebarTotalPrice = document.querySelector('.cart-sidebar-totalprice-item');
 
 function toLocale(number) {
@@ -63,10 +64,8 @@ async function addToCart() {
     sidebarProductCountVal.textContent = data.count;
     sidebarProductPrice.textContent = toLocale(Number(data.price));
     sidebarTotalPrice.textContent = toLocale(data.total_price);
-    sidebarTotalCount.textContent = data.total_count
-
-    console.log(data);
-    
+    sidebarTotalCount.textContent = data.total_count;
+    sidebarTotalCartPos.textContent = data.total_count + data.total_count_per_one_product;
 
 }
 
@@ -85,13 +84,13 @@ sideBarBtn?.addEventListener('click', toggleSideBar);
 
 async function cartCounter(id, count, selector) {
     const res = await fetch(`http://pet-house.local/cart/default/update-product-count?itemKey=${id}&count=${count}`);
-    const data = await res.text();
+    const data = await res.json();
     console.log(data);
     
 }
 
-cartCounter(0, 3)
-
+//cartCounter(0, 3)
+fetch('http://pet-house.local/cart/default/update-product-count?itemKey=0&count=15')
 
 // fetch('http://pet-house.local/cart/default/update-product-count?itemKey=0&count=15');
 

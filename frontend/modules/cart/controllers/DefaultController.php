@@ -62,8 +62,8 @@ class DefaultController extends Controller
                 $productsSession[$i][CartProduct::WIDTH] === $cart->width &&
                 $productsSession[$i][CartProduct::DEPTH] === $cart->depth &&
                 $productsSession[$i][CartProduct::PRICE] === $cart->price &&
-                $productsSession[$i][CartProduct::OLD_PRICE] === $cart->old_price &&
-                $productsSession[$i][CartProduct::COUNT] === $cart->count
+                $productsSession[$i][CartProduct::OLD_PRICE] === $cart->old_price
+                // && $productsSession[$i][CartProduct::COUNT] === $cart->count
             ) {
                 $flag = true;
                 $productsSession[$i][CartProduct::COUNT] = $productsSession[$i][CartProduct::COUNT] + 1;

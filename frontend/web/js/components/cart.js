@@ -1,16 +1,15 @@
-
+const fetchHeaders = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+    'X-Requested-With': 'XMLHttpRequest'
+}
 
 function toLocale(number) {
-    return Number(number).toLocaleString('ru-RU', { minimumFractionDigits: 0 });
+    let val = Math.ceil(Number(number) / 100) * 100
+    return val.toLocaleString('ru-RU', { minimumFractionDigits: 0 });
 }
 
 if (document.querySelector('.product__col-calc')) {
-
-    const fetchHeaders = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
-        'X-Requested-With': 'XMLHttpRequest'
-    }
 
     const addToCartBtn = document.querySelector('.product__action-btn');
     const sideBar = document.querySelector('.cart-sidebar');
@@ -102,7 +101,63 @@ if (document.querySelector('.product__col-calc')) {
 
 }
 
+if (document.querySelector('.cart ')) {
 
-function cartCounter() {
-    
+    const btnPlus = document.querySelectorAll('.counter__btn-plus');
+    const btnMinus = document.querySelectorAll('.counter__btn-min');
+    const totalPriceSelector = document.querySelector('.total__cart__price');
+
+    function cartCounter() {
+
+        btnPlus.forEach(el => {
+            el.addEventListener('click', () => {
+                let valSelector = el.parentNode.querySelector('.cart-score__val');
+                let val = Number(valSelector.textContent);
+                let priceSelector = el.parentNode.parentNode.querySelector('.cart-el__price');
+                let price = Number(priceSelector.textContent.replace(/\D/g, ''));
+
+                let totalPrice = Number(totalPriceSelector.textContent.replace(/\D/g, ''));
+
+                if (val < 10) {
+                    valSelector.textContent = val + 1;
+                    let priceProd = price / val;
+                    priceSelector.textContent = `${toLocale(price + priceProd)} ₽`;
+
+                    totalPriceSelector.textContent = toLocale(totalPrice + priceProd);
+
+                    fetch(`/cart/default/update-product-count?itemKey=${id}&count=${val + 1}`, {
+                        headers: fetchHeaders
+                    })
+                }
+
+            });
+        });
+
+        btnMinus.forEach(el => {
+            el.addEventListener('click', () => {
+                let valSelector = el.parentNode.querySelector('.cart-score__val');
+                let val = Number(valSelector.textContent);
+                let priceSelector = el.parentNode.parentNode.querySelector('.cart-el__price');
+                let price = Number(priceSelector.textContent.replace(/\D/g, ''));
+                let id = el.getAttribute('data-product-id');
+
+                let totalPrice = Number(totalPriceSelector.textContent.replace(/\D/g, ''));
+
+                if (val > 1) {
+                    valSelector.textContent = val - 1;
+                    let priceProd = Number(price) / val;
+                    priceSelector.textContent = `${toLocale(price - priceProd)} ₽`;
+
+                    totalPriceSelector.textContent = toLocale(totalPrice - priceProd);
+
+                    fetch(`/cart/default/update-product-count?itemKey=${id}&count=${val - 1}`, {
+                        headers: fetchHeaders
+                    })
+                }
+
+            });
+        });
+    }
+
+    cartCounter();
 }

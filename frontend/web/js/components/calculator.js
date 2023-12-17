@@ -1,7 +1,7 @@
 import HcSticky from 'hc-sticky';
 import noUiSlider from 'nouislider';
 
-if (document.querySelector('.product')) {
+if (document.querySelector('.product') && document.querySelector('.calc-el__btn-control')) {
 
     const stickybar = new HcSticky('.sidebar', {
         stickTo: '.product__col',
@@ -45,6 +45,7 @@ if (document.querySelector('.product')) {
         constructor(totalPrice, totalOldPrice) {
             this.totalPrice = document.querySelector(totalPrice);
             this.totalSalePrice = document.querySelector(totalOldPrice);
+            this.des = this.totalSalePrice.getAttribute('data-product-discount')
             this.#getTotalPrice();
         }
 
@@ -65,7 +66,7 @@ if (document.querySelector('.product')) {
 
                 let price = this.#totalPrice + (Number(val1) * Number(val2));
                 this.#totalPrice = price;
-                this.#setCalcPrice(price, this.#calcSalePrice(price));
+                this.#setCalcPrice(Math.ceil(price / 100) * 100, this.#calcSalePrice(price));
 
             } else {
                 throw new Error('Incorrect Param Type');
@@ -81,7 +82,9 @@ if (document.querySelector('.product')) {
         }
 
         #calcSalePrice(price) {
-            return Math.trunc(price + ((price * 10) / 100));
+            let old_price = Math.trunc(price + ((price * this.des) / 100));
+            return Math.ceil(old_price / 100) * 100;
+
         }
 
     }

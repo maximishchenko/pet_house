@@ -1,97 +1,108 @@
 
-const addToCartBtn = document.querySelector('.product__action-btn'),
-    sideBar = document.querySelector('.cart-sidebar'),
-    sideBarBtn = document.querySelector('.cart-sidebar__btn-close'),
-    sideBarBg = document.querySelector('.cart-sidebar__bg'),
-    sidebarProductTitle = document.querySelector('.cart-sidebar-title-item'),
-    sidebarProductImg = document.querySelector('.cart-sidebar-el__img'),
-    sidebarProductPrice = document.querySelector('.cart-sidebar-price-item'),
-    sidebarProductCountVal = document.querySelector('.counter__val'),
-    sidebarTotalCount = document.querySelector('.cart-sidebar-count-item'),
-    sidebarTotalCartPos = document.querySelector('.cart-sidebar-totalcount-item')
-    sidebarTotalPrice = document.querySelector('.cart-sidebar-totalprice-item');
 
 function toLocale(number) {
-    return number.toLocaleString('ru-RU', { minimumFractionDigits: 0 });
+    return Number(number).toLocaleString('ru-RU', { minimumFractionDigits: 0 });
 }
 
-async function addToCart() {
-    const productId = document.querySelector('[data-product-id]').getAttribute('data-product-id'),
-        calcElements = document.querySelectorAll('.calc-el__list-item--active'),
-        productParams = {},
-        productPrice = document.querySelector('#constructor_price').textContent.replace(/\D/g, ''),
-        productOldPrice = document.querySelector('#constructor_price_old').textContent.replace(/\D/g, '');
+if (document.querySelector('.product__col-calc')) {
 
-
-    calcElements.forEach(el => {
-        if (el.classList.contains('color-item')) {
-            productParams.color = el.getAttribute('data-color-id');
-        }
-        else if (el.classList.contains('size-item')) {
-            productParams.size = {
-                heigth: el.getAttribute('data-size-height'),
-                width: el.getAttribute('data-size-width'),
-                depth: el.getAttribute('data-size-depth')
-            }
-        }
-        else if (el.classList.contains('wall-item')) {
-            productParams.wall = el.getAttribute('data-wall-id');
-        }
-    });
-
-    if (document.querySelector('#dogCageSizeParams')) {
-        const heigth = document.querySelector('#constructor_height').textContent,
-            width = document.querySelector('#constructor_width').textContent,
-            depth = document.querySelector('#constructor_depth').textContent;
-
-        productParams.size = {
-            heigth: heigth,
-            width: width,
-            depth: depth
-        }
-
-        productParams.wall = 0;
+    const fetchHeaders = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+        'X-Requested-With': 'XMLHttpRequest'
     }
 
-    productParams.price = Number(productPrice);
-    productParams.oldPrice = Number(productOldPrice);
+    const addToCartBtn = document.querySelector('.product__action-btn');
+    const sideBar = document.querySelector('.cart-sidebar');
+    const sideBarBg = document.querySelector('.cart-sidebar__bg');
+    const sideBarBtnClose = document.querySelector('.cart-sidebar__btn-close');
 
-    const res = await fetch(`http://pet-house.local/cart/default/add-to-cart?product_id=${productId}&color=${productParams.color}&walls=${productParams.wall}&height=${productParams.size.heigth}&width=${productParams.size.width}&depth=${productParams.size.depth}&price=${productParams.price}&old_price=${productParams.oldPrice}`);
-    const data = await res.json();
+    function showSideBar() {
+        sideBar.classList.add('cart-sidebar--active');
+        document.querySelector('.page').classList.add('dis-scroll');
+        sideBarBg.addEventListener('click', hideSideBar);
+        sideBarBtnClose.addEventListener('click', hideSideBar);
+    }
+
+    function hideSideBar() {
+        sideBar.classList.remove('cart-sidebar--active');
+        document.querySelector('.page').classList.remove('dis-scroll');
+        sideBarBg.removeEventListener('click', hideSideBar);
+        sideBarBtnClose.removeEventListener('click', hideSideBar);
+    }
+
+    const headerBag = document.querySelector('.header__bag');
+    const headerBagVal = document.querySelector('.cart-val');
+    const sideBarImg = document.querySelector('.cart-sidebar-el__img');
+    const sideBarCounter = document.querySelector('.cart-sidebar-count-item');
+    const sideBarProductPrice = document.querySelector('.cart-sidebar-price-item');
+    const sideBarTotalPrice = document.querySelector('.cart-sidebar-totalprice-item');
+    const sideBarTotalCart = document.querySelector('.cart-sidebar-totalcount-item');
+    const sideBarTitle = document.querySelector('.cart-sidebar-el__title');
+    const counterBtn = document.querySelectorAll('[data-product-id]');
+
+    async function addToCart() {
+
+        const productId = document.querySelector('[data-product-id]').getAttribute('data-product-id');
+        const productPrice = document.querySelector('#constructor_price').textContent.replace(/\D/g, '');
+        const calcElements = document.querySelectorAll('.calc-el__list-item--active');
+        let urlParams = `/cart/default/add-to-cart?product_id=${productId}&price=${productPrice}`
+
+        calcElements.forEach(el => {
+            if (el.classList.contains('color-item')) {
+                urlParams = urlParams + `&color=${el.getAttribute('data-color-id')}`
+            }
+            else if (el.classList.contains('size-item')) {
+                urlParams = urlParams + `&height=${el.getAttribute('data-size-height')}`
+                urlParams = urlParams + `&width=${el.getAttribute('data-size-width')}`
+                urlParams = urlParams + `&depth=${el.getAttribute('data-size-depth')}`
+            }
+            else if (el.classList.contains('wall-item')) {
+                urlParams = urlParams + `&walls=${el.getAttribute('data-wall-id')}`
+            }
+        });
+
+        if (document.querySelector('#dogCageSizeParams')) {
+            const heigth = document.querySelector('#constructor_height').textContent,
+                width = document.querySelector('#constructor_width').textContent,
+                depth = document.querySelector('#constructor_depth').textContent;
+
+            urlParams = urlParams + `&height=${heigth}`
+            urlParams = urlParams + `&width=${width}`
+            urlParams = urlParams + `&depth=${depth}`
+
+        }
+
+        const res = await fetch(urlParams, {
+            headers: fetchHeaders
+        });
+        const data = await res.json();
+
+        if (!headerBag.classList.contains('bag-icon--acrive')) {
+            headerBag.classList.add('bag-icon--acrive');
+        }
+        headerBagVal.textContent = data.total_count;
+
+        sideBarImg.src = data.image;
+        sideBarTitle.textContent = data.name;
+        sideBarCounter.textContent = data.total_count_per_one_product;
+        sideBarProductPrice.textContent = toLocale(data.price);
+        sideBarTotalPrice.textContent = toLocale(data.total_price);
+        sideBarTotalCart.textContent = data.total_count_per_one_product_with_words;
+
+        counterBtn.forEach(el => {
+            el.setAttribute('data-product-id', data.product_id);
+        });
+    }
+
+    addToCartBtn.addEventListener('click', () => {
+        showSideBar();
+        addToCart();
+    });
+
+}
+
+
+function cartCounter() {
     
-    sidebarProductTitle.textContent = data.name;
-    sidebarProductImg.src = data.image;
-    sidebarProductCountVal.textContent = data.count;
-    sidebarProductPrice.textContent = toLocale(Number(data.price));
-    sidebarTotalPrice.textContent = toLocale(data.total_price);
-    sidebarTotalCount.textContent = data.total_count;
-    sidebarTotalCartPos.textContent = data.total_count + data.total_count_per_one_product;
-
 }
-
-function toggleSideBar() {
-    sideBar.classList.toggle('cart-sidebar--active');
-    document.querySelector('.page').classList.toggle('dis-scroll');
-}
-
-addToCartBtn?.addEventListener('click', () => {
-    addToCart();
-    toggleSideBar();
-});
-
-sideBarBg?.addEventListener('click', toggleSideBar);
-sideBarBtn?.addEventListener('click', toggleSideBar);
-
-async function cartCounter(id, count, selector) {
-    const res = await fetch(`http://pet-house.local/cart/default/update-product-count?itemKey=${id}&count=${count}`);
-    const data = await res.json();
-    console.log(data);
-    
-}
-
-//cartCounter(0, 3)
-fetch('http://pet-house.local/cart/default/update-product-count?itemKey=0&count=15')
-
-// fetch('http://pet-house.local/cart/default/update-product-count?itemKey=0&count=15');
-
-//http://pet-house.local/cart/default/update-product-count?product_id=123&count=15

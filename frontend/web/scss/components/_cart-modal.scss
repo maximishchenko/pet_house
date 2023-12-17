@@ -200,3 +200,12 @@
         }
     }
 }
+
+@include small-tablet {
+    .cart-sidebar {
+        &__wrapper {
+            width: 100%;
+        }
+    }
+
+}

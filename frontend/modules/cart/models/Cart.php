@@ -61,7 +61,10 @@ class Cart extends CartSession
         $products = $this->cartProducts;
         $products[$itemKey][CartProduct::COUNT] = $count;
         $this->session->set($this::$cartSessionSection, $products);
-        $result = [CartProduct::TOTAL_PRICE => $this->getTotalPrice(), CartProduct::TOTAL_COUNT => $this->getTotalCount()];
+        $result = [
+            CartProduct::TOTAL_PRICE => $this->getTotalPrice(),
+            CartProduct::TOTAL_COUNT => $this->getTotalCount()
+        ];
         return $result;
     }
 }

@@ -68,6 +68,7 @@ class DefaultController extends Controller
                     $productsSession[$i][CartProduct::COUNT] = $productsSession[$i][CartProduct::COUNT] + 1;
 
                     $countCurrentProduct = $productsSession[$i][CartProduct::COUNT];
+                    $itemKey = $i;
                 }
             }
             if (!$flag) {
@@ -82,6 +83,8 @@ class DefaultController extends Controller
                     CartProduct::OLD_PRICE => $cart->old_price,
                     CartProduct::COUNT => $cart->count,
                 ]);
+
+                $itemKey = max(array_keys($productsSession));
 
                 $countCurrentProduct = $cart->count;
             }
@@ -100,6 +103,7 @@ class DefaultController extends Controller
                 'total_count_per_one_product_with_words' => Word::numWord(Cart::getTotalCount(), ['товар', 'товара', 'товаров']),
                 'total_count_per_one_product' => $countCurrentProduct,
                 'total_price_per_one_product' => $totalPriceCurrentProduct,
+                'itemKey' => $itemKey,
                 CartProduct::TOTAL_COUNT => Cart::getTotalCount(),
             ];
             return json_encode($lastProductInCart);

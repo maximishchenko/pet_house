@@ -401,7 +401,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         $categories = Category::find()
                         ->where([
-                            'item_type' => $this->item_type,
+                            // 'item_type' => $this->item_type,
                             'property_type' => $this->product_type,
                             'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY,
                         ])->all(); 

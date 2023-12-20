@@ -101,7 +101,7 @@ if (document.querySelector('.product__col-calc')) {
 
 }
 
-if (document.querySelector('.cart ')) {
+if (document.querySelector('.cart')) {
 
     const btnPlus = document.querySelectorAll('.counter__btn-plus');
     const btnMinus = document.querySelectorAll('.counter__btn-min');

@@ -37,6 +37,12 @@ use yii\bootstrap4\ActiveForm;
                 <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-md-4">
+                <?= $form->field($model, 'category_id')->dropDownList(
+                        $model->getCategoriesItems(),
+                        $model->getCategoriesParams()
+                    )->hint(Yii::t('app', "Rodent Showcase Category hint")); ?>
+            </div>
+            <div class="col-md-4">
                 <?= $form->field($model, 'sort')->textInput() ?>
             </div>
             <div class="col-md-4">

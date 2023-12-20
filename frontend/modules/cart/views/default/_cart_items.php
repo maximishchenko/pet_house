@@ -25,12 +25,12 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
     </div>
 
     <div class="cart-score">
-        <button class="cart-score__min btn-reset counter__btn-min" type="button" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>" title="Удалить"></button>
+        <button class="cart-score__min btn-reset counter__btn-min" type="button" data-product-id="<?= $productKey; ?>" title="Удалить"></button>
         
         <span class="cart-score__val counter__val">
             <?= $product[CartProduct::COUNT]; ?>
         </span> <span>шт.</span>
-        <button class="cart-score__plus btn-reset counter__btn-plus" type="button" data-product-id="<?= $product[CartProduct::PRODUCT_ID]; ?>" title="Добавить"></button>
+        <button class="cart-score__plus btn-reset counter__btn-plus" type="button" data-product-id="<?= $productKey; ?>" title="Добавить"></button>
     </div>
 
     <span class="cart-el__price">

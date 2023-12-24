@@ -35,9 +35,10 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['comment', 'delivery_address'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
+            [['comment', 'body', 'delivery_address'], 'string'],
+            [['created_at'], 'integer'],
             [['name', 'phone', 'email', 'delivery_type'], 'string', 'max' => 255],
+            [['total_price'], 'safe'],
         ];
     }
 
@@ -52,21 +53,11 @@ class Order extends \yii\db\ActiveRecord
             'phone' => Yii::t('app', 'Order Phone'),
             'email' => Yii::t('app', 'Order Email'),
             'comment' => Yii::t('app', 'Order Comment'),
+            'body' => Yii::t('app', 'Order Body'),
             'delivery_type' => Yii::t('app', 'Delivery Type'),
             'delivery_address' => Yii::t('app', 'Delivery Address'),
             'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
         ];
-    }
-
-    /**
-     * Gets query for [[OrderItems]].
-     *
-     * @return \yii\db\ActiveQuery|\backend\modules\catalog\models\query\OrderItemQuery
-     */
-    public function getOrderItems()
-    {
-        return $this->hasMany(OrderItem::className(), ['order_id' => 'id']);
     }
 
     /**

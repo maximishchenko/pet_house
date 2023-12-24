@@ -50,7 +50,7 @@ class Setting extends \yii\base\Model
                 'phone', 'email', 'telegram', 'whatsapp', 'vk', 'instagram', 'avito', 'livemaster', 'ozon', 'address', 'requisites', 'company_start_year'
             ],
             self::TAB_SERVICES => [
-                'mapLink',
+                'mapLink', 'trello', 'kaiten', 'tg', 'order_email',
             ],
             self::TAB_SEO => [
                 'seo_keywords', 'seo_description',

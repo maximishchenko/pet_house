@@ -2,11 +2,13 @@
 
 namespace frontend\modules\cart\controllers;
 
+use backend\modules\catalog\models\root\Property;
 use common\components\Word;
 use frontend\modules\cart\models\Cart;
 use frontend\modules\cart\models\CartProduct;
 use frontend\modules\cart\models\CartSession;
 use frontend\modules\cart\models\Order;
+use frontend\modules\catalog\models\Product;
 use Yii;
 use yii\web\Controller;
 
@@ -34,6 +36,56 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function actionOrder()
+    {
+        $model = new Order();
+        if ($model->load(Yii::$app->request->post())) {
+            $name = $model->name;
+            $phone = $model->phone;
+            $email = $model->email;
+            // $delivery_type = $model->delivery_type;
+            $delivery_address = $model->delivery_address;
+            $comment = $model->comment;
+            
+            $phone = str_replace('(', '', $phone);
+            $phone = str_replace(')', '', $phone);
+            $phone = str_replace(' ', '', $phone);
+            $phone = str_replace('-', '', $phone);
+
+            $body = "";
+            $body .= "Ф.И.О.: " . $name . PHP_EOL;
+            $body .= "Тел.: " . $phone . PHP_EOL;
+            $body .= "Email.: " . $email . PHP_EOL;
+            // $body .= "Тип получения товара: " . $delivery_type . PHP_EOL;
+            $body .= "Адрес: " . $delivery_address . PHP_EOL;
+            $body .= "Комментарий: " . $comment . PHP_EOL;
+            $body .= PHP_EOL;
+            $cart = new Cart();
+            $price = 0;
+            foreach ($cart->getProducts() as $k => $product) {
+                $productType = Product::findOne(['id' => $product[CartProduct::PRODUCT_ID]]);
+                $color = Property::findOne(['id' => $product[CartProduct::COLOR_ID]]);
+                $wall = Property::findOne(['id' => $product[CartProduct::WALL_ID]]);
+
+                $body .= "Наименование: " . $productType->name . PHP_EOL;
+                $body .= "Цвет: " . $color->name . PHP_EOL;
+                $body .= "Размеры: " . $product[CartProduct::HEIGHT] . "x" . $product[CartProduct::WIDTH] . "x" . $product[CartProduct::DEPTH] . PHP_EOL;
+                $body .= "Боковые стенки: " . $wall->name . PHP_EOL;
+                $body .= "Количество: " . $product[CartProduct::COUNT] . PHP_EOL;
+                $body .= "Цена: " . $product[CartProduct::PRICE] . PHP_EOL;
+                $body .= PHP_EOL;
+                $price += $product[CartProduct::PRICE] * $product[CartProduct::COUNT];
+            }
+
+            $body .= "Общая сумма заказа: " . $price . PHP_EOL;
+            $model->body = $body;
+            $model->total_price = $price;
+            $model->save();
+        } else {
+            die(print_r($model->getErrors()));
+        }
+        Yii::$app->end();
+    }
 
 
     public function actionAddToCart()

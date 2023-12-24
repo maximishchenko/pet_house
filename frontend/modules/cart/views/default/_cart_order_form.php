@@ -8,8 +8,8 @@ use yii\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin([
     'id' => 'order-form',
-    // 'action' => ['index'],
-    // 'method' => 'get',
+    'action' => ['order'],
+    'method' => 'post',
     'options' => [
         'class' => (Cart::getTotalCount() > 0) ? 'order-form order-form--cart' : 'order-form order-form--cart order-form--dis',
         'autocomplete' => 'off',

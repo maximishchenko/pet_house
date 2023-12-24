@@ -15,6 +15,10 @@ return [
         
     ],
     'components' => [
+        'telegram' => [
+            'class' => 'aki\telegram\Telegram',
+            'botToken' => '',
+        ],
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'locale' => 'ru-RU',
@@ -25,9 +29,12 @@ return [
          
          ],
         'configManager' => [
-            'class' => 'yii2tech\config\Manager',
+            'class' => yii2tech\config\Manager::class,
+            'autoRestoreValues' => true,
+            'cacheDuration' => 3600,
             'storage' => [
                 'class' => 'yii2tech\config\StoragePhp',
+                'fileName' => "@frontend/runtime/app_config.php",
             ],
             'items' => [
                 'contactPhone' => [
@@ -188,6 +195,40 @@ return [
                         'type' => 'textarea',
                     ],
                 ],
+
+                
+                'contactOrderEmail' => [
+                    'path' => 'order_email',
+                    'label' => Yii::t('app', "CONTACT_ORDER_EMAIL"),
+                    'description' => Yii::t('app', "CONTACT_TRELLO DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+                'contactTrello' => [
+                    'path' => 'trello',
+                    'label' => Yii::t('app', "CONTACT_TRELLO"),
+                    'description' => Yii::t('app', "CONTACT_TRELLO DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+                'contactKaiten' => [
+                    'path' => 'kaiten',
+                    'label' => Yii::t('app', "CONTACT_KAITEN"),
+                    'description' => Yii::t('app', "CONTACT_KAITEN DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+                'contactTg' => [
+                    'path' => 'tg',
+                    'label' => Yii::t('app', "CONTACT_TG"),
+                    'description' => Yii::t('app', "CONTACT_TG DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
             ],
         ],
         'telegram' => [
@@ -200,7 +241,8 @@ return [
             'as log' => \yii\queue\LogBehavior::class,
         ],
         'cache' => [
-            'class' => YII_ENV_PROD ? 'yii\caching\FileCache' : 'yii\caching\DummyCache',
+            // 'class' => YII_ENV_PROD ? 'yii\caching\FileCache' : 'yii\caching\DummyCache',
+            'class' => 'yii\caching\DummyCache',
         ],
         'db' => [
             'enableSchemaCache' => YII_ENV_PROD ? true : false,

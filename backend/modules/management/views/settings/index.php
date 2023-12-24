@@ -13,7 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php $form = ActiveForm::begin([
             'id' => 'settings-form',
-            'fieldConfig' => ['template' => "{label}\n{input}\n{hint}\n{error}"],
+            'fieldConfig' => ['template' => "{label}\n{input}\n{error}"],
+            // 'fieldConfig' => ['template' => "{label}\n{input}\n{hint}\n{error}"],
             'encodeErrorSummary' => false,
             'errorSummaryCssClass' => 'alert alert-danger',
             'errorCssClass'=>'text-danger',

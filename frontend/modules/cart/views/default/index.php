@@ -1,6 +1,9 @@
 <?php
 
+use backend\modules\catalog\models\items\ProductItemType;
+use backend\modules\catalog\models\root\Product;
 use common\components\Word;
+use common\models\Status;
 use frontend\modules\cart\models\Cart;
 
 $this->title = Yii::t('app', 'Cart');
@@ -71,7 +74,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php endif; ?>
 
                 <!-- Вам может подойти -->
-                <?= $this->render('//layouts/_item_slider'); ?>
+                <?php $products = Product::find()->where(['status' => Status::STATUS_ACTIVE, 'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY])->all(); ?>
+                <?= $this->render('//layouts/_item_slider', ['products' => $products]); ?>
 
                 <!-- Форма оформления заказа -->
                 <?= $this->render('_cart_order_form', ['order' => $order]); ?>

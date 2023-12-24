@@ -115,10 +115,10 @@ class DefaultController extends Controller
     public function actionClearCart()
     {
         $this->enableCsrfValidation = false;
-        if (Yii::$app->request->isAjax) {
-            $cart = new Cart();
-            $cart->clearCart();
-        }
+        // if (Yii::$app->request->isAjax) {
+        $cart = new Cart();
+        $cart->clearCart();
+        // }
         Yii::$app->end();
     }
 

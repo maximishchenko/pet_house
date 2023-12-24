@@ -16,17 +16,17 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
             <?= $oneProduct[CartProduct::NAME]; ?>
         </div>
         <div class="cart-el__subtitle">
-            <?php if($productItem->getWallName($product[CartProduct::WALL_ID])): ?>
-            <?= $productItem->getWallName($product[CartProduct::WALL_ID]); ?>, 
+            <?php if ($productItem->getWallName($product[CartProduct::WALL_ID])) : ?>
+                <?= $productItem->getWallName($product[CartProduct::WALL_ID]); ?>,
             <?php endif; ?>
-            <?= $productItem->getColorName($product[CartProduct::COLOR_ID]); ?>, 
+            <?= $productItem->getColorName($product[CartProduct::COLOR_ID]); ?>,
             <?= $product[CartProduct::HEIGHT] . '×' . $product[CartProduct::WIDTH] . '×' . $product[CartProduct::DEPTH] . ' см'; ?>
         </div>
     </div>
 
     <div class="cart-score">
         <button class="cart-score__min btn-reset counter__btn-min" type="button" data-product-id="<?= $productKey; ?>" title="Удалить"></button>
-        
+
         <span class="cart-score__val counter__val">
             <?= $product[CartProduct::COUNT]; ?>
         </span> <span>шт.</span>
@@ -34,11 +34,14 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
     </div>
 
     <span class="cart-el__price">
-        <?php $productPrice = $product[CartProduct::COUNT] * $product[CartProduct::PRICE]; ?>
-        <?= Yii::$app->formatter->asCurrency($productPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+        <span class="cart-el__price-inner">
+            <?php $productPrice = $product[CartProduct::COUNT] * $product[CartProduct::PRICE]; ?>
+            <?= Yii::$app->formatter->asDecimal($productPrice, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+        </span>
+        <span>₽</span>
     </span>
 
-    <a href="<?= Url::toRoute(['/cart/delete-item', 'itemKey' => $productKey ]); ?>" class="cart-el__del btn-reset" type="button" title="Удалить">
+    <a href="<?= Url::toRoute(['/cart/delete-item', 'itemKey' => $productKey]); ?>" class="cart-el__del btn-reset" type="button" title="Удалить">
         <svg class="cart-el__del-icon">
             <use xlink:href="img/sprite.svg#close"></use>
         </svg>

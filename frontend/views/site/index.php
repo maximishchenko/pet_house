@@ -229,30 +229,30 @@ use yii\helpers\Url;
         <div class="container">
             <div class="meadia-reviews__wrapper">
 
-            <?php if (isset($reviews) && !empty($reviews)): ?>
+                <?php if (isset($reviews) && !empty($reviews)) : ?>
 
-                <?php foreach($reviews as $review): ?>
+                    <?php foreach ($reviews as $review) : ?>
 
-                <div class="meadia-reviews__el" data-aos-offset="-500" data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="top-bottom">
-                    <p class="meadia-reviews__text">
-                        <?= $review->text; ?>
-                    </p>
-                    <div class="meadia-reviews__row">
-                        <div class="meadia-reviews__photo" style="background-image: url(<?= '/' . Review::UPLOAD_PATH . $review->avatar; ?>);"></div>
-                        <div class="meadia-reviews__autor">
-                            <span class="meadia-reviews__name">
-                                <?= $review->name; ?>
-                            </span>
-                            <span class="meadia-reviews__date">
-                                <?= $review->created_at; ?>
-                            </span>
+                        <div class="meadia-reviews__el" data-aos-offset="-500" data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="top-bottom">
+                            <p class="meadia-reviews__text">
+                                <?= $review->text; ?>
+                            </p>
+                            <div class="meadia-reviews__row">
+                                <div class="meadia-reviews__photo" style="background-image: url(<?= '/' . Review::UPLOAD_PATH . $review->avatar; ?>);"></div>
+                                <div class="meadia-reviews__autor">
+                                    <span class="meadia-reviews__name">
+                                        <?= $review->name; ?>
+                                    </span>
+                                    <span class="meadia-reviews__date">
+                                        <?= $review->created_at; ?>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-            <?php endif; ?>
+                <?php endif; ?>
 
             </div>
         </div>
@@ -260,7 +260,8 @@ use yii\helpers\Url;
 </section>
 
 <!-- Есть в наличии -->
-<?php // echo $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Top Products")]); ?>
+<?php // echo $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Top Products")]); 
+?>
 
 <!-- Подписаться -->
 <?php $this->beginBlock('subscribe'); ?>

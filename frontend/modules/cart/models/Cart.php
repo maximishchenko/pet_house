@@ -2,6 +2,7 @@
 
 namespace frontend\modules\cart\models;
 
+use common\components\Word;
 use frontend\modules\cart\models\CartSession;
 
 class Cart extends CartSession
@@ -63,7 +64,8 @@ class Cart extends CartSession
         $this->session->set($this::$cartSessionSection, $products);
         $result = [
             CartProduct::TOTAL_PRICE => $this->getTotalPrice(),
-            CartProduct::TOTAL_COUNT => $this->getTotalCount()
+            CartProduct::TOTAL_COUNT => $this->getTotalCount(),
+            'total_count_with_words' => Word::numWord(Cart::getTotalCount(), ['товар', 'товара', 'товаров']),
         ];
         return $result;
     }

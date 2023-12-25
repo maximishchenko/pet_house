@@ -60,6 +60,13 @@ use yii\helpers\Url;
   </div>
 </header>
 
+<button class="jdiv-message btn-reset" onclick="jivo_api.open({ start : 'message'}); return false;">
+  <svg class=" mob-bar__icon">
+    <use xlink:href="/img/sprite.svg#mes"></use>
+  </svg>
+  Чат
+</button>
+
 <div class="mob-bar">
   <button id="btn-catalog" class="mob-bar__el btn-reset">
     <svg class="mob-bar__icon">
@@ -73,7 +80,7 @@ use yii\helpers\Url;
     </svg>
     <?= Yii::t('app', 'Delivery'); ?>
   </a>
-  <button class="mob-bar__el btn-reset mob-bar__chat">
+  <button class="mob-bar__el btn-reset mob-bar__chat" onclick="jivo_api.open({ start : 'message'}); return false;">
     <svg class="mob-bar__icon">
       <use xlink:href="/img/sprite.svg#mes"></use>
     </svg>
@@ -121,7 +128,7 @@ use yii\helpers\Url;
       </a> -->
     </div>
 
-    <section class="pop-categories mt-xl mb-m">
+   <!--  <section class="pop-categories mt-xl mb-m">
       <div class="container">
         <h2 class="section-headline centered">Популярные категории</h2>
       </div>
@@ -165,7 +172,7 @@ use yii\helpers\Url;
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </div>
 

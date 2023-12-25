@@ -1,5 +1,6 @@
 <?php
 
+use backend\modules\catalog\models\root\Product;
 use yii\helpers\Url;
 ?>
 
@@ -24,7 +25,7 @@ use yii\helpers\Url;
                         <div class="swiper-slide">
                             <a href="<?= Url::toRoute($productItem->getSectionUrl() . '/' . $productItem->slug); ?>" class="thumb-prod">
                                 <div class="thumb-prod__img-wrapper">
-                                    <img class="thumb-prod__img" src="/img/cage.jpg" alt="">
+                                    <img class="thumb-prod__img" src="<?= '/' . Product::UPLOAD_PATH . $productItem->image; ?>" alt="<?= $productItem->name; ?>">
                                 </div>
                                 <div class="thumb-prod__info">
                                     <span class="thumb-prod__price">

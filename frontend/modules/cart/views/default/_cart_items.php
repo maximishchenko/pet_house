@@ -19,8 +19,12 @@ $oneProduct = $productItem->getProductNameWithImage($product[CartProduct::PRODUC
             <?php if ($productItem->getWallName($product[CartProduct::WALL_ID])) : ?>
                 <?= $productItem->getWallName($product[CartProduct::WALL_ID]); ?>,
             <?php endif; ?>
-            <?= $productItem->getColorName($product[CartProduct::COLOR_ID]); ?>,
-            <?= $product[CartProduct::HEIGHT] . '×' . $product[CartProduct::WIDTH] . '×' . $product[CartProduct::DEPTH] . ' см'; ?>
+            <?php if ($productItem->getColorName($product[CartProduct::COLOR_ID])) : ?>
+                <?= $productItem->getColorName($product[CartProduct::COLOR_ID]); ?>,
+            <?php endif; ?>
+            <?php if ($product[CartProduct::HEIGHT] && $product[CartProduct::WIDTH] && $product[CartProduct::DEPTH]) : ?>
+                <?= $product[CartProduct::HEIGHT] . '×' . $product[CartProduct::WIDTH] . '×' . $product[CartProduct::DEPTH] . ' см'; ?>
+            <?php endif; ?>
         </div>
     </div>
 

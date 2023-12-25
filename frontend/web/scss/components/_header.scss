@@ -1,3 +1,31 @@
+.jdiv-message {
+
+  position: fixed;
+  height: 5rem;
+  width: 5rem;
+  padding: 1rem;
+  border-radius: 100%;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--color-brand);
+  color: var(--color-light);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+
+  svg {
+    fill: var(--color-light);
+  }
+}
+
+.button_bcc8 {
+  display: none !important;
+}
+
 .header {
   top: 0;
   position: sticky;
@@ -339,6 +367,9 @@
 }
 
 @include small-tablet {
+  .jdiv-message {
+    display: none;
+  }
   .mob-bar {
     display: flex;
   }
@@ -365,9 +396,9 @@
     height: 4.9rem;
     border-bottom: 1px solid var(--color-border);
     margin-bottom: var(--size-s);
+
     &__wrapper {
       padding: var(--size-xxs) 0;
     }
   }
 }
-

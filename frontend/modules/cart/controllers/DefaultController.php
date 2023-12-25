@@ -46,7 +46,7 @@ class DefaultController extends Controller
             // $delivery_type = $model->delivery_type;
             $delivery_address = $model->delivery_address;
             $comment = $model->comment;
-            
+
             $phone = str_replace('(', '', $phone);
             $phone = str_replace(')', '', $phone);
             $phone = str_replace(' ', '', $phone);
@@ -68,9 +68,15 @@ class DefaultController extends Controller
                 $wall = Property::findOne(['id' => $product[CartProduct::WALL_ID]]);
 
                 $body .= "Наименование: " . $productType->name . PHP_EOL;
-                $body .= "Цвет: " . $color->name . PHP_EOL;
-                $body .= "Размеры: " . $product[CartProduct::HEIGHT] . "x" . $product[CartProduct::WIDTH] . "x" . $product[CartProduct::DEPTH] . PHP_EOL;
-                $body .= "Боковые стенки: " . $wall->name . PHP_EOL;
+                if ($color->name) :
+                    $body .= "Цвет: " . $color->name . PHP_EOL;
+                endif;
+                if ($product[CartProduct::HEIGHT] && $product[CartProduct::WIDTH] && $product[CartProduct::DEPTH]) :
+                    $body .= "Размеры: " . $product[CartProduct::HEIGHT] . "x" . $product[CartProduct::WIDTH] . "x" . $product[CartProduct::DEPTH] . PHP_EOL;
+                endif;
+                if ($wall->name) :
+                    $body .= "Боковые стенки: " . $wall->name . PHP_EOL;
+                endif;
                 $body .= "Количество: " . $product[CartProduct::COUNT] . PHP_EOL;
                 $body .= "Цена: " . $product[CartProduct::PRICE] . PHP_EOL;
                 $body .= PHP_EOL;
@@ -81,6 +87,7 @@ class DefaultController extends Controller
             $model->body = $body;
             $model->total_price = $price;
             $model->save();
+            return $this->redirect(Yii::$app->request->referrer);
         } else {
             die(print_r($model->getErrors()));
         }

@@ -23,11 +23,11 @@ class Order extends backendOrder
         parent::afterSave($insert, $changedAttributes);
         if ($insert) {
             // Emails
-            // $this->sendCallbackToEmail();
+            $this->sendCallbackToEmail();
             // Trello
-            // $this->sendCallbackToTrello();
+            $this->sendCallbackToTrello();
             // Kaiten
-            // $this->sendCallbackToKaiten();
+            $this->sendCallbackToKaiten();
             // Telegram
             $this->sendCallbackTelegram();
             $cart = new Cart();
@@ -42,7 +42,7 @@ class Order extends backendOrder
             $emailsArray = explode(",", $emails);
             if ($emailsArray) {
                 $this->bulkEmailsFromRecipientsArray($emailsArray);
-            } 
+            }
         }
     }
 
@@ -53,7 +53,7 @@ class Order extends backendOrder
             $emailsArray = explode(",", $emails);
             if ($emailsArray) {
                 $this->bulkEmailsFromRecipientsArray($emailsArray);
-            }  
+            }
         }
     }
 
@@ -64,7 +64,7 @@ class Order extends backendOrder
             $emailsArray = explode(",", $emails);
             if ($emailsArray) {
                 $this->bulkEmailsFromRecipientsArray($emailsArray);
-            }   
+            }
         }
         $emailsArray = explode(",", $emails);
         if ($emailsArray) {

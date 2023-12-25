@@ -15,9 +15,10 @@
           </div>
 
           <div class="swiper-slide mob-dis">
-            <button class="catalog-bar__btn btn-reset filter__category" data-search-name="is_available" data-search-value="1" type="button" <?= $searchModel->isAvailableActive(); ?>>
-              <?= Yii::t('app', 'Only Available'); ?>
-            </button>
+            <!-- TODO вставить id -->
+              <label for="is_available" class="catalog-bar__btn btn-reset filter__category" data-search-name="is_available" data-search-value="1" type="button" <?= $searchModel->isAvailableActive(); ?>>
+                <?= Yii::t('app', 'Only Available'); ?>
+            </label>
           </div>
 
           <?php if (isset($groups) && !empty($groups)) : ?>
@@ -34,7 +35,7 @@
       </div>
 
       <?= $this->render('_sort', [
-          'searchModel' => $searchModel
+        'searchModel' => $searchModel
       ]); ?>
 
     </div>

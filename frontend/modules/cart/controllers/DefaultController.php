@@ -79,6 +79,7 @@ class DefaultController extends Controller
                 endif;
                 $body .= "Количество: " . $product[CartProduct::COUNT] . PHP_EOL;
                 $body .= "Цена: " . $product[CartProduct::PRICE] . PHP_EOL;
+                $body .= "Сумма: " . $product[CartProduct::PRICE] * $product[CartProduct::COUNT] . PHP_EOL;
                 $body .= PHP_EOL;
                 $price += $product[CartProduct::PRICE] * $product[CartProduct::COUNT];
             }

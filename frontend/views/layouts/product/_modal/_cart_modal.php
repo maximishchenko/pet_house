@@ -1,5 +1,6 @@
 <?php
 
+use backend\modules\catalog\models\root\Product;
 use common\components\Word;
 use frontend\modules\cart\models\Cart;
 use frontend\modules\cart\models\CartProduct;
@@ -63,20 +64,24 @@ use yii\helpers\Url;
           <h2 class="">С этим товаром покупают</h2>
           <div class="swiper add-accessories__swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+              
+              <?php foreach($accessories as $accessory): ?>
               <div class="swiper-slide swiper-slide-active">
                 <div class="card-accessories">
                   <div class="card-accessories__img-wrapper">
-                    <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
+                    <img class="card-accessories__img" src="/<?= Product::UPLOAD_PATH . $accessory->image; ?>" alt="<?= $accessory->name; ?>" alt="<?= $accessory->name; ?>">
                   </div>
                   <div class="card-accessories__text-wrapper">
-                    <span class="card-accessories__price">3 200 ₽</span>
+                    <span class="card-accessories__price"><?= $accessory->price; ?> ₽</span>
                     <a href="#">
-                      <h3 class="card-accessories__name">Сенница Белый-Бежевый</h3>
+                      <h3 class="card-accessories__name"><?= $accessory->name; ?></h3>
                     </a>
                     <button class="btn-reset card-accessories__btn" type="button">В&nbsp;корзину</button>
                   </div>
                 </div>
               </div>
+              <?php endforeach; ?>
+<!-- 
               <div class="swiper-slide swiper-slide-next">
                 <div class="card-accessories">
                   <div class="card-accessories__img-wrapper">
@@ -132,7 +137,9 @@ use yii\helpers\Url;
                     <button class="btn-reset card-accessories__btn" type="button">В&nbsp;корзину</button>
                   </div>
                 </div>
-              </div>
+              </div> -->
+
+
             </div>
             <div class="swiper-button-prev add-accessories__btn-prev swiper-button-disabled"></div>
             <div class="swiper-button-next add-accessories__btn-next"></div>

@@ -68,6 +68,22 @@ return [
                 'on missingTranslation' => ['common\components\TranslationEventHandler', 'handleMissingTranslation']
             ],
         ], 
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => Yii::$app->request->hostInfo,
+            // 'baseUrl' => '@web/../',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' =>  [
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+
+                '<module>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
+                '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
+                '<module>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+            ],
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

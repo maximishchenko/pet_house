@@ -1,8 +1,10 @@
 <?php
 
+use backend\modules\catalog\models\Order;
 use frontend\modules\cart\models\Cart;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 ?>
 <header class="header">
@@ -189,24 +191,52 @@ use yii\helpers\Url;
       </svg>
     </button>
     <div class="graph-modal__content graph-modal__content-personal">
-      <form class="order-form personal-form" action="/" method="post">
-        <input type="hidden" name="_csrf-frontend" value="cUcekswBtHKOpsooMQ2qlglwEfPjkvr9dv9kpmJAuhwBCnDBu1LlC7_0-gV6Wuf-fwMku6nhv64Uiyn1BAeXfg==">
+
+      <!-- <form class="order-form personal-form" action="/" method="post"> -->
+        <!-- <input type="hidden" name="_csrf-frontend" value="cUcekswBtHKOpsooMQ2qlglwEfPjkvr9dv9kpmJAuhwBCnDBu1LlC7_0-gV6Wuf-fwMku6nhv64Uiyn1BAeXfg=="> -->
+        
+        <?php $order = new Order(); ?>
+        <?php $form = ActiveForm::begin([
+            'id' => 'personal-order-form',
+            'action' => ['/cart/default/order'],
+            'method' => 'post',
+            'options' => [
+                'class' => 'order-form personal-form',
+                'autocomplete' => 'off',
+            ],
+        ]); ?>        
+        
         <h3 class="order-form__title">Персональный заказ</h3>
 
-        <input class="order-form__inp input-reset" type="name" placeholder="Ф.И.О.*">
+        <!-- <input class="order-form__inp input-reset" type="name" placeholder="Ф.И.О.*">
 
         <input class="order-form__inp input-reset" type="tel" placeholder="Телефон*">
 
         <input class="order-form__inp input-reset" type="email" placeholder="Почта">
 
-        <textarea class="order-form__inp input-reset" name="coment" id="" cols="20" rows="7" placeholder="Комментарий"></textarea>
+        <textarea class="order-form__inp input-reset" name="coment" id="" cols="20" rows="7" placeholder="Комментарий"></textarea> -->
 
-        <input class="personal-file-inp" type="file" multiple="multiple">
+        <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => "Ф.И.О.*"]); ?>
+
+        <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*"]); ?>
+
+        <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => "Почта"]); ?>
+
+        <?= $form->field($order, 'comment', ['template' => '{input}'])->textarea(['cols' => 20, 'rows' => 7, 'class' => "order-form__inp input-reset", 'placeholder' => "Комментарий"]) ?>
+
+        <!-- <input class="personal-file-inp" type="file" multiple="multiple"> -->
+        <?= $form->field($order, 'imagesFiles[]', ['template' => '{input}'])->fileInput(['multiple' => true, "class" => "personal-file-inp"]) ?>
 
         <p class="order-form__politics">
-          Нажимая на кнопку «Оформить заказ», вы соглашаетесь с <a class="order-form__link" href="/privacy">Политикой конфиденциальности</a> </p>
-        <button type="submit" class="order-form__send btn-a btn-reset">Оформить заказ</button><!-- </form> -->
-      </form>
+          Нажимая на кнопку «Оформить заказ», вы соглашаетесь с <a class="order-form__link" href="/privacy">Политикой конфиденциальности</a> 
+        </p>
+        
+          <!-- <button type="submit" class="order-form__send btn-a btn-reset">Оформить заказ</button> -->
+        <?= Html::submitButton("Оформить заказ", ['class' => "order-form__send btn-a btn-reset"]); ?>
+
+        <?php ActiveForm::end(); ?>
+      <!-- </form> -->
+
     </div>
   </div>
 </div>

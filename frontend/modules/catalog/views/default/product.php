@@ -45,4 +45,4 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('//layouts/product/_faq_bottom', []); ?>
 <?php $this->endBlock(); ?>
 
-<?= $this->render('//layouts/product/_modal/_cart_modal'); ?>
+<?= $this->render('//layouts/product/_modal/_cart_modal', ['accessories' => $accessories]); ?>

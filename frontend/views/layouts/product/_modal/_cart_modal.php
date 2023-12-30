@@ -81,65 +81,6 @@ use yii\helpers\Url;
                 </div>
               </div>
               <?php endforeach; ?>
-<!-- 
-              <div class="swiper-slide swiper-slide-next">
-                <div class="card-accessories">
-                  <div class="card-accessories__img-wrapper">
-                    <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-                  </div>
-                  <div class="card-accessories__text-wrapper">
-                    <span class="card-accessories__price">3 200 ₽</span>
-                    <a href="#">
-                      <h3 class="card-accessories__name">Белый-Бежевый</h3>
-                    </a>
-                    <button class="btn-reset card-accessories__btn" type="button">В&nbsp;корзину</button>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-accessories">
-                  <div class="card-accessories__img-wrapper">
-                    <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-                  </div>
-                  <div class="card-accessories__text-wrapper">
-                    <span class="card-accessories__price">3 200 ₽</span>
-                    <a href="#">
-                      <h3 class="card-accessories__name">Сенница Белый-Бежевый</h3>
-                    </a>
-                    <button class="btn-reset card-accessories__btn" type="button">В&nbsp;корзину</button>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-accessories">
-                  <div class="card-accessories__img-wrapper">
-                    <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-                  </div>
-                  <div class="card-accessories__text-wrapper">
-                    <span class="card-accessories__price">3 200 ₽</span>
-                    <a href="#">
-                      <h3 class="card-accessories__name">Белый-Бежевый</h3>
-                    </a>
-                    <button class="btn-reset card-accessories__btn" type="button">В&nbsp;корзину</button>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-accessories">
-                  <div class="card-accessories__img-wrapper">
-                    <img class="card-accessories__img" src="/img/accessories/a1.jpg" alt="">
-                  </div>
-                  <div class="card-accessories__text-wrapper">
-                    <span class="card-accessories__price">3 200 ₽</span>
-                    <a href="#">
-                      <h3 class="card-accessories__name">Сенница Белый-Бежевый</h3>
-                    </a>
-                    <button class="btn-reset card-accessories__btn" type="button">В&nbsp;корзину</button>
-                  </div>
-                </div>
-              </div> -->
-
-
             </div>
             <div class="swiper-button-prev add-accessories__btn-prev swiper-button-disabled"></div>
             <div class="swiper-button-next add-accessories__btn-next"></div>

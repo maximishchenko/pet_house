@@ -97,4 +97,5 @@ return [
     'In available' => 'В наличии',
     'Price value' => 'Цена',
     'Show more reviews' => 'Показать больше отзывов',
+    "Breadcrumbs Dogs" => 'Собаки',
 ];

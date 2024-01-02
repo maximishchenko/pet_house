@@ -2,43 +2,42 @@
 
 use backend\modules\catalog\models\root\Product;
 use backend\modules\content\models\Review;
+use backend\modules\content\models\Slider;
 use yii\helpers\Url;
 
 ?>
+<?php if (isset($sliders) && !empty($sliders)): ?>
 <section class="hero mb-n">
     <div class="swiper hero-slider">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="hero__slide hero__slide-des">
-                    <div class="hero__content">
-                        <div class="hero__headline-wrapper">
-                            <h2 class="section-headline">Доставка по всей России</h2>
-                            <p class="hero__desk">Сложно сказать, почему реплицированные с зарубежных источников</p>
-                        </div>
-                        <div class="hero__btn-wrapper">
-                            <a href="#" class="btn-b hero__btn">Купить</a>
-                        </div>
-                    </div>
-                    <video class="hero__video" src="video/v5.mp4" type="video/mp4" autoplay muted loop></video>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="hero__slide hero__slide-des">
-                    <div class="hero__content">
-                        <div class="hero__headline-wrapper">
-                            <h2 class="section-headline">Супер скидки</h2>
-                            <p class="hero__desk">Сложно сказать, почему реплицированные с зарубежных источников</p>
-                        </div>
-                        <div class="hero__btn-wrapper">
-                            <a href="#" class="btn-b hero__btn">Витрины для шиншил</a>
+            
+            <?php foreach($sliders as $slider): ?>
+                <?php if (isset($slider->video) && !empty($slider->video)):?>
+                    <div class="swiper-slide">
+                        <div class="hero__slide hero__slide-des">
+                            <div class="hero__content">
+                                <div class="hero__headline-wrapper">
+                                    <h2 class="section-headline"><?= $slider->name; ?></h2>
+                                    <p class="hero__desk">
+                                        <?= $slider->description; ?>
+                                    </p>
+                                </div>
+                                <div class="hero__btn-wrapper">
+                                    <a href="<?= $slider->url; ?>" class="btn-b hero__btn">Купить</a>
+                                </div>
+                            </div>
+
+                            <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay muted loop></video>
+
                         </div>
                     </div>
-                    <video class="hero__video" src="video/v1_2.mp4" type="video/mp4" autoplay muted loop></video>
-                </div>
-            </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 
 <section class="categories mb-xxl mt-n">

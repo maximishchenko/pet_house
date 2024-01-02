@@ -2,6 +2,7 @@
 
 use backend\modules\catalog\models\root\Product;
 ?>
+<?php if($accessories): ?>
 <div class="add-accessories mb-xxl">
   <h2 class="product-headline">
     <?= Yii::t('app', 'Accessories Items'); ?>
@@ -37,3 +38,4 @@ use backend\modules\catalog\models\root\Product;
     <div class="swiper-button-next add-accessories__btn-next"></div>
   </div>
 </div>
+<?php endif; ?>

@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use backend\modules\content\models\Review;
+use backend\modules\content\models\Slider;
 use common\models\Status;
 use Yii;
 use yii\web\Controller;
@@ -16,7 +17,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $reviews = Review::find()->where(['status' => Status::STATUS_ACTIVE, 'is_favorite' => true])->all();
-        return $this->render('index', ['reviews' => $reviews]);
+        $sliders = Slider::find()->where(['status' => Status::STATUS_ACTIVE])->orderBy(['sort' => SORT_DESC])->all();
+        return $this->render('index', ['reviews' => $reviews, 'sliders' => $sliders]);
     }
 
     // Политика конфиденциальности

@@ -160,7 +160,7 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
                 headers: fetchHeaders
             });
             const data = await res.json();
-            
+
             sidebarProductImg.src = data.image;
             sidebarProductTitle.textContent = data.name;
             sidebarProductPrice.textContent = toLocale(data.price);
@@ -179,7 +179,7 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
             showSideBar();
             addToCart();
 
-            sidebarCounterBtnPlus.addEventListener('click', (e)=> {
+            sidebarCounterBtnPlus.addEventListener('click', (e) => {
                 const id = e.target.getAttribute('data-product-id');
 
                 if (Number(sidebarProductCounterVal.textContent) < 50) {
@@ -198,6 +198,32 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
             });
 
         });
+
+
+        const accessoriesBtns = document.querySelectorAll('.card-accessories__btn');
+
+        accessoriesBtns.forEach(el => {
+            el.addEventListener('click', (e) => {
+                const id = e.target.getAttribute('data-product-id');
+                const price = e.target.getAttribute('data-product-price')
+
+                accessoriesToCart(id, price, e.target);
+
+            });
+        });
+
+        async function accessoriesToCart(id, price, selector) {
+            let urlParams = `/cart/default/add-to-cart?product_id=${id}&price=${price}`;
+
+            const res = await fetch(urlParams, {
+                headers: fetchHeaders
+            });
+            
+            headerBag.plus();
+            selector.textContent = 'В корзине';
+            selector.classList.add('card-accessories__btn--active');
+
+        }
 
     }
 

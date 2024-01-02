@@ -10,6 +10,16 @@ if(Yii::$app->user->can(User::ROLE_ADMIN)):
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => Yii::t('app', 'Sliders'),
+            'text' => Yii::t('app', 'Sliders Edit'),
+            'icon' => 'fas fa-cog',
+            'theme' => 'warning',
+            'linkText' => Yii::t('app', 'GO_LINK'),
+            'linkUrl' => Url::to(['/content/slider'])
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
             'title' => Yii::t('app', 'Questions'),
             'text' => Yii::t('app', 'Questions Edit'),
             'icon' => 'fas fa-cog',

@@ -283,4 +283,9 @@ return [
     'COMANY START YEAR' => 'Год начала деятельности',
     'ADDRESS' => 'Адрес самовывоза',
     'CONTACT_ORDER_EMAIL' => 'Email для уведомлений о заказах',
+    'Sliders' => 'Слайдер',
+    'Sliders Edit' => 'Управление слайдером. Загрузка изображений и видеозаписей',
+    'Slider Url' => 'Ссылка',
+    'Do delete video answer' => 'Удалить видеозапись?',
+    'Do delete image answer' => 'Удалить изображение?',
 ];

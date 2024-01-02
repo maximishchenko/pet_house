@@ -14,7 +14,8 @@ use yii\helpers\Url;
             <?php foreach($sliders as $slider): ?>
                 <?php if (isset($slider->video) && !empty($slider->video)):?>
                     <div class="swiper-slide">
-                        <div class="hero__slide hero__slide-des">
+                        <!-- hero__slide hero__slide-des -->
+                        <div class="hero__slide hero__slide-des"> 
                             <div class="hero__content">
                                 <div class="hero__headline-wrapper">
                                     <h2 class="section-headline"><?= $slider->name; ?></h2>
@@ -33,7 +34,7 @@ use yii\helpers\Url;
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
-            
+
         </div>
     </div>
 </section>

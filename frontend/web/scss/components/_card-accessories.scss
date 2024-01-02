@@ -23,16 +23,28 @@
   }
 
   &__btn {
+    display: flex;
+    align-items: center;
     padding: var(--size-xxs) var(--size-s);
     margin-top: var(--size-s);
     border: 2px solid var(--color-brand);
     color: var(--color-brand);
     border-radius: var(--size-xxl);
-    transition: color var(--hover), background var(--hover);
+    transition: all var(--hover), background var(--hover);
 
     @include hover {
       background: var(--color-brand);
       color: var(--color-light);
+    }
+  }
+
+  &__btn--active {
+    background: var(--color-brand-light);
+    border-color: var(--color-brand-light);
+    color: var(--color-light);
+
+    &:hover {
+      border-color: var(--color-brand);
     }
   }
 }

@@ -18,7 +18,7 @@ if (isset($products) && !empty($products)) : ?>
                 <span class="card-accessories__price">
                   <?= Yii::$app->formatter->asCurrency($product->price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
                 </span>
-                <a href="#">
+                <a href="">
                   <h3 class="card-accessories__name">
                     <?= $product->name; ?>
                   </h3>

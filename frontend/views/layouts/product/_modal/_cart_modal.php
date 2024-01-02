@@ -76,7 +76,7 @@ use yii\helpers\Url;
                     <a href="#">
                       <h3 class="card-accessories__name"><?= $accessory->name; ?></h3>
                     </a>
-                    <button class="btn-reset card-accessories__btn" data-product-id="<?= $accessory->id; ?>" type="button">В&nbsp;корзину</button>
+                    <button class="btn-reset card-accessories__btn" data-product-id="<?= $accessory->id; ?>" data-price-id="<?= $accessory->price; ?>"  type="button">В&nbsp;корзину</button>
                   </div>
                 </div>
               </div>

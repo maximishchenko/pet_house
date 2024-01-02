@@ -34,6 +34,10 @@ class Slider extends \yii\db\ActiveRecord
 
     public $videoFile;
 
+    public $imageFileMobile;
+
+    public $videoFileMobile;
+
     const UPLOAD_PATH = 'uploads/slider/';
 
     public function behaviors()
@@ -71,13 +75,17 @@ class Slider extends \yii\db\ActiveRecord
         return [
             [['description', 'comment'], 'string'],
             [['sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'url', 'video', 'image'], 'string', 'max' => 255],
+            [['name', 'url', 'video', 'image', 'text_color', 'button_text_color', 'button_bg_color', 'video_mobile', 'image_mobile'], 'string', 'max' => 255],
             [['url'], 'url'],
 
             ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
-            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
-            [['videoFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'mp4, avi'],
+            [['text_color'], 'default', 'value'=> "#000000"],
+            [['button_text_color'], 'default', 'value'=> "#FFFFFF"],
+            [['button_bg_color'], 'default', 'value'=> "#373737"],
+            [['imageFile', 'imageFileMobile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
+            [['videoFile', 'videoFileMobile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'mp4, avi'],
+         
         ];
     }
 
@@ -95,8 +103,15 @@ class Slider extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Image'),
             'videoFile' => Yii::t('app', 'Video'),
             'imageFile' => Yii::t('app', 'Image'),
+            'videoFileMobile' => Yii::t('app', 'Video Mobile'),
+            'imageFileMobile' => Yii::t('app', 'Image Mobile'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
+            'text_color' => Yii::t('app', 'Text Color'),
+            'button_text_color' => Yii::t('app', 'Button Text Color'),
+            'button_bg_color' => Yii::t('app', 'Button Background Color'),
+            'video_mobile' => Yii::t('app', 'Video Mobile'),
+            'image_mobile' => Yii::t('app', 'Image Mobile'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -119,6 +134,8 @@ class Slider extends \yii\db\ActiveRecord
         if (parent::beforeSave($insert)) {
             $this->uploadFile("imageFile", "image", self::UPLOAD_PATH, false);
             $this->uploadFile("videoFile", "video", self::UPLOAD_PATH, false);
+            $this->uploadFile("imageFile", "image_mobile", self::UPLOAD_PATH, false);
+            $this->uploadFile("videoFile", "video_mobile", self::UPLOAD_PATH, false);
             return true;
         }
         return false;
@@ -131,6 +148,8 @@ class Slider extends \yii\db\ActiveRecord
             
             $this->deleteSingleFile('image', self::UPLOAD_PATH);
             $this->deleteSingleFile('video', self::UPLOAD_PATH);
+            $this->deleteSingleFile('image_mobile', self::UPLOAD_PATH);
+            $this->deleteSingleFile('video_mobile', self::UPLOAD_PATH);
             return true;
         } else {
             return false;

@@ -288,4 +288,10 @@ return [
     'Slider Url' => 'Ссылка',
     'Do delete video answer' => 'Удалить видеозапись?',
     'Do delete image answer' => 'Удалить изображение?',
+    'Video Mobile' => "Видеозапись. Мобильная версия",
+    'Image Mobile' => "Изображение. Мобильная версия",
+    'Text Color' => 'Цвет текста',
+    'Button Text Color' => 'Цвет текста кнопки',
+    'Button Background Color' => 'Цвет фона кнопки',
+    'Property Text Color' => 'Цвет текста',
 ];

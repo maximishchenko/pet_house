@@ -149,6 +149,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
             'name' => ['name', 'required'],
             // [['name'], 'unique', 'targetClass' => self::classname()],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
+            [['text_color'], 'default', 'value'=> '#000000'],
             ['property_type', 'in', 'range' => array_keys(CatalogTypeItems::getCatalogTypesArray())],
             ['item_type', 'in', 'range' => array_keys(PropertyItemTypeItems::getItemTypesArray())],
             [['price'], 'number'],
@@ -157,7 +158,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
             [['name', 'image', 'status', 'property_type', 'item_type'], 'string', 'max' => 255],
 
             'imageFile' => [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, avif, svg'],
-            [['imageFile', 'width_price', 'height_price', 'depth_price'], 'safe'],
+            [['imageFile', 'width_price', 'height_price', 'depth_price', 'text_color'], 'safe'],
         ];
     }
 
@@ -177,6 +178,7 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
             'status' => Yii::t('app', 'Status'),
             'property_type' => Yii::t('app', 'Property Type'),
             'item_type' => Yii::t('app', 'Item Type'),
+            'text_color' => Yii::t('app', 'Property Text Color'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),

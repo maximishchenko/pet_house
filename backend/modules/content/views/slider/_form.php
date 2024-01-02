@@ -33,6 +33,9 @@ use yii\bootstrap4\Html;
             </div>
             <div class="col-md-6">
                 <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'text_color')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'button_text_color')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'button_bg_color')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
         <div class="row">
@@ -65,15 +68,6 @@ use yii\bootstrap4\Html;
                 <?= $form->field($model, 'videoFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
                 <?php if(isset($model->video) && !empty($model->video)): ?>
                     <div class="row">
-                        <?php
-                        // SingleImagePreviewWidget::widget([
-                        //     'id' => $model->id,
-                        //     'filePath' => $model->getUrl(Slider::UPLOAD_PATH, $model->video),
-                        //     'url' => 'delete-video',
-                        //     'fancyboxGalleryName' => "SingleProductVideo",
-                        // ]); 
-                        ?>
-
                         <div class="col-md-3" id="1" style="display: inline-block;">
                             <li class="sortable__items">
                                 <a data-caption="" data-fancybox="SingleProductVideo" href="<?= $model->getUrl(Slider::UPLOAD_PATH, $model->video); ?>">
@@ -94,6 +88,39 @@ use yii\bootstrap4\Html;
                             'id' => $model->id,
                             'filePath' => $model->getUrl(Slider::UPLOAD_PATH, $model->image),
                             'url' => 'delete-image',
+                            'fancyboxGalleryName' => "SingleProductImage",
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'videoFileMobile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->video_mobile) && !empty($model->video_mobile)): ?>
+                    <div class="row">
+                        <div class="col-md-3" id="1" style="display: inline-block;">
+                            <li class="sortable__items">
+                                <a data-caption="" data-fancybox="SingleProductVideo" href="<?= $model->getUrl(Slider::UPLOAD_PATH, $model->video_mobile); ?>">
+                                    <video width="100%" src="<?= $model->getUrl(Slider::UPLOAD_PATH, $model->video_mobile); ?>">
+                                </a>            
+                            </li>
+                            <?= Html::a('<i class="fa fa-trash"></i>', ['delete-video-mobile', 'id' => $model->id], ['class' => 'btn btn-danger img__delete__btn', 'data-confirm' => Yii::t('app', 'Do delete video answer'), 'data-method' => 'post']); ?>
+                        </div>
+
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'imageFileMobile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->image_mobile) && !empty($model->image_mobile)): ?>
+                    <div class="row">
+                        <?= SingleImagePreviewWidget::widget([
+                            'id' => $model->id,
+                            'filePath' => $model->getUrl(Slider::UPLOAD_PATH, $model->image_mobile),
+                            'url' => 'delete-image-mobile',
                             'fancyboxGalleryName' => "SingleProductImage",
                         ]); ?>
                     </div>

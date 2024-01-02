@@ -121,6 +121,28 @@ class SliderController extends Controller
         return $this->redirect(Yii::$app->request->referrer);
     }
 
+    public function actionDeleteImageMobile(int $id)
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(Slider::UPLOAD_PATH, $model->image_mobile);
+        $model->removeSingleFileIfExist($file);
+        $model->image_mobile = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', 'Запись удалена!');
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionDeleteVideoMobile(int $id)
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(Slider::UPLOAD_PATH, $model->video_mobile);
+        $model->removeSingleFileIfExist($file);
+        $model->video_mobile = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', 'Запись удалена!');
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
     /**
      * Finds the Slider model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

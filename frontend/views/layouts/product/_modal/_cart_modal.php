@@ -2,6 +2,7 @@
 
 use backend\modules\catalog\models\root\Product;
 use common\components\Word;
+use frontend\models\Sections;
 use frontend\modules\cart\models\Cart;
 use frontend\modules\cart\models\CartProduct;
 use yii\helpers\Url;
@@ -65,6 +66,7 @@ use yii\helpers\Url;
           <div class="swiper add-accessories__swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
               
+              <?php $section = new Sections(); ?>
               <?php foreach($accessories as $accessory): ?>
               <div class="swiper-slide swiper-slide-active">
                 <div class="card-accessories">
@@ -73,7 +75,7 @@ use yii\helpers\Url;
                   </div>
                   <div class="card-accessories__text-wrapper">
                     <span class="card-accessories__price"><?= $accessory->price; ?> ₽</span>
-                    <a href="#">
+                    <a href="<?= $section->getProductSectionUrl($accessory->product_type) . "/" . $accessory->slug; ?>">
                       <h3 class="card-accessories__name"><?= $accessory->name; ?></h3>
                     </a>
                     <button class="btn-reset card-accessories__btn" data-product-id="<?= $accessory->id; ?>" data-product-price="<?= $accessory->price; ?>"  type="button">В&nbsp;корзину</button>

@@ -1,6 +1,8 @@
 <?php
 
 use backend\modules\catalog\models\root\Product;
+use frontend\models\Sections;
+
 ?>
 <?php if($accessories): ?>
 <div class="add-accessories mb-xxl">
@@ -10,6 +12,7 @@ use backend\modules\catalog\models\root\Product;
   <div class="swiper add-accessories__swiper">
     <div class="swiper-wrapper">
 
+      <?php $section = new Sections(); ?>
       <?php foreach ($accessories as $accessory) : ?>
         <div class="swiper-slide">
           <div class="card-accessories">
@@ -20,7 +23,7 @@ use backend\modules\catalog\models\root\Product;
               <span class="card-accessories__price">
                 <?= Yii::$app->formatter->asCurrency($accessory->price, null, [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
               </span>
-              <a href="javascript:void(0);">
+              <a href="<?= $section->getProductSectionUrl($accessory->product_type) . "/" . $accessory->slug; ?>">
                 <h3 class="card-accessories__name">
                   <?= $accessory->name; ?>
                 </h3>

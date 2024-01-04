@@ -98,4 +98,8 @@ return [
     'Price value' => 'Цена',
     'Show more reviews' => 'Показать больше отзывов',
     "Breadcrumbs Dogs" => 'Собаки',
+    'Catalog Height All Block' => 'Высота',
+    'Catalog Type All Block' => 'Тип',
+    'Product Group Block' => 'Группа витрины',
+    'Product Group All Block' => 'Группа',
 ];

@@ -32,6 +32,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="row">
             <div class="col-md-6">
+                <?= $form->field($model, 'text_color')->textInput() ?>
                 <?= $form->field($model, 'sort')->textInput() ?>
                 <?= $form->field($model, 'status')->checkbox() ?>
             </div>

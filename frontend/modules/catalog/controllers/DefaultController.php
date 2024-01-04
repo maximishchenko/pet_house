@@ -90,6 +90,7 @@ class DefaultController extends Controller
                 'categories' => $categories,
                 'groups' => $groups,
                 'heights' => $heights,
+                'productType' => $productType,
             ]);
         }
     }

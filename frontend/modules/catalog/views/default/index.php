@@ -36,7 +36,9 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
                 <?= $this->render('_filter', [
                     'searchModel' => $searchModel,
                     'types' => $types,
+                    'productType' => $productType,
                     'categories' => $categories,
+                    'groups' => $groups,
                     'heights' => $heights,
                 ]); ?>
 

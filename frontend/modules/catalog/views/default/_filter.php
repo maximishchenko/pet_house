@@ -74,12 +74,43 @@ use yii\widgets\ActiveForm;
     </fieldset>
     <?php endif; ?>
 
+    <!-- Группы -->
+    <?php if(isset($groups) && !empty($groups)): ?>
+    <fieldset class="thumb-filter__area">
+      <legend class="thumb-filter__title">
+        <?php if($productType != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
+        <?= Yii::t('app', 'Product Group Block'); ?>
+        <?php else: ?>
+        <?= Yii::t('app', 'Product Group All Block'); ?>
+        <?php endif; ?>
+      </legend>
+      <ul class="list-reset">
+
+        <?php foreach($groups as $group): ?>
+        <li class="thumb-filter__li">
+          <input class="hide-inp thumb-filter__check1-inp filter__submit" type="checkbox" id="<?= $group->id; ?>" name="group_id[]" value="<?= $group->id; ?>" <?= $searchModel->isCheckboxSearchParamSelected('group_id', $group->id); ?> >
+          <label for="<?= $group->id; ?>" class="thumb-filter__check1-label">
+            <span class="thumb-filter__check1-img" style="background-image: url('/<?= Category::UPLOAD_PATH . $group->image; ?>');"></span>
+            <span>
+              <?= $group->name; ?>
+            </span>
+          </label>
+        </li>
+        <?php endforeach; ?>
+      </ul>
+    </fieldset>
+    <?php endif; ?>
+
     <!-- Типы -->
     <?php if ($searchModel->product_type != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
     <?php if(isset($types) && !empty($types)): ?>
     <fieldset class="thumb-filter__area">
       <legend class="thumb-filter__title">
+        <?php if($productType != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
         <?= Yii::t('app', 'Catalog Type Block'); ?>
+        <?php else: ?>
+        <?= Yii::t('app', 'Catalog Type All Block'); ?>
+        <?php endif; ?>
       </legend>
       <ul class="list-reset">
 
@@ -104,7 +135,11 @@ use yii\widgets\ActiveForm;
     <?php if(isset($heights) && !empty($heights)): ?>
     <fieldset class="thumb-filter__area">
       <legend class="thumb-filter__title">
+        <?php if($productType != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
         <?= Yii::t('app', 'Catalog Height Block'); ?>
+        <?php else: ?>
+        <?= Yii::t('app', 'Catalog Height All Block'); ?>
+        <?php endif; ?>
       </legend>
       <ul class="list-reset thumb-filter__table">
 

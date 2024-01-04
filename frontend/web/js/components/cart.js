@@ -6,6 +6,8 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
         'X-Requested-With': 'XMLHttpRequest'
     }
 
+    const accessoriesBtns = document.querySelectorAll('.card-accessories__btn');
+
     function toLocale(number) {
         let val = Math.ceil(Number(number) / 100) * 100
         return val.toLocaleString('ru-RU', { minimumFractionDigits: 0 });
@@ -90,6 +92,7 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
         totalCount.textContent = data.total_count_with_words
 
     }
+
 
     if (document.querySelector('.product__col-calc')) {
 
@@ -199,9 +202,6 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
 
         });
 
-
-        const accessoriesBtns = document.querySelectorAll('.card-accessories__btn');
-
         accessoriesBtns.forEach(el => {
             el.addEventListener('click', (e) => {
                 const id = e.target.getAttribute('data-product-id');
@@ -218,7 +218,7 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
             const res = await fetch(urlParams, {
                 headers: fetchHeaders
             });
-            
+
             headerBag.plus();
             selector.textContent = 'В корзине';
             selector.classList.add('card-accessories__btn--active');
@@ -258,7 +258,31 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
                     cartCounter(id, selector, price, 'minus', totalCartPrice, totalCount);
                 }
             });
-        })
+        });
+
+        const cartContainer = document.querySelector('.cart__list-inner');
+
+        async function addToCartAccessories(id, price) {
+            let urlParams = `/cart/default/add-to-cart?product_id=${id}&price=${price}`;
+            const res = await fetch(urlParams, {
+                headers: fetchHeaders
+            });
+            const data = await res.json();
+            
+            location.reload();
+            
+
+        }
+
+        accessoriesBtns.forEach(el => {
+            el.addEventListener('click', (e) => {
+                const id = e.target.getAttribute('data-product-id');
+                const price = e.target.getAttribute('data-product-price');
+
+                addToCartAccessories(id, price);
+            });
+
+        });
 
     }
 

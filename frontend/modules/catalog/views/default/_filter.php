@@ -147,14 +147,14 @@ use yii\widgets\ActiveForm;
           </label>
         </li>
 
-        <?php foreach ($heights as $height) : ?>
-          <li class="thumb-filter__table-el">
-            <input class="hide-inp thumb-filter__table-inp filter__submit" type="radio" id="<?= $height->id; ?>" name="height_value" value="<?= $height->height_value; ?>">
-            <label class="thumb-filter__table-label" for="<?= $height->id; ?>">
-              <?= $height->height_value; ?>
-            </label>
-          </li>
-        <?php endforeach; ?>
+        <?php foreach($heights as $height): ?>
+        <li class="thumb-filter__table-el">
+          <input class="hide-inp thumb-filter__table-inp filter__submit" type="radio" id="height-<?= $height->id; ?>" name="height_value" value="<?= $height->height_value; ?>">
+          <label class="thumb-filter__table-label" for="height-<?= $height->id; ?>">
+            <?= $height->height_value; ?>
+          </label>
+        </li>
+        <?php endforeach;?>
       </ul>
     </fieldset>
   <?php endif; ?>

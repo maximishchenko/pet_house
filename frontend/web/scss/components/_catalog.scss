@@ -101,6 +101,7 @@
 
   &__btn {
     user-select: none;
+    display: block;
     padding: 1.5rem 2rem;
     border: 1px solid var(--color-border);
     border-radius: var(--size-s);
@@ -350,12 +351,64 @@
     font-weight: 600;
     display: block;
     margin-bottom: 20px;
+    letter-spacing: .05rem;
   }
 
   &__title--switch {
     margin-bottom: 0;
   }
 
+  // Чекбокс
+
+  &__checkbox-label {
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    position: relative;
+    height: 1.5rem;
+
+    &::before {
+      content: '';
+      top: 0;
+      left: 0;
+      position: absolute;
+      display: block;
+      height: 1.5rem;
+      width: 1.5rem;
+      border: 2px solid var(--color-dark);
+      border-radius: .4rem;
+    }
+
+    &::after {
+      content: '';
+      opacity: 0;
+      top: 0;
+      left: 0;
+      position: absolute;
+      display: block;
+      height: 1.5rem;
+      width: 1.5rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.85818 3.15113C10.0509 3.34894 10.0467 3.6655 9.84887 3.85817L4.71554 8.85818C4.52139 9.04728 4.21194 9.04728 4.0178 8.85818L2.15113 7.03999C1.95331 6.84732 1.94915 6.53076 2.14183 6.33295C2.3345 6.13513 2.65106 6.13097 2.84887 6.32364L4.36667 7.80202L9.15113 3.14183C9.34894 2.94915 9.6655 2.95331 9.85818 3.15113Z' fill='white'/%3E%3C/svg%3E%0A");
+    }
+  }
+
+  &__li:not(:last-child) {
+    margin-bottom: .8rem;
+  }
+
+  &__checkbox:checked+&__checkbox-label::before {
+    background: var(--color-dark);
+    border-color: var(--color-dark);
+  }
+
+  &__checkbox:checked+&__checkbox-label::after {
+    opacity: 1;
+  }
+
+  /* 
   // Чекбокс картинки
   &__check1-label {
     display: flex;
@@ -437,7 +490,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70%;
-  }
+  } */
 
   // Таблица
   &__table {
@@ -482,8 +535,19 @@
 }
 
 .hide-inp {
-  appearance: none;
   position: absolute;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
 }
 
 .switch {

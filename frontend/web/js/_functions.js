@@ -32,6 +32,7 @@
 // Реализация модального окна
 import GraphModal from 'graph-modal';
 const modal = new GraphModal();
+const modalRec = new GraphModal('rec');
 
 // Реализация табов
 import GraphTabs from 'graph-tabs';

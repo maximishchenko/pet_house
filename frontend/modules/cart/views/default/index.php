@@ -27,14 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php if (Cart::getTotalCount() > 0) : ?>
 
-                    <pre>
-                    <?php
-                        
-                    $columnProductIds = array_column($cart->getProducts(), 'product_id');
-                    print_r($columnProductIds);
-                    ?>
-                    </pre>
-
                     <!-- Товары в корзине -->
                     <?php foreach ($cart->getProducts() as $productKey => $product) : ?>
                         <div class="cart__list-inner">

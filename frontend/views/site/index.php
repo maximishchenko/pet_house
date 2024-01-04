@@ -6,38 +6,39 @@ use backend\modules\content\models\Slider;
 use yii\helpers\Url;
 
 ?>
-<?php if (isset($sliders) && !empty($sliders)): ?>
-<section class="hero mb-n">
-    <div class="swiper hero-slider">
-        <div class="swiper-wrapper">
-            
-            <?php foreach($sliders as $slider): ?>
-                <?php if (isset($slider->video) && !empty($slider->video)):?>
-                    <div class="swiper-slide">
-                        <!-- hero__slide hero__slide-des -->
-                        <div class="hero__slide hero__slide-des"> 
-                            <div class="hero__content">
-                                <div class="hero__headline-wrapper">
-                                    <h2 class="section-headline"><?= $slider->name; ?></h2>
-                                    <p class="hero__desk">
-                                        <?= $slider->description; ?>
-                                    </p>
+<?php if (isset($sliders) && !empty($sliders)) : ?>
+    <section class="hero mb-n">
+        <div class="swiper hero-slider">
+            <div class="swiper-wrapper">
+
+                <?php foreach ($sliders as $slider) : ?>
+                    <?php if (isset($slider->video) && !empty($slider->video)) : ?>
+                        <div class="swiper-slide">
+                            <!-- hero__slide hero__slide-des -->
+                            <div class="hero__slide hero__slide-des">
+                                <div class="hero__content">
+                                    <div class="hero__headline-wrapper">
+                                        <h2 class="section-headline" style="color: <?= $slider->text_color; ?>"><?= $slider->name; ?></h2>
+                                        <p class="hero__desk" style="color: <?= $slider->text_color; ?>">
+                                            <?= $slider->description; ?>
+                                        </p>
+                                    </div>
+                                    <div class=" hero__btn-wrapper">
+                                        <a href="<?= $slider->url; ?>" class="btn-b hero__btn" style="background-color: <?= $slider->button_bg_color; ?>; color: <?= $slider->button_text_color; ?>">Купить</a>
+                                    </div>
                                 </div>
-                                <div class="hero__btn-wrapper">
-                                    <a href="<?= $slider->url; ?>" class="btn-b hero__btn">Купить</a>
-                                </div>
+
+                                <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay muted loop></video>
+                                <video class="hero__video hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay muted loop></video>
+
                             </div>
-
-                            <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay muted loop></video>
-
                         </div>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 <?php endif; ?>
 
 

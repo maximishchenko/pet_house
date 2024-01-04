@@ -114,7 +114,7 @@ use yii\helpers\Url;
             </li>
             <!-- TODO запуск модального окна -->
             <li class="footer__list-item">
-              <a href="#" class="footer__link">Реквизиты</a>
+              <button class="footer__link btn-reset">Реквизиты</button>
             </li>
           </ul>
         </div>

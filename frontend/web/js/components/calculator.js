@@ -258,20 +258,4 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
         });
 
     }
-
-
-    /* window.addEventListener('resize', () => {
-        if (screen.width < 768 && galleryBlock == null) {
-            mobWrapper.appendChild(gallary);
-            mobWrapper.appendChild(calcBages);
-            calcMobWrapper.prepend(calc);
-            stickybar.destroy();
-        } else if (screen.width > 768 && galleryBlock == null) {
-            gallaryWrapper.prepend(gallary);
-            calcBackWrapper.appendChild(calc);
-            calc.prepend(calcBages);
-            stickybar.update();
-        }
-    
-    }) */
 }

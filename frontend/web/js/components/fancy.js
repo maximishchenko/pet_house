@@ -1,17 +1,5 @@
 import { Fancybox } from "@fancyapps/ui";
 
-/* Fancybox.bind('[data-fancybox]', {
-  Toolbar: {
-    display: {
-      right: ['close']
-    },
-  }
-});
-
-
- */
-
-
 Fancybox.bind('[data-fancybox]', {
   idle: false,
   compact: false,

@@ -118,7 +118,6 @@ use yii\widgets\ActiveForm;
         <li class="thumb-filter__li">
           <input class="hide-inp thumb-filter__check-inp filter__submit" type="checkbox" id="<?= $type->id; ?>" name="type_id[]" value="<?= $type->id; ?>"  <?= $searchModel->isCheckboxSearchParamSelected('type_id', $type->id); ?> >
           <label for="<?= $type->id; ?>" class="thumb-filter__check-ic">
-            <img src="/<?= Property::UPLOAD_PATH . $type->image; ?>" aria-hidden="true">
             <span class="thumb-filter__check-title">
               <?= $type->name; ?>
             </span>

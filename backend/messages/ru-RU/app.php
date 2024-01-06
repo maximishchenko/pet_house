@@ -294,4 +294,6 @@ return [
     'Button Text Color' => 'Цвет текста кнопки',
     'Button Background Color' => 'Цвет фона кнопки',
     'Property Text Color' => 'Цвет текста',
+    'ORDERS' => 'Заказы',
+    'ORDERS Edit' => 'Данных о совершенных заказах'
 ];

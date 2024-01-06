@@ -31,13 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'phone',
             'email:email',
-            'comment:ntext',
-            'delivery_type',
-            'delivery_address:ntext',
-            'created_at',
-            'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

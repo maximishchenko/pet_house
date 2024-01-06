@@ -1,0 +1,101 @@
+.sidebar-bottom {
+      overflow: hidden;
+      height: 0;
+      width: 0;
+      position: relative;
+
+      &__wrapper {
+            background: var(--color-light);
+            width: 100%;
+            padding: 5rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            transform: translateY(100%);
+            transition: transform var(--hover);
+      }
+
+      &__bg {
+            background: var(--color-dark);
+            transition: opacity var(--hover);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            opacity: 0;
+      }
+
+      &__haed {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+      }
+
+      &__title {
+            color: var(--color-dark);
+            font-size: 2.875rem;
+            line-height: 160%;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+      }
+
+      &__body {
+            display: flex;
+            align-items: center;
+      }
+
+      &__btn-close {
+            height: 4rem;
+            width: 4rem;
+            border-radius: 100%;
+            background: var(--color-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--hover);
+
+            svg {
+                  height: 1.5rem;
+                  width: 1.5rem;
+                  fill: var(--color-dark);
+                  transition: fill var(--hover);
+            }
+
+            &:hover {
+                  background: var(--color-dark);
+
+                  svg {
+
+                        fill: var(--color-light);
+                  }
+            }
+      }
+}
+
+.requisites {
+      color: var(--color-dark);
+      font-size: 1.5rem;
+
+      li {
+            line-height: 200%;
+      }
+}
+
+.sidebar-bottom--active {
+      z-index: 9999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+
+      .sidebar-bottom__bg {
+            opacity: .7;
+      }
+
+      .sidebar-bottom__wrapper {
+            transform: translateY(0%);
+      }
+}

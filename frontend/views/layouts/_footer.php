@@ -114,7 +114,7 @@ use yii\helpers\Url;
             </li>
             <!-- TODO запуск модального окна -->
             <li class="footer__list-item">
-              <button class="footer__link btn-reset">Реквизиты</button>
+              <button class="footer__link btn-reset requisites-open-btn">Реквизиты</button>
             </li>
           </ul>
         </div>
@@ -122,7 +122,30 @@ use yii\helpers\Url;
     </div>
     <div class="footer__fin">
       <span>© 2016 – <?= date('Y'); ?> домгрызунов.рф</span>
+      <button class="btn-reset requisites-open-btn">Реквизиты</button>
       <a href="<?= Url::toRoute('/privacy'); ?>">Политика конфидециальности</a>
     </div>
   </div>
 </footer>
+
+<div class="sidebar-bottom">
+  <div class="sidebar-bottom__wrapper">
+    <div class="sidebar-bottom__haed">
+      <span class="sidebar-bottom__title">Реквизиты</span>
+      <button class="sidebar-bottom__btn-close btn-reset">
+        <svg>
+          <use xlink:href="/img/sprite.svg#close"></use>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sidebar-bottom__body">
+      <ul class="list-reset requisites">
+        <li>ИП: Бузюров Владимир Анатольевич,</li>
+        <li>ИНН: 504416639341,</li>
+        <li>ОГРН: 320508100379579</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sidebar-bottom__bg"></div>
+</div>

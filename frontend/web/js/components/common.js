@@ -122,3 +122,27 @@ scrollToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   return false;
 });
+
+// rec
+
+const requisitesBtns = document.querySelectorAll('.requisites-open-btn');
+const requisitesSidebar = document.querySelector('.sidebar-bottom');
+const requisitesSidebarBg = document.querySelector('.sidebar-bottom__bg');
+const requisitesSidebarBtnHide = document.querySelector('.sidebar-bottom__btn-close');
+
+requisitesBtns.forEach(el => {
+  el.addEventListener('click', () => {
+    requisitesSidebar.classList.add('sidebar-bottom--active');
+    document.querySelector('.page').classList.add('dis-scroll');
+
+    requisitesSidebarBg.addEventListener('click', hideRequisitesSidebar);
+    requisitesSidebarBtnHide.addEventListener('click', hideRequisitesSidebar);
+  });
+});
+
+function hideRequisitesSidebar() {
+  requisitesSidebarBg.removeEventListener('click', hideRequisitesSidebar);
+  requisitesSidebarBtnHide.removeEventListener('click', hideRequisitesSidebar);
+  document.querySelector('.page').classList.remove('dis-scroll');
+  requisitesSidebar.classList.remove('sidebar-bottom--active');
+}

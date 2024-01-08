@@ -146,3 +146,13 @@ function hideRequisitesSidebar() {
   document.querySelector('.page').classList.remove('dis-scroll');
   requisitesSidebar.classList.remove('sidebar-bottom--active');
 }
+
+const cookieModal = document.querySelector('.cookie-modal');
+
+if (!cookieModal.classList.contains('cookie-modal--hide')) {
+  
+  const cookieBtn = document.querySelector('.cookie-modal__btn');
+  cookieBtn.addEventListener('click', () => {
+    cookieModal.classList.add('cookie-modal--hide')
+  })
+}

@@ -149,3 +149,10 @@ use yii\helpers\Url;
   </div>
   <div class="sidebar-bottom__bg"></div>
 </div>
+
+<div class="cookie-modal cookie_notice" style="display: flex;">
+  <span class="cookie-modal__desc">Продолжая использовать наш сайт, вы даете согласие
+    <a href="cookie-policy" class="cookie-modal__link">на обработку файлов cookie</a>,
+    которые обеспечивают правильную работу сайта.</span>
+  <button type="button" class="cookie-modal__btn btn-reset" id="cookie_close">ok</button>
+</div>

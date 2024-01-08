@@ -41,11 +41,30 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
 
     class ProductCalculator {
         #totalPrice;
+        #sliderHeigth;
+        #sliderWidth;
+        #sliderDepth;
+        #sliderHeigthStep;
+        #sliderWidthStep;
+        #sliderDepthStep;
 
-        constructor(totalPrice, totalOldPrice) {
+        constructor(totalPrice, totalOldPrice, sliderHeightSelector, sliderWithSelector, sliderDepthSelector) {
             this.totalPrice = document.querySelector(totalPrice);
             this.totalSalePrice = document.querySelector(totalOldPrice);
-            this.des = this.totalSalePrice.getAttribute('data-product-discount')
+            this.des = this.totalSalePrice.getAttribute('data-product-discount');
+
+            this.sliderHeigthSelector = document.querySelector(sliderHeightSelector);
+            this.sliderWidthSelector = document.querySelector(sliderWithSelector);
+            this.sliderDepthSelector = document.querySelector(sliderDepthSelector);
+
+            this.#sliderHeigth = this.sliderHeigthSelector?.getAttribute('data-slider-height');
+            this.#sliderWidth = this.sliderWidthSelector?.getAttribute('data-slider-width');
+            this.#sliderDepth = this.sliderDepthSelector?.getAttribute('data-slider-depth');
+
+            this.#sliderHeigthStep = this.sliderHeigthSelector?.getAttribute('data-slider-step-height');
+            this.#sliderWidthStep = this.sliderWidthSelector?.getAttribute('data-slider-step-width');
+            this.#sliderDepthStep = this.sliderDepthSelector?.getAttribute('data-slider-step-depth');
+
             this.#getTotalPrice();
         }
 
@@ -57,18 +76,11 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
         calcProduct(type, val1, val2) {
 
             if (type == 'btn-calc') {
-
                 let price = Math.round(this.#totalPrice - Number(val2) + Number(val1));
                 this.#totalPrice = price;
                 this.#setCalcPrice(price, this.#calcSalePrice(price));
-
-            } else if (type == 'slider-calc') {
-
-                let price = this.#totalPrice + (Number(val1) * Number(val2));
-                this.#totalPrice = price;
-                this.#setCalcPrice(Math.ceil(price / 100) * 100, this.#calcSalePrice(price));
-
-            } else {
+            }
+            else {
                 throw new Error('Incorrect Param Type');
             }
 
@@ -87,9 +99,52 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
 
         }
 
+        sliderCalcHeight(heigthVal, heightPrice, operator) {
+            let steps = this.#sliderCalcSteps(heigthVal, this.#sliderHeigth, this.#sliderHeigthStep);
+            this.#sliderCalc(steps, heightPrice, operator);
+            this.#sliderHeigth = heigthVal;
+        }
+
+        sliderCalcWidth(widthVal, widthPrice, operator) {
+            let steps = this.#sliderCalcSteps(widthVal, this.#sliderWidth, this.#sliderWidthStep);
+            this.#sliderCalc(steps, widthPrice, operator);
+            this.#sliderWidth = widthVal;
+        }
+
+        sliderCalcDepth(depthVal, depthPrice, operator) {
+            let steps = this.#sliderCalcSteps(depthVal, this.#sliderDepth, this.#sliderDepthStep);
+            this.#sliderCalc(steps, depthPrice, operator);
+            this.#sliderDepth = depthVal;
+        }
+
+        #sliderCalcSteps(selectSize, oldSize, step) {
+            let calcSteps = Math.abs((oldSize - selectSize) / step);
+            if (calcSteps != 0) {
+                return calcSteps;
+            } else {
+                return 1;
+            }
+        }
+
+        #sliderCalc(steps, price, operator) {
+            if (operator == 'plus') {
+                for (let i = 0; i < steps; i++) {
+                    let calcPrice = this.#totalPrice + Number(price);
+                    this.#setCalcPrice(Math.ceil(calcPrice / 100) * 100, this.#calcSalePrice(calcPrice));
+                    this.#totalPrice = calcPrice;
+                }
+            }
+            if (operator == 'minus') {
+                for (let i = 0; i < steps; i++) {
+                    let calcPrice = this.#totalPrice - Number(price);
+                    this.#setCalcPrice(Math.ceil(calcPrice / 100) * 100, this.#calcSalePrice(calcPrice));
+                    this.#totalPrice = calcPrice;
+                }
+            }
+        }
     }
 
-    const productCalculator = new ProductCalculator('#constructor_price', '#constructor_price_old');
+    const productCalculator = new ProductCalculator('#constructor_price', '#constructor_price_old', '#constructor_height_val', '#constructor_width_val', '#constructor_depth_val');
 
 
     // Вобор элемента калькулятора
@@ -181,11 +236,11 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
             let hendleVal = Math.trunc(sliderH.noUiSlider.get());
 
             if (startHeight > hendleVal) {
-                productCalculator.calcProduct('slider-calc', -1, heightPrice);
+                productCalculator.sliderCalcHeight(hendleVal, heightPrice, 'minus');
                 startHeight = hendleVal;
             } else {
+                productCalculator.sliderCalcHeight(hendleVal, heightPrice, 'plus');
                 startHeight = hendleVal;
-                productCalculator.calcProduct('slider-calc', 1, heightPrice);
             }
         });
 
@@ -206,7 +261,8 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
             padding: [10, 10],
         });
 
-        sliderW.noUiSlider.on('slide', function (values, handle, unencoded) {
+        sliderW.noUiSlider.on('slide', function (values, handle) {
+
             let item_size_width = document.getElementById("constructor_width");
             let item_size_width_val = document.getElementById("constructor_width_val");
             item_size_width.innerHTML = Math.trunc(values[handle]);
@@ -215,11 +271,11 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
             let hendleVal = Math.trunc(sliderW.noUiSlider.get());
 
             if (startWidth > hendleVal) {
-                productCalculator.calcProduct('slider-calc', -1, widthPrice);
+                productCalculator.sliderCalcWidth(hendleVal, widthPrice, 'minus');
                 startWidth = hendleVal;
             } else {
-                productCalculator.calcProduct('slider-calc', 1, widthPrice);
-                startWidth = hendleVal
+                productCalculator.sliderCalcWidth(hendleVal, widthPrice, 'plus');
+                startWidth = hendleVal;
             }
         });
 
@@ -249,10 +305,10 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
             let hendleVal = Math.trunc(sliderD.noUiSlider.get());
 
             if (startDepth > hendleVal) {
-                productCalculator.calcProduct('slider-calc', -1, depthPrice);
+                productCalculator.sliderCalcDepth(hendleVal, depthPrice, 'minus');
                 startDepth = hendleVal
             } else {
-                productCalculator.calcProduct('slider-calc', 1, depthPrice);
+                productCalculator.sliderCalcDepth(hendleVal, depthPrice, 'plus');
                 startDepth = hendleVal
             }
         });

@@ -1,5 +1,4 @@
-# *
-!build/css
-!build/js
-!fonts
+*
+!build/
+!fonts/
 !.gitignore

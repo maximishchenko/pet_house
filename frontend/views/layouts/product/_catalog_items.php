@@ -30,8 +30,10 @@ use yii\helpers\Url;
   <div class="thumb-prod__info">
     <span class="thumb-prod__price">
       <?= Yii::$app->formatter->asCurrency($model->price, 'RUB', [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+      <?php // echo Yii::$app->formatter->asCurrency($model->price, 'RUB', [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
       <span class="thumb-prod__price-old">
         <?= Yii::$app->formatter->asCurrency($model->oldPrice, 'RUB', [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
+        <?php // echo Yii::$app->formatter->asCurrency($model->oldPrice, 'RUB', [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
       </span>
     </span>
     <h3 class="thumb-prod__title">

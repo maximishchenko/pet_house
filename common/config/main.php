@@ -26,6 +26,9 @@ return [
             'thousandSeparator' => ' ',
             'decimalSeparator' => ',',
             'currencyCode' => 'RUB',
+            'numberFormatterSymbols' => [
+                NumberFormatter::CURRENCY_SYMBOL => '₽',
+            ]
          
          ],
         'configManager' => [

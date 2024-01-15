@@ -28,8 +28,8 @@ return [
             // 'currencyCode' => 'RUB',
             
             'numberFormatterOptions' => [
-                NumberFormatter::MIN_FRACTION_DIGITS => 100,
-                NumberFormatter::MAX_FRACTION_DIGITS => 100,
+                NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                NumberFormatter::MAX_FRACTION_DIGITS => 0,
                 NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100,
             ],
             'numberFormatterSymbols' => [

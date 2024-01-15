@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'comment:ntext',
             // 'delivery_type',
             'delivery_address:ntext',
+            'body',
             // 'created_at',
             // 'updated_at',
         ],

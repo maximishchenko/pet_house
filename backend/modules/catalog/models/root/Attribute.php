@@ -145,46 +145,11 @@ class Attribute extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return $this->setItemType();
     }
-
-    /**
-     * Gets query for [[ProductAttributes]].
-     *
-     * @return \yii\db\ActiveQuery|\backend\modules\catalog\models\query\ProductAttributeQuery
-     */
-    // public function getProductAttributes()
-    // {
-    //     return $this->hasMany(ProductAttribute::className(), ['attribute_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Products]].
-     *
-     * @return \yii\db\ActiveQuery|\backend\modules\catalog\models\query\ProductQuery
-     */
-    // public function getProducts()
-    // {
-    //     return $this->hasMany(Product::className(), ['id' => 'product_id'])->viaTable('{{%product_attribute}}', ['attribute_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[ProductMaterials]].
-     *
-     * @return \yii\db\ActiveQuery|\backend\modules\catalog\models\query\ProductMaterialQuery
-     */
-    // public function getProductMaterials()
-    // {
-    //     return $this->hasMany(ProductMaterial::className(), ['material_id' => 'id']);
-    // }
-
-    /**
-     * Gets query for [[Products0]].
-     *
-     * @return \yii\db\ActiveQuery|\backend\modules\catalog\models\query\ProductQuery
-     */
-    // public function getProducts0()
-    // {
-    //     return $this->hasMany(Product::className(), ['id' => 'product_id'])->viaTable('{{%product_material}}', ['material_id' => 'id']);
-    // }
+    
+    public function getCharacteristicsDescription()
+    {
+        return $this->name . ' (' . $this->value . ')';
+    }
 
     /**
      * Устанавливает значение item_type в зависимости от имени дочернего класса

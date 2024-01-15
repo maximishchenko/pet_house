@@ -5,7 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 700px;
-    max-height: 100px;
+    max-height: 300px;
     flex-direction: column;
 }
 .custom-checkbox {

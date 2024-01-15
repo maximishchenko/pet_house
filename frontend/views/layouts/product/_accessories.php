@@ -5,7 +5,7 @@ use frontend\models\Sections;
 
 ?>
 <?php if($accessories): ?>
-<div class="add-accessories mb-xxl">
+<div class="add-accessories">
   <h2 class="product-headline">
     <?= Yii::t('app', 'Accessories Items'); ?>
   </h2>

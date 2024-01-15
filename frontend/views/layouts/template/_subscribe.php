@@ -4,7 +4,7 @@
       <div class="subscription__content-wrap">
         <span class="subscription__subtitle">Наши соцсети</span>
         <p class="subscription__title">Присоединяйтесь к нам
-          в социальных Ии станьте частью нашей большой
+          в социальных и станьте частью нашей большой
           и дружной семьи!</p>
         <div class="subscription__btn-wrap">
           <a href="#" class="btn-b subscription__btn">

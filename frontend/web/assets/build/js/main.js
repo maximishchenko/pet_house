@@ -713,7 +713,13 @@ if (document.querySelector('.catalog__list')) {
   const filterBtn = document.querySelector('.catalog-bar__btn--filter'),
     catalogSide = document.querySelector('.catalog__side'),
     catalogList = document.querySelector('.catalog__list'),
-    btnMobCloase = document.querySelector('.filter-mob_cloase');
+    btnMobCloase = document.querySelector('.filter-mob_cloase'),
+    catalogBarBtn = document.querySelectorAll('.catalog-bar__btn');
+  catalogBarBtn.forEach(el => {
+    el.addEventListener('click', e => {
+      el.classList.toggle('catalog-bar__btn--disable');
+    });
+  });
   function showFilter() {
     catalogSide.classList.toggle('catalog__side--active');
     catalogList.classList.toggle('catalog__list--active');

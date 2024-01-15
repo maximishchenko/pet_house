@@ -101,15 +101,72 @@
 
   &__btn {
     user-select: none;
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 1.5rem 2rem;
     border: 1px solid var(--color-border);
     border-radius: var(--size-s);
     color: var(--color-dark);
+    cursor: pointer;
 
 
     @include hover {
       background: var(--color-gray);
+    }
+  }
+
+  &__btn--disable {
+    background: var(--color-gray);
+    color: var(--color-dark-80);
+    opacity: 1;
+    cursor: pointer;
+
+    .catalog-bar__btn-ic {
+      display: flex;
+    }
+
+    &:hover {
+      color: var(--color-dark);
+
+      .catalog-bar__btn-ic {
+
+        &:after,
+        &:before {
+          background: var(--color-dark);
+        }
+      }
+    }
+  }
+
+  &__btn-ic {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 10px;
+    width: 10px;
+    position: relative;
+    margin-left: 10px;
+    transform: rotate(45deg);
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      background: var(--color-dark-80);
+    }
+
+    &:after {
+      height: 2px;
+      width: 10px;
+      left: 50%;
+      margin-left: -5px;
+    }
+
+    &:before {
+      height: 10px;
+      width: 2px;
+      top: 50%;
+      margin-top: -5px;
     }
   }
 
@@ -127,6 +184,7 @@
     align-items: center;
     background: var(--color-brand);
     color: var(--color-light);
+    border-radius: var(--size-s);
     border-color: var(--color-brand);
     width: 8.9rem;
     transition: width .2s ease-in-out;

@@ -3,7 +3,14 @@ if (document.querySelector('.catalog__list')) {
       const filterBtn = document.querySelector('.catalog-bar__btn--filter'),
             catalogSide = document.querySelector('.catalog__side'),
             catalogList = document.querySelector('.catalog__list'),
-            btnMobCloase = document.querySelector('.filter-mob_cloase');
+            btnMobCloase = document.querySelector('.filter-mob_cloase'),
+            catalogBarBtn = document.querySelectorAll('.catalog-bar__btn');
+
+      catalogBarBtn.forEach(el => {
+            el.addEventListener('click', (e) => {
+                  el.classList.toggle('catalog-bar__btn--disable')
+            });
+      })
 
       function showFilter() {
             catalogSide.classList.toggle('catalog__side--active');
@@ -45,7 +52,7 @@ if (document.querySelector('.catalog__list')) {
       function updateCatalog() {
             let pageNumber = parseInt(updateInfo.getAttribute('data-page'));
             let totalPages = parseInt(updateInfo.getAttribute('data-page-count'));
-            
+
             if (pageNumber !== totalPages) {
 
                   catalogSpinner.classList.add('spinner-container--show');

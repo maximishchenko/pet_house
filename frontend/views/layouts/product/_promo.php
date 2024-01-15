@@ -1,7 +1,7 @@
 <?php
 use backend\modules\content\models\Information;
 ?>
-<div class="promo-block mb-xxl pt-m">
+<!-- <div class="promo-block mb-xxl pt-m">
     <div class="promo-block__head">
       <h2 class="product-headline centered">
         Для кого подходят витрины Дом Грызунов?
@@ -36,3 +36,4 @@ use backend\modules\content\models\Information;
    <?php endforeach;?> 
    <?php endif; ?>
 </div> 
+ -->

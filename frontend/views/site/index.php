@@ -13,9 +13,9 @@ use yii\helpers\Url;
 
                 <?php foreach ($sliders as $slider) : ?>
                     <?php if (isset($slider->video) && !empty($slider->video)) : ?>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide hero-swiper-slide">
                             <!-- hero__slide hero__slide-des -->
-                            <div class="hero__slide hero__slide-des">
+                            <div class="hero__slide hero__slide-des" style="padding-bottom: 1px; padding-left: 1px;">
                                 <div class="hero__content">
                                     <div class="hero__headline-wrapper">
                                         <h2 class="section-headline" style="color: <?= $slider->text_color; ?>"><?= $slider->name; ?></h2>
@@ -23,13 +23,13 @@ use yii\helpers\Url;
                                             <?= $slider->description; ?>
                                         </p>
                                     </div>
+                                    <a href="<?= $slider->url; ?>" class="btn-b hero__btn" style="background-color: <?= $slider->button_bg_color; ?>; color: <?= $slider->button_text_color; ?>">Смотреть</a>
                                     <div class=" hero__btn-wrapper">
-                                        <a href="<?= $slider->url; ?>" class="btn-b hero__btn" style="background-color: <?= $slider->button_bg_color; ?>; color: <?= $slider->button_text_color; ?>">Купить</a>
                                     </div>
                                 </div>
 
                                 <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay muted loop></video>
-                                <video class="hero__video hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay muted loop></video>
+                                <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay muted loop></video>
 
                             </div>
                             <span class="hero-bage">

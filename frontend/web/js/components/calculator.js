@@ -161,7 +161,6 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
             activeSelect.classList.remove('calc-el__list-item--active');
             el.classList.add('calc-el__list-item--active');
 
-
             if (selectSection.classList.contains('calc-el__list--color')) {
 
                 let elPrice = el.getAttribute('data-price');

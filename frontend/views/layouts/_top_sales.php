@@ -23,7 +23,7 @@ use yii\helpers\Url;
 
                     <?php foreach ($topSales as $productItem) : ?>
                         <div class="swiper-slide">
-                            <a href="<?= Url::toRoute($productItem->getSectionUrl() . '/' . $productItem->slug); ?>" class="thumb-prod">
+                            <a href="<?= $productItem->getSectionUrl() . '/' . $productItem->slug; ?>" class="thumb-prod">
                                 <div class="thumb-prod__img-wrapper">
                                     <img class="thumb-prod__img" src="<?= '/' . Product::UPLOAD_PATH . $productItem->image; ?>" alt="<?= $productItem->name; ?>">
                                 </div>

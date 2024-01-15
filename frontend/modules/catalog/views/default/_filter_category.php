@@ -6,7 +6,7 @@
         <div class="swiper-wrapper">
 
           <div class="swiper-slide">
-            <button class="catalog-bar__btn catalog-bar__btn--filter btn-reset" type="button">
+            <button class="catalog-bar__btn--filter btn-reset" type="button">
               <?= Yii::t('app', 'Filter Block'); ?>
               <svg>
                 <use xlink:href="/img/sprite.svg#chevron-right"></use>
@@ -16,16 +16,18 @@
 
           <div class="swiper-slide mob-dis">
             <!-- TODO вставить id -->
-              <label for="is_available" class="catalog-bar__btn btn-reset filter__category" data-search-name="is_available" data-search-value="1" type="button" <?= $searchModel->isAvailableActive(); ?>>
-                <?= Yii::t('app', 'Only Available'); ?>
+            <label for="is_available" class="catalog-bar__btn btn-reset filter__category" data-search-name="is_available" data-search-value="1" <?= $searchModel->isAvailableActive(); ?>>
+              <?= Yii::t('app', 'Only Available'); ?>
+              <span class="catalog-bar__btn-ic"></span>
             </label>
           </div>
 
           <?php if (isset($groups) && !empty($groups)) : ?>
             <?php foreach ($groups as $group) : ?>
               <div class="swiper-slide mob-dis">
-                <label for="<?= $group->id; ?>" class="catalog-bar__btn btn-reset filter__category" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>" type="button" <?= $searchModel->isCategoryActive($group->id); ?>>
+                <label for="<?= $group->id; ?>" class="catalog-bar__btn btn-reset filter__category" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>" <?= $searchModel->isCategoryActive($group->id); ?>>
                   <?= $group->name; ?>
+                  <span class="catalog-bar__btn-ic"></span>
                 </label>
               </div>
             <?php endforeach; ?>
@@ -33,7 +35,6 @@
 
         </div>
       </div>
-
       <?= $this->render('_sort', [
         'searchModel' => $searchModel
       ]); ?>

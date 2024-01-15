@@ -9,13 +9,17 @@ use yii\helpers\Url;
       <div class="footer__row footer__border">
         <div class="footer__contacts">
           <span class="footer__contacts-title">Есть вопросы?</span>
-          <a href="#" class="footer__phone">+7 (495) 088 90 48</a>
-          <a href="#" class="footer__mail">
+          <?php if (Yii::$app->configManager->getItemValue('contactPhone')): ?>
+          <a href="tel:<?= Yii::$app->configManager->getItemValue('contactPhone'); ?>" class="footer__phone"><?= Yii::$app->configManager->getItemValue('contactPhone'); ?></a>
+          <?php endif; ?>
+          <?php if (Yii::$app->configManager->getItemValue('contactEmail')): ?>
+          <a href="mailto://<?= Yii::$app->configManager->getItemValue('contactEmail'); ?>" class="footer__mail">
             <svg class="footer__mail-ic">
               <use xlink:href="/img/sprite.svg#mail"></use>
             </svg>
-            info@domgryzunov.ru
+            <?= Yii::$app->configManager->getItemValue('contactEmail'); ?>
           </a>
+          <?php endif; ?>
         </div>
         <div class="footer__col footer__messangers-wrap">
           <div class="footer__messangers">

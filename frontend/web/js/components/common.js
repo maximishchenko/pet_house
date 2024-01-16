@@ -98,7 +98,6 @@ if (document.querySelector('.tiker') != null) {
     wrapper: '.tiker__wrapper--s',
     itemSelector: '.tiker__item--s',
     speed: 50,
-    reversed: true,
   });
 }
 

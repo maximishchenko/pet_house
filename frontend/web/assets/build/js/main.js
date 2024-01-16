@@ -928,14 +928,14 @@ if (document.querySelector('.tiker') != null) {
     container: '.tiker--f',
     wrapper: '.tiker__wrapper--f',
     itemSelector: '.tiker__item--f',
-    speed: 50
+    speed: 50,
+    reversed: true
   });
   const reellerS = new reeller__WEBPACK_IMPORTED_MODULE_0__["default"]({
     container: '.tiker--s',
     wrapper: '.tiker__wrapper--s',
     itemSelector: '.tiker__item--s',
-    speed: 50,
-    reversed: true
+    speed: 50
   });
 }
 if (document.querySelector('.scroll-wrapper') != null) {

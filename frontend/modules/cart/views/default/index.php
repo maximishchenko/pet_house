@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php endif; ?>
 
                 <!-- Вам может подойти -->
-                <?php $products = Product::find()->where(['status' => Status::STATUS_ACTIVE, 'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY])->all(); ?>
+                <?php $products = Product::find()->where(['status' => Status::STATUS_ACTIVE, 'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY])->orderBy(['sort' => SORT_DESC])->all(); ?>
                 <?= $this->render('//layouts/_item_slider', ['products' => $products]); ?>
 
                 <!-- Форма оформления заказа -->

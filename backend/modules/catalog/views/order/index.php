@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -32,7 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'email:email',
 
-            // ['class' => 'yii\grid\ActionColumn'],
+
+            // [
+            //     'class' => ActionColumn::className(),
+            //     'contentOptions' => ['style' => 'width:100px;'],
+            //     'template' => ' &nbsp; {delete}',
+            // ],
         ],
     ]); ?>
 

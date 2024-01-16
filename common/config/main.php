@@ -25,7 +25,16 @@ return [
             'dateFormat' => 'php:d.m.Y',
             'thousandSeparator' => ' ',
             'decimalSeparator' => ',',
-            'currencyCode' => 'RUB',
+            // 'currencyCode' => 'RUB',
+            
+            'numberFormatterOptions' => [
+                NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100,
+            ],
+            'numberFormatterSymbols' => [
+                NumberFormatter::CURRENCY_SYMBOL => '&#8381;',
+            ],
          
          ],
         'configManager' => [

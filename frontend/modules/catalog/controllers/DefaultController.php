@@ -114,7 +114,7 @@ class DefaultController extends Controller
                         'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
                         'product_type' => $model->product_type
                     ])
-                    ->orderBy(['view_count' => SORT_DESC])
+                    ->orderBy(['sort' => SORT_DESC])
                     ->all();
 
         return $this->render('product', [

@@ -134,8 +134,8 @@ class Slider extends \yii\db\ActiveRecord
         if (parent::beforeSave($insert)) {
             $this->uploadFile("imageFile", "image", self::UPLOAD_PATH, false);
             $this->uploadFile("videoFile", "video", self::UPLOAD_PATH, false);
-            $this->uploadFile("imageFile", "image_mobile", self::UPLOAD_PATH, false);
-            $this->uploadFile("videoFile", "video_mobile", self::UPLOAD_PATH, false);
+            $this->uploadFile("imageFileMobile", "image_mobile", self::UPLOAD_PATH, false);
+            $this->uploadFile("videoFileMobile", "video_mobile", self::UPLOAD_PATH, false);
             return true;
         }
         return false;

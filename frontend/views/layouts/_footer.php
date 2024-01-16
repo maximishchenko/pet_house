@@ -9,28 +9,36 @@ use yii\helpers\Url;
       <div class="footer__row footer__border">
         <div class="footer__contacts">
           <span class="footer__contacts-title">Есть вопросы?</span>
-          <a href="#" class="footer__phone">+7 (495) 088 90 48</a>
-          <a href="#" class="footer__mail">
+          <?php if (Yii::$app->configManager->getItemValue('contactPhone')): ?>
+          <a href="tel:<?= Yii::$app->configManager->getItemValue('contactPhone'); ?>" class="footer__phone"><?= Yii::$app->configManager->getItemValue('contactPhone'); ?></a>
+          <?php endif; ?>
+          <?php if (Yii::$app->configManager->getItemValue('contactEmail')): ?>
+          <a href="mailto://<?= Yii::$app->configManager->getItemValue('contactEmail'); ?>" class="footer__mail">
             <svg class="footer__mail-ic">
               <use xlink:href="/img/sprite.svg#mail"></use>
             </svg>
-            info@domgryzunov.ru
+            <?= Yii::$app->configManager->getItemValue('contactEmail'); ?>
           </a>
+          <?php endif; ?>
         </div>
         <div class="footer__col footer__messangers-wrap">
           <div class="footer__messangers">
-            <a href="#" class="footer__btn-wt">
+            <?php if(!empty(Yii::$app->configManager->getItemValue('contactWhatsapp'))): ?>
+            <a href="<?= Yii::$app->configManager->getItemValue('contactWhatsapp'); ?>" class="footer__btn-wt">
               <svg>
                 <use xlink:href="/img/sprite.svg#wt"></use>
               </svg>
               Написать в Watsapp
             </a>
-            <a href="#" class="footer__btn-tl">
+            <?php endif; ?>
+            <?php if(!empty(Yii::$app->configManager->getItemValue('contactTelegram'))): ?>
+            <a href="<?= Yii::$app->configManager->getItemValue('contactTelegram'); ?>" class="footer__btn-tl">
               <svg>
                 <use xlink:href="/img/sprite.svg#tl"></use>
               </svg>
               Написать в Telegram
             </a>
+            <?php endif; ?>
           </div>
           <a href="#header" class="footer__up">
             <svg class="footer__up-ic">
@@ -121,7 +129,7 @@ use yii\helpers\Url;
       </div>
     </div>
     <div class="footer__fin">
-      <span>© 2016 – <?= date('Y'); ?> домгрызунов.рф</span>
+      <span>© <?= Yii::$app->configManager->getItemValue('companyStartYear'); ?> – <?= date('Y'); ?> домпитомца.рф</span>
       <button class="btn-reset requisites-open-btn">Реквизиты</button>
       <a href="<?= Url::toRoute('/privacy'); ?>">Политика конфидециальности</a>
     </div>
@@ -141,9 +149,7 @@ use yii\helpers\Url;
 
     <div class="sidebar-bottom__body">
       <ul class="list-reset requisites">
-        <li>ИП: Бузюров Владимир Анатольевич,</li>
-        <li>ИНН: 504416639341,</li>
-        <li>ОГРН: 320508100379579</li>
+        <?= Yii::$app->configManager->getItemValue('contactRequisites'); ?>
       </ul>
     </div>
   </div>
@@ -152,7 +158,7 @@ use yii\helpers\Url;
 
 <div class="cookie-modal cookie_notice" style="display: flex;">
   <span class="cookie-modal__desc">Продолжая использовать наш сайт, вы даете согласие
-    <a href="cookie-policy" class="cookie-modal__link">на обработку файлов cookie</a>,
+    <a href="<?= Url::toRoute('/privacy'); ?>" class="cookie-modal__link">на обработку файлов cookie</a>,
     которые обеспечивают правильную работу сайта.</span>
   <button type="button" class="cookie-modal__btn btn-reset" id="cookie_close">ok</button>
 </div>

@@ -113,14 +113,21 @@ abstract class ProductItem extends Product
 
     public function getAttributesCheckboxListItems()
     {
-        return Attribute::find()
-                    ->where([
-                        'product_type' => $this->product_type,
-                        'item_type' => $this->item_type,
-                    ])
-                    ->select(['name', 'id'])
-                    ->indexBy('id')
-                    ->column();
+        
+        $characteristics = Attribute::find([
+            'product_type' => $this->product_type,
+            'item_type' => $this->item_type,
+        ])->all();
+        $items = ArrayHelper::map($characteristics,'id','characteristicsDescription');
+        return $items;
+        // return Attribute::find()
+        //             ->where([
+        //                 'product_type' => $this->product_type,
+        //                 'item_type' => $this->item_type,
+        //             ])
+        //             ->select(['name', 'id'])
+        //             ->indexBy('id')
+        //             ->column();
     }   
 
     public function getProductAttributes()

@@ -43,9 +43,7 @@ use yii\helpers\Url;
                                 </button>
                                 <div class="hero-bage__desc">
                                     <ul class="list-reset">
-                                        <li>ИП: Бузюров Владимир Анатольевич</li>
-                                        <li>ИНН: 504416639341</li>
-                                        <li>ОГРН: 320508100379579</li>
+                                        <?= Yii::$app->configManager->getItemValue('contactRequisites'); ?>
                                     </ul>
                                 </div>
                             </span>

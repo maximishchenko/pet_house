@@ -25,7 +25,7 @@
           <?php if (isset($groups) && !empty($groups)) : ?>
             <?php foreach ($groups as $group) : ?>
               <div class="swiper-slide mob-dis">
-                <label for="<?= $group->id; ?>" class="catalog-bar__btn btn-reset filter__category" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>" <?= $searchModel->isCategoryActive($group->id); ?>>
+                <label for="<?= $group->id; ?>" class="catalog-bar__btn btn-reset filter__category" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>" <?= $searchModel->isCategoryActive($group->id); ?>> <!-- TODO catalog-bar__btn--disable -->
                   <?= $group->name; ?>
                   <span class="catalog-bar__btn-ic"></span>
                 </label>

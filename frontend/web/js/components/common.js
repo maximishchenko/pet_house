@@ -39,7 +39,6 @@ setListener(burgerBtn, 'click', () => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', () => { // DOM готов к взаимодейтсвию
 
   const onScrollHeader = () => { // объявляем основную функцию onScrollHeader

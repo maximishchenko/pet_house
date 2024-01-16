@@ -4,7 +4,7 @@
     grid-template-columns: 1fr 24rem;
     gap: var(--size-l);
   }
-
+  
   &__list {
     overflow: hidden;
   }
@@ -17,6 +17,10 @@
 
   &__val {
     color: var(--color-brand);
+  }
+
+  &__wrapper--dis {
+    display: block;
   }
 }
 
@@ -348,6 +352,10 @@
   .cart {
     &__wrapper {
       grid-template-columns: 1fr;
+
+      .add-accessories {
+        display: none;
+      }
     }
   }
 

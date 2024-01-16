@@ -474,6 +474,10 @@
 
 // Аксуссуары
 .add-accessories {
+  h2 {
+    margin-bottom: 1rem;
+  }
+
   &__swiper {
     .swiper-slide {
       width: 18rem;
@@ -694,7 +698,6 @@
   }
 
   .product__bage-wrapper {
-    position: absolute;
     top: var(--size-xs);
     left: var(--size-xs);
     z-index: 9;

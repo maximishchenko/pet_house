@@ -89,8 +89,11 @@ use yii\widgets\ActiveForm;
     <?= Yii::t('app', 'Chat'); ?>
   </button>
   <a class="mob-bar__el" href="<?= Url::toRoute('/cart'); ?>">
-    <svg class="mob-bar__icon">
-      <use xlink:href="/img/sprite.svg#bag"></use>
+
+    <svg class="mob-bar__cart-icon <?= (Cart::getTotalCount() > 0) ? 'mob-bar__cart-icon--active' : ''; ?>" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="mob-bar__cart-icon-fill" d="M3.93366 7.92875C3.97104 7.40545 4.40648 7 4.93112 7H19.0689C19.5935 7 20.029 7.40545 20.0663 7.92875L20.9235 19.9288C20.9648 20.5076 20.5064 21 19.926 21H4.07398C3.49363 21 3.03517 20.5076 3.07652 19.9288L3.93366 7.92875Z" stroke-linejoin="round" />
+      <path d="M8 11V6.21053C8 3.88512 9.79086 2 12 2C14.2091 2 16 3.88512 16 6.21053V11" stroke-linecap="round" stroke-linejoin="round" />
+      <span class="mob-bar__cart-counter"><?= (Cart::getTotalCount() > 0) ? Cart::getTotalCount() : ""; ?></span>
     </svg>
     <?= Yii::t('app', 'Cart'); ?>
   </a>
@@ -130,7 +133,7 @@ use yii\widgets\ActiveForm;
       </a> -->
     </div>
 
-   <!--  <section class="pop-categories mt-xl mb-m">
+    <!--  <section class="pop-categories mt-xl mb-m">
       <div class="container">
         <h2 class="section-headline centered">Популярные категории</h2>
       </div>
@@ -193,22 +196,22 @@ use yii\widgets\ActiveForm;
     <div class="graph-modal__content graph-modal__content-personal">
 
       <!-- <form class="order-form personal-form" action="/" method="post"> -->
-        <!-- <input type="hidden" name="_csrf-frontend" value="cUcekswBtHKOpsooMQ2qlglwEfPjkvr9dv9kpmJAuhwBCnDBu1LlC7_0-gV6Wuf-fwMku6nhv64Uiyn1BAeXfg=="> -->
-        
-        <?php $order = new Order(); ?>
-        <?php $form = ActiveForm::begin([
-            'id' => 'personal-order-form',
-            'action' => ['/cart/default/order'],
-            'method' => 'post',
-            'options' => [
-                'class' => 'order-form personal-form',
-                'autocomplete' => 'off',
-            ],
-        ]); ?>        
-        
-        <h3 class="order-form__title">Персональный заказ</h3>
+      <!-- <input type="hidden" name="_csrf-frontend" value="cUcekswBtHKOpsooMQ2qlglwEfPjkvr9dv9kpmJAuhwBCnDBu1LlC7_0-gV6Wuf-fwMku6nhv64Uiyn1BAeXfg=="> -->
 
-        <!-- <input class="order-form__inp input-reset" type="name" placeholder="Ф.И.О.*">
+      <?php $order = new Order(); ?>
+      <?php $form = ActiveForm::begin([
+        'id' => 'personal-order-form',
+        'action' => ['/cart/default/order'],
+        'method' => 'post',
+        'options' => [
+          'class' => 'order-form personal-form',
+          'autocomplete' => 'off',
+        ],
+      ]); ?>
+
+      <h3 class="order-form__title">Персональный заказ</h3>
+
+      <!-- <input class="order-form__inp input-reset" type="name" placeholder="Ф.И.О.*">
 
         <input class="order-form__inp input-reset" type="tel" placeholder="Телефон*">
 
@@ -216,25 +219,25 @@ use yii\widgets\ActiveForm;
 
         <textarea class="order-form__inp input-reset" name="coment" id="" cols="20" rows="7" placeholder="Комментарий"></textarea> -->
 
-        <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => "Ф.И.О.*"]); ?>
+      <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => "Ф.И.О.*"]); ?>
 
-        <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*"]); ?>
+      <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*"]); ?>
 
-        <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => "Почта"]); ?>
+      <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => "Почта"]); ?>
 
-        <?= $form->field($order, 'comment', ['template' => '{input}'])->textarea(['cols' => 20, 'rows' => 7, 'class' => "order-form__inp input-reset", 'placeholder' => "Комментарий"]) ?>
+      <?= $form->field($order, 'comment', ['template' => '{input}'])->textarea(['cols' => 20, 'rows' => 7, 'class' => "order-form__inp input-reset", 'placeholder' => "Комментарий"]) ?>
 
-        <!-- <input class="personal-file-inp" type="file" multiple="multiple"> -->
-        <?= $form->field($order, 'imagesFiles[]', ['template' => '{input}'])->fileInput(['multiple' => true, "class" => "personal-file-inp"]) ?>
+      <!-- <input class="personal-file-inp" type="file" multiple="multiple"> -->
+      <?= $form->field($order, 'imagesFiles[]', ['template' => '{input}'])->fileInput(['multiple' => true, "class" => "personal-file-inp"]) ?>
 
-        <p class="order-form__politics">
-          Нажимая на кнопку «Оформить заказ», вы соглашаетесь с <a class="order-form__link" href="/privacy">Политикой конфиденциальности</a> 
-        </p>
-        
-          <!-- <button type="submit" class="order-form__send btn-a btn-reset">Оформить заказ</button> -->
-        <?= Html::submitButton("Оформить заказ", ['class' => "order-form__send btn-a btn-reset"]); ?>
+      <p class="order-form__politics">
+        Нажимая на кнопку «Оформить заказ», вы соглашаетесь с <a class="order-form__link" href="/privacy">Политикой конфиденциальности</a>
+      </p>
 
-        <?php ActiveForm::end(); ?>
+      <!-- <button type="submit" class="order-form__send btn-a btn-reset">Оформить заказ</button> -->
+      <?= Html::submitButton("Оформить заказ", ['class' => "order-form__send btn-a btn-reset"]); ?>
+
+      <?php ActiveForm::end(); ?>
       <!-- </form> -->
 
     </div>

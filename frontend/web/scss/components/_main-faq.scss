@@ -23,7 +23,7 @@
 
     p {
       margin: 0 0 var(--size-n) 0;
-
+      line-height: 140%;
     }
   }
 
@@ -36,11 +36,11 @@
     padding: var(--size-n);
 
     @include hover {
-  /*     .main-faq__headline {
+      /*     .main-faq__headline {
         color: var(--color-brand);
       } */
 
-    /*   .main-faq__icon {
+      /*   .main-faq__icon {
         stroke: var(--color-brand);
       } */
 
@@ -86,8 +86,8 @@
     }
 
     &__icon {
-      height: 3.5rem;
-      width: 3.5rem;
+      height: 2rem;
+      width: 2rem;
     }
 
     .main-faq__btn {

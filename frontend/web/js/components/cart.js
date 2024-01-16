@@ -15,9 +15,11 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
 
     class HeaderBag {
 
-        constructor(bagSelector, bagValueSelector) {
+        constructor(bagSelector, bagValueSelector, mobBagSelector, mobBagValueSelector) {
             this.bagSelector = document.querySelector(bagSelector);
             this.bagValueSelector = document.querySelector(bagValueSelector);
+            this.mobBagSelector = document.querySelector(mobBagSelector);
+            this.mobBagValueSelector = document.querySelector(mobBagValueSelector);
         }
 
         #getVal() {
@@ -26,9 +28,13 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
 
         #setVal(val) {
             this.bagValueSelector.textContent = val;
+            this.mobBagValueSelector.textContent = val;
 
             if (!this.bagSelector.classList.contains('.bag-icon--acrive')) {
                 this.bagSelector.classList.add('bag-icon--acrive');
+            }
+            if (!this.mobBagSelector.classList.contains('.mob-bar__cart-icon--active')) {
+                this.mobBagSelector.classList.add('mob-bar__cart-icon--active');
             }
 
         }
@@ -46,13 +52,15 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
             if (this.#getVal() == 0) {
                 this.bagSelector.classList.remove('bag-icon--acrive');
                 this.bagValueSelector.textContent = '';
+                this.mobBagSelector.classList.remove('mob-bar__cart-icon--active');
+                this.mobBagValueSelector.textContent = '';
             }
 
         }
 
     }
 
-    const headerBag = new HeaderBag('.header__bag', '.cart-val');
+    const headerBag = new HeaderBag('.header__bag', '.cart-val', '.mob-bar__cart-icon', '.mob-bar__cart-counter');
 
     async function cartCounter(id, countSelector, price, controller, totalPrice, totalCount) {
         let counterVal = Number(countSelector.textContent);
@@ -268,9 +276,9 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
                 headers: fetchHeaders
             });
             const data = await res.json();
-            
+
             location.reload();
-            
+
 
         }
 

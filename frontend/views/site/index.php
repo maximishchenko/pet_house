@@ -14,7 +14,18 @@ use yii\helpers\Url;
                 <?php foreach ($sliders as $slider) : ?>
                     <?php if (isset($slider->video) && !empty($slider->video)) : ?>
                         <div class="swiper-slide hero-swiper-slide">
-                            <!-- hero__slide hero__slide-des -->
+                            <div class="hero-bage">
+                                <div class="hero-bage__wrapper">
+                                    <div class="hero-bage__inner">
+                                        <button class="hero-bage__btn btn-reset">Реклама</button>
+                                        <div class="hero-bage__content">
+                                            <ul class="hero-bage__list list-reset">
+                                                <?= Yii::$app->configManager->getItemValue('contactRequisites'); ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="hero__slide hero__slide-des" style="padding-bottom: 1px; padding-left: 1px;">
                                 <div class="hero__content">
                                     <div class="hero__headline-wrapper">
@@ -28,11 +39,13 @@ use yii\helpers\Url;
                                     </div>
                                 </div>
 
-                                <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay muted loop></video>
-                                <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay muted loop></video>
-
+                                <div class="hero__video-wrapper">
+                                    <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline=""></video>
+                                    <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline=""></video>
+                                </div>
                             </div>
-                            <span class="hero-bage">
+
+                            <!--                      <span class="hero-bage">
                                 <button class="hero-bage__title btn-reset">
                                     <svg width="24" height="24" class="hero-bage__title-ic" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.50009C7.30521 3.50009 3.5 7.30531 3.5 12.0001C3.5 16.6939 7.30527 20.5001 12 20.5001C16.6938 20.5001 20.5 16.6939 20.5 12.0001C20.5 7.30536 16.6938 3.50009 12 3.50009ZM2 12.0001C2 6.47688 6.47679 2.00009 12 2.00009C17.5222 2.00009 22 6.47682 22 12.0001C22 17.5223 17.5222 22.0001 12 22.0001C6.47673 22.0001 2 17.5223 2 12.0001Z" />
@@ -43,10 +56,10 @@ use yii\helpers\Url;
                                 </button>
                                 <div class="hero-bage__desc">
                                     <ul class="list-reset">
-                                        <?= Yii::$app->configManager->getItemValue('contactRequisites'); ?>
+                                      
                                     </ul>
                                 </div>
-                            </span>
+                            </span> -->
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -250,9 +263,9 @@ use yii\helpers\Url;
                     <?php foreach ($reviews as $review) : ?>
 
                         <div class="meadia-reviews__el" data-aos-offset="-500" data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="top-bottom">
-                            <p class="meadia-reviews__text">
+                            <div class="meadia-reviews__text">
                                 <?= $review->text; ?>
-                            </p>
+                            </div>
                             <div class="meadia-reviews__row">
                                 <div class="meadia-reviews__photo" style="background-image: url(<?= '/' . Review::UPLOAD_PATH . $review->avatar; ?>);"></div>
                                 <div class="meadia-reviews__autor">

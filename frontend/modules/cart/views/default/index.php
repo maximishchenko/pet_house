@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </h1>
         </div>
 
-        <div class="cart__wrapper"> <!-- TODO Пустая корзина -->
+        <div class="cart__wrapper <?= (Cart::getTotalCount() > 0) ? '' : 'cart__wrapper--dis'; ?>"> <!-- TODO Пустая корзина -->
             <div class="cart__list">
 
 
@@ -49,9 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </span>
                         </div>
                     </div>
-                
-                <?php else: ?>
-                  
+
+                <?php else : ?>
+
                     <div class="s-cart__el-empty">
                         <div class="s-cart__el-empty__iner">
                             <span>
@@ -70,7 +70,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $this->render('//layouts/_item_slider', ['products' => $products]); ?>
 
                 <!-- Форма оформления заказа -->
-                <?= $this->render('_cart_order_form', ['order' => $order]); ?>
+                <?php if (Cart::getTotalCount() > 0) : ?>
+                    <?= $this->render('_cart_order_form', ['order' => $order]); ?>
+                <?php endif; ?>
             </div>
         </div>
 </section>

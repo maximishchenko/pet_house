@@ -235,17 +235,28 @@
   flex-direction: column;
 }
 
+.requisites-open-btn {
+  color: var(--color-dark);
+}
 
 @include small-tablet {
+  .instagram-desk {
+    text-align: left;
+  }
+
   .footer {
     padding-bottom: var(--size-xxl);
+
+    &__list-links {
+      grid-template-columns: 1fr;
+    }
 
     &__border {
       grid-template-columns: 1fr;
     }
 
     &__phone {
-      font-size: 2.45rem;
+      font-size: 2.2rem;
     }
 
     &__up {
@@ -270,7 +281,18 @@
     &__row-links {
       grid-template-columns: 1fr;
     }
+
+    &__fin {
+      flex-direction: column-reverse;
+
+      a,
+      button {
+        margin-bottom: 1rem;
+      }
+    }
   }
+
+
 
   .social {
     margin-top: var(--size-n);

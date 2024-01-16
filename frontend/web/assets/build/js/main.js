@@ -254,10 +254,13 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
   window.addEventListener('resize', sideBarController);
 
   // Показать/скрыт
+
   document.querySelectorAll('.calc-el__btn-control').forEach(el => {
-    el.addEventListener('click', () => {
-      el.parentNode.classList.toggle('calc-el--active');
-    });
+    if (!el.classList.contains('calc-el__btn-control--dis')) {
+      el.addEventListener('click', () => {
+        el.parentNode.classList.toggle('calc-el--active');
+      });
+    }
   });
   class ProductCalculator {
     #totalPrice;
@@ -352,6 +355,9 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
   const calcSelects = document.querySelectorAll('.calc-el__list-item');
   calcSelects.forEach(el => {
     el.addEventListener('click', () => {
+      document.querySelectorAll('.calc-el--active').forEach(el => {
+        el.classList.remove('calc-el--active');
+      });
       let selectSection = el.parentNode;
       let activeSelect = selectSection.querySelector('.calc-el__list-item--active');
       let activeSelectPrice = activeSelect.getAttribute('data-price');
@@ -501,17 +507,23 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
     });
   }
   class HeaderBag {
-    constructor(bagSelector, bagValueSelector) {
+    constructor(bagSelector, bagValueSelector, mobBagSelector, mobBagValueSelector) {
       this.bagSelector = document.querySelector(bagSelector);
       this.bagValueSelector = document.querySelector(bagValueSelector);
+      this.mobBagSelector = document.querySelector(mobBagSelector);
+      this.mobBagValueSelector = document.querySelector(mobBagValueSelector);
     }
     #getVal() {
       return Number(this.bagValueSelector.textContent);
     }
     #setVal(val) {
       this.bagValueSelector.textContent = val;
+      this.mobBagValueSelector.textContent = val;
       if (!this.bagSelector.classList.contains('.bag-icon--acrive')) {
         this.bagSelector.classList.add('bag-icon--acrive');
+      }
+      if (!this.mobBagSelector.classList.contains('.mob-bar__cart-icon--active')) {
+        this.mobBagSelector.classList.add('mob-bar__cart-icon--active');
       }
     }
     plus() {
@@ -524,10 +536,12 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
       if (this.#getVal() == 0) {
         this.bagSelector.classList.remove('bag-icon--acrive');
         this.bagValueSelector.textContent = '';
+        this.mobBagSelector.classList.remove('mob-bar__cart-icon--active');
+        this.mobBagValueSelector.textContent = '';
       }
     }
   }
-  const headerBag = new HeaderBag('.header__bag', '.cart-val');
+  const headerBag = new HeaderBag('.header__bag', '.cart-val', '.mob-bar__cart-icon', '.mob-bar__cart-counter');
   async function cartCounter(id, countSelector, price, controller, totalPrice, totalCount) {
     let counterVal = Number(countSelector.textContent);
     let priceVal = Number(price.textContent.replace(/\D/g, ''));
@@ -928,8 +942,7 @@ if (document.querySelector('.tiker') != null) {
     container: '.tiker--f',
     wrapper: '.tiker__wrapper--f',
     itemSelector: '.tiker__item--f',
-    speed: 50,
-    reversed: true
+    speed: 50
   });
   const reellerS = new reeller__WEBPACK_IMPORTED_MODULE_0__["default"]({
     container: '.tiker--s',

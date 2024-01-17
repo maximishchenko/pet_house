@@ -168,11 +168,11 @@ h5 {
 .dis-scroll {
   /*   position: fixed; */
   /*   left: 0;
-    top: 0; */
+  top: 0; */
   overflow: hidden;
   /*   width: 100%;
-    height: 100vh;
-    overscroll-behavior: none; */
+  height: 100vh;
+  overscroll-behavior: none; */
 }
 
 .page--ios .dis-scroll {
@@ -198,6 +198,10 @@ h5 {
 
 .gutter-sizer {
   width: 1.3%;
+}
+
+.button_e969 {
+  display: none !important;
 }
 
 .jdiv-message {
@@ -3411,6 +3415,10 @@ h5 {
   border-radius: var(--size-xs) 0 var(--size-xs) var(--size-xs);
 }
 
+.just-validate-error-field {
+  border: #ff4040 solid 2px !important;
+}
+
 .graph-modal-personal .order-form__inp {
   background: var(--color-gray);
 }
@@ -3446,6 +3454,30 @@ h5 {
 .s-cart__el-empty span {
   font-weight: 700;
   font-size: 1.5rem;
+}
+
+.just-validate-error-label {
+  text-align: center;
+  position: relative;
+  background: #ff4040;
+  color: var(--color-light) !important;
+  border-radius: 10rem;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 0.8rem;
+}
+.just-validate-error-label::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -5px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #ff4040;
 }
 
 @media (max-width: 768px) {

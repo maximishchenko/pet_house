@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 <?php $form = ActiveForm::begin([
     'id' => 'order-form',
     'action' => ['order'],
+    'class' => 'order-form',
     'method' => 'post',
     'options' => [
         'class' => (Cart::getTotalCount() > 0) ? 'order-form order-form--cart' : 'order-form order-form--cart order-form--dis',
@@ -22,7 +23,7 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Name')]); ?>
 
-<?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Phone')]); ?>
+<?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset phone-valid", 'placeholder' => Yii::t('app', 'Order Phone')]); ?>
 
 <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Email')]); ?>
 

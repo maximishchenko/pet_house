@@ -560,8 +560,8 @@ h5 {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background: #fddcc0;
   border-radius: var(--size-s);
+  border: 1px solid var(--color-border);
   color: var(--color-dark);
   text-align: center;
 }

@@ -114,11 +114,11 @@ use yii\widgets\ActiveForm;
 
     <div class="mob-catalog__inner">
       <a class="mob-catalog__link" href="<?= Url::toRoute('/chinchilles'); ?>">
-        <span class="mob-catalog__img" style="background-image: url('img/ic_ch.svg');"></span>
+        <span class="mob-catalog__img" style="background-image: url('/img/ic_ch.svg');"></span>
         <?= Yii::t('app', "Menu Item Rodent"); ?>
       </a>
       <a class="mob-catalog__link" href="<?= Url::toRoute('/dogs'); ?>">
-        <span class="mob-catalog__img" style="background-image: url('img/ic_d.svg');"></span>
+        <span class="mob-catalog__img" style="background-image: url('/img/ic_d.svg');"></span>
         <?= Yii::t('app', "Menu Item Dog"); ?>
       </a>
       <!-- <a class="mob-catalog__link" href="#">

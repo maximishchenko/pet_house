@@ -1119,7 +1119,7 @@ h5 {
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: start;
-    padding: 6rem 0 0 0;
+    padding: 4rem 0 0 0;
   }
   .hero__slide {
     -webkit-box-sizing: border-box;
@@ -1132,6 +1132,8 @@ h5 {
     display: block;
   }
   .hero-bage {
+    top: auto;
+    bottom: 1rem;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;

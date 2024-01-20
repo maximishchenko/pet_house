@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </h1>
         </div>
 
+        <div class="cart__wrapper <?= (Cart::getTotalCount() > 0) ? '' : 'cart__wrapper--dis'; ?>"> <!-- TODO Пустая корзина -->
             <div class="cart__list">
 
 

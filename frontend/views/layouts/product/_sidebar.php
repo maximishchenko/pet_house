@@ -78,7 +78,8 @@ use backend\modules\catalog\models\root\Property;
                 </div>
 
                 <!-- Размеры -->
-                <div class="calc-el calc-el--active">
+                <div class="calc-el <?= !$model->is_available ? 'calc-el--active' : ''; ?>">
+                  <button class="calc-el__btn-control btn-reset <?= $model->is_available ? 'calc-el__btn-control--dis' : ''; ?>" type="button"> <!-- TODO Класс для блокировки -->
                     <span class="calc-el__btn-wrapper">
                       <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" data-constructor-size-height="<?= $model->size->height; ?>" data-constructor-size-width="<?= $model->size->width; ?>" data-constructor-size-depth="<?= $model->size->depth; ?>" data-constructor-size-height-price="<?= $model->size->height_price; ?>" data-constructor-size-width-price="<?= $model->size->width_price; ?>" data-constructor-size-depth-price="<?= $model->size->depth_price; ?>" style="background-image: url('/img/size.jpg');">
                       </span>
@@ -122,7 +123,7 @@ use backend\modules\catalog\models\root\Property;
                   <div class="calc-el">
                     <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
                       <span class="calc-el__btn-wrapper">
-                        <span class="calc-el__btn-preview calc-el__btn-preview--wall" id="calc-walls-img" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/color.jpg');"></span>
+                        <span class="calc-el__btn-preview calc-el__btn-preview--wall" id="calc-walls-img" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/st.svg');"></span>
                         <span class="calc-el__btn-text">
                           <span class="calc-el__btn-title"><?= Yii::t('app', 'Base material'); ?></span>
                           <span class="calc-el__btn-val" id="calc-walls-title" data-constructor-wall-name>

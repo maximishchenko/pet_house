@@ -61,7 +61,7 @@ use yii\helpers\Url;
           Оформитиь заказ
         </a>
 
-        <div class="add-accessories mt-xxl">
+        <div class="add-accessories mt-xxl"> 
           <h2 class="">С этим товаром покупают</h2>
           <div class="swiper add-accessories__swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">

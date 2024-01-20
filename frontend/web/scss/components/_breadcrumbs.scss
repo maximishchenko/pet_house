@@ -24,3 +24,10 @@
     color: var(--color-dark-80);
   }
 }
+
+@include small-tablet {
+  .breadcrumbs {
+    margin-top: 1rem;
+  }
+
+}

@@ -43,7 +43,12 @@
     "gsap": "^3.12.2",
     "gulp-rename": "^2.0.0",
     "hc-sticky": "^2.2.7",
+<<<<<<< HEAD
     "js-cookie": "^3.0.5",
+=======
+    "inputmask": "^5.0.8",
+    "just-validate": "^4.3.0",
+>>>>>>> e947887f5e620c4c1e538d47619dd90d9db4f99f
     "nouislider": "^15.7.1",
     "reeller": "^0.0.4",
     "simplebar": "^6.2.5",

@@ -32,10 +32,13 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
     window.addEventListener('resize', sideBarController);
 
     // Показать/скрыт
+
     document.querySelectorAll('.calc-el__btn-control').forEach(el => {
-        el.addEventListener('click', () => {
-            el.parentNode.classList.toggle('calc-el--active');
-        });
+        if (!el.classList.contains('calc-el__btn-control--dis')) {
+            el.addEventListener('click', () => {
+                el.parentNode.classList.toggle('calc-el--active');
+            });
+        }
     });
 
 
@@ -153,6 +156,10 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
     calcSelects.forEach(el => {
 
         el.addEventListener('click', () => {
+
+            document.querySelectorAll('.calc-el--active').forEach(el => {
+                el.classList.remove('calc-el--active');
+            });
 
             let selectSection = el.parentNode;
             let activeSelect = selectSection.querySelector('.calc-el__list-item--active');

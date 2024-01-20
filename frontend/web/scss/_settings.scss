@@ -102,11 +102,11 @@ h5 {
 }
 
 .dis-scroll {
-/*   position: fixed; */
-/*   left: 0;
+  /*   position: fixed; */
+  /*   left: 0;
   top: 0; */
   overflow: hidden;
-/*   width: 100%;
+  /*   width: 100%;
   height: 100vh;
   overscroll-behavior: none; */
 }
@@ -137,4 +137,8 @@ h5 {
 
 .gutter-sizer {
   width: 1.3%;
+}
+
+.button_e969 {
+  display: none !important;
 }

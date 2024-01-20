@@ -175,6 +175,10 @@
     padding: var(--size-n);
     color: var(--color-light);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
   }
 
   &__text {

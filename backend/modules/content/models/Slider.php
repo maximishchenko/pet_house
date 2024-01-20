@@ -76,7 +76,7 @@ class Slider extends \yii\db\ActiveRecord
             [['description', 'comment'], 'string'],
             [['sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'url', 'video', 'image', 'text_color', 'button_text_color', 'button_bg_color', 'video_mobile', 'image_mobile'], 'string', 'max' => 255],
-            [['url'], 'url'],
+           /*  [['url'], 'url'], */
 
             ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],

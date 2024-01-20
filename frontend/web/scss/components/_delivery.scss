@@ -36,3 +36,11 @@
         }
     }
 }
+
+@include small-tablet {
+    .delivery{
+        &__wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+}

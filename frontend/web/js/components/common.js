@@ -39,7 +39,6 @@ setListener(burgerBtn, 'click', () => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', () => { // DOM готов к взаимодейтсвию
 
   const onScrollHeader = () => { // объявляем основную функцию onScrollHeader
@@ -98,7 +97,6 @@ if (document.querySelector('.tiker') != null) {
     wrapper: '.tiker__wrapper--s',
     itemSelector: '.tiker__item--s',
     speed: 50,
-    reversed: true,
   });
 }
 

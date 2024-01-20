@@ -130,7 +130,7 @@ use yii\helpers\Url;
     </div>
     <div class="footer__fin">
       <span>© <?= Yii::$app->configManager->getItemValue('companyStartYear'); ?> – <?= date('Y'); ?> домпитомца.рф</span>
-      <button class="btn-reset requisites-open-btn">Реквизиты</button>
+     
       <a href="<?= Url::toRoute('/privacy'); ?>">Политика конфидециальности</a>
     </div>
   </div>

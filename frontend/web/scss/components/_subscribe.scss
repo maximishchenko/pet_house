@@ -76,6 +76,7 @@
 
 @include small-tablet {
   .subscription {
+    margin-top: 0;
     &__wrapper {
       grid-template-columns: 1fr;
     }

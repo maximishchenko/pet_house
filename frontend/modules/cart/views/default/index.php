@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </h1>
         </div>
 
-        <div class="cart__wrapper"> <!-- TODO Пустая корзина -->
             <div class="cart__list">
 
 

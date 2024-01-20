@@ -140,7 +140,6 @@ use yii\bootstrap4\ActiveForm;
                 <?php endif; ?>
             </div>
             <div class="col-md-6">
-                <!-- TODO перенести drag-n-drop сортировку в клетки -->
                 <?= $form->field($model, 'imagesFiles[]', ['template' => '{label}<br/> {input} {error}'])->fileInput(['multiple' => true]) ?>
                 <?php if(isset($model->productImages) && !empty($model->productImages)):?>
                 <ul style="margin: 0; padding: 0;">

@@ -156,7 +156,7 @@ use yii\helpers\Url;
   <div class="sidebar-bottom__bg"></div>
 </div>
 
-<div class="cookie-modal cookie_notice" style="display: flex;">
+<div class="cookie-modal cookie_notice cookie-modal--hide" style="display: flex;">
   <span class="cookie-modal__desc">Продолжая использовать наш сайт, вы даете согласие
     <a href="<?= Url::toRoute('/privacy'); ?>" class="cookie-modal__link">на обработку файлов cookie</a>,
     которые обеспечивают правильную работу сайта.</span>

@@ -44,7 +44,7 @@ class Product extends backendProduct
 
     public function isAvailableActive()
     {
-        return (isset(Yii::$app->request->queryParams['is_available']) && Yii::$app->request->queryParams['is_available'] == 1) ? 'disabled' : null;
+        return (isset(Yii::$app->request->queryParams['is_available']) && Yii::$app->request->queryParams['is_available'] == 1) ? 'catalog-bar__btn--disable' : null;
     }
 
     public function isAvailableChecked()
@@ -55,7 +55,7 @@ class Product extends backendProduct
     public function isCategoryActive($id)
     {
         $queryParams = Yii::$app->request->queryParams;
-        return (isset($queryParams['category_id']) && in_array($id, $queryParams['category_id'])) ? 'disabled' : null;
+        return (isset($queryParams['category_id']) && in_array($id, $queryParams['category_id'])) ? 'catalog-bar__btn--disable' : null;
     }
 
     /**

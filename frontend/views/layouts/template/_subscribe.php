@@ -7,13 +7,13 @@
           в социальных и станьте частью нашей большой
           и дружной семьи!</p>
         <div class="subscription__btn-wrap">
-          <a href="#" class="btn-b subscription__btn">
+          <a href="<?= Yii::$app->configManager->getItemValue('contactVk'); ?>" class="btn-b subscription__btn">
             <svg>
               <use xlink:href="/img/sprite.svg#vk"></use>
             </svg>
             ВКонтакте
           </a>
-          <a href="#" class="btn-b subscription__btn">
+          <a href="<?= Yii::$app->configManager->getItemValue('contactInstagram'); ?>" class="btn-b subscription__btn">
             <svg>
               <use xlink:href="/img/sprite.svg#in"></use>
             </svg>

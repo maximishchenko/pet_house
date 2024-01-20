@@ -158,7 +158,6 @@ use yii\widgets\ActiveForm;
       </ul>
     </fieldset>
   <?php endif; ?>
-  <!-- TODO Инпут для сортировки-->
   <input type="text" class="sort-inp visually-hidden" name="order" value="nameSort">
   <div class="catalog-sidebar__controls">
     <button type="submimt" id="catalog__searh-btn" class="catalog-sidebar__btn btn-reset btn-b" type="button">

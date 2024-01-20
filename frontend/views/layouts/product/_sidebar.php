@@ -67,7 +67,6 @@ use backend\modules\catalog\models\root\Property;
                     <div class="calc-el__list calc-el__list--color">
                       <?php foreach ($model->getColorItems() as $color) : ?>
                         <span class="calc-el__list-item color-item <?= ($model->color_id == $color->id) ? "calc-el__list-item--active" : ""; ?>" style="background-image: url(/uploads/property/<?= $color->image; ?>);" data-price="<?= $color->price; ?>" data-color-id="<?= $color->id; ?>" data-color-name="<?= $color->name ?>" data-color-image="<?= "/" . Property::UPLOAD_PATH . "/" . $color->image; ?>">
-                          <!-- TODO calc-el__list-item--active добавить класс для выбранных элементов -->
                           <span class="calc-el__list-item-ineer">
                             <span style="color: <?= $color->text_color; ?>;"><?= $color->name; ?></span>
                             <span style="color: <?= $color->text_color; ?>;">+ <?= $color->price; ?></span>
@@ -80,7 +79,6 @@ use backend\modules\catalog\models\root\Property;
 
                 <!-- Размеры -->
                 <div class="calc-el calc-el--active">
-                  <button class="calc-el__btn-control btn-reset" type="button"> <!-- TODO Класс для блокировки -->
                     <span class="calc-el__btn-wrapper">
                       <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" data-constructor-size-height="<?= $model->size->height; ?>" data-constructor-size-width="<?= $model->size->width; ?>" data-constructor-size-depth="<?= $model->size->depth; ?>" data-constructor-size-height-price="<?= $model->size->height_price; ?>" data-constructor-size-width-price="<?= $model->size->width_price; ?>" data-constructor-size-depth-price="<?= $model->size->depth_price; ?>" style="background-image: url('/img/size.jpg');">
                       </span>

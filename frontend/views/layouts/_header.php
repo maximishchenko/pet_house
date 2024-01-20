@@ -37,7 +37,6 @@ use yii\widgets\ActiveForm;
           <?= $settings->getItemValue('contactPhone'); ?>
         </a>
       <?php endif; ?>
-      <!-- TODO Менять класс "bag-icon--acrive" -->
       <a href="<?= Url::toRoute("/cart") ?>" class="header__bag bag-icon <?= (Cart::getTotalCount() > 0) ? 'bag-icon--acrive' : ''; ?>">
         <span class="cart-val">
           <?= (Cart::getTotalCount() > 0) ? Cart::getTotalCount() : ""; ?>

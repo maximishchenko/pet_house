@@ -14,6 +14,7 @@ use common\models\Status;
 use yii\web\Controller;
 use frontend\models\Sections;
 use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\ReviewSearch;
 use Yii;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
@@ -101,6 +102,22 @@ class DefaultController extends Controller
         $model = $this->findModel($slug);
         $reviews = Review::find()->where(['status' => Status::STATUS_ACTIVE, 'is_favorite' => false])->all();
 
+        
+        $reviewsSearchModel = new ReviewSearch();
+        $reviewsDataProvider = $reviewsSearchModel->search($this->request->queryParams);
+        
+        if (Yii::$app->request->isAjax) {
+            $reviewsDataProvider->prepare();
+            \Yii::$app->response->format = Response::FORMAT_HTML;   
+            $response = [
+                'totalCount' => $reviewsDataProvider->getTotalCount(), 
+                'pagesCount' => $reviewsDataProvider->pagination->pageCount,
+                'content' => $this->renderPartial('//layouts/product/_reviewLoopAjax', ['reviewsDataProvider' => $reviewsDataProvider])
+            ];
+            return Json::encode($response);
+            Yii::$app->end();
+        }
+
         $questions = Question::find()
                     ->where([
                         'status' => Status::STATUS_ACTIVE,
@@ -123,6 +140,8 @@ class DefaultController extends Controller
             'sections' => $sections,
             'accessories' => $accessories,
             'reviews' => $reviews,
+            'reviewsSearchModel' => $reviewsSearchModel,
+            'reviewsDataProvider' => $reviewsDataProvider,
         ]);
     }
 

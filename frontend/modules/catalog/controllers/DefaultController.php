@@ -30,47 +30,8 @@ class DefaultController extends Controller
         $sections = new Sections();
         $queryParams = $this->request->queryParams;
         $productType = $sections->setType();
-
-        $categories = Category::find()
-                        ->where([
-                            'status' => Status::STATUS_ACTIVE,
-                            'property_type' => $sections->setType(), 
-                            'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
-                            'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY
-                        ])
-                        ->all();
-
-        $groups = Category::find()
-                        ->where([
-                            'status' => Status::STATUS_ACTIVE,
-                            'property_type' => $sections->setType(), 
-                            'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
-                            'group_type' => GroupTypeItems::GROUP_TYPE_GROUP
-                        ])
-                        ->all();
-
-        $types = Property::find()
-                    ->where([
-                        'status' => Status::STATUS_ACTIVE, 
-                        'property_type' => $sections->setType(), 
-                        'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE
-                    ])
-                    ->all();
-
-        $heights = Property::find()
-                    ->select(['height_value', 'id'])
-                    ->where([
-                        'status' => Status::STATUS_ACTIVE, 
-                        'property_type' => $sections->setType(), 
-                        'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE
-                    ])
-                    ->groupBy(['height_value'])
-                    ->all();
-
         $searchModel = new Product();
         $dataProvider = $searchModel->search($queryParams, $productType, ProductItemType::PRODUCT_TYPE_PRODUCT);
-
-
 
         if (Yii::$app->request->isAjax) {
             $dataProvider->prepare();
@@ -83,6 +44,43 @@ class DefaultController extends Controller
             return Json::encode($response);
             Yii::$app->end();
         } else {
+
+            $categories = Category::find()
+                            ->where([
+                                'status' => Status::STATUS_ACTIVE,
+                                'property_type' => $sections->setType(), 
+                                'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                                'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY
+                            ])
+                            ->all();
+    
+            $groups = Category::find()
+                            ->where([
+                                'status' => Status::STATUS_ACTIVE,
+                                'property_type' => $sections->setType(), 
+                                'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                                'group_type' => GroupTypeItems::GROUP_TYPE_GROUP
+                            ])
+                            ->all();
+    
+            $types = Property::find()
+                        ->where([
+                            'status' => Status::STATUS_ACTIVE, 
+                            'property_type' => $sections->setType(), 
+                            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE
+                        ])
+                        ->all();
+    
+            $heights = Property::find()
+                        ->select(['height_value', 'id'])
+                        ->where([
+                            'status' => Status::STATUS_ACTIVE, 
+                            'property_type' => $sections->setType(), 
+                            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE
+                        ])
+                        ->groupBy(['height_value'])
+                        ->all();
+    
             return $this->render('index', [
                 'sections' => $sections,
                 'searchModel' => $searchModel,
@@ -98,10 +96,9 @@ class DefaultController extends Controller
 
     public function actionView($slug)
     {
-        $sections = new Sections();
-        $model = $this->findModel($slug);
-        $reviews = Review::find()->where(['status' => Status::STATUS_ACTIVE, 'is_favorite' => false])->all();
+        // $reviews = Review::find()->where(['status' => Status::STATUS_ACTIVE, 'is_favorite' => false])->all();
 
+        $this->processPageRequest('page');
         
         $reviewsSearchModel = new ReviewSearch();
         $reviewsDataProvider = $reviewsSearchModel->search($this->request->queryParams);
@@ -116,33 +113,37 @@ class DefaultController extends Controller
             ];
             return Json::encode($response);
             Yii::$app->end();
+        } else {
+
+            $sections = new Sections();
+            $model = $this->findModel($slug);
+
+            $questions = Question::find()
+                        ->where([
+                            'status' => Status::STATUS_ACTIVE,
+                            'position' => Question::POSITION_CARD
+                        ])
+                        ->orderBy(['sort' => SORT_ASC])
+                        ->all();
+    
+            $accessories = RootProduct::find()
+                        ->where([
+                            'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
+                            'product_type' => $model->product_type
+                        ])
+                        ->orderBy(['sort' => SORT_DESC])
+                        ->all();
+    
+            return $this->render('product', [
+                'model' => $model,
+                'questions' => $questions,
+                'sections' => $sections,
+                'accessories' => $accessories,
+                // 'reviews' => $reviews,
+                'reviewsSearchModel' => $reviewsSearchModel,
+                'reviewsDataProvider' => $reviewsDataProvider,
+            ]);
         }
-
-        $questions = Question::find()
-                    ->where([
-                        'status' => Status::STATUS_ACTIVE,
-                        'position' => Question::POSITION_CARD
-                    ])
-                    ->orderBy(['sort' => SORT_ASC])
-                    ->all();
-
-        $accessories = RootProduct::find()
-                    ->where([
-                        'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
-                        'product_type' => $model->product_type
-                    ])
-                    ->orderBy(['sort' => SORT_DESC])
-                    ->all();
-
-        return $this->render('product', [
-            'model' => $model,
-            'questions' => $questions,
-            'sections' => $sections,
-            'accessories' => $accessories,
-            'reviews' => $reviews,
-            'reviewsSearchModel' => $reviewsSearchModel,
-            'reviewsDataProvider' => $reviewsDataProvider,
-        ]);
     }
 
     protected function findModel($slug)

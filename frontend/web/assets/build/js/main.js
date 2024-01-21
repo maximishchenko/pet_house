@@ -825,8 +825,22 @@ if (document.querySelector('.catalog__list')) {
     e.preventDefault();
     catalogSearchSend();
   });
+  const barBtns = document.querySelectorAll('.catalog-bar__btn');
   searchFormIntp.forEach(el => {
-    el.addEventListener('change', catalogSearchSend);
+    el.addEventListener('change', () => {
+      catalogSearchSend();
+      barBtns.forEach(btn => {
+        console.log(btn.getAttribute('for'));
+        if (btn.getAttribute('for') == el.id) {
+          btn.classList.toggle('catalog-bar__btn--disable');
+        }
+      });
+    });
+  });
+  barBtns.forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('catalog-bar__btn--disable');
+    });
   });
 
   // Сортировка 
@@ -1130,7 +1144,7 @@ window.addEventListener('resize', function () {
 
 const rewGrid = document.querySelector('.grid-masonry');
 if (rewGrid !== null) {
-  let Masonry = new GridMasonry({
+  let masonry = new GridMasonry({
     containerClass: '.grid-masonry',
     //Контейнер для элементов сетки
     itemClass: '.grid-item',
@@ -1144,7 +1158,39 @@ if (rewGrid !== null) {
     itemMinWith: '15rem',
     //Минимальная ширина одного элемента сетки
     itemMaxWith: '1fr' //Максимальная ширина одного элемента сетки, для работы адаптива нужно значение в единицах изменения fr
-  }).init();
+  });
+
+  masonry.init();
+  if (document.querySelector('.product-reviews')) {
+    const revBtn = document.querySelector('.product-reviews__btn');
+    const csrfToken = revBtn.getAttribute('data-csrf-token');
+    let page = Number(revBtn.getAttribute('data-page'));
+    const maxPage = Number(revBtn.getAttribute('data-page-count'));
+    const grid = document.querySelector('.grid-masonry');
+    async function loadRev() {
+      if (page != maxPage && page < maxPage) {
+        page = page + 1;
+        const res = await fetch('/catalog/default/get-reviews', {
+          method: 'POST',
+          body: `page=${page}&_csrf-frontend=${csrfToken}`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+        const data = await res.json();
+        grid.insertAdjacentHTML('beforeend', data.content);
+        masonry.init();
+        if (page == maxPage) {
+          revBtn.disabled = true;
+        }
+      }
+    }
+    revBtn.addEventListener('click', () => {
+      loadRev();
+    });
+  }
 }
 
 /***/ }),

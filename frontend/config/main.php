@@ -66,12 +66,15 @@ return [
                 ],
                 'on missingTranslation' => ['common\components\TranslationEventHandler', 'handleMissingTranslation']
             ],
-        ], 
+        ],
         'urlManager' => [
             'on languageChanged' => 'common\components\SwitchLanguage::onLanguageChanged',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
+                'catalog/default/get-reviews' => 'catalog/default/get-reviews',
+
                 'cart' => 'cart/default/index',
                 'cart/add-to-cart' => 'cart/default/add-to-cart',
                 'cart/clear-cart' => 'cart/default/clear-cart',
@@ -82,10 +85,10 @@ return [
                 'catalog/default/calculate-price-constructor' => 'catalog/default/calculate-price-constructor',
                 'chinchilles' => 'catalog/default/index',
                 'chinchilles/<slug>' => 'catalog/default/view',
-                
+
                 'dogs' => 'catalog/default/index',
                 'dogs/<slug>' => 'catalog/default/view',
-                
+
                 'catalog/<catalog_slug>' => 'catalog/default/index',
                 'catalog/<catalog_slug>/<item_slug>' => 'catalog/default/view',
                 'privacy' => 'site/privacy',

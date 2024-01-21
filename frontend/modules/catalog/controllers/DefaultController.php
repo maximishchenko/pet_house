@@ -35,9 +35,9 @@ class DefaultController extends Controller
 
         if (Yii::$app->request->isAjax) {
             $dataProvider->prepare();
-            \Yii::$app->response->format = Response::FORMAT_HTML;   
+            \Yii::$app->response->format = Response::FORMAT_HTML;
             $response = [
-                'totalCount' => $dataProvider->getTotalCount(), 
+                'totalCount' => $dataProvider->getTotalCount(),
                 'pagesCount' => $dataProvider->pagination->pageCount,
                 'content' => $this->renderPartial('//layouts/product/_productLoopAjax', ['dataProvider' => $dataProvider])
             ];
@@ -46,41 +46,41 @@ class DefaultController extends Controller
         } else {
 
             $categories = Category::find()
-                            ->where([
-                                'status' => Status::STATUS_ACTIVE,
-                                'property_type' => $sections->setType(), 
-                                'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
-                                'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY
-                            ])
-                            ->all();
-    
+                ->where([
+                    'status' => Status::STATUS_ACTIVE,
+                    'property_type' => $sections->setType(),
+                    'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                    'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY
+                ])
+                ->all();
+
             $groups = Category::find()
-                            ->where([
-                                'status' => Status::STATUS_ACTIVE,
-                                'property_type' => $sections->setType(), 
-                                'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
-                                'group_type' => GroupTypeItems::GROUP_TYPE_GROUP
-                            ])
-                            ->all();
-    
+                ->where([
+                    'status' => Status::STATUS_ACTIVE,
+                    'property_type' => $sections->setType(),
+                    'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
+                    'group_type' => GroupTypeItems::GROUP_TYPE_GROUP
+                ])
+                ->all();
+
             $types = Property::find()
-                        ->where([
-                            'status' => Status::STATUS_ACTIVE, 
-                            'property_type' => $sections->setType(), 
-                            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE
-                        ])
-                        ->all();
-    
+                ->where([
+                    'status' => Status::STATUS_ACTIVE,
+                    'property_type' => $sections->setType(),
+                    'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE
+                ])
+                ->all();
+
             $heights = Property::find()
-                        ->select(['height_value', 'id'])
-                        ->where([
-                            'status' => Status::STATUS_ACTIVE, 
-                            'property_type' => $sections->setType(), 
-                            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE
-                        ])
-                        ->groupBy(['height_value'])
-                        ->all();
-    
+                ->select(['height_value', 'id'])
+                ->where([
+                    'status' => Status::STATUS_ACTIVE,
+                    'property_type' => $sections->setType(),
+                    'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE
+                ])
+                ->groupBy(['height_value'])
+                ->all();
+
             return $this->render('index', [
                 'sections' => $sections,
                 'searchModel' => $searchModel,
@@ -98,52 +98,74 @@ class DefaultController extends Controller
     {
         // $reviews = Review::find()->where(['status' => Status::STATUS_ACTIVE, 'is_favorite' => false])->all();
 
-        $this->processPageRequest('page');
-        
+        // $this->processPageRequest('page');
+
         $reviewsSearchModel = new ReviewSearch();
         $reviewsDataProvider = $reviewsSearchModel->search($this->request->queryParams);
-        
+
+        // if (Yii::$app->request->isAjax) {
+        //     echo "hello world";
+        //     die();
+        //     return Json::encode(['key' => 'val']);
+        //     $reviewsDataProvider->prepare();
+        //     \Yii::$app->response->format = Response::FORMAT_HTML;
+        //     $response = [
+        //         'totalCount' => $reviewsDataProvider->getTotalCount(),
+        //         'pagesCount' => $reviewsDataProvider->pagination->pageCount,
+        //         'content' => $this->renderPartial('//layouts/product/_reviewLoopAjax', ['reviewsDataProvider' => $reviewsDataProvider])
+        //     ];
+        //     return Json::encode($response);
+        //     Yii::$app->end();
+        // } else {
+        $sections = new Sections();
+        $model = $this->findModel($slug);
+
+        $questions = Question::find()
+            ->where([
+                'status' => Status::STATUS_ACTIVE,
+                'position' => Question::POSITION_CARD
+            ])
+            ->orderBy(['sort' => SORT_ASC])
+            ->all();
+
+        $accessories = RootProduct::find()
+            ->where([
+                'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY,
+                'product_type' => $model->product_type
+            ])
+            ->orderBy(['sort' => SORT_DESC])
+            ->all();
+
+        return $this->render('product', [
+            'model' => $model,
+            'questions' => $questions,
+            'sections' => $sections,
+            'accessories' => $accessories,
+            // 'reviews' => $reviews,
+            'reviewsSearchModel' => $reviewsSearchModel,
+            'reviewsDataProvider' => $reviewsDataProvider,
+        ]);
+        // }
+    }
+
+    public function actionGetReviews()
+    {
+        $this->processPageRequest('page');
+
+
         if (Yii::$app->request->isAjax) {
+            $reviewsSearchModel = new ReviewSearch();
+            $reviewsDataProvider = $reviewsSearchModel->search($this->request->queryParams);
             $reviewsDataProvider->prepare();
-            \Yii::$app->response->format = Response::FORMAT_HTML;   
+            \Yii::$app->response->format = Response::FORMAT_HTML;
             $response = [
-                'totalCount' => $reviewsDataProvider->getTotalCount(), 
+                'totalCount' => $reviewsDataProvider->getTotalCount(),
                 'pagesCount' => $reviewsDataProvider->pagination->pageCount,
                 'content' => $this->renderPartial('//layouts/product/_reviewLoopAjax', ['reviewsDataProvider' => $reviewsDataProvider])
             ];
             return Json::encode($response);
-            Yii::$app->end();
-        } else {
-
-            $sections = new Sections();
-            $model = $this->findModel($slug);
-
-            $questions = Question::find()
-                        ->where([
-                            'status' => Status::STATUS_ACTIVE,
-                            'position' => Question::POSITION_CARD
-                        ])
-                        ->orderBy(['sort' => SORT_ASC])
-                        ->all();
-    
-            $accessories = RootProduct::find()
-                        ->where([
-                            'item_type' => ProductItemType::PRODUCT_TYPE_ACCESSORY, 
-                            'product_type' => $model->product_type
-                        ])
-                        ->orderBy(['sort' => SORT_DESC])
-                        ->all();
-    
-            return $this->render('product', [
-                'model' => $model,
-                'questions' => $questions,
-                'sections' => $sections,
-                'accessories' => $accessories,
-                // 'reviews' => $reviews,
-                'reviewsSearchModel' => $reviewsSearchModel,
-                'reviewsDataProvider' => $reviewsDataProvider,
-            ]);
         }
+        Yii::$app->end();
     }
 
     protected function findModel($slug)
@@ -154,9 +176,9 @@ class DefaultController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
-    
 
-    protected function processPageRequest($param='page')
+
+    protected function processPageRequest($param = 'page')
     {
         if (Yii::$app->request->isAjax && isset($_POST[$param]))
             $_GET[$param] = Yii::$app->request->post($param);

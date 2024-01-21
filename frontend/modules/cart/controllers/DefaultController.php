@@ -88,7 +88,8 @@ class DefaultController extends Controller
             $model->body = $body;
             $model->total_price = $price;
             $model->save();
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect('/cart?success=1');
+            // return $this->redirect(Yii::$app->request->referrer);
         } else {
             die(print_r($model->getErrors()));
         }

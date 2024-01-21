@@ -321,3 +321,4 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
 
     }
 }
+

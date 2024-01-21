@@ -363,6 +363,7 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
                     grid.insertAdjacentHTML('beforeend', data.content);
 
                     masonry.init();
+                    masonry.resizeItems();
                     if (page == maxPage) {
                         revBtn.disabled = true;
                     }

@@ -525,6 +525,7 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
           const data = await res.json();
           grid.insertAdjacentHTML('beforeend', data.content);
           masonry.init();
+          bindStyles();
           masonry.resizeItems();
           if (page == maxPage) {
             revBtn.disabled = true;

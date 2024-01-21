@@ -47,11 +47,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/common */ "./frontend/web/js/components/common.js");
 /* harmony import */ var _components_dropzone__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/dropzone */ "./frontend/web/js/components/dropzone.js");
 /* harmony import */ var _components_calculator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/calculator */ "./frontend/web/js/components/calculator.js");
-/* harmony import */ var _components_masonry__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/masonry */ "./frontend/web/js/components/masonry.js");
-/* harmony import */ var _components_masonry__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_masonry__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_cart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/cart */ "./frontend/web/js/components/cart.js");
-/* harmony import */ var _components_cart__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_cart__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/validate */ "./frontend/web/js/components/validate.js");
+/* harmony import */ var _components_cart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/cart */ "./frontend/web/js/components/cart.js");
+/* harmony import */ var _components_cart__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_cart__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/validate */ "./frontend/web/js/components/validate.js");
 
 
 
@@ -59,7 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+//import './components/masonry';
 
 
 
@@ -483,6 +481,59 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
         productCalculator.sliderCalcDepth(hendleVal, depthPrice, 'plus');
         startDepth = hendleVal;
       }
+    });
+  }
+}
+
+//masonry
+const rewGrid = document.querySelector('.grid-masonry');
+if (rewGrid !== null) {
+  let masonry = new GridMasonry({
+    containerClass: '.grid-masonry',
+    //Контейнер для элементов сетки
+    itemClass: '.grid-item',
+    //Каждый элемент сетки
+    itemContentClass: '.grid-masonry-item__container',
+    //Контейнер внутри каждого элемента стеки
+    gridRowGap: '1.084rem',
+    //Верхний и нижний отступ
+    gridColumnGap: '2.5rem',
+    //Правый и левый отступ
+    itemMinWith: '15rem',
+    //Минимальная ширина одного элемента сетки
+    itemMaxWith: '1fr' //Максимальная ширина одного элемента сетки, для работы адаптива нужно значение в единицах изменения fr
+  });
+
+  masonry.init();
+  if (document.querySelector('.product-reviews')) {
+    const revBtn = document.querySelector('.product-reviews__btn');
+    const csrfToken = revBtn.getAttribute('data-csrf-token');
+    let page = Number(revBtn.getAttribute('data-page'));
+    const maxPage = Number(revBtn.getAttribute('data-page-count'));
+    const grid = document.querySelector('.grid-masonry');
+    async function loadRev() {
+      if (page != maxPage && page < maxPage) {
+        page = page + 1;
+        const res = await fetch('/catalog/default/get-reviews', {
+          method: 'POST',
+          body: `page=${page}&_csrf-frontend=${csrfToken}`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+        const data = await res.json();
+        grid.insertAdjacentHTML('beforeend', data.content);
+        masonry.init();
+        if (page == maxPage) {
+          revBtn.disabled = true;
+        }
+      }
+    }
+    revBtn.addEventListener('click', () => {
+      loadRev();
+      stickybar.refresh();
     });
   }
 }
@@ -1133,65 +1184,6 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener('resize', function () {
   headerAdapt();
 });
-
-/***/ }),
-
-/***/ "./frontend/web/js/components/masonry.js":
-/*!***********************************************!*\
-  !*** ./frontend/web/js/components/masonry.js ***!
-  \***********************************************/
-/***/ (() => {
-
-const rewGrid = document.querySelector('.grid-masonry');
-if (rewGrid !== null) {
-  let masonry = new GridMasonry({
-    containerClass: '.grid-masonry',
-    //Контейнер для элементов сетки
-    itemClass: '.grid-item',
-    //Каждый элемент сетки
-    itemContentClass: '.grid-masonry-item__container',
-    //Контейнер внутри каждого элемента стеки
-    gridRowGap: '1.084rem',
-    //Верхний и нижний отступ
-    gridColumnGap: '2.5rem',
-    //Правый и левый отступ
-    itemMinWith: '15rem',
-    //Минимальная ширина одного элемента сетки
-    itemMaxWith: '1fr' //Максимальная ширина одного элемента сетки, для работы адаптива нужно значение в единицах изменения fr
-  });
-
-  masonry.init();
-  if (document.querySelector('.product-reviews')) {
-    const revBtn = document.querySelector('.product-reviews__btn');
-    const csrfToken = revBtn.getAttribute('data-csrf-token');
-    let page = Number(revBtn.getAttribute('data-page'));
-    const maxPage = Number(revBtn.getAttribute('data-page-count'));
-    const grid = document.querySelector('.grid-masonry');
-    async function loadRev() {
-      if (page != maxPage && page < maxPage) {
-        page = page + 1;
-        const res = await fetch('/catalog/default/get-reviews', {
-          method: 'POST',
-          body: `page=${page}&_csrf-frontend=${csrfToken}`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRF-TOKEN': document.head.querySelector("[name=csrf-token]").content,
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        });
-        const data = await res.json();
-        grid.insertAdjacentHTML('beforeend', data.content);
-        masonry.init();
-        if (page == maxPage) {
-          revBtn.disabled = true;
-        }
-      }
-    }
-    revBtn.addEventListener('click', () => {
-      loadRev();
-    });
-  }
-}
 
 /***/ }),
 

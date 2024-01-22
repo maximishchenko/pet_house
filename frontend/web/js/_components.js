@@ -5,6 +5,6 @@ import './components/catalog';
 import './components/common';
 import './components/dropzone';
 import './components/calculator';
-import './components/masonry';
+//import './components/masonry';
 import './components/cart'
 import './components/validate'

@@ -21,9 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
             </h1>
         </div>
 
-        <div class="cart__wrapper <?= (Cart::getTotalCount() > 0) ? '' : 'cart__wrapper--dis'; ?>"> <!-- TODO Пустая корзина -->
+        <div class="cart__wrapper <?= (Cart::getTotalCount() > 0) ? '' : 'cart__wrapper--dis'; ?>">
             <div class="cart__list">
 
+                <?php if (isset($_GET['success']) && !empty($_GET['success'])) : ?>
+                    <div class="cart-posted">
+                        <img class="cart-posted__img" src="/img/cart-check.svg" alt="cart send">
+                        <span class="cart-posted__title">Ваш заказ успешно оформлен!</span>
+                        <span class="cart-posted__description">Мы свяжемся с Вами в ближайшее время</span>
+                    </div>
+                <?php endif; ?>
 
                 <?php if (Cart::getTotalCount() > 0) : ?>
 

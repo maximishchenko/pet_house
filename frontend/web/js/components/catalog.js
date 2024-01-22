@@ -122,8 +122,24 @@ if (document.querySelector('.catalog__list')) {
             catalogSearchSend();
       });
 
+      const barBtns = document.querySelectorAll('.catalog-bar__btn');
       searchFormIntp.forEach(el => {
-            el.addEventListener('change', catalogSearchSend);
+            el.addEventListener('change', () => {
+                  catalogSearchSend();
+                  barBtns.forEach(btn => {
+                        console.log(btn.getAttribute('for'));
+
+                        if (btn.getAttribute('for') == el.id) {
+                              btn.classList.toggle('catalog-bar__btn--disable');
+                        }
+                  });
+            });
+      });
+
+      barBtns.forEach(el => {
+            el.addEventListener('click', () => {
+                  el.classList.toggle('catalog-bar__btn--disable');
+            });
       });
 
       // Сортировка 

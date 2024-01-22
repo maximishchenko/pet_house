@@ -681,6 +681,15 @@
   &__btn {
     width: 100%;
   }
+
+  &__btn:disabled {
+    color: var(--color-dark-80);
+    cursor: auto;
+
+    &:hover {
+      background: var(--color-gray) !important;
+    }
+  }
 }
 
 .sidebar {

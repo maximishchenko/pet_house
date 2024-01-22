@@ -25,7 +25,7 @@
         </span>
       </div>
       <div class="subscription__img-wrap">
-          <img src="/img/mockup.png" class="subscription__img" alt="vk">
+          <img src="/img/mockup.webp" class="subscription__img" alt="vk">
       </div>
     </div>
   </div>

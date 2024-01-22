@@ -375,6 +375,38 @@
 
 }
 
+.cart-posted {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--size-s);
+  background: #d5f9d8;
+
+  &__img {
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title,
+  &__description {
+    text-align: center;
+    color: #273a29;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+  }
+
+  &__description {
+    line-height: 140%;
+  }
+}
+
 @include small-tablet {
   .cart {
     &__wrapper {

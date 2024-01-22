@@ -32,7 +32,7 @@ use yii\helpers\Url;
       <?= Yii::$app->formatter->asCurrency($model->price); ?>
       <?php // echo Yii::$app->formatter->asCurrency($model->price, 'RUB', [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
       <span class="thumb-prod__price-old">
-        <?= Yii::$app->formatter->asCurrency($model->oldPrice); ?>
+        <?= ($model->oldPrice > $model->price) ? Yii::$app->formatter->asCurrency($model->oldPrice) : null; ?>
         <?php // echo Yii::$app->formatter->asCurrency($model->oldPrice, 'RUB', [\NumberFormatter::MAX_SIGNIFICANT_DIGITS => 100]); ?>
       </span>
     </span>

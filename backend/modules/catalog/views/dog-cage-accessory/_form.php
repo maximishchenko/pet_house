@@ -37,6 +37,9 @@ use yii\bootstrap4\ActiveForm;
                 <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-md-4">
+                <?= $form->field($model, 'discount')->textInput(['type' => 'number']) ?>
+            </div>
+            <div class="col-md-4">
                 <?= $form->field($model, 'category_id')->dropDownList(
                         $model->getCategoriesItems(),
                         $model->getCategoriesParams()

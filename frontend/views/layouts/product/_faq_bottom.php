@@ -7,7 +7,7 @@
     </h2>
 
     <div class="main-faq__wrapper">
-      <div class="main-faq__col">
+      <!-- <div class="main-faq__col"> -->
 
       <?php foreach ($questions as $question): ?>
         <div class="main-faq__el q-el">
@@ -25,7 +25,7 @@
         </div>
       <?php endforeach; ?>
 
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </section>

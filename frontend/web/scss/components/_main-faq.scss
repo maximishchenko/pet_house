@@ -27,6 +27,10 @@
     }
   }
 
+  &__list--el {
+    color: red;
+  }
+
   &__btn {
     width: 100%;
     display: flex;
@@ -77,6 +81,8 @@
     height: var(--size-n);
     transition: transform var(--hover), stroke var(--hover);
   }
+
+
 }
 
 @include small-tablet {

@@ -1430,6 +1430,7 @@ h5 {
 }
 .media-info__text {
   color: var(--color-light);
+  line-height: 140%;
 }
 .media-info__gallary {
   display: -ms-grid;
@@ -2412,6 +2413,9 @@ h5 {
   height: 0;
 }
 
+.product-reviews {
+  margin-bottom: var(--size-n);
+}
 .product-reviews__img {
   display: block;
   margin-bottom: var(--size-s);
@@ -2599,6 +2603,9 @@ h5 {
 .main-faq__content p {
   margin: 0 0 var(--size-n) 0;
   line-height: 140%;
+}
+.main-faq__list--el {
+  color: red;
 }
 .main-faq__btn {
   width: 100%;

@@ -649,6 +649,8 @@
 // Отзывы
 
 .product-reviews {
+  margin-bottom: var(--size-n);
+
   &__img {
     display: block;
     margin-bottom: var(--size-s);

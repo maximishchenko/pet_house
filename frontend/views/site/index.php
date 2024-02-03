@@ -96,10 +96,9 @@ use yii\helpers\Url;
 
 <section class="media-info mb-xxl">
     <div class="media-info__head">
-        <h2 class="section-headline centered">С теплом и заботой о тех, кого любим</h2>
+        <h2 class="section-headline centered">Все самое лучшее в одном месте</h2>
         <p class="media-info__text centered mb-m">
-            Господа, постоянный количественный рост
-            и сфера нашей активности позволяет выполнить
+            У нас вы найдете идеальные домики и аксессуары для ваших питомцев
         </p>
     </div>
     <div class="scroll-wrapper">
@@ -221,37 +220,35 @@ use yii\helpers\Url;
     </div>
     <div class="media-info__text-content mt-xxl mb-xxl">
         <div class="media-info__text-row">
-            <h4 class="media-info__subtitle">Материалы</h4>
-            <p class="media-info__text">Древесина дуба, структура которой гармонично сочетается с эмалью, стеклом и
-                разноцветными принтами - неизменный
+            <h4 class="media-info__subtitle">Наш опыт</h4>
+            <p class="media-info__text">У нас самый широкий ассортимент клеток и аксессуаров для питомцев.
+                Мы выросли до нескольких крупных производственных линий разных направлений – дерево, металл, керамика. Мы выполняем заказы для крупных питомников и зоопарков страны.
             </p>
         </div>
         <div class="media-info__text-row">
-            <h4 class="media-info__subtitle">Функциональность</h4>
-            <p class="media-info__text">Качественные подшипники в беговом колесе избавят вас от шума, что особенно актуально
-                ночью, когда грызуны
-                активны</p>
+            <h4 class="media-info__subtitle">Качество</h4>
+            <p class="media-info__text">Мы постоянно улучшаем модели клеток, материалы, оптимизируем существующее производство, используем передовые технологии и оборудование, чтобы Вы получили идеальный дом для своего питомца</p>
         </div>
 
     </div>
 
     <div class="tiker tiker--f">
         <div class="tiker__wrapper tiker__wrapper--f">
-            <span class="tiker__item tiker__item--f media-info__tiker">Качество</span>
-            <span class="tiker__item tiker__item--f media-info__tiker media-info__tiker--stroke">Функциональность</span>
-            <span class="tiker__item tiker__item--f media-info__tiker">Безопасность</span>
-            <span class="tiker__item tiker__item--f media-info__tiker media-info__tiker--stroke">Функциональность</span>
-            <span class="tiker__item tiker__item--f media-info__tiker">Безопасность</span>
-            <span class="tiker__item tiker__item--f media-info__tiker media-info__tiker--stroke">Качество</span>
+            <span class="tiker__item tiker__item--f media-info__tiker">Шиншиллы</span>
+            <span class="tiker__item tiker__item--f media-info__tiker media-info__tiker--stroke">Собаки</span>
+            <span class="tiker__item tiker__item--f media-info__tiker">Дегу</span>
+            <span class="tiker__item tiker__item--f media-info__tiker media-info__tiker--stroke">Крысы</span>
+            <span class="tiker__item tiker__item--f media-info__tiker">Грызуны</span>
+            <span class="tiker__item tiker__item--f media-info__tiker media-info__tiker--stroke">Хомяки</span>
         </div>
     </div>
     <div class="tiker tiker--s mb-xxl">
         <div class="tiker__wrapper tiker__wrapper--s">
-            <span class="tiker__item tiker__item--s media-info__tiker media-info__tiker--stroke">Функциональность</span>
-            <span class="tiker__item tiker__item--s media-info__tiker">Качество</span>
-            <span class="tiker__item tiker__item--s media-info__tiker media-info__tiker--stroke">Функциональность</span>
-            <span class="tiker__item tiker__item--s media-info__tiker">Безопасность</span>
-            <span class="tiker__item tiker__item--s media-info__tiker media-info__tiker--stroke">Качество</span>
+            <span class="tiker__item tiker__item--s media-info__tiker media-info__tiker--stroke">Кролики</span>
+            <span class="tiker__item tiker__item--s media-info__tiker">Хомяки</span>
+            <span class="tiker__item tiker__item--s media-info__tiker media-info__tiker--stroke">Грызуны</span>
+            <span class="tiker__item tiker__item--s media-info__tiker">Шиншиллы</span>
+            <span class="tiker__item tiker__item--s media-info__tiker media-info__tiker--stroke">Собаки</span>
         </div>
     </div>
     <div class="meadia-reviews">

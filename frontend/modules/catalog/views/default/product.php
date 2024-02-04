@@ -46,14 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
       <?= Html::button(Yii::t('app', 'Show more reviews'), ['class' => "product-reviews__btn btn-reset btn-b",  'data-page' => (int)Yii::$app->request->get('page', 1), 'data-page-count' => (int)$reviewsDataProvider->pagination->pageCount, 'data-csrf-token' => Yii::$app->request->csrfToken, 'data-csrf-param' => Yii::$app->request->csrfParam]); ?>
     </div>
-    <!-- <div id="showMore" class="visually-hidden">
-        </div> -->
 
+    <!-- Конструктор -->
+    <?= $this->render('//layouts/product/_sidebar', ['model' => $model]); ?>
 
 </div>
 </div>
-<!-- Конструктор -->
-<?= $this->render('//layouts/product/_sidebar', ['model' => $model]); ?>
 </section>
 </div>
 

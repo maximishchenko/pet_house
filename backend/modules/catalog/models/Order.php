@@ -155,10 +155,10 @@ class Order extends \yii\db\ActiveRecord
                 $this->bulkEmailsFromRecipientsArray($emailsArray);
             }
         }
-        $emailsArray = explode(",", $emails);
-        if ($emailsArray) {
-            $this->bulkEmailsFromRecipientsArray($emailsArray);
-        }
+        // $emailsArray = explode(",", $emails);
+        // if ($emailsArray) {
+        //     $this->bulkEmailsFromRecipientsArray($emailsArray);
+        // }
     }
 
     protected function bulkEmailsFromRecipientsArray($emailsArray)

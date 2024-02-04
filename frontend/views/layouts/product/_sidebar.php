@@ -2,7 +2,6 @@
 
 use backend\modules\catalog\models\items\CatalogTypeItems;
 use backend\modules\catalog\models\items\ProductItemType;
-use backend\modules\catalog\models\root\Product;
 use backend\modules\catalog\models\root\Property;
 
 ?>
@@ -32,11 +31,13 @@ use backend\modules\catalog\models\root\Property;
               </li>
             <?php endif; ?>
 
+            <?php if(!empty($model->productAttributes)): ?>
             <li class="tabs__nav-item">
               <button class="tabs__nav-btn btn-reset" type="button">
                 <?= Yii::t('app', 'Sidebar Characteristics'); ?>
               </button>
             </li>
+            <?php endif; ?>
           </ul>
           <div class="tabs__content">
 
@@ -157,6 +158,7 @@ use backend\modules\catalog\models\root\Property;
 
 
             <!-- Характеристики -->
+            <?php if(!empty($model->productAttributes)): ?>
             <div class="tabs__panel">
               <div class="specifications">
                 <ul class="list-reset specifications__list">
@@ -174,6 +176,7 @@ use backend\modules\catalog\models\root\Property;
               </div>
             </div>
 
+            <?php endif; ?>
           </div>
         </div>
         <div class="product__price-row">

@@ -40,6 +40,11 @@ class DefaultController extends Controller
     {
         $model = new Order();
         if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->spam_check != 'nospam') {
+                die('Spam detected ');
+            } 
+
             $name = $model->name;
             $phone = $model->phone;
             $email = $model->email;
@@ -89,7 +94,6 @@ class DefaultController extends Controller
             $model->total_price = $price;
             $model->save();
             return $this->redirect('/cart?success='.$model->id);
-            // return $this->redirect(Yii::$app->request->referrer);
         } else {
             die(print_r($model->getErrors()));
         }

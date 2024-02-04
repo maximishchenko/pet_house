@@ -37,6 +37,9 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($order, 'comment', ['template' => '{input}'])->textarea(['cols' => 20, 'rows' => 7, 'class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Comment')]) ?>
 
+
+<?= $form->field($order, 'spam_check', ['template' => '{input}'])->textInput(['id' => 'spam_check', 'hidden' => true]); ?>
+
 <div class="tabs order-tab" data-tabs="order-tab">
     <ul class="tabs__nav">
         <li class="tabs__nav-item">
@@ -64,6 +67,6 @@ use yii\widgets\ActiveForm;
 <p class="order-form__politics">
     <?= Yii::t('app', 'You are agree if submit'); ?> <?= Html::a(Yii::t('app', 'With privacy policy'), ['/privacy'], ['class' => "order-form__link"]); ?>
 </p>
-<?= Html::submitButton(Yii::t('app', "Checkout"), ['class' => "order-form__send btn-a btn-reset"]); ?>
+<?= Html::submitButton(Yii::t('app', "Checkout"), ['class' => "order-form__send btn-a btn-reset", 'onclick' => "document.getElementById('spam_check').value = 'nospam';"]); ?>
 
 <?php ActiveForm::end(); ?>

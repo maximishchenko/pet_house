@@ -83,6 +83,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'pattern' => 'sitemap', 
+                    'route' => 'seo/sitemap/index', 
+                    'suffix' => '.xml'
+                ], 
 
                 'catalog/default/get-reviews' => 'catalog/default/get-reviews',
 

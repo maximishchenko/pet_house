@@ -26,7 +26,8 @@
         "kartik-v/yii2-widget-select2": "^2.2",
         "devanych/yii2-cart": "*",
         "vova07/yii2-imperavi-widget": "*",
-        "kartik-v/yii2-widget-datepicker": "dev-master"
+        "kartik-v/yii2-widget-datepicker": "dev-master",
+        "yii2tech/sitemap": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -38,10 +38,11 @@ const modalRec = new GraphModal('rec');
 import GraphTabs from 'graph-tabs';
 
 
-const calcTabs = document.querySelector('.calc-tab');
-const orderTabs = document.querySelector('.order-tab');
+const calcTabs = document.querySelector('.tabs__panel');
+const orderTabs = document.querySelector('.tabs__panel');
+const product = document.querySelector('.product');
 
-if (calcTabs != null) {
+if (calcTabs != null && product != null) {
     const tabs = new GraphTabs('calc-tab');
 }
 

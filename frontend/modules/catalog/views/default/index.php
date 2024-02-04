@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
     'categories' => $categories,
     'groups' => $groups,
     'searchModel' => $searchModel,
+    'sections' => $sections,
 ]); ?>
 
 

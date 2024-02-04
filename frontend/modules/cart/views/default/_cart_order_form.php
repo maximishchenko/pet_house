@@ -6,11 +6,33 @@ use yii\widgets\ActiveForm;
 
 ?>
 
+
+<!-- <form action="" method="post" class="test_frm">
+    <input type="text">
+    <button type="submit"> qw qw qw</button>
+</form>
+
+<script>
+    let ff = document.querySelector(".test_frm");
+    ff.addEventListener('submit', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        alert("Lol");
+    });
+</script> -->
+
+
 <?php $form = ActiveForm::begin([
     'id' => 'order-form',
     'action' => ['order'],
     'class' => 'order-form',
     'method' => 'post',
+    'enableAjaxValidation'   => true,
+    'enableClientValidation' => false,
+    'validateOnBlur'         => false,
+    'validateOnType'         => false,
+    'validateOnChange'       => false,
+    'validateOnSubmit'       => true,
     'options' => [
         'class' => (Cart::getTotalCount() > 0) ? 'order-form order-form--cart' : 'order-form order-form--cart order-form--dis',
         'autocomplete' => 'off',
@@ -23,7 +45,7 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Name')]); ?>
 
-<?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset phone-valid", 'placeholder' => Yii::t('app', 'Order Phone')]); ?>
+<?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset phone-valid", "pattern" => "^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?", 'placeholder' => Yii::t('app', 'Order Phone')]); ?>
 
 <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Email')]); ?>
 

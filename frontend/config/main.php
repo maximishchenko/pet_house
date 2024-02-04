@@ -1,4 +1,9 @@
 <?php
+
+use yii\web\JqueryAsset;
+use yii\web\YiiAsset;
+use yii\widgets\ActiveFormAsset;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -29,6 +34,12 @@ return [
         'assetManager' => [
             'linkAssets' => true,
             'appendTimestamp' => true,
+            'bundles' => [
+
+                JqueryAsset::class => false,
+                YiiAsset::class => false,
+                ActiveFormAsset::class => false,
+            ],
         ],
         'request' => [
             'baseUrl' => '',

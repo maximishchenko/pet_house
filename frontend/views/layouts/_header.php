@@ -202,6 +202,13 @@ use yii\widgets\ActiveForm;
         'id' => 'personal-order-form',
         'action' => ['/cart/default/order'],
         'method' => 'post',
+        'enableAjaxValidation'   => false,
+        'enableClientScript' => false,
+        'enableClientValidation' => false,
+        'validateOnBlur'         => false,
+        'validateOnType'         => false,
+        'validateOnChange'       => false,
+        'validateOnSubmit'       => false,
         'options' => [
           'class' => 'order-form personal-form',
           'autocomplete' => 'off',

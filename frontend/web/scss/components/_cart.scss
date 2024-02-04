@@ -252,6 +252,10 @@
     width: 100%;
   }
 
+  &__send:disabled {
+    opacity: .1;
+  }
+
   textarea {
     display: block;
     resize: none;

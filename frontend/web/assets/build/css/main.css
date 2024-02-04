@@ -3392,6 +3392,9 @@ h5 {
 .order-form__send {
   width: 100%;
 }
+.order-form__send:disabled {
+  opacity: 0.1;
+}
 .order-form textarea {
   display: block;
   resize: none;

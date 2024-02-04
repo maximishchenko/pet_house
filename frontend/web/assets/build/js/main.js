@@ -115,9 +115,10 @@ const modalRec = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]('rec');
 
 // Реализация табов
 
-const calcTabs = document.querySelector('.calc-tab');
-const orderTabs = document.querySelector('.order-tab');
-if (calcTabs != null) {
+const calcTabs = document.querySelector('.tabs__panel');
+const orderTabs = document.querySelector('.tabs__panel');
+const product = document.querySelector('.product');
+if (calcTabs != null && product != null) {
   const tabs = new graph_tabs__WEBPACK_IMPORTED_MODULE_1__["default"]('calc-tab');
 }
 if (orderTabs != null) {
@@ -740,7 +741,7 @@ if (document.querySelector('.catalog__list')) {
       filterBtn.classList.toggle('filter-show');
     }
   }
-  filterBtn.addEventListener('click', showFilter);
+  filterBtn?.addEventListener('click', showFilter);
   btnMobCloase.addEventListener('click', showFilter);
   const updateInfo = document.querySelector('#showMore');
   const csrfToken = updateInfo.getAttribute('data-csrf-token');
@@ -827,7 +828,6 @@ if (document.querySelector('.catalog__list')) {
     el.addEventListener('change', () => {
       catalogSearchSend();
       barBtns.forEach(btn => {
-        console.log(btn.getAttribute('for'));
         if (btn.getAttribute('for') == el.id) {
           btn.classList.toggle('catalog-bar__btn--disable');
         }
@@ -1144,16 +1144,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var masonry_layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! masonry-layout */ "./node_modules/masonry-layout/masonry.js");
 /* harmony import */ var masonry_layout__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(masonry_layout__WEBPACK_IMPORTED_MODULE_0__);
 
-const grid = document.querySelector('.grid-masonry');
-const msGrid = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(grid, {
-  itemSelector: '.grid-item'
-});
 if (document.querySelector('.product-reviews')) {
+  const grid = document.querySelector('.grid-masonry');
+  const msGrid = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(grid, {
+    itemSelector: '.grid-item'
+  });
   const revBtn = document.querySelector('.product-reviews__btn');
   const csrfToken = revBtn.getAttribute('data-csrf-token');
   let page = Number(revBtn.getAttribute('data-page'));
   const maxPage = Number(revBtn.getAttribute('data-page-count'));
-  const grid = document.querySelector('.grid-masonry');
   async function loadRev() {
     if (page != maxPage && page < maxPage) {
       page = page + 1;
@@ -1306,12 +1305,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var just_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! just-validate */ "./node_modules/just-validate/dist/just-validate.es.js");
 
 
-if (document.querySelector('.order-form--cart')) {
+const order_form = document.querySelector('.order-form--cart');
+if (order_form) {
+  function test() {
+    const btn = document.querySelector('.order-form__send');
+    btn.textContent = 'daw';
+    /*             let count = 0;
+                if (count == 0) {
+                      order_form.submit();
+                      count = 1;
+                } */
+  }
+
   const phoneInp = document.querySelector('.phone-valid');
   const phoneMask = new (inputmask__WEBPACK_IMPORTED_MODULE_0___default())('+9 (999) 999-99-99');
   phoneMask.mask(phoneInp);
-  const validator = new just_validate__WEBPACK_IMPORTED_MODULE_1__["default"]('.order-form--cart', {
-    submitFormAutomatically: true
+  const validator = new just_validate__WEBPACK_IMPORTED_MODULE_1__["default"](document.querySelector('.order-form--cart'), {
+    submitFormAutomatically: false
   });
   validator.addField('#order-name', [{
     rule: 'required',
@@ -1336,7 +1346,16 @@ if (document.querySelector('.order-form--cart')) {
   }]).addField('#order-email', [{
     rule: 'email',
     errorMessage: 'Некорректный формат email'
-  }]);
+  }]).onSuccess(event => {
+    test();
+  });
+
+  // order_form.addEventListener('submit', function (e) {
+  //       console.log('ad');
+
+  //       order_form.stopPropagation();
+  //       order_form.preventDefault();
+  // });
 }
 
 /***/ }),

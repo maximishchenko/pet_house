@@ -1,17 +1,19 @@
 import Masonry from "masonry-layout";
 
-const grid = document.querySelector('.grid-masonry');
 
-const msGrid = new Masonry(grid, {
-      itemSelector: '.grid-item'
-})
 
 if (document.querySelector('.product-reviews')) {
+      const grid = document.querySelector('.grid-masonry');
+
+      const msGrid = new Masonry(grid, {
+            itemSelector: '.grid-item'
+      })
+
       const revBtn = document.querySelector('.product-reviews__btn');
       const csrfToken = revBtn.getAttribute('data-csrf-token');
       let page = Number(revBtn.getAttribute('data-page'));
       const maxPage = Number(revBtn.getAttribute('data-page-count'));
-      const grid = document.querySelector('.grid-masonry');
+
 
 
       async function loadRev() {
@@ -39,6 +41,6 @@ if (document.querySelector('.product-reviews')) {
       }
       revBtn.addEventListener('click', () => {
             loadRev();
-           
+
       });
 }

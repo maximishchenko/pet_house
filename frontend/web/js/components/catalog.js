@@ -14,14 +14,14 @@ if (document.querySelector('.catalog__list')) {
 
       function showFilter() {
             catalogSide.classList.toggle('catalog__side--active');
-            catalogList.classList.toggle('catalog__list--active');
+            catalogList.classList.toggle('catalog__list--active'); 
 
             if (screen.width > 761) {
                   filterBtn.classList.toggle('filter-show');
             }
       }
 
-      filterBtn.addEventListener('click', showFilter);
+      filterBtn?.addEventListener('click', showFilter);
       btnMobCloase.addEventListener('click', showFilter);
 
       const updateInfo = document.querySelector('#showMore');
@@ -127,8 +127,6 @@ if (document.querySelector('.catalog__list')) {
             el.addEventListener('change', () => {
                   catalogSearchSend();
                   barBtns.forEach(btn => {
-                        console.log(btn.getAttribute('for'));
-
                         if (btn.getAttribute('for') == el.id) {
                               btn.classList.toggle('catalog-bar__btn--disable');
                         }

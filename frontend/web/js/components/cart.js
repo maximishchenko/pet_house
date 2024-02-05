@@ -292,6 +292,17 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
 
         });
 
+
+        const deliveryTabs = document.querySelectorAll('.tabs__nav-btn');
+        const orderDeliveryInput = document.querySelector('#orderDelivery');
+
+        deliveryTabs.forEach(el => {
+            el.addEventListener('click', () => {
+                orderDeliveryInput.value = el.getAttribute('data-delivery')
+            });
+        })
+
+
     }
 
 }

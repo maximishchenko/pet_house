@@ -43,10 +43,10 @@ use yii\widgets\ActiveForm;
 <div class="tabs order-tab" data-tabs="order-tab">
     <ul class="tabs__nav">
         <li class="tabs__nav-item">
-            <?= Html::button(Yii::t('app', "Delivery Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button']); ?>
+            <?= Html::button(Yii::t('app', "Delivery Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button', 'data-delivery' => 'Доставка']); ?>
         </li>
         <li class="tabs__nav-item">
-            <?= Html::button(Yii::t('app', "Pickup Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button']) ?>
+            <?= Html::button(Yii::t('app', "Pickup Button Text"), ['class' => "tabs__nav-btn", 'type' => 'button', 'data-delivery' => 'Самовывоз']) ?>
         </li>
     </ul>
     <div class="tabs__content">
@@ -62,6 +62,7 @@ use yii\widgets\ActiveForm;
             </a>
         </div>
     </div>
+    <input type="text" class="visually-hidden" id="orderDelivery" value="Доставка"> <!--  //TODO для доставки -->
 </div>
 
 <p class="order-form__politics">

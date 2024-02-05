@@ -4,17 +4,6 @@ import JustValidate from 'just-validate';
 const order_form = document.querySelector('.order-form--cart');
 if (order_form) {
 
-      // function test() {
-      //       const btn = document.querySelector('.order-form__send');
-      //       btn.textContent = 'daw';
-      //       /*             let count = 0;
-      //                   if (count == 0) {
-      //                         order_form.submit();
-      //                         count = 1;
-      //                   } */
-
-      // }
-
       const phoneInp = document.querySelector('.phone-valid');
       const phoneMask = new Inputmask('+9 (999) 999-99-99');
       phoneMask.mask(phoneInp);
@@ -53,16 +42,8 @@ if (order_form) {
                   rule: 'email',
                   errorMessage: 'Некорректный формат email'
             }
-      ])
-      // .onSuccess((event) => {
-      //       test()
-      // });
-
-      // order_form.addEventListener('submit', function (e) {
-      //       console.log('ad');
-
-      //       order_form.stopPropagation();
-      //       order_form.preventDefault();
-      // });
+      ]).onSuccess((event) => {
+            event.submitter.disabled = true;
+      });
 
 }

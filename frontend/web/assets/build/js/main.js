@@ -1307,17 +1307,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const order_form = document.querySelector('.order-form--cart');
 if (order_form) {
-  // function test() {
-  //       const btn = document.querySelector('.order-form__send');
-  //       btn.textContent = 'daw';
-  //       /*             let count = 0;
-  //                   if (count == 0) {
-  //                         order_form.submit();
-  //                         count = 1;
-  //                   } */
-
-  // }
-
   const phoneInp = document.querySelector('.phone-valid');
   const phoneMask = new (inputmask__WEBPACK_IMPORTED_MODULE_0___default())('+9 (999) 999-99-99');
   phoneMask.mask(phoneInp);
@@ -1347,17 +1336,9 @@ if (order_form) {
   }]).addField('#order-email', [{
     rule: 'email',
     errorMessage: 'Некорректный формат email'
-  }]);
-  // .onSuccess((event) => {
-  //       test()
-  // });
-
-  // order_form.addEventListener('submit', function (e) {
-  //       console.log('ad');
-
-  //       order_form.stopPropagation();
-  //       order_form.preventDefault();
-  // });
+  }]).onSuccess(event => {
+    event.submitter.disabled = true;
+  });
 }
 
 /***/ }),

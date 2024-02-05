@@ -6,7 +6,6 @@ use backend\modules\catalog\models\Order as backendOrder;
 
 class Order extends backendOrder
 {
-    public $spam_check;
 
     public function rules()
     {

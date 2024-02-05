@@ -29,6 +29,8 @@ class Order extends \yii\db\ActiveRecord
 
     public $imagesFiles;
 
+    public $spam_check;
+
     public static function tableName()
     {
         return '{{%order}}';
@@ -43,7 +45,7 @@ class Order extends \yii\db\ActiveRecord
             [['comment', 'body', 'delivery_address'], 'string'],
             [['created_at'], 'integer'],
             [['name', 'phone', 'email', 'delivery_type'], 'string', 'max' => 255],
-            [['total_price', 'imagesFiles'], 'safe'],
+            [['total_price', 'imagesFiles', 'spam_check'], 'safe'],
         ];
     }
 
@@ -73,7 +75,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return new \backend\modules\catalog\models\query\OrdeQuery(get_called_class());
     }
-    
+
     public function afterSave($insert, $changedAttributes)
     {
         $this->setProductImageAttribute();
@@ -87,10 +89,10 @@ class Order extends \yii\db\ActiveRecord
         $this->sendCallbackTelegram();
         $cart = new Cart();
         $cart->clearCart();
-    
+
         parent::afterSave($insert, $changedAttributes);
     }
-    
+
 
     public function beforeDelete()
     {
@@ -104,13 +106,12 @@ class Order extends \yii\db\ActiveRecord
             return false;
         }
     }
-    
+
     protected function setProductImageAttribute()
     {
         $this->imagesFiles = UploadedFile::getInstances($this, 'imagesFiles');
-        if(isset($this->imagesFiles) && !empty($this->imagesFiles))
-        {
-            foreach ($this->imagesFiles as $key=>$img) {
+        if (isset($this->imagesFiles) && !empty($this->imagesFiles)) {
+            foreach ($this->imagesFiles as $key => $img) {
                 $imageModel = new OrderImage();
                 $imageModel->imageFile = $img;
                 $imageModel->order_id = $this->id;
@@ -122,7 +123,7 @@ class Order extends \yii\db\ActiveRecord
             }
         }
     }
-    
+
 
     protected function sendCallbackToEmail()
     {
@@ -196,7 +197,7 @@ class Order extends \yii\db\ActiveRecord
                 foreach ($this->images as $image) {
                     Yii::$app->telegram->sendPhoto([
                         'chat_id' => $chat_id,
-                        'photo' => Yii::$app->request->hostInfo.'/'.OrderImage::UPLOAD_PATH.$image->image,
+                        'photo' => Yii::$app->request->hostInfo . '/' . OrderImage::UPLOAD_PATH . $image->image,
                         'caption' => null
                     ]);
                 }

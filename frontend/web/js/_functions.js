@@ -46,7 +46,7 @@ if (calcTabs != null && product != null) {
     const tabs = new GraphTabs('calc-tab');
 }
 
-if (orderTabs != null) {
+if (orderTabs != null && document.querySelector('#order-form')) {
     const orderTabs = new GraphTabs('order-tab');
 }
 //

@@ -121,7 +121,7 @@ const product = document.querySelector('.product');
 if (calcTabs != null && product != null) {
   const tabs = new graph_tabs__WEBPACK_IMPORTED_MODULE_1__["default"]('calc-tab');
 }
-if (orderTabs != null) {
+if (orderTabs != null && document.querySelector('#order-form')) {
   const orderTabs = new graph_tabs__WEBPACK_IMPORTED_MODULE_1__["default"]('order-tab');
 }
 //

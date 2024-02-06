@@ -5,6 +5,7 @@ namespace backend\modules\catalog\models;
 use backend\traits\fileTrait;
 use frontend\modules\cart\models\Cart;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\web\UploadedFile;
 
 /**
@@ -35,6 +36,21 @@ class Order extends \yii\db\ActiveRecord
     {
         return '{{%order}}';
     }
+    
+
+    public function behaviors()
+    {
+        return[
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => function () {
+                    return date('U');
+                },
+            ],
+        ];
+    } 
 
     /**
      * {@inheritdoc}
@@ -156,10 +172,6 @@ class Order extends \yii\db\ActiveRecord
                 $this->bulkEmailsFromRecipientsArray($emailsArray);
             }
         }
-        // $emailsArray = explode(",", $emails);
-        // if ($emailsArray) {
-        //     $this->bulkEmailsFromRecipientsArray($emailsArray);
-        // }
     }
 
     protected function bulkEmailsFromRecipientsArray($emailsArray)

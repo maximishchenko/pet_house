@@ -48,7 +48,7 @@ class DefaultController extends Controller
             $name = $model->name;
             $phone = $model->phone;
             $email = $model->email;
-            // $delivery_type = $model->delivery_type;
+            $delivery_type = $model->delivery_type;
             $delivery_address = $model->delivery_address;
             $comment = $model->comment;
 
@@ -61,7 +61,7 @@ class DefaultController extends Controller
             $body .= "Ф.И.О.: " . $name . PHP_EOL;
             $body .= "Тел.: " . $phone . PHP_EOL;
             $body .= "Email.: " . $email . PHP_EOL;
-            // $body .= "Тип получения товара: " . $delivery_type . PHP_EOL;
+            $body .= "Тип получения товара: " . $delivery_type . PHP_EOL;
             $body .= "Адрес: " . $delivery_address . PHP_EOL;
             $body .= "Комментарий: " . $comment . PHP_EOL;
             $body .= PHP_EOL;

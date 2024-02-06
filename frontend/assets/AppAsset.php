@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
     ];
     public $jsOptions = [
         'position' => \yii\web\View::POS_HEAD,
-        'defer' => 'defer',
+        // 'defer' => 'defer',
     ];
     public $depends = [
         // 'yii\web\YiiAsset',

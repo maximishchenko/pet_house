@@ -31,7 +31,7 @@ use frontend\models\Sections;
           <?php if (isset($groups) && !empty($groups)) : ?>
             <?php foreach ($groups as $group) : ?>
               <div class="swiper-slide mob-dis">
-                <label for="<?= $group->id; ?>" class="catalog-bar__btn btn-reset filter__category <?= $searchModel->isCategoryActive($group->id); ?>" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>">
+                <label for="<?= $group->id; ?>" class="catalog-bar__btn btn-reset filter__category <?= $searchModel->isGroupActive($group->id); ?>" data-search-name="group_id[]" data-search-value="<?= $group->id; ?>">
                   <?= $group->name; ?>
                   <span class="catalog-bar__btn-ic"></span>
                 </label>

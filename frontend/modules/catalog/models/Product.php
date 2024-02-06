@@ -58,6 +58,12 @@ class Product extends backendProduct
         return (isset($queryParams['category_id']) && in_array($id, $queryParams['category_id'])) ? 'catalog-bar__btn--disable' : null;
     }
 
+    public function isGroupActive($id)
+    {
+        $queryParams = Yii::$app->request->queryParams;
+        return (isset($queryParams['group_id']) && in_array($id, $queryParams['group_id'])) ? 'catalog-bar__btn--disable' : null;
+    }
+
     /**
      * Creates data provider instance with search query applied
      *

@@ -24,8 +24,8 @@ class AppAsset extends AssetBundle
         'js/components/cookie.js',
     ];
     public $jsOptions = [
-        'position' => \yii\web\View::POS_END,
-        // 'defer' => 'defer',
+        'position' => \yii\web\View::POS_HEAD,
+        'defer' => 'defer',
     ];
     public $depends = [
         // 'yii\web\YiiAsset',

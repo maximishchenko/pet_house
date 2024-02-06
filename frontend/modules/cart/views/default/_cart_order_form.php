@@ -62,7 +62,7 @@ use yii\widgets\ActiveForm;
             </a>
         </div>
     </div>
-    <input type="text" class="visually-hidden" id="orderDelivery" value="Доставка"> <!--  //TODO для доставки -->
+    <?= $form->field($order, 'delivery_type', ['template' => '{input}'])->textInput(['id' => 'orderDelivery', 'class' => "order-form__inp input-reset visually-hidden", 'value' => 'Доставка', 'placeholder' => Yii::t('app', 'Order Delivery Type')]); ?>
 </div>
 
 <p class="order-form__politics">

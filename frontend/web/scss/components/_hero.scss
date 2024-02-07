@@ -95,7 +95,7 @@
     height: 0;
     width: 0;
     background: var(--color-light);
-      border-radius: 0 0 var(--size-s) var(--size-s);
+    border-radius: 0 0 var(--size-s) var(--size-s);
   }
 
   &__list {
@@ -151,5 +151,10 @@
     bottom: 1rem;
     justify-content: center;
     right: auto;
+
+    &__btn {
+      font-size: 0.6rem;
+      padding: .7rem;
+    }
   }
 }

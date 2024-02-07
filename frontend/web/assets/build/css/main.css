@@ -1139,6 +1139,10 @@ h5 {
     justify-content: center;
     right: auto;
   }
+  .hero-bage__btn {
+    font-size: 0.6rem;
+    padding: 0.7rem;
+  }
 }
 .categories {
   display: -webkit-box;

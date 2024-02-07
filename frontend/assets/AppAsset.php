@@ -16,9 +16,6 @@ class AppAsset extends AssetBundle
         'assets/build/css/main.css',
     ];
     public $js = [
-        // 'js/lib/jquery-3.6.0.min.js',
-       /*  'js/vendor/masonry.pkgd.min.js', */
-        // 'js/components/constructor.js',
         'js/lib/js.cookie.min.js',
         'assets/build/js/main.js',
         'js/components/cookie.js',
@@ -28,6 +25,5 @@ class AppAsset extends AssetBundle
         'defer' => 'defer',
     ];
     public $depends = [
-        // 'yii\web\YiiAsset',
     ];
 }

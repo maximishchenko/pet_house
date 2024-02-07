@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
 
 
   <fieldset class="thumb-filter__area thumb-filter__area--switch">
-    <label for="s1" class="thumb-filter__title thumb-filter__title--switch">
+    <label for="is_available" class="thumb-filter__title thumb-filter__title--switch">
       <?= Yii::t('app', 'Only Available'); ?>
     </label>
     <ul class="list-reset">
@@ -75,25 +75,32 @@ use yii\widgets\ActiveForm;
 
   <!-- Группы -->
   <?php if (isset($groups) && !empty($groups)) : ?>
+
+
+
     <fieldset class="thumb-filter__area">
-      <legend class="thumb-filter__title">
-        <?php if ($productType != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) : ?>
-          <?= Yii::t('app', 'Product Group Block'); ?>
-        <?php else : ?>
-          <?= Yii::t('app', 'Product Group All Block'); ?>
-        <?php endif; ?>
-      </legend>
+
       <ul class="list-reset">
 
         <?php foreach ($groups as $group) : ?>
-          <li class="thumb-filter__li">
-            <input class="hide-inp thumb-filter__checkbox filter__submit" type="checkbox" id="<?= $group->id; ?>" name="group_id[]" value="<?= $group->id; ?>" <?= $searchModel->isCheckboxSearchParamSelected('group_id', $group->id); ?>>
-            <label for="<?= $group->id; ?>" class="thumb-filter__checkbox-label">
-              <span>
-                <?= $group->name; ?>
-              </span>
+
+          <fieldset class="thumb-filter__area thumb-filter__area--switch">
+            <label for="<?= $group->id; ?>" class="thumb-filter__title thumb-filter__title--switch">
+              <?= $group->name; ?>
             </label>
-          </li>
+            <ul class="list-reset">
+              <li>
+                <label for="<?= $group->id; ?>" class="switch">
+                  <input id="<?= $group->id; ?>" type="checkbox" class="switch filter__submit" name="group_id[]" value="<?= $group->id; ?>" <?= $searchModel->isCheckboxSearchParamSelected('group_id', $group->id); ?>  >
+                  <span class="slider round"></span>
+                </label>
+              </li>
+            </ul>
+          </fieldset>
+
+<!-- catalog-bar__btn--disable -->
+
+
         <?php endforeach; ?>
       </ul>
     </fieldset>

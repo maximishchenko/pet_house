@@ -2439,9 +2439,7 @@ h5 {
   font-size: 0.8rem;
   color: var(--color-dark);
 }
-.reviews-products__text p {
-  margin: 0;
-  margin-bottom: var(--size-xxs);
+.reviews-products__text {
   color: var(--color-dark);
   font-size: 1rem;
   line-height: 140%;
@@ -2646,6 +2644,9 @@ h5 {
   background: var(--color-gray);
   border-radius: var(--size-s);
   overflow: hidden;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .main-faq__col .main-faq__el:not(:last-child) {
   margin-bottom: var(--size-xs);

@@ -19,57 +19,61 @@ use kartik\date\DatePicker;
         'fieldConfig' => ['template' => "{label}\n{input}\n{hint}\n{error}"],
         'encodeErrorSummary' => false,
         'errorSummaryCssClass' => 'alert alert-danger',
-        'errorCssClass'=>'text-danger',
+        'errorCssClass' => 'text-danger',
     ]); ?>
     <?= $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
 
-    
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-6">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                 <?php
-                 echo '<label class="control-label">' . $model->getAttributeLabel('created_at') . '</label>';
-                 echo DatePicker::widget([
-                     'model' => $model,
-                     'attribute' => 'created_at',
-                     'options' => ['placeholder' => $model->getAttributeLabel('created_at')],
-                     'pluginOptions' => [
-                         'autoclose' => true,
-                         'format' => 'dd.mm.yyyy'
-                     ]
-                 ]); 
+                echo '<label class="control-label">' . $model->getAttributeLabel('created_at') . '</label>';
+                echo DatePicker::widget([
+                    'model' => $model,
+                    'attribute' => 'created_at',
+                    'options' => ['placeholder' => $model->getAttributeLabel('created_at')],
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'dd.mm.yyyy'
+                    ]
+                ]);
                 ?>
                 <?= $form->field($model, 'sort')->textInput() ?>
                 <?= $form->field($model, 'status')->checkbox() ?>
                 <?= $form->field($model, 'is_favorite')->checkbox() ?>
             </div>
             <div class="col-md-6">
-                <?= $form->field($model, 'text')->widget(Widget::className(), [
-                    'settings' => [
-                        'lang' => 'ru',
-                        'minHeight' => 300,
-                        'plugins' => [
-                            'clips',
-                            'fullscreen',
-                        ],
-                        'clips' => [
-                            ['Lorem ipsum...', 'Lorem...'],
-                            ['red', '<span class="label-red">red</span>'],
-                            ['green', '<span class="label-green">green</span>'],
-                            ['blue', '<span class="label-blue">blue</span>'],
-                        ],
-                    ],
-                ]); ?>
+
+                <?= $form->field($model, 'text')->textarea(['rows' => 10]) ?>
+                <?php
+                // $form->field($model, 'text')->widget(Widget::className(), [
+                //     'settings' => [
+                //         'lang' => 'ru',
+                //         'minHeight' => 300,
+                //         'plugins' => [
+                //             'clips',
+                //             'fullscreen',
+                //         ],
+                //         'clips' => [
+                //             ['Lorem ipsum...', 'Lorem...'],
+                //             ['red', '<span class="label-red">red</span>'],
+                //             ['green', '<span class="label-green">green</span>'],
+                //             ['blue', '<span class="label-blue">blue</span>'],
+                //         ],
+                //     ],
+                // ]); 
+                ?>
             </div>
         </div>
     </div>
-    
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-6">
                 <?= $form->field($model, 'imageFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
-                <?php if(isset($model->image) && !empty($model->image)): ?>
+                <?php if (isset($model->image) && !empty($model->image)) : ?>
                     <div class="row">
                         <?= SingleImagePreviewWidget::widget([
                             'id' => $model->id,
@@ -82,7 +86,7 @@ use kartik\date\DatePicker;
             </div>
             <div class="col-md-6">
                 <?= $form->field($model, 'avatarFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
-                <?php if(isset($model->avatar) && !empty($model->avatar)): ?>
+                <?php if (isset($model->avatar) && !empty($model->avatar)) : ?>
                     <div class="row">
                         <?= SingleImagePreviewWidget::widget([
                             'id' => $model->id,

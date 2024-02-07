@@ -9,35 +9,35 @@ use yii\helpers\Url;
       <div class="footer__row footer__border">
         <div class="footer__contacts">
           <span class="footer__contacts-title">Есть вопросы?</span>
-          <?php if (Yii::$app->configManager->getItemValue('contactPhone')): ?>
-          <a href="tel:<?= Yii::$app->configManager->getItemValue('contactPhone'); ?>" class="footer__phone"><?= Yii::$app->configManager->getItemValue('contactPhone'); ?></a>
+          <?php if (Yii::$app->configManager->getItemValue('contactPhone')) : ?>
+            <a href="tel:<?= Yii::$app->configManager->getItemValue('contactPhone'); ?>" class="footer__phone"><?= Yii::$app->configManager->getItemValue('contactPhone'); ?></a>
           <?php endif; ?>
-          <?php if (Yii::$app->configManager->getItemValue('contactEmail')): ?>
-          <a href="mailto://<?= Yii::$app->configManager->getItemValue('contactEmail'); ?>" class="footer__mail">
-            <svg class="footer__mail-ic">
-              <use xlink:href="/img/sprite.svg#mail"></use>
-            </svg>
-            <?= Yii::$app->configManager->getItemValue('contactEmail'); ?>
-          </a>
+          <?php if (Yii::$app->configManager->getItemValue('contactEmail')) : ?>
+            <a href="mailto://<?= Yii::$app->configManager->getItemValue('contactEmail'); ?>" class="footer__mail">
+              <svg class="footer__mail-ic">
+                <use xlink:href="/img/sprite.svg#mail"></use>
+              </svg>
+              <?= Yii::$app->configManager->getItemValue('contactEmail'); ?>
+            </a>
           <?php endif; ?>
         </div>
         <div class="footer__col footer__messangers-wrap">
           <div class="footer__messangers">
-            <?php if(!empty(Yii::$app->configManager->getItemValue('contactWhatsapp'))): ?>
-            <a href="<?= Yii::$app->configManager->getItemValue('contactWhatsapp'); ?>" class="footer__btn-wt">
-              <svg>
-                <use xlink:href="/img/sprite.svg#wt"></use>
-              </svg>
-              Написать в Watsapp
-            </a>
+            <?php if (!empty(Yii::$app->configManager->getItemValue('contactWhatsapp'))) : ?>
+              <a href="<?= Yii::$app->configManager->getItemValue('contactWhatsapp'); ?>" class="footer__btn-wt">
+                <svg>
+                  <use xlink:href="/img/sprite.svg#wt"></use>
+                </svg>
+                Написать в Watsapp
+              </a>
             <?php endif; ?>
-            <?php if(!empty(Yii::$app->configManager->getItemValue('contactTelegram'))): ?>
-            <a href="<?= Yii::$app->configManager->getItemValue('contactTelegram'); ?>" class="footer__btn-tl">
-              <svg>
-                <use xlink:href="/img/sprite.svg#tl"></use>
-              </svg>
-              Написать в Telegram
-            </a>
+            <?php if (!empty(Yii::$app->configManager->getItemValue('contactTelegram'))) : ?>
+              <a href="<?= Yii::$app->configManager->getItemValue('contactTelegram'); ?>" class="footer__btn-tl">
+                <svg>
+                  <use xlink:href="/img/sprite.svg#tl"></use>
+                </svg>
+                Написать в Telegram
+              </a>
             <?php endif; ?>
           </div>
           <a href="#header" class="footer__up">
@@ -112,7 +112,7 @@ use yii\helpers\Url;
             </li> -->
             <!-- TODO запуск модального окна -->
             <li class="footer__list-item">
-              <a href="#" class="footer__link">Персональный заказ</a>
+              <button class="btn-reset footer__link" data-graph-path="personal-order">Персональный заказ</и>
             </li>
           </ul>
           <ul class="list-reset footer__list">
@@ -130,7 +130,7 @@ use yii\helpers\Url;
     </div>
     <div class="footer__fin">
       <span>© <?= Yii::$app->configManager->getItemValue('companyStartYear'); ?> – <?= date('Y'); ?> домпитомца.рф</span>
-     
+
       <a href="<?= Url::toRoute('/privacy'); ?>">Политика конфидециальности</a>
     </div>
   </div>

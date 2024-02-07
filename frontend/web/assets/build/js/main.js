@@ -829,10 +829,12 @@ if (document.querySelector('.catalog__list')) {
     let searchUrl = url + "?" + searchParams;
     history.replaceState("", "", searchUrl);
   }
-  searchBtn.addEventListener('click', e => {
-    e.preventDefault();
-    catalogSearchSend();
-  });
+  /* 
+        searchBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              catalogSearchSend();
+        });
+   */
   const barBtns = document.querySelectorAll('.catalog-bar__btn');
   searchFormIntp.forEach(el => {
     el.addEventListener('change', () => {

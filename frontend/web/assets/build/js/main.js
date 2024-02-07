@@ -1152,10 +1152,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var masonry_layout__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(masonry_layout__WEBPACK_IMPORTED_MODULE_0__);
 
 if (document.querySelector('.product-reviews')) {
-  const grid = document.querySelector('.grid-masonry');
-  const msGrid = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(grid, {
-    itemSelector: '.grid-item'
-  });
+  /*       const grid = document.querySelector('.grid-masonry');
+  
+        const msGrid = new Masonry(grid, {
+              itemSelector: '.grid-item'
+        })
+   */
+  const grid = document.querySelector('.reviews-grid');
   const revBtn = document.querySelector('.product-reviews__btn');
   const csrfToken = revBtn.getAttribute('data-csrf-token');
   let page = Number(revBtn.getAttribute('data-page'));
@@ -1174,8 +1177,10 @@ if (document.querySelector('.product-reviews')) {
       });
       const data = await res.json();
       grid.insertAdjacentHTML('beforeend', data.content);
-      msGrid.reloadItems();
-      msGrid.layout();
+
+      /*   msGrid.reloadItems();
+        msGrid.layout();
+      */
       if (page == maxPage) {
         revBtn.disabled = true;
       }

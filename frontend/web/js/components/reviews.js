@@ -3,12 +3,13 @@ import Masonry from "masonry-layout";
 
 
 if (document.querySelector('.product-reviews')) {
-      const grid = document.querySelector('.grid-masonry');
-
-      const msGrid = new Masonry(grid, {
-            itemSelector: '.grid-item'
-      })
-
+      /*       const grid = document.querySelector('.grid-masonry');
+      
+            const msGrid = new Masonry(grid, {
+                  itemSelector: '.grid-item'
+            })
+       */
+      const grid = document.querySelector('.reviews-grid');
       const revBtn = document.querySelector('.product-reviews__btn');
       const csrfToken = revBtn.getAttribute('data-csrf-token');
       let page = Number(revBtn.getAttribute('data-page'));
@@ -31,9 +32,9 @@ if (document.querySelector('.product-reviews')) {
                   const data = await res.json();
                   grid.insertAdjacentHTML('beforeend', data.content);
 
-                  msGrid.reloadItems();
-                  msGrid.layout();
-
+                  /*   msGrid.reloadItems();
+                    msGrid.layout();
+   */
                   if (page == maxPage) {
                         revBtn.disabled = true;
                   }
@@ -41,6 +42,5 @@ if (document.querySelector('.product-reviews')) {
       }
       revBtn.addEventListener('click', () => {
             loadRev();
-
       });
 }

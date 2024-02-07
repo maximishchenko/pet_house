@@ -35,14 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2 class="product-headline">
               <?= Yii::t('app', "Our clients reviews"); ?>
             </h2>
-            <div class="grid-masonry__wrapper">
-              <div class="grid-masonry">
-                <div class="gutter-sizer"></div>
+              <div class="reviews-grid">
                 <?= Yii::$app->controller->renderPartial('//layouts/product/_reviewLoopAjax', ['reviewsDataProvider' => $reviewsDataProvider]); ?>
               </div>
-            </div>
           </div>
-        <?php endif; ?> 
+        <?php endif; ?>
       </div>
       <?= Html::button(Yii::t('app', 'Show more reviews'), ['class' => "product-reviews__btn btn-reset btn-b",  'data-page' => (int)Yii::$app->request->get('page', 1), 'data-page-count' => (int)$reviewsDataProvider->pagination->pageCount, 'data-csrf-token' => Yii::$app->request->csrfToken, 'data-csrf-param' => Yii::$app->request->csrfParam]); ?>
     </div>

@@ -647,7 +647,53 @@
 }
 
 // Отзывы
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 2rem;
+  margin-bottom: 2rem;
+}
 
+.reviews-products {
+  &__link {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__autor {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--color-dark);
+  }
+
+  &__text {
+    p {
+      margin: 0;
+      margin-bottom: var(--size-xxs);
+      color: var(--color-dark);
+      font-size: 1rem;
+      line-height: 140%;
+    }
+  }
+
+  &__date {
+    color: var(--color-dark-80);
+    font-size: 0.8rem;
+  }
+}
+
+.product-reviews__btn {
+  width: 100%;
+}
+
+/* 
 .product-reviews {
   margin-bottom: var(--size-n);
 
@@ -703,7 +749,7 @@
     margin-bottom: 2rem;
     padding: 0 1rem;
   }
-}
+} */
 
 .sidebar {
   position: relative;
@@ -715,9 +761,13 @@
 }
 
 @include small-tablet {
-  .grid-item {
-    width: 100% !important;
+  .reviews-grid {
+    grid-template-columns: 1fr;
   }
+
+  /*   .grid-item {
+    width: 100% !important;
+  } */
 
   .product__bage-wrapper {
     top: var(--size-xs);
@@ -740,10 +790,10 @@
     width: 1.5rem;
   }
 
-  .product-reviews__text,
+  /*   .product-reviews__text,
   .product-reviews__autor {
     font-size: .85rem;
-  }
+  } */
 
   .product {
     display: block;

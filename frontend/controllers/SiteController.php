@@ -10,8 +10,17 @@ use yii\web\Controller;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
+    
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
 
     // Главная
     public function actionIndex()
@@ -32,5 +41,11 @@ class SiteController extends Controller
     public function actionDelivery()
     {
         return $this->render('delivery');
+    }
+    
+
+    public function actionPageNotFound()
+    {
+        return $this->render('page-not-found');
     }
 }

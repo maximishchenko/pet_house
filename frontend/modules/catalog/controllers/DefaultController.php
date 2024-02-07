@@ -11,6 +11,7 @@ use backend\modules\catalog\models\root\Property;
 use backend\modules\content\models\Question;
 use backend\modules\content\models\Review;
 use common\models\Status;
+use frontend\controllers\BaseController;
 use yii\web\Controller;
 use frontend\models\Sections;
 use frontend\modules\catalog\models\Product;
@@ -21,7 +22,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     public function actionIndex()
     {

@@ -109,6 +109,7 @@ return [
                 'catalog/<catalog_slug>/<item_slug>' => 'catalog/default/view',
                 'privacy' => 'site/privacy',
                 'delivery' => 'site/delivery',
+                'page-not-found' => 'site/page-not-found',
 
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',

@@ -31,12 +31,12 @@ use backend\modules\catalog\models\root\Property;
               </li>
             <?php endif; ?>
 
-            <?php if(!empty($model->productAttributes)): ?>
-            <li class="tabs__nav-item">
-              <button class="tabs__nav-btn btn-reset" type="button">
-                <?= Yii::t('app', 'Sidebar Characteristics'); ?>
-              </button>
-            </li>
+            <?php if (!empty($model->productAttributes)) : ?>
+              <li class="tabs__nav-item">
+                <button class="tabs__nav-btn btn-reset" type="button">
+                  <?= Yii::t('app', 'Sidebar Characteristics'); ?>
+                </button>
+              </li>
             <?php endif; ?>
           </ul>
           <div class="tabs__content">
@@ -79,8 +79,8 @@ use backend\modules\catalog\models\root\Property;
                 </div>
 
                 <!-- Размеры -->
-                <div class="calc-el <?= !$model->is_available ? 'calc-el--active' : ''; ?>">
-                  <button class="calc-el__btn-control btn-reset <?= $model->is_available ? 'calc-el__btn-control--dis' : ''; ?>" type="button"> <!-- TODO Класс для блокировки -->
+                <div class="calc-el <?= !$model->is_available && !$model->is_constructor_blocked ? 'calc-el--active' : ''; ?>">
+                  <button class="calc-el__btn-control btn-reset <?= $model->is_available || $model->is_constructor_blocked ? 'calc-el__btn-control--dis' : ''; ?>" type="button"> <!-- TODO Класс для блокировки -->
                     <span class="calc-el__btn-wrapper">
                       <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" data-constructor-size-height="<?= $model->size->height; ?>" data-constructor-size-width="<?= $model->size->width; ?>" data-constructor-size-depth="<?= $model->size->depth; ?>" data-constructor-size-height-price="<?= $model->size->height_price; ?>" data-constructor-size-width-price="<?= $model->size->width_price; ?>" data-constructor-size-depth-price="<?= $model->size->depth_price; ?>" style="background-image: url('/img/size.jpg');">
                       </span>
@@ -158,23 +158,23 @@ use backend\modules\catalog\models\root\Property;
 
 
             <!-- Характеристики -->
-            <?php if(!empty($model->productAttributes)): ?>
-            <div class="tabs__panel">
-              <div class="specifications">
-                <ul class="list-reset specifications__list">
-                  <?php foreach ($model->productAttributes as $attribute) : ?>
-                    <li class="specifications__el">
-                      <span class="specifications__title">
-                        <?= $attribute->name; ?>
-                      </span>
-                      <span class="specifications__value">
-                        <?= $attribute->value; ?>
-                      </span>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
+            <?php if (!empty($model->productAttributes)) : ?>
+              <div class="tabs__panel">
+                <div class="specifications">
+                  <ul class="list-reset specifications__list">
+                    <?php foreach ($model->productAttributes as $attribute) : ?>
+                      <li class="specifications__el">
+                        <span class="specifications__title">
+                          <?= $attribute->name; ?>
+                        </span>
+                        <span class="specifications__value">
+                          <?= $attribute->value; ?>
+                        </span>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                </div>
               </div>
-            </div>
 
             <?php endif; ?>
           </div>

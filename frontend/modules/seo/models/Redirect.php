@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\models;
+namespace frontend\modules\seo\models;
 
 use Yii;
 use backend\modules\seo\models\Redirect as backendRedirect;

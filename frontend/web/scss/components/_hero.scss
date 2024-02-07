@@ -95,7 +95,7 @@
     height: 0;
     width: 0;
     background: var(--color-light);
-      border-radius: 0 0 var(--size-s) var(--size-s);
+    border-radius: 0 0 var(--size-s) var(--size-s);
   }
 
   &__list {
@@ -120,6 +120,7 @@
 @include small-tablet {
   .hero {
     padding: 0;
+    
 
     .section-headline {
       font-size: 2.5rem;
@@ -151,5 +152,10 @@
     bottom: 1rem;
     justify-content: center;
     right: auto;
+
+    &__btn {
+      font-size: 0.6rem;
+      padding: .7rem;
+    }
   }
 }

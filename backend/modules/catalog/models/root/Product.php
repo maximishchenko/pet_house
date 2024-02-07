@@ -79,32 +79,33 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         // Витрины для грызунов
         if (
-            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && 
-            $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE &&
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT
+        ) {
             return new RodentShowcaseProduct();
-        } 
-        elseif (
-            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE && 
-            $row['item_type'] == ProductItemType::PRODUCT_TYPE_ACCESSORY) {
+        } elseif (
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_RODENT_SHOWCASE &&
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_ACCESSORY
+        ) {
             return new RodentShowcaseAccessory();
-        } 
+        }
         // Клетки для собак
-        elseif(
-        
-            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && 
-            $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT) {
-            return new DogCageProduct();
-        } 
         elseif (
-            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE && 
-            $row['item_type'] == ProductItemType::PRODUCT_TYPE_ACCESSORY) {
+
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE &&
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_PRODUCT
+        ) {
+            return new DogCageProduct();
+        } elseif (
+            $row['product_type'] == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE &&
+            $row['item_type'] == ProductItemType::PRODUCT_TYPE_ACCESSORY
+        ) {
             return new DogCageAccessory();
-        } 
-        else {
+        } else {
             return new self;
         }
     }
-    
+
     public static function tableName()
     {
         return '{{%product}}';
@@ -112,7 +113,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
 
     public function behaviors()
     {
-        return[
+        return [
             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
@@ -131,25 +132,25 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
                 'attribute' => ['name'],
                 'slugAttribute' => 'slug',
                 'immutable' => true,
-                'ensureUnique'=>true,
+                'ensureUnique' => true,
             ],
         ];
-    } 
-    
+    }
+
     public static function find()
     {
         $cls = get_called_class();
         $clsItem = new $cls;
         return new ProductQuery($cls, ['product_type' => $clsItem->product_type, 'item_type' => $clsItem->item_type]);
     }
-    
+
     public function init()
     {
         $this->product_type = $this->getType();
         $this->item_type = $this->getItemType();
         parent::init();
     }
-    
+
 
     /**
      * {@inheritdoc}
@@ -173,8 +174,8 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             // [['name', 'category_id'], 'required'],
             [['name'], 'required'],
             [['name'], 'unique'],
-            [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
-            [['view_count'], 'default', 'value'=> 1],
+            [['sort'], 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
+            [['view_count'], 'default', 'value' => 1],
         ];
     }
 
@@ -224,15 +225,15 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
 
     public function getProductTypeValue()
     {
-        
-        return $this->hasOne(Property::className(), ['id' => 'type_id'])->from(['type' => Property::tableName()]);        
+
+        return $this->hasOne(Property::className(), ['id' => 'type_id'])->from(['type' => Property::tableName()]);
     }
 
     public function getProductImages()
     {
         return $this->hasMany(ProductImage::className(), ['product_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
     }
-    
+
     public function getItemType(): ?string
     {
         return $this->setItemType();
@@ -242,7 +243,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return $this->setType();
     }
-    
+
     public function getHeights()
     {
         return $this->hasOne(Property::className(), ['id' => 'size_id']);
@@ -301,22 +302,22 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         $type_id = $this->type_id;
         $typeSizes = PropertyLink::find()
-                        ->select(['target_id'])
-                        ->where([
-                            'source_id' => $type_id, 
-                            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE, 
-                            'property_type' => $this->product_type
-                        ])
-                        ->asArray()
-                        ->all();
+            ->select(['target_id'])
+            ->where([
+                'source_id' => $type_id,
+                'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_TYPE,
+                'property_type' => $this->product_type
+            ])
+            ->asArray()
+            ->all();
         $typeSizesArray = ArrayHelper::getColumn($typeSizes, 'target_id');
         $sizes = Property::find()->where([
-                'status' => Status::STATUS_ACTIVE, 
-                'property_type' => $this->product_type, 
-                'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
-                'height_value'  => $this->heights->height_value,
-                'id' => $typeSizesArray
-            ])->all();
+            'status' => Status::STATUS_ACTIVE,
+            'property_type' => $this->product_type,
+            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
+            'height_value'  => $this->heights->height_value,
+            'id' => $typeSizesArray
+        ])->all();
         return $sizes;
     }
 
@@ -348,7 +349,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
      */
     public static function getTopSales()
     {
-        
+
         $topSales = Product::find()
             ->where([
                 'status' => Status::STATUS_ACTIVE,
@@ -400,12 +401,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getCategoriesItems()
     {
         $categories = Category::find()
-                        ->where([
-                            // 'item_type' => $this->item_type,
-                            'property_type' => $this->product_type,
-                            'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY,
-                        ])->all(); 
-        $items = ArrayHelper::map($categories,'id', 'name');
+            ->where([
+                // 'item_type' => $this->item_type,
+                'property_type' => $this->product_type,
+                'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY,
+            ])->all();
+        $items = ArrayHelper::map($categories, 'id', 'name');
         return $items;
     }
 
@@ -422,12 +423,12 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getGroupsItems()
     {
         $categories = Category::find()
-                        ->where([
-                            'item_type' => $this->item_type,
-                            'property_type' => $this->product_type,
-                            'group_type' => GroupTypeItems::GROUP_TYPE_GROUP,
-                        ])->all(); 
-        $items = ArrayHelper::map($categories,'id', 'name');
+            ->where([
+                'item_type' => $this->item_type,
+                'property_type' => $this->product_type,
+                'group_type' => GroupTypeItems::GROUP_TYPE_GROUP,
+            ])->all();
+        $items = ArrayHelper::map($categories, 'id', 'name');
         return $items;
     }
 
@@ -435,13 +436,20 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     {
         return ['prompt' => Yii::t('app', 'Choose product group')];
     }
-    
+
 
     public function getConstructorCssClass()
     {
         return $this->is_available || $this->is_constructor_blocked ? "calc-el__btn-control calc-el__btn-control--dis btn-reset" : "calc-el__btn-control btn-reset";
     }
-    
+
+    public function getConstructorActiveCssClass()
+    {
+        return $this->is_available || $this->is_constructor_blocked ? "calc-el" : "calc-el--active";
+    }
+
+
+
     /**
      * Генерация данных выпадающего списка свойств в зависимости от типа параметра и вида продукта
      *
@@ -451,17 +459,17 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getPropertiesItems($item_type)
     {
         $properties = Property::find()
-                        ->where([
-                            'item_type' => $item_type,
-                            'property_type' => $this->product_type
-                        ])->all(); 
-        $items = ArrayHelper::map($properties,'id', 'name');
+            ->where([
+                'item_type' => $item_type,
+                'property_type' => $this->product_type
+            ])->all();
+        $items = ArrayHelper::map($properties, 'id', 'name');
         return $items;
     }
 
     public function getOldPrice()
     {
-        $oldPrice = $this->price + (($this->price * $this->discount)/100);
+        $oldPrice = $this->price + (($this->price * $this->discount) / 100);
         $oldPrice = PriceValue::roundToHundreds($oldPrice);
         return $oldPrice;
     }

@@ -212,11 +212,13 @@ if (document.querySelector('.product__col-calc') || document.querySelector('.car
 
         accessoriesBtns.forEach(el => {
             el.addEventListener('click', (e) => {
-                const id = e.target.getAttribute('data-product-id');
-                const price = e.target.getAttribute('data-product-price')
+                if (!el.classList.contains('card-accessories__btn--active')) {
+                    const id = e.target.getAttribute('data-product-id');
+                    const price = e.target.getAttribute('data-product-price')
 
-                accessoriesToCart(id, price, e.target);
+                    accessoriesToCart(id, price, e.target);
 
+                }
             });
         });
 

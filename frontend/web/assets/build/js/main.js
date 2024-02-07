@@ -270,10 +270,11 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
     #sliderHeigthStep;
     #sliderWidthStep;
     #sliderDepthStep;
+    des = 0;
     constructor(totalPrice, totalOldPrice, sliderHeightSelector, sliderWithSelector, sliderDepthSelector) {
       this.totalPrice = document.querySelector(totalPrice);
       this.totalSalePrice = document.querySelector(totalOldPrice);
-      this.des = this.totalSalePrice.getAttribute('data-product-discount');
+      this.des = this.totalSalePrice?.getAttribute('data-product-discount');
       this.sliderHeigthSelector = document.querySelector(sliderHeightSelector);
       this.sliderWidthSelector = document.querySelector(sliderWithSelector);
       this.sliderDepthSelector = document.querySelector(sliderDepthSelector);

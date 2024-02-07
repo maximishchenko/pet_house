@@ -99,7 +99,7 @@ use yii\helpers\Url;
           <ul class="list-reset footer__list">
             <li class="footer__list-title">Каталог</li>
             <li class="footer__list-item">
-              <a href="<?= Url::toRoute('/chinchilles'); ?>" class="footer__link">Шиншиллы</a>
+              <a href="<?= Url::toRoute('/chinchilles'); ?>" class="footer__link">Грызуны</a>
             </li>
             <li class="footer__list-item">
               <a href="<?= Url::toRoute('/dogs'); ?>" class="footer__link">Собаки</a>

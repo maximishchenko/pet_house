@@ -216,7 +216,7 @@ use yii\widgets\ActiveForm;
 
       <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => "Ф.И.О.*"]); ?>
 
-      <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*"]); ?>
+      <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*", 'data-tel-input' => true]); ?>
 
       <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => "Почта"]); ?>
 

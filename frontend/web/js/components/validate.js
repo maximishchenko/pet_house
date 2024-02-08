@@ -6,7 +6,7 @@ if (order_form) {
 
       const phoneInp = document.querySelector('.phone-valid');
       const phoneMask = new Inputmask('+9 (999) 999-99-99');
-      phoneMask.mask(phoneInp);
+      // phoneMask.mask(phoneInp);
 
       const validator = new JustValidate(document.querySelector('.order-form--cart'), { submitFormAutomatically: true, });
 
@@ -31,10 +31,12 @@ if (order_form) {
                   errorMessage: 'Пожалуйста, укажите Ваш номер телефона',
             },
             {
-                  validator: (vale) => {
-                        const phone = phoneInp.inputmask.unmaskedvalue();
-                        return phone.length === 11;
-                  },
+                  // validator: (vale) => {
+                  //       const phone = phoneInp.inputmask.unmaskedvalue();
+                  //       return phone.length === 11;
+                  // },
+                  rule: 'maxLength',
+                  value: 18,
                   errorMessage: 'Пожалуйста, укажите корректный номер телефона',
             }
       ]).addField('#order-email', [

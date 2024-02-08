@@ -51,6 +51,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/cart */ "./frontend/web/js/components/cart.js");
 /* harmony import */ var _components_cart__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_cart__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/validate */ "./frontend/web/js/components/validate.js");
+/* harmony import */ var _components_maskPhone__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/maskPhone */ "./frontend/web/js/components/maskPhone.js");
+/* harmony import */ var _components_maskPhone__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_maskPhone__WEBPACK_IMPORTED_MODULE_10__);
+
 
 
 
@@ -1141,6 +1144,85 @@ window.addEventListener('resize', function () {
 
 /***/ }),
 
+/***/ "./frontend/web/js/components/maskPhone.js":
+/*!*************************************************!*\
+  !*** ./frontend/web/js/components/maskPhone.js ***!
+  \*************************************************/
+/***/ (() => {
+
+document.addEventListener("DOMContentLoaded", function () {
+  var phoneInputs = document.querySelectorAll('input[data-tel-input]');
+  var getInputNumbersValue = function (input) {
+    // Return stripped input value — just numbers
+    return input.value.replace(/\D/g, '');
+  };
+  var onPhonePaste = function (e) {
+    var input = e.target,
+      inputNumbersValue = getInputNumbersValue(input);
+    var pasted = e.clipboardData || window.clipboardData;
+    if (pasted) {
+      var pastedText = pasted.getData('Text');
+      if (/\D/g.test(pastedText)) {
+        // Attempt to paste non-numeric symbol — remove all non-numeric symbols,
+        // formatting will be in onPhoneInput handler
+        input.value = inputNumbersValue;
+        return;
+      }
+    }
+  };
+  var onPhoneInput = function (e) {
+    var input = e.target,
+      inputNumbersValue = getInputNumbersValue(input),
+      selectionStart = input.selectionStart,
+      formattedInputValue = "";
+    if (!inputNumbersValue) {
+      return input.value = "";
+    }
+    if (input.value.length != selectionStart) {
+      // Editing in the middle of input, not last symbol
+      if (e.data && /\D/g.test(e.data)) {
+        // Attempt to input non-numeric symbol
+        input.value = inputNumbersValue;
+      }
+      return;
+    }
+    if (["7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
+      if (inputNumbersValue[0] == "9") inputNumbersValue = "7" + inputNumbersValue;
+      var firstSymbols = inputNumbersValue[0] == "8" ? "8" : "+7";
+      formattedInputValue = input.value = firstSymbols + " ";
+      if (inputNumbersValue.length > 1) {
+        formattedInputValue += '(' + inputNumbersValue.substring(1, 4);
+      }
+      if (inputNumbersValue.length >= 5) {
+        formattedInputValue += ') ' + inputNumbersValue.substring(4, 7);
+      }
+      if (inputNumbersValue.length >= 8) {
+        formattedInputValue += '-' + inputNumbersValue.substring(7, 9);
+      }
+      if (inputNumbersValue.length >= 10) {
+        formattedInputValue += '-' + inputNumbersValue.substring(9, 11);
+      }
+    } else {
+      formattedInputValue = '+' + inputNumbersValue.substring(0, 16);
+    }
+    input.value = formattedInputValue;
+  };
+  var onPhoneKeyDown = function (e) {
+    // Clear input after remove last symbol
+    var inputValue = e.target.value.replace(/\D/g, '');
+    if (e.keyCode == 8 && inputValue.length == 1) {
+      e.target.value = "";
+    }
+  };
+  for (var phoneInput of phoneInputs) {
+    phoneInput.addEventListener('keydown', onPhoneKeyDown);
+    phoneInput.addEventListener('input', onPhoneInput, false);
+    phoneInput.addEventListener('paste', onPhonePaste, false);
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/web/js/components/reviews.js":
 /*!***********************************************!*\
   !*** ./frontend/web/js/components/reviews.js ***!
@@ -1322,7 +1404,8 @@ const order_form = document.querySelector('.order-form--cart');
 if (order_form) {
   const phoneInp = document.querySelector('.phone-valid');
   const phoneMask = new (inputmask__WEBPACK_IMPORTED_MODULE_0___default())('+9 (999) 999-99-99');
-  phoneMask.mask(phoneInp);
+  // phoneMask.mask(phoneInp);
+
   const validator = new just_validate__WEBPACK_IMPORTED_MODULE_1__["default"](document.querySelector('.order-form--cart'), {
     submitFormAutomatically: true
   });
@@ -1341,10 +1424,12 @@ if (order_form) {
     rule: 'required',
     errorMessage: 'Пожалуйста, укажите Ваш номер телефона'
   }, {
-    validator: vale => {
-      const phone = phoneInp.inputmask.unmaskedvalue();
-      return phone.length === 11;
-    },
+    // validator: (vale) => {
+    //       const phone = phoneInp.inputmask.unmaskedvalue();
+    //       return phone.length === 11;
+    // },
+    rule: 'maxLength',
+    value: 18,
     errorMessage: 'Пожалуйста, укажите корректный номер телефона'
   }]).addField('#order-email', [{
     rule: 'email',

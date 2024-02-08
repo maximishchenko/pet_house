@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Name')]); ?>
 
-<?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset phone-valid", "pattern" => "^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?", 'placeholder' => Yii::t('app', 'Order Phone')]); ?>
+<?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset phone-valid", "pattern" => "^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?", 'placeholder' => Yii::t('app', 'Order Phone'), 'data-tel-input' => true]); ?>
 
 <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => Yii::t('app', 'Order Email')]); ?>
 

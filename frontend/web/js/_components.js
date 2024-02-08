@@ -8,3 +8,4 @@ import './components/calculator';
 import './components/reviews';
 import './components/cart'
 import './components/validate'
+import './components/maskPhone'

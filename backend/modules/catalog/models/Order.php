@@ -192,7 +192,7 @@ class Order extends \yii\db\ActiveRecord
             ->setTo($email)
             ->setFrom([Yii::$app->params['email_from'] => Yii::$app->params['email_from']])
             ->setSubject($this->getSubject())
-            ->setTextBody($this->body)
+            ->setTextBody($this->getSubject() . PHP_EOL . $this->body)
             ->send();
     }
 
@@ -202,7 +202,7 @@ class Order extends \yii\db\ActiveRecord
         if (isset($chat_id) && !empty($chat_id)) {
             Yii::$app->telegram->sendMessage([
                 'chat_id' => $chat_id,
-                'text' => $this->body,
+                'text' => $this->getSubject() . PHP_EOL . $this->body,
             ]);
             if (!empty($this->images)) {
                 Yii::debug("Has images");

@@ -4,6 +4,7 @@ namespace frontend\modules\cart\controllers;
 
 use backend\modules\catalog\models\root\Property;
 use common\components\Word;
+use frontend\controllers\BaseController;
 use frontend\modules\cart\models\Cart;
 use frontend\modules\cart\models\CartProduct;
 use frontend\modules\cart\models\CartSession;
@@ -15,7 +16,7 @@ use yii\web\Controller;
 /**
  * Default controller for the `cart` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * Renders the index view for the module

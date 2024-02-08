@@ -228,7 +228,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nouislider */ "./node_modules/nouislider/dist/nouislider.mjs");
 
 
-if (document.querySelector('.product') && document.querySelector('.calc-el__btn-control')) {
+if (document.querySelector('.product')) {
+  //&& document.querySelector('.calc-el__btn-control')
+
   const stickybar = new (hc_sticky__WEBPACK_IMPORTED_MODULE_0___default())('.sidebar', {
     stickTo: '.product__col',
     top: 100,

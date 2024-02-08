@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
       <!-- Галлерея -->
       <?= $this->render('//layouts/product/_gallery', ['model' => $model]); ?>
       <div class="product__optional">
+        <div class="mob-adapt-calc"></div>
         <?php if ($model->item_type != ProductItemType::PRODUCT_TYPE_ACCESSORY) : ?>
-          <div class="mob-adapt-calc"></div>
           <!-- Аксессуары -->
           <?= $this->render('//layouts/product/_accessories', ['accessories' => $accessories]); ?>
           <!-- Промо -->
@@ -35,9 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2 class="product-headline">
               <?= Yii::t('app', "Our clients reviews"); ?>
             </h2>
-              <div class="reviews-grid">
-                <?= Yii::$app->controller->renderPartial('//layouts/product/_reviewLoopAjax', ['reviewsDataProvider' => $reviewsDataProvider]); ?>
-              </div>
+            <div class="reviews-grid">
+              <?= Yii::$app->controller->renderPartial('//layouts/product/_reviewLoopAjax', ['reviewsDataProvider' => $reviewsDataProvider]); ?>
+            </div>
           </div>
         <?php endif; ?>
       </div>

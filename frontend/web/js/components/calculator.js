@@ -1,7 +1,7 @@
 import HcSticky from 'hc-sticky';
 import noUiSlider from 'nouislider';
 
-if (document.querySelector('.product') && document.querySelector('.calc-el__btn-control')) {
+if (document.querySelector('.product')) { //&& document.querySelector('.calc-el__btn-control')
 
     const stickybar = new HcSticky('.sidebar', {
         stickTo: '.product__col',
@@ -18,7 +18,7 @@ if (document.querySelector('.product') && document.querySelector('.calc-el__btn-
     const modAdaptContainer = document.querySelector('.mob-adapt-calc');
     const sideBar = document.querySelector('.product__col-calc');
 
-    function sideBarController() {
+    function sideBarController() {     
         if (screen.width < 768 && !modAdaptContainer.querySelector('.product__col-calc')) {
             modAdaptContainer.append(sideBar);
         } else if (screen.width > 768 && !productContainer.children[1]) {

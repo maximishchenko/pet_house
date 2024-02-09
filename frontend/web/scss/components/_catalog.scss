@@ -578,7 +578,7 @@
 
   &__table-inp {
     appearance: none;
-    opacity: 0;
+    opacity: 0 !important;
   }
 
   &__table-inp:checked+&__table-label {

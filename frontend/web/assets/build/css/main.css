@@ -4245,9 +4245,7 @@ h5 {
   }
 }
 .thumb-filter__table-inp {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  opacity: 0 !important;
 }
 .thumb-filter__table-inp:checked + .thumb-filter__table-label {
   background: var(--color-dark);

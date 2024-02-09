@@ -576,6 +576,10 @@
     }
   }
 
+  &__table-inp {
+    appearance: none;
+  }
+
   &__table-inp:checked+&__table-label {
     background: var(--color-dark);
     color: var(--color-light);

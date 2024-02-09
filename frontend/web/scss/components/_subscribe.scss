@@ -46,8 +46,10 @@
       transition: fill var(--hover);
     }
 
-    &:hover svg {
-      fill: var(--color-light);
+    @include hover {
+      &:hover svg {
+        fill: var(--color-light);
+      }
     }
   }
 
@@ -77,6 +79,7 @@
 @include small-tablet {
   .subscription {
     margin-top: 0;
+
     &__wrapper {
       grid-template-columns: 1fr;
     }

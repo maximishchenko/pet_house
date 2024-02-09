@@ -2797,8 +2797,10 @@ h5 {
   -o-transition: fill var(--hover);
   transition: fill var(--hover);
 }
-.subscription__btn:hover svg {
-  fill: var(--color-light);
+@media (any-hover: hover) {
+  .subscription__btn:hover:hover svg {
+    fill: var(--color-light);
+  }
 }
 .subscription__img-wrap {
   position: relative;
@@ -4241,6 +4243,11 @@ h5 {
   .thumb-filter__table-label:hover {
     background: var(--color-gray);
   }
+}
+.thumb-filter__table-inp {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .thumb-filter__table-inp:checked + .thumb-filter__table-label {
   background: var(--color-dark);

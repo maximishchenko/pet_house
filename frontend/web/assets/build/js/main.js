@@ -1439,6 +1439,43 @@ if (order_form) {
   });
 }
 
+// 
+
+const order_form_personal = document.querySelector('.personal-form');
+if (order_form_personal) {
+  const validator = new just_validate__WEBPACK_IMPORTED_MODULE_1__["default"](document.querySelector('.personal-form'), {
+    submitFormAutomatically: true
+  });
+  validator.addField('#personal-order-name', [{
+    rule: 'required',
+    errorMessage: 'Пожалуйста, укажите Ф.И.О'
+  }, {
+    rule: 'minLength',
+    value: 3,
+    errorMessage: 'Минимальное количество символов: 3'
+  }, {
+    rule: 'maxLength',
+    value: 30,
+    errorMessage: 'Максимальное количество символов: 30'
+  }]).addField('#personal-order-phone', [{
+    rule: 'required',
+    errorMessage: 'Пожалуйста, укажите Ваш номер телефона'
+  }, {
+    // validator: (vale) => {
+    //       const phone = phoneInp.inputmask.unmaskedvalue();
+    //       return phone.length === 11;
+    // },
+    rule: 'maxLength',
+    value: 18,
+    errorMessage: 'Пожалуйста, укажите корректный номер телефона'
+  }]).addField('#personal-order-email', [{
+    rule: 'email',
+    errorMessage: 'Некорректный формат email'
+  }]).onSuccess(event => {
+    event.submitter.disabled = true;
+  });
+}
+
 /***/ }),
 
 /***/ "./frontend/web/js/vendor/focus-visible.js":

@@ -214,11 +214,11 @@ use yii\widgets\ActiveForm;
 
       <h3 class="order-form__title">Персональный заказ</h3>
 
-      <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['class' => "order-form__inp input-reset", 'placeholder' => "Ф.И.О.*"]); ?>
+      <?= $form->field($order, 'name', ['template' => '{input}'])->textInput(['id' => 'personal-order-name', 'class' => "order-form__inp input-reset", 'placeholder' => "Ф.И.О.*"]); ?>
 
-      <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*", 'data-tel-input' => true]); ?>
+      <?= $form->field($order, 'phone', ['template' => '{input}'])->textInput(['id' => 'personal-order-phone', 'type' => 'tel', 'class' => "order-form__inp input-reset", 'placeholder' => "Телефон*", 'data-tel-input' => true]); ?>
 
-      <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => "Почта"]); ?>
+      <?= $form->field($order, 'email', ['template' => '{input}'])->textInput(['id' => 'personal-order-email', 'type' => 'email', 'class' => "order-form__inp input-reset", 'placeholder' => "Почта"]); ?>
 
       <?= $form->field($order, 'comment', ['template' => '{input}'])->textarea(['cols' => 20, 'rows' => 7, 'class' => "order-form__inp input-reset", 'placeholder' => "Комментарий"]) ?>
 

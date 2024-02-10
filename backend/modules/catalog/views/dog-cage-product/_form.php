@@ -99,6 +99,7 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>
     </div>
+    
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-4">
@@ -109,6 +110,7 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>
     </div>
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-4">

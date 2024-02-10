@@ -43,6 +43,8 @@ use backend\modules\catalog\models\root\Property;
 
             <?php if ($model->item_type == ProductItemType::PRODUCT_TYPE_PRODUCT) : ?>
               <div class="tabs__panel">
+                
+                <?php if(!$model->disable_color_block): ?>
                 <div class="calc-el calc-el--color">
                   <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
                     <span class="calc-el__btn-wrapper">
@@ -77,8 +79,10 @@ use backend\modules\catalog\models\root\Property;
                     </div>
                   </div>
                 </div>
+                <?php endif; ?>
 
                 <!-- Размеры -->
+                <?php if(!$model->disable_size_block): ?>
                 <div class="calc-el <?= !$model->is_available && !$model->is_constructor_blocked ? 'calc-el--active' : ''; ?>">
                   <button class="calc-el__btn-control btn-reset <?= $model->is_available || $model->is_constructor_blocked ? 'calc-el__btn-control--dis' : ''; ?>" type="button"> <!-- TODO Класс для блокировки -->
                     <span class="calc-el__btn-wrapper">
@@ -117,9 +121,11 @@ use backend\modules\catalog\models\root\Property;
 
                   </div>
                 </div>
+                <?php endif; ?>
                 <!-- Размеры -->
 
                 <!-- Боковые стенки -->
+                <?php if(!$model->disable_wall_block): ?>
                 <?php if ($model->product_type != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) : ?>
                   <div class="calc-el">
                     <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
@@ -149,6 +155,7 @@ use backend\modules\catalog\models\root\Property;
                       </div>
                     </div>
                   </div>
+                <?php endif; ?>
                 <?php endif; ?>
                 <!-- Боковые стенки -->
 

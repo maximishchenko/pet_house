@@ -89,6 +89,19 @@ use yii\bootstrap4\ActiveForm;
     </div>
     <div class="jumbotron">
         <div class="row">
+            <div class="col-md-4">
+                <?= $form->field($model, 'disable_color_block')->checkbox() ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'disable_size_block')->checkbox() ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'disable_wall_block')->checkbox() ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
             <div class="col-md-6">
                 <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
                 <?= $form->field($model, 'sort')->textInput() ?>

@@ -158,9 +158,9 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
     public function rules()
     {
         return [
-            [['category_id', 'group_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['category_id', 'group_id', 'type_id', 'material_id', 'color_id', 'wall_id', 'engraving_id', 'size_id', 'is_available', 'discount', 'is_constructor_blocked', 'view_count', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'disable_color_block', 'disable_size_block', 'disable_wall_block'], 'integer'],
             [['price', 'height_price', 'width_price', 'depth_price'], 'number'],
-            [['height_price', 'width_price', 'depth_price'], 'safe'],
+            [['height_price', 'width_price', 'depth_price', 'disable_color_block', 'disable_size_block', 'disable_wall_block'], 'safe'],
             [['comment', 'description'], 'string'],
             [['name', 'slug', 'product_type', 'item_type', 'status', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -201,6 +201,9 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
             'height_price' => Yii::t('app', 'Height Price'),
             'width_price' => Yii::t('app', 'Width Price'),
             'depth_price' => Yii::t('app', 'Depth Price'),
+            'disable_color_block' => Yii::t('app', 'Disable color block'),
+            'disable_size_block' => Yii::t('app', 'Disable size block'),
+            'disable_wall_block' => Yii::t('app', 'Disable wall block'),
             'price' => Yii::t('app', 'Price'),
             'discount' => Yii::t('app', 'Discount'),
             'is_constructor_blocked' => Yii::t('app', 'Is Constructor Blocked'),

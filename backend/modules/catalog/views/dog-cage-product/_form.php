@@ -102,6 +102,16 @@ use yii\bootstrap4\ActiveForm;
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-4">
+                <?= $form->field($model, 'disable_color_block')->checkbox() ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($model, 'disable_size_block')->checkbox() ?>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4">
                 <?= $form->field($model, 'height')->textInput([
                         'maxlength' => true
                     ])->hint(Yii::t('app', "Rodent Showcase Height hint")); ?>

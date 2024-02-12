@@ -43,15 +43,22 @@ abstract class PropertyType extends Property
     // Размеры
 
     public function getSizeCheckboxListItems()
-    {
-        return Property::find()
-                    ->where([
-                        'property_type' => $this->property_type,
-                        'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
-                    ])
-                    ->select(['name', 'id'])
-                    ->indexBy('id')
-                    ->column();
+    {        
+        $sizes = Property::find()
+        ->where([
+            'property_type' => $this->property_type,
+            'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
+        ])->all();
+        $items = ArrayHelper::map($sizes,'id','nameWithDescription');
+        return $items;
+        // return Property::find()
+        //             ->where([
+        //                 'property_type' => $this->property_type,
+        //                 'item_type' => PropertyItemTypeItems::PROPERTY_ITEM_TYPE_SIZE,
+        //             ])
+        //             ->select(['name', 'id'])
+        //             ->indexBy('id')
+        //             ->column();
     }   
 
     /**

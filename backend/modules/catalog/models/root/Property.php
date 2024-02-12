@@ -186,6 +186,21 @@ class Property extends \yii\db\ActiveRecord implements SingleTableInterface
         ];
     }
 
+    
+    
+    public function getNameWithDescription()
+    {
+        if (!empty($this->comment)) {
+            return $this->name . ' (' . $this->comment . ')';
+        }
+        return $this->name;
+        
+        // if (!empty($this->image)) {
+        //     return $this->name . ' <br/><img style="text-align: left" src=/' . self::UPLOAD_PATH . $this->image . '>';
+        // }
+        // return $this->name;
+    }
+
     /**
      * Gets query for [[Products]].
      *

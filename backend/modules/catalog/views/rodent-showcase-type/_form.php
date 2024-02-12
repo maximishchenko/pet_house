@@ -51,7 +51,7 @@ use yii\bootstrap4\ActiveForm;
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
-                <?= $form->field($model, 'sizesArray')->checkboxList($model->getSizeCheckboxListItems(), ['class' => 'checkbox__group']) ?>
+                <?= $form->field($model, 'sizesArray')->checkboxList($model->getSizeCheckboxListItems(), ['class' => 'checkbox__group', 'encode' => false]) ?>
             </div>
         </div>
     </div>

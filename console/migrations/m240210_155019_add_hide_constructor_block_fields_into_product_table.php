@@ -12,9 +12,9 @@ class m240210_155019_add_hide_constructor_block_fields_into_product_table extend
      */
     public function safeUp()
     {
-        $this->addColumn('{{%product}}', 'disable_color_block', $this->string());
-        $this->addColumn('{{%product}}', 'disable_size_block', $this->smallInteger());
-        $this->addColumn('{{%product}}', 'disable_wall_block', $this->smallInteger());
+        $this->addColumn('{{%product}}', 'hide_color_block', $this->smallInteger());
+        $this->addColumn('{{%product}}', 'hide_size_block', $this->smallInteger());
+        $this->addColumn('{{%product}}', 'hide_wall_block', $this->smallInteger());
     }
 
     /**
@@ -22,9 +22,9 @@ class m240210_155019_add_hide_constructor_block_fields_into_product_table extend
      */
     public function safeDown()
     {
-        $this->dropColumn('{{%product}}', 'disable_color_block');
-        $this->dropColumn('{{%product}}', 'disable_size_block');
-        $this->dropColumn('{{%product}}', 'disable_wall_block');
+        $this->dropColumn('{{%product}}', 'hide_color_block');
+        $this->dropColumn('{{%product}}', 'hide_size_block');
+        $this->dropColumn('{{%product}}', 'hide_wall_block');
     }
 
     /*

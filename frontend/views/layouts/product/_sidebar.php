@@ -44,9 +44,9 @@ use backend\modules\catalog\models\root\Property;
             <?php if ($model->item_type == ProductItemType::PRODUCT_TYPE_PRODUCT) : ?>
               <div class="tabs__panel">
                 
-                <?php if(!$model->disable_color_block): ?>
+                <?php if(!$model->hide_color_block): ?>
                 <div class="calc-el calc-el--color">
-                  <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
+                  <button class="<?= $model->is_available || $model->is_constructor_blocked || $model->disable_color_block ? "calc-el__btn-control calc-el__btn-control--dis btn-reset" : "calc-el__btn-control btn-reset"; ?>" type="button">
                     <span class="calc-el__btn-wrapper">
                       <span class="calc-el__btn-preview" id="calc-color-img" data-constructor-color-id="<?= $model->color->id; ?>" data-constructor-color-image style="background-image: url(<?= "/" . Property::UPLOAD_PATH . "/" . $model->color->image; ?>);">
                       </span>
@@ -82,9 +82,9 @@ use backend\modules\catalog\models\root\Property;
                 <?php endif; ?>
 
                 <!-- Размеры -->
-                <?php if(!$model->disable_size_block): ?>
-                <div class="calc-el <?= !$model->is_available && !$model->is_constructor_blocked ? 'calc-el--active' : ''; ?>">
-                  <button class="calc-el__btn-control btn-reset <?= $model->is_available || $model->is_constructor_blocked ? 'calc-el__btn-control--dis' : ''; ?>" type="button"> <!-- TODO Класс для блокировки -->
+                <?php if(!$model->hide_size_block): ?>
+                <div class="calc-el <?= !$model->is_available && !$model->is_constructor_blocked && !$model->disable_size_block ? 'calc-el--active' : ''; ?>">
+                  <button class="calc-el__btn-control btn-reset <?= $model->is_available || $model->is_constructor_blocked || $model->disable_size_block ? 'calc-el__btn-control--dis' : ''; ?>" type="button">
                     <span class="calc-el__btn-wrapper">
                       <span class="calc-el__btn-preview" data-constructor-size-id="<?= $model->size->id; ?>" data-constructor-size-height="<?= $model->size->height; ?>" data-constructor-size-width="<?= $model->size->width; ?>" data-constructor-size-depth="<?= $model->size->depth; ?>" data-constructor-size-height-price="<?= $model->size->height_price; ?>" data-constructor-size-width-price="<?= $model->size->width_price; ?>" data-constructor-size-depth-price="<?= $model->size->depth_price; ?>" style="background-image: url('/img/size.jpg');">
                       </span>
@@ -107,7 +107,7 @@ use backend\modules\catalog\models\root\Property;
                   </button>
                   <div class="calc-el__dropdown" data-simplebar data-simplebar-auto-hide="false">
 
-                    <div class="<?= $model->getSizesConstructorBlockCssClassList() ?> calc-el__list--size">
+                    <div class="<?= ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) ? 'calc-el__list calc-el__list--size calc-el__list--slider' : 'calc-el__list calc-el__list--size'; ?> ">
                       <?php if ($model->product_type == CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) : ?>
 
                         <?= $this->render('//layouts/product/_constructor_items/_dog_cage_size', ['model' => $model]); ?>
@@ -125,10 +125,10 @@ use backend\modules\catalog\models\root\Property;
                 <!-- Размеры -->
 
                 <!-- Боковые стенки -->
-                <?php if(!$model->disable_wall_block): ?>
+                <?php if(!$model->hide_wall_block): ?>
                 <?php if ($model->product_type != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE) : ?>
                   <div class="calc-el">
-                    <button class="<?= $model->getConstructorCssClass(); ?>" type="button">
+                    <button class="<?= $model->is_available || $model->is_constructor_blocked || $model->disable_wall_block ? "calc-el__btn-control calc-el__btn-control--dis btn-reset" : "calc-el__btn-control btn-reset"; ?>" type="button">
                       <span class="calc-el__btn-wrapper">
                         <span class="calc-el__btn-preview calc-el__btn-preview--wall" id="calc-walls-img" data-constructor-wall-id="<?= $model->wall->id; ?>" style="background-image: url('/img/st.svg');"></span>
                         <span class="calc-el__btn-text">

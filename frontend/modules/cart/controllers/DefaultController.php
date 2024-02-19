@@ -40,7 +40,7 @@ class DefaultController extends BaseController
     public function actionOrder()
     {
         $model = new Order();
-        if (Yii::$app->request->isAjax) {
+        // if (Yii::$app->request->isAjax) {
             if ($model->load(Yii::$app->request->post())) {
 
                 if ($model->spam_check != 'nospam') {
@@ -101,9 +101,9 @@ class DefaultController extends BaseController
             } else {
                 die(print_r($model->getErrors()));
             }
-        } else {
-            die("This is not ajax request");
-        }
+        // } else {
+        //     die("This is not ajax request");
+        // }
         Yii::$app->end();
     }
 

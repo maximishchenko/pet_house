@@ -40,63 +40,69 @@ class DefaultController extends BaseController
     public function actionOrder()
     {
         $model = new Order();
-        if ($model->load(Yii::$app->request->post())) {
+        if (Yii::$app->request->isAjax) {
+            if ($model->load(Yii::$app->request->post())) {
 
-            if ($model->spam_check != 'nospam') {
-                die('Spam detected ');
-            } 
+                if ($model->spam_check != 'nospam') {
+                    die('Spam detected ');
+                } 
 
-            $name = $model->name;
-            $phone = $model->phone;
-            $email = $model->email;
-            $delivery_type = $model->delivery_type;
-            $delivery_address = $model->delivery_address;
-            $comment = $model->comment;
+                $name = $model->name;
+                $phone = $model->phone;
+                $email = $model->email;
+                $delivery_type = $model->delivery_type;
+                $delivery_address = $model->delivery_address;
+                $comment = $model->comment;
 
-            $phone = str_replace('(', '', $phone);
-            $phone = str_replace(')', '', $phone);
-            $phone = str_replace(' ', '', $phone);
-            $phone = str_replace('-', '', $phone);
+                $phone = str_replace('(', '', $phone);
+                $phone = str_replace(')', '', $phone);
+                $phone = str_replace(' ', '', $phone);
+                $phone = str_replace('-', '', $phone);
 
-            $body = "";
-            $body .= "Ф.И.О.: " . $name . PHP_EOL;
-            $body .= "Тел.: " . $phone . PHP_EOL;
-            $body .= "Email.: " . $email . PHP_EOL;
-            $body .= "Тип получения товара: " . $delivery_type . PHP_EOL;
-            $body .= "Адрес: " . $delivery_address . PHP_EOL;
-            $body .= "Комментарий: " . $comment . PHP_EOL;
-            $body .= PHP_EOL;
-            $cart = new Cart();
-            $price = 0;
-            foreach ($cart->getProducts() as $k => $product) {
-                $productType = Product::findOne(['id' => $product[CartProduct::PRODUCT_ID]]);
-                $color = Property::findOne(['id' => $product[CartProduct::COLOR_ID]]);
-                $wall = Property::findOne(['id' => $product[CartProduct::WALL_ID]]);
-
-                $body .= "Наименование: " . $productType->name . PHP_EOL;
-                if ($color->name) :
-                    $body .= "Цвет: " . $color->name . PHP_EOL;
-                endif;
-                if ($product[CartProduct::HEIGHT] && $product[CartProduct::WIDTH] && $product[CartProduct::DEPTH]) :
-                    $body .= "Размеры: " . $product[CartProduct::HEIGHT] . "x" . $product[CartProduct::WIDTH] . "x" . $product[CartProduct::DEPTH] . PHP_EOL;
-                endif;
-                if ($wall->name) :
-                    $body .= "Боковые стенки: " . $wall->name . PHP_EOL;
-                endif;
-                $body .= "Количество: " . $product[CartProduct::COUNT] . PHP_EOL;
-                $body .= "Цена: " . $product[CartProduct::PRICE] . PHP_EOL;
-                $body .= "Сумма: " . $product[CartProduct::PRICE] * $product[CartProduct::COUNT] . PHP_EOL;
+                $body = "";
+                $body .= "Ф.И.О.: " . $name . PHP_EOL;
+                $body .= "Тел.: " . $phone . PHP_EOL;
+                $body .= "Email.: " . $email . PHP_EOL;
+                $body .= "Тип получения товара: " . $delivery_type . PHP_EOL;
+                $body .= "Адрес: " . $delivery_address . PHP_EOL;
+                $body .= "Комментарий: " . $comment . PHP_EOL;
                 $body .= PHP_EOL;
-                $price += $product[CartProduct::PRICE] * $product[CartProduct::COUNT];
-            }
+                $cart = new Cart();
+                $price = 0;
+                foreach ($cart->getProducts() as $k => $product) {
+                    $productType = Product::findOne(['id' => $product[CartProduct::PRODUCT_ID]]);
+                    $color = Property::findOne(['id' => $product[CartProduct::COLOR_ID]]);
+                    $wall = Property::findOne(['id' => $product[CartProduct::WALL_ID]]);
 
-            $body .= "Общая сумма заказа: " . $price . PHP_EOL;
-            $model->body = $body;
-            $model->total_price = $price;
-            $model->save();
-            return $this->redirect('/cart?success='.$model->id);
+                    $body .= "Наименование: " . $productType->name . PHP_EOL;
+                    if ($color->name) :
+                        $body .= "Цвет: " . $color->name . PHP_EOL;
+                    endif;
+                    if ($product[CartProduct::HEIGHT] && $product[CartProduct::WIDTH] && $product[CartProduct::DEPTH]) :
+                        $body .= "Размеры: " . $product[CartProduct::HEIGHT] . "x" . $product[CartProduct::WIDTH] . "x" . $product[CartProduct::DEPTH] . PHP_EOL;
+                    endif;
+                    if ($wall->name) :
+                        $body .= "Боковые стенки: " . $wall->name . PHP_EOL;
+                    endif;
+                    $body .= "Количество: " . $product[CartProduct::COUNT] . PHP_EOL;
+                    $body .= "Цена: " . $product[CartProduct::PRICE] . PHP_EOL;
+                    $body .= "Сумма: " . $product[CartProduct::PRICE] * $product[CartProduct::COUNT] . PHP_EOL;
+                    $body .= PHP_EOL;
+                    $price += $product[CartProduct::PRICE] * $product[CartProduct::COUNT];
+                }
+
+                if ($price > 0) {
+                    $body .= "Общая сумма заказа: " . $price . PHP_EOL;
+                }
+                $model->body = $body;
+                $model->total_price = $price;
+                $model->save();
+                return $this->redirect('/cart?success='.$model->id);
+            } else {
+                die(print_r($model->getErrors()));
+            }
         } else {
-            die(print_r($model->getErrors()));
+            die("This is not ajax request");
         }
         Yii::$app->end();
     }

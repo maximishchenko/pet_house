@@ -14,6 +14,8 @@ class Order extends backendOrder
             [['created_at'], 'integer'],
             [['name', 'phone', 'email', 'delivery_type'], 'string', 'max' => 255],
             [['total_price', 'imagesFiles', 'spam_check'], 'safe'],
+
+            [['name', 'phone'], 'required'],
         ];
     }
 }

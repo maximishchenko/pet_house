@@ -40,8 +40,8 @@ use yii\helpers\Url;
                                 </div>
 
                                 <div class="hero__video-wrapper">
-                                    <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline=""></video>
-                                    <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline=""></video>
+                                    <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline="" poster="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>"></video>
+                                    <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline="" poster="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>"></video>
                                 </div>
                             </div>
 

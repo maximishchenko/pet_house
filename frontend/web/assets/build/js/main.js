@@ -248,9 +248,10 @@ if (document.querySelector('.product')) {
   const modAdaptContainer = document.querySelector('.mob-adapt-calc');
   const sideBar = document.querySelector('.product__col-calc');
   function sideBarController() {
-    if (screen.width < 768 && !modAdaptContainer.querySelector('.product__col-calc')) {
+    modAdaptContainer.append(sideBar);
+    if (document.documentElement.clientWidth < 768 && !modAdaptContainer.querySelector('.product__col-calc')) {
       modAdaptContainer.append(sideBar);
-    } else if (screen.width > 768 && !productContainer.children[1]) {
+    } else if (document.documentElement.clientWidth > 768 && !productContainer.children[1]) {
       productContainer.append(sideBar);
       stickybar.refresh();
     }
@@ -1126,7 +1127,7 @@ const headerPhone = document.querySelector('.header__phone');
 const headerWrapper = document.querySelector('.header__wrapper');
 const headerBag = document.querySelector('.header__bag');
 function headerAdapt() {
-  if (screen.width < 768) {
+  if (document.documentElement.clientWidth < 768) {
     mobWrapper.appendChild(headerNav);
     mobWrapper.appendChild(headerPhone);
   } else {

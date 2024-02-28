@@ -6,7 +6,7 @@ const headerWrapper = document.querySelector('.header__wrapper');
 const headerBag = document.querySelector('.header__bag');
 
 function headerAdapt() {
-    if (screen.width < 768) {
+    if (document.documentElement.clientWidth < 768) { 
         mobWrapper.appendChild(headerNav);
         mobWrapper.appendChild(headerPhone);
     } else {

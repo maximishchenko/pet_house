@@ -675,6 +675,10 @@ input:checked+.slider:before {
 
 @include small-tablet {
 
+  .catalog-cat__el {
+    height: auto;
+  }
+
   .catalog-bar .swiper-slide:not(:last-child) {
     margin-right: 0;
   }

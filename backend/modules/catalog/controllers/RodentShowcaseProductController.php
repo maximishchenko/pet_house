@@ -11,7 +11,7 @@ use backend\modules\catalog\models\search\RodentShowcaseProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use himiklab\sortablegrid\SortableGridAction;
+// use himiklab\sortablegrid\SortableGridAction;
 
 
 /**
@@ -34,15 +34,15 @@ class RodentShowcaseProductController extends Controller
         ];
     }
 
-    public function actions()
-    {
-        return [
-            'sort' => [
-                'class' => SortableGridAction::className(),
-                'modelName' => RodentShowcaseProduct::className(),
-            ],
-        ];
-    }
+    // public function actions()
+    // {
+    //     return [
+    //         'sort' => [
+    //             'class' => SortableGridAction::className(),
+    //             'modelName' => RodentShowcaseProduct::className(),
+    //         ],
+    //     ];
+    // }
 
     /**
      * Lists all RodentProduct models.

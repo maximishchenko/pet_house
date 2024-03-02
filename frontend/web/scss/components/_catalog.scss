@@ -33,7 +33,6 @@
     padding: 1rem;
     border-radius: var(--size-s);
     width: 8rem;
-    height: 13rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -676,7 +675,6 @@ input:checked+.slider:before {
 @include small-tablet {
 
   .catalog-cat__el {
-    height: auto;
     width: 9rem;
   }
 

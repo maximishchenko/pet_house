@@ -19,7 +19,8 @@ class Sort
     /**
      * Значение параметра сортировки по умолнчанию
      */
-    const BASE_SORT_VALUE = 'nameSort';
+    // const BASE_SORT_VALUE = 'nameSort';
+    const BASE_SORT_VALUE = 'view_count';
 
     /**
      * CSS-класс пункта виджера сортировки по умолчанию
@@ -62,11 +63,17 @@ class Sort
     public static function getCatalogSortItemsArray(): array
     {
         return [
-            self::BASE_SORT_VALUE => Yii::t('app', 'Sort by Name'),
-            "view_count" => Yii::t('app', 'Sort by Popular'),
+            self::BASE_SORT_VALUE => Yii::t('app', 'Sort by Popular'),
+            "nameSort" => Yii::t('app', 'Sort by Name'),
             "-price" => Yii::t('app', 'Sort by More Price'),
             "price" => Yii::t('app', 'Sort by Less Price'),
         ];
+        // return [
+        //     self::BASE_SORT_VALUE => Yii::t('app', 'Sort by Name'),
+        //     "view_count" => Yii::t('app', 'Sort by Popular'),
+        //     "-price" => Yii::t('app', 'Sort by More Price'),
+        //     "price" => Yii::t('app', 'Sort by Less Price'),
+        // ];
     }
 
     /**
@@ -76,7 +83,7 @@ class Sort
      */
     public static function getCatalogSortAttribute(): string
     {
-        return (self::isSortExists()) ? self::getCatalogSortItemsArray()[Yii::$app->request->queryParams[self::DEFAULT_SORT_PARAM]] : Yii::t('app', 'Sort by Name');
+        return (self::isSortExists()) ? self::getCatalogSortItemsArray()[Yii::$app->request->queryParams[self::DEFAULT_SORT_PARAM]] : Yii::t('app', 'Sort by Popular');
     }    
 
     /**

@@ -91,7 +91,8 @@ class Product extends backendProduct
             ],
             'sort' => [
                 'sortParam' => Sort::DEFAULT_SORT_PARAM,
-                'defaultOrder' => ['nameSort' => SORT_ASC],
+                // 'defaultOrder' => ['nameSort' => SORT_ASC],
+                'defaultOrder' => ['view_count' => SORT_ASC],
                 'attributes' => [
                     // 'name',
                     'price',

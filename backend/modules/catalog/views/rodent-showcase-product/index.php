@@ -6,6 +6,7 @@ use backend\widgets\SetColumn;
 use common\models\Status;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+// use himiklab\sortablegrid\SortableGridView as GridView;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */

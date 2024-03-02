@@ -11,6 +11,8 @@ use backend\modules\catalog\models\search\RodentShowcaseProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use himiklab\sortablegrid\SortableGridAction;
+
 
 /**
  * RodentProductController implements the CRUD actions for RodentProduct model.
@@ -28,6 +30,16 @@ class RodentShowcaseProductController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'sort' => [
+                'class' => SortableGridAction::className(),
+                'modelName' => RodentShowcaseProduct::className(),
             ],
         ];
     }

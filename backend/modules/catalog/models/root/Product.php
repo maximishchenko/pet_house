@@ -16,6 +16,7 @@ use backend\modules\catalog\models\query\ProductQuery;
 use backend\modules\catalog\models\RodentShowcaseAccessory;
 use backend\modules\catalog\models\RodentShowcaseProduct;
 use backend\traits\InheritanceTrait;
+use himiklab\sortablegrid\SortableGridBehavior;
 use common\models\PriceValue;
 use common\models\Sort;
 use common\models\Status;
@@ -133,6 +134,10 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
                 'slugAttribute' => 'slug',
                 'immutable' => true,
                 'ensureUnique' => true,
+            ],
+            'sort' => [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'sort'
             ],
         ];
     }

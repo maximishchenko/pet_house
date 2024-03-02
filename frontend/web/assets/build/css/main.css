@@ -4352,6 +4352,7 @@ input:checked + .slider:before {
 @media (max-width: 768px) {
   .catalog-cat__el {
     height: auto;
+    width: 9rem;
   }
   .catalog-bar .swiper-slide:not(:last-child) {
     margin-right: 0;

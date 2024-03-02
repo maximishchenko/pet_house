@@ -103,8 +103,8 @@ class Product extends backendProduct
                         // 'desc' => [Product::tableName().'.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, new Expression('left({{product}}.name, 2), LENGTH({{product}}.name), {{product}}.name')],
                         // 'asc' => [Product::tableName().'.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, '{{%product}}.price' => SORT_ASC],
                         // 'desc' => [Product::tableName().'.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, '{{%product}}.price' => SORT_ASC],
-                        'asc' => ['{{%product}}.sort' => SORT_DESC, '{{%product}}.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, '{{%product}}.price' => SORT_ASC],
-                        'desc' => ['{{%product}}.sort' => SORT_ASC, '{{%product}}.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, '{{%product}}.price' => SORT_ASC],
+                        'asc' => ['{{%product}}.item_type' => SORT_DESC, '{{%type}}.sort' => SORT_ASC, '{{%product}}.price' => SORT_ASC],
+                        'desc' => ['{{%product}}.item_type' => SORT_ASC, '{{%type}}.sort' => SORT_DESC, '{{%product}}.price' => SORT_ASC],
                         'default' => SORT_ASC
                     ],
                 ],

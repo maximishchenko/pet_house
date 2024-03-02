@@ -18,10 +18,11 @@ if (document.querySelector('.product')) { //&& document.querySelector('.calc-el_
     const modAdaptContainer = document.querySelector('.mob-adapt-calc');
     const sideBar = document.querySelector('.product__col-calc');
 
-    function sideBarController() {     
-        if (screen.width < 768 && !modAdaptContainer.querySelector('.product__col-calc')) {
+    function sideBarController() {
+        modAdaptContainer.append(sideBar);
+        if (document.documentElement.clientWidth < 768 && !modAdaptContainer.querySelector('.product__col-calc')) {
             modAdaptContainer.append(sideBar);
-        } else if (screen.width > 768 && !productContainer.children[1]) {
+        } else if (document.documentElement.clientWidth > 768 && !productContainer.children[1]) {
             productContainer.append(sideBar)
             stickybar.refresh();
         }

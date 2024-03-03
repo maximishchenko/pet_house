@@ -19,7 +19,7 @@ class Product extends backendProduct
     public function rules()
     {
         return [
-            [['type_id', 'category_id', 'is_available', 'height_value', 'group_id'], 'safe'],
+            [['type_id', 'category_id', 'is_available', 'height_value', 'group_id', 'view_count'], 'safe'],
         ];
     }
 

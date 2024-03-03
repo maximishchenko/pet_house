@@ -53,6 +53,7 @@ class DefaultController extends BaseController
                     'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
                     'group_type' => GroupTypeItems::GROUP_TYPE_CATEGORY
                 ])
+                ->orderBy(['sort' => SORT_ASC])
                 ->all();
 
             $groups = Category::find()

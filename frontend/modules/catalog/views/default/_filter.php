@@ -165,7 +165,8 @@ use yii\widgets\ActiveForm;
       </ul>
     </fieldset>
   <?php endif; ?>
-  <input type="text" class="sort-inp visually-hidden" name="order" value="nameSort">
+  <!-- <input type="text" class="sort-inp visually-hidden" name="order" value="nameSort"> -->
+  <input type="text" class="sort-inp visually-hidden" name="order" value="view_count">
   <div class="catalog-sidebar__controls">
 <!--     <button type="submimt" id="catalog__searh-btn" class="catalog-sidebar__btn btn-reset btn-b" type="button">
       <?= Yii::t('app', 'Do Search'); ?>

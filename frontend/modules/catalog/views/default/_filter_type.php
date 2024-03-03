@@ -6,6 +6,7 @@ use backend\modules\catalog\models\root\Category;
   <div class="container">
     <div class="swiper catalog-cat mb-m">
       <div class="swiper-wrapper">
+
         <?php $queryParams = Yii::$app->request->queryParams; ?>
         <div class="swiper-slide">
           <?php if (!isset($queryParams) || empty($queryParams) || !in_array('category_id', array_keys($queryParams))) : ?>
@@ -19,8 +20,6 @@ use backend\modules\catalog\models\root\Category;
               </span>
               </a>
         </div>
-
-
         <?php foreach ($categories as $category) : ?>
           <div class="swiper-slide">
             <?php
@@ -38,8 +37,10 @@ use backend\modules\catalog\models\root\Category;
                 </a>
           </div>
         <?php endforeach; ?>
-
       </div>
+      <div class="swiper-scrollbar"></div>
+      <!--      <div class="swiper-button-next catalog-cat__btn-next"></div>
+      <div class="swiper-button-prev catalog-cat__btn-prev"></div> -->
     </div>
   </div>
 <?php endif; ?>

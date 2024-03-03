@@ -4350,7 +4350,10 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
   .catalog-cat__el {
-    width: 9rem;
+    width: 7rem;
+  }
+  .catalog-cat .swiper-slide {
+    margin-right: 0px !important;
   }
   .catalog-bar .swiper-slide:not(:last-child) {
     margin-right: 0;

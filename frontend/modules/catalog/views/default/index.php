@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
     </div>
 </div>
 
-<!-- Фильтры по типам -->
+<!-- Фильтры по типам 123 -->
 <?= $this->render('_filter_type', [
     'categories' => $categories,
 ]); ?>

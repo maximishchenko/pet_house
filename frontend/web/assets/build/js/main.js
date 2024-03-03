@@ -1369,6 +1369,9 @@ const catalogCat = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.catalog-
   navigation: {
     nextEl: ".catalog-cat__btn-next",
     prevEl: ".catalog-cat__btn-prev"
+  },
+  scrollbar: {
+    el: '.swiper-scrollbar'
   }
 });
 const catalogBar = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.catalog-bar__btn-wrapper', {

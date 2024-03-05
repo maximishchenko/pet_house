@@ -200,7 +200,13 @@ h5 {
   width: 1.3%;
 }
 
-.button_d489 {
+.button_d489,
+.label_e38b,
+._bottom_afc1,
+.wrap_bfe9,
+._orientationRight_ee1e,
+._mobileOffsetBottom_f405,
+.__jivoMobileButton {
   display: none !important;
 }
 

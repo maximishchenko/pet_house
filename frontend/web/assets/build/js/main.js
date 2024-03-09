@@ -1294,7 +1294,10 @@ swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MOD
 const heroSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.hero-slider', {
   slidesPerView: "auto",
   spaceBetween: 20,
-  loop: true
+  loop: true,
+  autoplay: {
+    delay: 3000
+  }
 });
 
 // Слайдер аксесуаров в карточке товара

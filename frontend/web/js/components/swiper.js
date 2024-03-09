@@ -8,6 +8,9 @@ const heroSlider = new Swiper('.hero-slider', {
   slidesPerView: "auto",
   spaceBetween: 20,
   loop: true,
+  autoplay: {
+    delay: 3000,
+  },
 });
 
 // Слайдер аксесуаров в карточке товара
@@ -97,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const catalogCat = new Swiper('.catalog-cat', {
   slidesPerView: 'auto',
-  
+
   navigation: {
     nextEl: ".catalog-cat__btn-next",
     prevEl: ".catalog-cat__btn-prev",

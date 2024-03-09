@@ -2,9 +2,14 @@
 
   padding: 0 var(--size-xs);
 
+
   &__slide {
     width: 100%;
     position: relative;
+  }
+
+  &__image--mob {
+    display: none;
   }
 
   &__content {
@@ -120,11 +125,19 @@
 @include small-tablet {
   .hero {
     padding: 0;
-    
+
+    &__image {
+      display: none;
+    }
+
+    &__image--mob {
+      display: block;
+    }
 
     .section-headline {
       font-size: 2.5rem;
       text-align: center;
+      padding: 0 40px;
     }
 
     &__content {

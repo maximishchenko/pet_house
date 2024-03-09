@@ -993,6 +993,9 @@ h5 {
   width: 100%;
   position: relative;
 }
+.hero__image--mob {
+  display: none;
+}
 .hero__content {
   height: 100%;
   width: 30%;
@@ -1113,9 +1116,16 @@ h5 {
   .hero {
     padding: 0;
   }
+  .hero__image {
+    display: none;
+  }
+  .hero__image--mob {
+    display: block;
+  }
   .hero .section-headline {
     font-size: 2.5rem;
     text-align: center;
+    padding: 0 40px;
   }
   .hero__content {
     width: 100%;

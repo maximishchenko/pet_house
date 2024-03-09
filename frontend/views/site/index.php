@@ -12,20 +12,8 @@ use yii\helpers\Url;
             <div class="swiper-wrapper">
 
                 <?php foreach ($sliders as $slider) : ?>
-                    <?php if (isset($slider->video) && !empty($slider->video)) : ?>
-                        <div class="swiper-slide hero-swiper-slide">
-                            <div class="hero-bage">
-                                <div class="hero-bage__wrapper">
-                                    <div class="hero-bage__inner">
-                                        <button class="hero-bage__btn btn-reset">Реклама</button>
-                                        <div class="hero-bage__content">
-                                            <ul class="hero-bage__list list-reset">
-                                                <?= Yii::$app->configManager->getItemValue('contactRequisites'); ?>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="swiper-slide hero-swiper-slide">
+                            <?= $this->render('_slider_badge'); ?>
                             <div class="hero__slide hero__slide-des" style="padding-bottom: 1px; padding-left: 1px;">
                                 <div class="hero__content">
                                     <div class="hero__headline-wrapper">
@@ -39,29 +27,21 @@ use yii\helpers\Url;
                                     </div>
                                 </div>
 
+                                <?php if (isset($slider->video) && !empty($slider->video)) : ?>
                                 <div class="hero__video-wrapper">
                                     <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline="" poster="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>"></video>
                                     <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline="" poster="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>"></video>
                                 </div>
+                                <?php elseif (isset($slider->image) && !empty($slider->image)): ?>
+                                    <!-- TODO верстка -->
+                                <div class="hero__image-wrapper">
+                                    <img class="hero__image" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>" alt="<?= $slider->name; ?>">
+                                    <img class="hero__image--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>" alt="<?= $slider->name; ?>">
+                                </div>
+                                <?php endif; ?>
                             </div>
 
-                            <!--                      <span class="hero-bage">
-                                <button class="hero-bage__title btn-reset">
-                                    <svg width="24" height="24" class="hero-bage__title-ic" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.50009C7.30521 3.50009 3.5 7.30531 3.5 12.0001C3.5 16.6939 7.30527 20.5001 12 20.5001C16.6938 20.5001 20.5 16.6939 20.5 12.0001C20.5 7.30536 16.6938 3.50009 12 3.50009ZM2 12.0001C2 6.47688 6.47679 2.00009 12 2.00009C17.5222 2.00009 22 6.47682 22 12.0001C22 17.5223 17.5222 22.0001 12 22.0001C6.47673 22.0001 2 17.5223 2 12.0001Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9951 7.45419C12.4093 7.45419 12.7451 7.78998 12.7451 8.20419V12.6232C12.7451 13.0374 12.4093 13.3732 11.9951 13.3732C11.5809 13.3732 11.2451 13.0374 11.2451 12.6232V8.20419C11.2451 7.78998 11.5809 7.45419 11.9951 7.45419Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9949 15.7961C10.9949 15.2438 11.4426 14.7961 11.9949 14.7961H12.0049C12.5572 14.7961 13.0049 15.2438 13.0049 15.7961C13.0049 16.3484 12.5572 16.7961 12.0049 16.7961H11.9949C11.4426 16.7961 10.9949 16.3484 10.9949 15.7961Z" />
-                                    </svg>
-                                    <span>Реклама</span>
-                                </button>
-                                <div class="hero-bage__desc">
-                                    <ul class="list-reset">
-                                      
-                                    </ul>
-                                </div>
-                            </span> -->
-                        </div>
-                    <?php endif; ?>
+                    </div>
                 <?php endforeach; ?>
 
             </div>

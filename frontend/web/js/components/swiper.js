@@ -75,13 +75,13 @@ function adaptSwiper() {
         el: ".product-gallary--pag",
       }
     });
-  
-  
+
+
     if (screen.width >= 768) {
-  
+
       productGallary.destroy(true, true);
-  
-    } 
+
+    }
   }
 
 }
@@ -97,10 +97,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const catalogCat = new Swiper('.catalog-cat', {
   slidesPerView: 'auto',
+  
   navigation: {
     nextEl: ".catalog-cat__btn-next",
     prevEl: ".catalog-cat__btn-prev",
   },
+
+  scrollbar: {
+    el: '.swiper-scrollbar'
+  }
+
 });
 
 const catalogBar = new Swiper('.catalog-bar__btn-wrapper', {

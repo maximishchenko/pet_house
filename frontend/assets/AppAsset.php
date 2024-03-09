@@ -17,13 +17,12 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/lib/js.cookie.min.js',
-        'assets/build/js/main.js',
+         'assets/build/js/main.js',
         'js/components/cookie.js',
     ];
     public $jsOptions = [
         'position' => \yii\web\View::POS_HEAD,
         'defer' => 'defer',
     ];
-    public $depends = [
-    ];
+    public $depends = [];
 }

@@ -41,6 +41,19 @@ const thumbsSlider = new Swiper('.prod-slider', {
   }
 });
 
+const photoGallary = new Swiper('.gallary-photo__swiper', {
+  slidesPerView: 'auto',
+  freeMode: true,
+  navigation: {
+    nextEl: ".gallary-photo-button-next",
+    prevEl: ".gallary-photo-button-prev",
+  },
+  scrollbar: {
+    el: '.gallary-photo-scrollbar'
+  }
+});
+
+
 // медиа отзывы
 const mediaReviews = new Swiper('.reviews-slider', {
   slidesPerView: "auto",

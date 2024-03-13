@@ -1324,6 +1324,17 @@ const thumbsSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.prod-s
     }
   }
 });
+const photoGallary = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.gallary-photo__swiper', {
+  slidesPerView: 'auto',
+  freeMode: true,
+  navigation: {
+    nextEl: ".gallary-photo-button-next",
+    prevEl: ".gallary-photo-button-prev"
+  },
+  scrollbar: {
+    el: '.gallary-photo-scrollbar'
+  }
+});
 
 // медиа отзывы
 const mediaReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.reviews-slider', {

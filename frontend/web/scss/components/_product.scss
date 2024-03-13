@@ -430,7 +430,7 @@
 }
 
 .product-gallary {
-  margin-bottom: var(--size-xxl);
+  //margin-bottom: var(--size-xxl);
 
   &__swiper {
     .swiper-wrapper {
@@ -471,6 +471,101 @@
     background: var(--color-brand);
   }
 }
+
+// Доп галерея
+.gallary-photo {
+  margin-top: var(--size-n);
+  margin-bottom: var(--size-xxl);
+  user-select: none;
+
+  .gallary-photo-button-next,
+  .gallary-photo-button-prev {
+    height: var(--size-m);
+    width: var(--size-m);
+    background: var(--color-dark);
+    color: var(--color-light);
+    border-radius: 100%;
+    opacity: 0;
+    transition: opacity .3s ease-in;
+
+    &::after {
+      color: var(--color-light);
+      font-size: 1rem;
+    }
+
+  }
+
+  @include hover {
+    &:hover {
+
+      .gallary-photo-button-next,
+      .gallary-photo-button-prev {
+        opacity: 1;
+      }
+
+      .swiper-button-disabled {
+        opacity: 0.3;
+      }
+    }
+  }
+
+
+
+  .swiper-scrollbar {
+    display: none;
+  }
+
+  &__link {
+    display: block;
+  }
+
+  &__title {
+    color: var(--color-dark);
+    font-size: 1rem;
+    margin-bottom: var(--size-xs);
+  }
+
+  &__img {
+    height: 8rem;
+    width: 100%;
+  }
+
+  .swiper-slide {
+    width: 12rem;
+  }
+
+  .swiper-slide:not(:last-child) {
+    margin-right: 10px;
+  }
+
+
+}
+
+@include small-tablet {
+
+  .gallary-photo {
+
+    margin-top: var(--size-s);
+    margin-bottom: 0;
+
+    .swiper-scrollbar {
+      display: block;
+    }
+
+    .swiper-wrapper {
+      padding-bottom: 15px;
+    }
+
+    &__img {
+      height: 5rem;
+    }
+
+    .swiper-slide {
+      width: 8rem;
+    }
+  }
+}
+
 
 // Аксуссуары
 .add-accessories {

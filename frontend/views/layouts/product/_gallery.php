@@ -35,7 +35,7 @@ use backend\modules\catalog\models\root\Product;
           </a>
         </div>
 
-        <div class="swiper-slide gallary-photo__slide">
+        <div class="swiper-slide gallary-photo__slide gallary-photo__slide--video">
           <a class="gallary-photo__link" href="img/photos/v1.mov" data-fancybox="gallary-photo">
             <img class="gallary-photo__img" src="/img/photo/1.jpg" alt="">
           </a>

@@ -50,9 +50,6 @@ AppAsset::register($this);
         
         </main>
 
-        <!-- Хиты продаж -->
-        <?= $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'topSales' => Product::getTopSales()]); ?>
-
         <?php if (isset($this->blocks['subscribe'])): ?>
             <?= $this->blocks['subscribe'] ?>
         <?php endif ?>

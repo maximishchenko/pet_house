@@ -13,33 +13,33 @@ use yii\helpers\Url;
 
                 <?php foreach ($sliders as $slider) : ?>
                     <div class="swiper-slide hero-swiper-slide">
-                            <?= $this->render('_slider_badge'); ?>
-                            <div class="hero__slide hero__slide-des" style="padding-bottom: 1px; padding-left: 1px;">
-                                <div class="hero__content">
-                                    <div class="hero__headline-wrapper">
-                                        <h2 class="section-headline" style="color: <?= $slider->text_color; ?>"><?= $slider->name; ?></h2>
-                                        <p class="hero__desk" style="color: <?= $slider->text_color; ?>">
-                                            <?= $slider->description; ?>
-                                        </p>
-                                    </div>
-                                    <a href="<?= $slider->url; ?>" class="btn-b hero__btn" style="background-color: <?= $slider->button_bg_color; ?>; color: <?= $slider->button_text_color; ?>">Смотреть</a>
-                                    <div class=" hero__btn-wrapper">
-                                    </div>
+                        <?= $this->render('_slider_badge'); ?>
+                        <div class="hero__slide hero__slide-des" style="padding-bottom: 1px; padding-left: 1px;">
+                            <div class="hero__content">
+                                <div class="hero__headline-wrapper">
+                                    <h2 class="section-headline" style="color: <?= $slider->text_color; ?>"><?= $slider->name; ?></h2>
+                                    <p class="hero__desk" style="color: <?= $slider->text_color; ?>">
+                                        <?= $slider->description; ?>
+                                    </p>
                                 </div>
+                                <a href="<?= $slider->url; ?>" class="btn-b hero__btn" style="background-color: <?= $slider->button_bg_color; ?>; color: <?= $slider->button_text_color; ?>">Смотреть</a>
+                                <div class=" hero__btn-wrapper">
+                                </div>
+                            </div>
 
-                                <?php if (isset($slider->video) && !empty($slider->video)) : ?>
+                            <?php if (isset($slider->video) && !empty($slider->video)) : ?>
                                 <div class="hero__video-wrapper">
                                     <video class="hero__video" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline="" poster="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>"></video>
                                     <video class="hero__video--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->video_mobile; ?>" type="video/mp4" autoplay="" muted="" loop="" playsinline="" poster="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>"></video>
                                 </div>
-                                <?php elseif (isset($slider->image) && !empty($slider->image)): ?>
-                                    <!-- TODO верстка -->
+                            <?php elseif (isset($slider->image) && !empty($slider->image)) : ?>
+                                <!-- TODO верстка -->
                                 <div class="hero__image-wrapper">
                                     <img class="hero__image" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>" alt="<?= $slider->name; ?>">
                                     <img class="hero__image--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>" alt="<?= $slider->name; ?>">
                                 </div>
-                                <?php endif; ?>
-                            </div>
+                            <?php endif; ?>
+                        </div>
 
                     </div>
                 <?php endforeach; ?>
@@ -72,6 +72,11 @@ use yii\helpers\Url;
 
 <!-- Есть в наличии -->
 <?= $this->render('//layouts/product/_item_slider', ['title' => Yii::t('app', "Available Products"), 'products' => Product::getAvailableProducts()]); ?>
+
+<!-- Хиты продаж -->
+<?= $this->render('//layouts/product/_item_slider', ['title' => "Хиты продаж", 'products' => Product::getTopSales()]); ?>
+<?php // echo $this->render('//layouts/_top_sales', ['title' => "Хиты продаж", 'topSales' => Product::getTopSales()]); 
+?>
 
 
 <section class="media-info mb-xxl">

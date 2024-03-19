@@ -168,7 +168,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
 
     public function getUploads()
     {
-        return $this->hasMany(CategoryUpload::className(), ['category_id' => 'id']);
+        return $this->hasMany(CategoryUpload::className(), ['category_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
     }
     
 

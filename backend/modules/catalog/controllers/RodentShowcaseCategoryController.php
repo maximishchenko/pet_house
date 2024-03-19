@@ -141,6 +141,22 @@ class RodentShowcaseCategoryController extends Controller
             return $this->redirect(Yii::$app->request->referrer);
         }
     }
+    
+    /**
+     * Drag'n'Drop сортировка изображений
+     */
+    public function actionSaveImageSort()
+    {
+        $order = Yii::$app->request->post('order');
+        foreach($order as $sort => $fileId) {
+            if(isset($fileId) && !empty($fileId)) {
+                $image = CategoryUpload::findOne($fileId);
+                $image->sort = $sort;
+                $image->save();
+            }
+        }
+        print_r($order);
+    }
 
     /**
      * Finds the RodentShowcaseCategory model based on its primary key value.

@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\controllers;
 
+use backend\modules\catalog\models\root\CategoryUpload;
 use Yii;
 use backend\modules\catalog\models\DogCageCategory;
 use backend\modules\catalog\models\search\DogCageCategorySearch;
@@ -94,6 +95,47 @@ class DogCageCategoryController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+
+    public function actionDeleteAllFiles($id)
+    {
+        $images = CategoryUpload::find()->where(['category_id' => $id])->all();
+        foreach ($images as $image) {
+            $image->delete();
+        }
+        Yii::$app->session->setFlash('warning', Yii::t('app', 'All Images deleted'));
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    public function actionDeleteFile(int $id)
+    {
+        $model = CategoryUpload::findOne($id);
+        if ($model != null) {
+            $file = $model->getPath(CategoryUpload::UPLOAD_PATH, $model->file_path);
+            $file_preview = $model->getPath(CategoryUpload::PREVIEW_UPLOAD_PATH, $model->file_path);
+            $model->removeSingleFileIfExist($file_preview);
+            $model->removeSingleFileIfExist($file);
+            $model->delete();
+            Yii::$app->session->setFlash('danger', 'Запись удалена!');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+    }
+    
+    /**
+     * Drag'n'Drop сортировка изображений
+     */
+    public function actionSaveImageSort()
+    {
+        $order = Yii::$app->request->post('order');
+        foreach($order as $sort => $fileId) {
+            if(isset($fileId) && !empty($fileId)) {
+                $image = CategoryUpload::findOne($fileId);
+                $image->sort = $sort;
+                $image->save();
+            }
+        }
+        print_r($order);
     }
 
     /**

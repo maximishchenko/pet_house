@@ -35,8 +35,8 @@ use yii\helpers\Url;
                             <?php elseif (isset($slider->image) && !empty($slider->image)) : ?>
                                 <!-- TODO верстка -->
                                 <div class="hero__image-wrapper">
-                                    <img class="hero__image" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>" alt="<?= $slider->name; ?>">
-                                    <img class="hero__image--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>" alt="<?= $slider->name; ?>">
+                                    <img loading="lazy" class="hero__image" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image; ?>" alt="<?= $slider->name; ?>">
+                                    <img loading="lazy" class="hero__image--mob" src="<?= "/" . Slider::UPLOAD_PATH . $slider->image_mobile; ?>" alt="<?= $slider->name; ?>">
                                 </div>
                             <?php endif; ?>
                         </div>

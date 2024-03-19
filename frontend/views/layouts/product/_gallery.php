@@ -1,5 +1,6 @@
 <?php
 
+use backend\modules\catalog\models\root\CategoryUpload;
 use backend\modules\catalog\models\root\Product;
 ?>
 
@@ -23,39 +24,25 @@ use backend\modules\catalog\models\root\Product;
   </div>
 
   <!--  TODO Новый слайдер -->
-
+  <?php if($model->category->uploads): ?>
   <div class="gallary-photo">
     <h2 class="gallary-photo__title">Фото галерея</h2>
     <div class="swiper gallary-photo__swiper">
       <div class="swiper-wrapper">
 
+        <?php foreach($model->category->uploads as $upload): ?>
         <div class="swiper-slide gallary-photo__slide">
-          <a class="gallary-photo__link" href="img/photos/1.jpg" data-fancybox="gallary-photo">
-            <img class="gallary-photo__img" src="/img/photo/1.jpg" alt="">
+          <a class="gallary-photo__link" href="/<?= CategoryUpload::UPLOAD_PATH . $upload->file_path; ?>" data-fancybox="gallary-photo">
+            <img class="gallary-photo__img" src="/<?= CategoryUpload::PREVIEW_UPLOAD_PATH . $upload->file_path; ?>">
           </a>
         </div>
 
-        <div class="swiper-slide gallary-photo__slide gallary-photo__slide--video">
+        <!-- <div class="swiper-slide gallary-photo__slide gallary-photo__slide--video">
           <a class="gallary-photo__link" href="img/photos/v1.mov" data-fancybox="gallary-photo">
             <img class="gallary-photo__img" src="/img/photo/1.jpg" alt="">
           </a>
-        </div>
-
-        <div class="swiper-slide gallary-photo__slide">
-          <a class="gallary-photo__link" href="/img/photos/2.jpg" data-fancybox="gallary-photo">
-            <img class="gallary-photo__img" src="/img/photo/2.jpg" alt="">
-          </a>
-        </div>
-        <div class="swiper-slide gallary-photo__slide">
-          <a class="gallary-photo__link" href="/img/photos/3.jpg" data-fancybox="gallary-photo">
-            <img class="gallary-photo__img" src="/img/photo/3.jpg" alt="">
-          </a>
-        </div>
-        <div class="swiper-slide gallary-photo__slide">
-          <a class="gallary-photo__link" href="/img/photos/4.jpg" data-fancybox="gallary-photo">
-            <img class="gallary-photo__img" src="/img/photo/4.jpg" alt="">
-          </a>
-        </div>
+        </div> -->
+        <?php endforeach; ?>
 
       </div>
       <div class="swiper-button-next gallary-photo-button-next"></div>
@@ -63,3 +50,4 @@ use backend\modules\catalog\models\root\Product;
       <div class="swiper-scrollbar gallary-photo-scrollbar"></div>
     </div>
   </div>
+  <?php endif; ?>

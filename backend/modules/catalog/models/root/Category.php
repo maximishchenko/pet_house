@@ -19,6 +19,7 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -49,6 +50,8 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
     use fileTrait;
 
     public $imageFile;
+
+    public $files;
 
     const UPLOAD_PATH = 'uploads/category/';
 
@@ -129,7 +132,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
             [['name'], 'unique', 'targetClass' => self::classname()],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
             'imageFile' => [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, avif, svg'],
-            [['imageFile'], 'safe'],
+            [['imageFile', 'files'], 'safe'],
         ];
     }
 
@@ -150,6 +153,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
             'item_type' => Yii::t('app', 'Item Type'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
+            'files' => Yii::t('app', 'Gallery Files'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
@@ -160,6 +164,11 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['category_id' => 'id']);
+    }
+
+    public function getUploads()
+    {
+        return $this->hasMany(CategoryUpload::className(), ['category_id' => 'id']);
     }
     
 
@@ -259,6 +268,32 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
             return true;
         }
         return false;
+    }
+    
+    protected function setUploadAttribute()
+    {
+        $this->files = UploadedFile::getInstances($this, 'files');
+        if(isset($this->files) && !empty($this->files))
+        {
+            foreach ($this->files as $key=>$file) {
+                $uploadModel = new CategoryUpload();
+                $uploadModel->file = $file;
+                $uploadModel->category_id = $this->id;
+                $uploadModel->sort = $key;
+                $uploadModel->save();
+                foreach ($uploadModel->getErrors() as $error) {
+                    Yii::error($file);
+                    Yii::error($error);
+                }
+            }
+        }
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->setUploadAttribute();
+    
+        parent::afterSave($insert, $changedAttributes);
     }
     
     public function beforeDelete()

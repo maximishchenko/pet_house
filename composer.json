@@ -28,7 +28,8 @@
         "vova07/yii2-imperavi-widget": "*",
         "kartik-v/yii2-widget-datepicker": "dev-master",
         "yii2tech/sitemap": "^1.1",
-        "himiklab/yii2-sortable-grid-view-widget": "*"
+        "himiklab/yii2-sortable-grid-view-widget": "*",
+        "yiisoft/yii2-imagine": "^2.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

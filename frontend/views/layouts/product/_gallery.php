@@ -3,7 +3,7 @@
 use backend\modules\catalog\models\root\Product;
 ?>
 
-<div class="product-gallary">
+<div class="product-gallary mb-xxl">
   <div class="swiper product-gallary__swiper">
     <div class="swiper-wrapper">
       <?php foreach ($model->productImages as $k => $image) : ?>

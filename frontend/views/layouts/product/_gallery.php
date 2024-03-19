@@ -24,7 +24,7 @@ use backend\modules\catalog\models\root\Product;
 
   <!--  TODO Новый слайдер -->
 
-  <div class="gallary-photo">
+ <!--  <div class="gallary-photo">
     <h2 class="gallary-photo__title">Фото галерея</h2>
     <div class="swiper gallary-photo__swiper">
       <div class="swiper-wrapper">
@@ -62,4 +62,4 @@ use backend\modules\catalog\models\root\Product;
       <div class="swiper-button-prev gallary-photo-button-prev"></div>
       <div class="swiper-scrollbar gallary-photo-scrollbar"></div>
     </div>
-  </div>
+  </div> -->

@@ -26,7 +26,7 @@ use backend\modules\catalog\models\root\Product;
   <!--  TODO Новый слайдер -->
   <?php if($model->category->uploads): ?>
   <div class="gallary-photo">
-    <h2 class="gallary-photo__title">Фото галерея</h2>
+    <h2 class="gallary-photo__title">Фотогалерея</h2>
     <div class="swiper gallary-photo__swiper">
       <div class="swiper-wrapper">
 

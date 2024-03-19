@@ -74,7 +74,7 @@ use yii\bootstrap4\ActiveForm;
                 <?= $form->field($model, 'files[]', ['template' => '{label}<br/> {input} {error}'])->fileInput(['multiple' => true]) ?>
                 <?php if(isset($model->uploads) && !empty($model->uploads)):?>
                 <ul style="margin: 0; padding: 0;">
-                    <div id="sortable" class="row" data-url="<?= Yii::$app->urlManager->createAbsoluteUrl('/catalog/rodent-showcase-product/save-image-sort'); ?>">
+                    <div id="sortable" class="row" data-url="<?= Yii::$app->urlManager->createAbsoluteUrl('/catalog/rodent-showcase-category/save-image-sort'); ?>">
                         <?php foreach ($model->uploads as $k => $img): ?>
                             <?php 
                             echo SingleImagePreviewWidget::widget([

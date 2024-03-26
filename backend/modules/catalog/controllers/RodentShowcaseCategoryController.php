@@ -116,6 +116,17 @@ class RodentShowcaseCategoryController extends Controller
         Yii::$app->session->setFlash('danger', 'Запись удалена!');
         return $this->redirect(Yii::$app->request->referrer);
     }
+
+    public function actionDeletePosterImage(int $id)
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(Category::POSTER_UPLOAD_PATH, $model->video_poster);
+        $model->removeSingleFileIfExist($file);
+        $model->video_poster = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', 'Запись удалена!');
+        return $this->redirect(Yii::$app->request->referrer);
+    }
     
 
     public function actionDeleteAllFiles($id)

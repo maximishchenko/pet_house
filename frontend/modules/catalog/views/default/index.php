@@ -1,4 +1,5 @@
 <?php
+use backend\modules\catalog\models\items\CatalogTypeItems;
 
 $this->title = $sections->getSectionTitle();
 $this->params['breadcrumbs'][] = $sections->getSectionName();
@@ -13,10 +14,12 @@ $this->params['breadcrumbs'][] = $sections->getSectionName();
     </div>
 </div>
 
-<!-- Фильтры по типам 123 -->
+<!-- Фильтры по типам -->
+<?php if ($productType != CatalogTypeItems::PROPERTY_TYPE_DOG_CAGE): ?>
 <?= $this->render('_filter_type', [
     'categories' => $categories,
 ]); ?>
+<?php endif; ?>
 
 
 <!-- Фильтры Категориям -->

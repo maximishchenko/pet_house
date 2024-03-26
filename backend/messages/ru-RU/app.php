@@ -303,5 +303,6 @@ return [
     'Disable color block' => 'Заблокировать покраску в конструкторе',
     'Disable size block' => 'Заблокировать размеры в конструкторе',
     'Disable wall block' => 'Заблокировать боковые стенки в конструкторе',
-    'Gallery Files' => 'Галлерея'
+    'Gallery Files' => 'Галлерея',
+    'Video Poster' => 'Видео постер',
 ];

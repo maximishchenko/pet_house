@@ -1,5 +1,6 @@
 <?php
 
+use backend\modules\catalog\models\root\Category;
 use backend\modules\catalog\models\root\CategoryUpload;
 use backend\widgets\SingleImagePreviewWidget;
 use yii\helpers\Html;
@@ -44,6 +45,38 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>    
     </div>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+            <?= $form->field($model, 'imageFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->image) && !empty($model->image)): ?>
+                    <div class="row">
+                        <?= SingleImagePreviewWidget::widget([
+                            'id' => $model->id,
+                            'filePath' => $model->getUrl(Category::UPLOAD_PATH, $model->image),
+                            'url' => 'delete-image',
+                            'fancyboxGalleryName' => "SinglePropertyImage",
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-6">
+            <?= $form->field($model, 'posterFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->video_poster) && !empty($model->video_poster)): ?>
+                    <div class="row">
+                        <?= SingleImagePreviewWidget::widget([
+                            'id' => $model->id,
+                            'filePath' => $model->getUrl(Category::POSTER_UPLOAD_PATH, $model->video_poster),
+                            'url' => 'delete-poster-image',
+                            'fancyboxGalleryName' => "SinglePropertyImagePoster",
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">

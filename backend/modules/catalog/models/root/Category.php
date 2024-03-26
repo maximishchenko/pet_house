@@ -51,9 +51,13 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
 
     public $imageFile;
 
+    public $posterFile;
+
     public $files;
 
     const UPLOAD_PATH = 'uploads/category/';
+    
+    const POSTER_UPLOAD_PATH = 'uploads/category_poster/';
 
     
     public static function tableName()
@@ -132,7 +136,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
             [['name'], 'unique', 'targetClass' => self::classname()],
             [['sort'], 'default', 'value'=> Sort::DEFAULT_SORT_VALUE],
             'imageFile' => [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, avif, svg'],
-            [['imageFile', 'files'], 'safe'],
+            [['imageFile', 'files', 'posterFile'], 'safe'],
         ];
     }
 
@@ -151,6 +155,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
             'description' => Yii::t('app', 'Description'),
             'property_type' => Yii::t('app', 'Property Type'),
             'item_type' => Yii::t('app', 'Item Type'),
+            'posterFile' => Yii::t('app', 'Video Poster'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
             'files' => Yii::t('app', 'Gallery Files'),
@@ -258,6 +263,7 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
                     /**
                      * Загрузка файла изображения
                      */
+                    $this->uploadFile('posterFile', 'video_poster', self::POSTER_UPLOAD_PATH); 
                     $this->uploadFile('imageFile', 'image', self::UPLOAD_PATH); 
                 } else {
                     foreach ($this->getErrors() as $key => $value) {
@@ -304,6 +310,8 @@ class Category extends \yii\db\ActiveRecord implements SingleTableInterface
              * Удаление файла изображения
              */
             $this->deleteSingleFile('image', self::UPLOAD_PATH);
+            $this->deleteSingleFile('video_poster', self::POSTER_UPLOAD_PATH);
+            // $this->deleteMultipleFiles('files', 'image', Product::UPLOAD_PATH);
             return true;
         } else {
             return false;

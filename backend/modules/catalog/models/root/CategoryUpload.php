@@ -89,6 +89,7 @@ class CategoryUpload extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+            $this->file_type = $this->setFileType();
             $this->uploadFile("file", "file_path", self::UPLOAD_PATH, true);
             return true;
         }
@@ -126,6 +127,15 @@ class CategoryUpload extends \yii\db\ActiveRecord
         } elseif (strstr($mime, "image/")) {
             $this->file_type = FileType::TYPE_IMAGE;
             $this->getImagePreview($file);
+        }
+    }
+
+    protected function setFileType()
+    {
+        if (strstr($this->file->type, "image/")) {
+            return FileType::TYPE_IMAGE;
+        } elseif (strstr($this->file->type, "video/")) {
+            return FileType::TYPE_VIDEO;
         }
     }
 

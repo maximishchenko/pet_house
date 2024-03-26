@@ -16,10 +16,6 @@ class m240314_170335_create_category_uploads_table extends Migration
             'category_id' => $this->integer(),
             'file_path' => $this->string(),
             'file_type' => $this->string(),
-            // 'category_id' => $this->integer()->notNull(),
-            // 'file_path' => $this->string()->notNull(),
-            // 'file_type' => $this->string()->notNull(),
-            // 'sort' => $this->integer()->notNull(),
             'sort' => $this->integer(),
         ], $tableOptions);
 

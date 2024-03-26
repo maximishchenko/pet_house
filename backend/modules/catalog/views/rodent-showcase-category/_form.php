@@ -51,7 +51,7 @@ use yii\bootstrap4\ActiveForm;
 
     <div class="jumbotron">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
             <?= $form->field($model, 'imageFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
                 <?php if(isset($model->image) && !empty($model->image)): ?>
                     <div class="row">
@@ -60,6 +60,19 @@ use yii\bootstrap4\ActiveForm;
                             'filePath' => $model->getUrl(Category::UPLOAD_PATH, $model->image),
                             'url' => 'delete-image',
                             'fancyboxGalleryName' => "SinglePropertyImage",
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-6">
+            <?= $form->field($model, 'posterFile', ['template' => '{label}<br/> {input} {error}'])->fileInput() ?>
+                <?php if(isset($model->video_poster) && !empty($model->video_poster)): ?>
+                    <div class="row">
+                        <?= SingleImagePreviewWidget::widget([
+                            'id' => $model->id,
+                            'filePath' => $model->getUrl(Category::POSTER_UPLOAD_PATH, $model->video_poster),
+                            'url' => 'delete-poster-image',
+                            'fancyboxGalleryName' => "SinglePropertyImagePoster",
                         ]); ?>
                     </div>
                 <?php endif; ?>

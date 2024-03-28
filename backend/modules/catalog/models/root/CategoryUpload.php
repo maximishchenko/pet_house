@@ -89,7 +89,9 @@ class CategoryUpload extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->file_type = $this->setFileType();
+            if (!isset($this->file_type) || empty($this->file_type)) {
+                $this->file_type = $this->setFileType();
+            }
             $this->uploadFile("file", "file_path", self::UPLOAD_PATH, true);
             return true;
         }

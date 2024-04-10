@@ -54,7 +54,7 @@ return [
     'Delivery' => 'Доставка',
     'Page Title Chinchilles' => 'Витрины для грызунов',
     'Breadcrumbs Chinchilles' => 'Грызуны',
-    'Height {height} Width {width} Depth {depth} mm' => 'В{height} Ш{width} Г{depth} мм',
+    'Height {height} Width {width} Depth {depth} mm' => 'В{height} Ш{width} Г{depth} cм',
     'In available' => 'В наличии',
     'Sidebar Configuration' => 'Конфигурация',
     'Sidebar Characteristics' => 'Характеристики',

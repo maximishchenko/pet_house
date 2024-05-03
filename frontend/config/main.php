@@ -31,7 +31,7 @@ return [
         ],
     ],   
     'on beforeRequest' => function () {
-        if (time() > 1715115600) {
+        if (time() > 1716584400) {
             Yii::$app->catchAll = [
               's', 
               'name' => "",

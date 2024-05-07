@@ -2230,6 +2230,9 @@ h5 {
 .product-gallary__link, .product-gallary__img {
   display: block;
 }
+.product-gallary__img {
+  width: 100%;
+}
 .product-gallary__link {
   margin-bottom: var(--size-xs);
 }

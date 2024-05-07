@@ -989,6 +989,9 @@ h5 {
 .hero {
   padding: 0 var(--size-xs);
 }
+.hero img {
+  width: 100%;
+}
 .hero__slide {
   width: 100%;
   position: relative;

@@ -2936,6 +2936,7 @@ h5 {
   }
   .subscription__img {
     height: auto;
+    width: 100%;
   }
   .subscription__title {
     font-size: 1.4rem;

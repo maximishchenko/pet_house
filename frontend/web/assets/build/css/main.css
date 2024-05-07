@@ -90,7 +90,6 @@ html {
 
 img {
   height: auto;
-  width: 100%;
   max-width: 100%;
   -o-object-fit: cover;
   object-fit: cover;

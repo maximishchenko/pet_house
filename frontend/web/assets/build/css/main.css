@@ -989,6 +989,9 @@ h5 {
 .hero {
   padding: 0 var(--size-xs);
 }
+.hero img {
+  width: 100%;
+}
 .hero__slide {
   width: 100%;
   position: relative;
@@ -2227,6 +2230,9 @@ h5 {
 .product-gallary__link, .product-gallary__img {
   display: block;
 }
+.product-gallary__img {
+  width: 100%;
+}
 .product-gallary__link {
   margin-bottom: var(--size-xs);
 }
@@ -2936,6 +2942,7 @@ h5 {
   }
   .subscription__img {
     height: auto;
+    width: 100%;
   }
   .subscription__title {
     font-size: 1.4rem;

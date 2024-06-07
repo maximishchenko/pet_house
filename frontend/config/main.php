@@ -30,15 +30,15 @@ return [
             'class' => 'frontend\modules\seo\Module',
         ],
     ],   
-    'on beforeRequest' => function () {
-        if (time() > 1716584400) {
-            Yii::$app->catchAll = [
-              's', 
-              'name' => "",
-              'message' => ""
-            ];
-        }
-    },
+    // 'on beforeRequest' => function () {
+    //     if (time() > 1716584400) {
+    //         Yii::$app->catchAll = [
+    //           's', 
+    //           'name' => "",
+    //           'message' => ""
+    //         ];
+    //     }
+    // },
     'components' => [
         'assetManager' => [
             'linkAssets' => true,
